@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Loiu</string>
+    <string name="bemVindo">Bem-Vindo(a)</string>
+    //palavras
+    <string name="cnpj">CNPJ</string>
+    <string name="continuar">Continuar</string>
+
+    //frases
+    <string name="informe">Informe seu CNPJ para prosseguir\ncom o seu acesso</string>
+
+    //mascaras
+    <string name="mascaraCnpj">00.000.000/0000-00</string>
+
+
+</resources>

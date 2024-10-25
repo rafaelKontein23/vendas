@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //textos
+    <style name="textoTitulo">
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">-0.015</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:fontFamily">@font/manrope_semibold</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="textoSubTitulo">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:textColor">@color/gray600</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    <style name="textoTituloInput">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.015</item>
+        <item name="android:textColor">@color/gray500</item>
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+
+    //Inputs
+    <style name="inputPadraoCadastro">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:height">48dp</item>
+        <item name="android:textColorHint">@color/gray500</item>
+        <item name="android:background">@drawable/bordas_8_stroke_1_gray300</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textStyle">normal</item>
+        
+    </style>
+
+
+    <style name="buttonPadraoCadastro">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:height">48dp</item>
+        <item name="android:paddingStart">24sp</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:paddingEnd">24sp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:text">@string/continuar</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:drawableEnd">@drawable/seta_direita_branca</item>
+        <item name="android:background">@drawable/bordas_8_blue600</item>
+
+    </style>
+
+
+</resources>
