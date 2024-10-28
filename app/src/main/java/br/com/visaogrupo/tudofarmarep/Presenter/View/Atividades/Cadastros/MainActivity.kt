@@ -1,6 +1,7 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros
 
-import android.graphics.Color
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,11 +11,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.ViewModelMainActivity
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utis.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utis.ValidarTextos
 import br.com.visaogrupo.tudofarmarep.databinding.ActivityMainBinding
-
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
-
+        val viewModelMainActivity = ViewModelMainActivity()
         FormataTextos.colocaMascaraInput(binding.inputCnpj,"##.###.###/####-##")
 
         binding.inputCnpj.setOnFocusChangeListener(object :OnFocusChangeListener{
@@ -38,7 +43,6 @@ class MainActivity : AppCompatActivity() {
 
                 }
             }
-
         })
 
         binding.inputCnpj.addTextChangedListener(object :TextWatcher{
@@ -58,13 +62,23 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-
-
         binding.btnContinuar.setOnClickListener {
             binding.inputCnpj.isEnabled =false
         }
-        binding.suporteLoiuConstrain.setOnClickListener {
 
+        binding.suporteLoiuConstrain.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                val numeroTelefoneSuporte =   viewModelMainActivity.buscarNumeroTelefoneSuporte()
+                MainScope().launch {
+                    if(numeroTelefoneSuporte.isEmpty()){
+                        // COLOCAR MENSAGEM DE ERRO AQUI , USAR O AQUIVO DE STRINGS
+                    }else{
+                        val intent = Intent(Intent.ACTION_VIEW)
+                        intent.setData(Uri.parse(numeroTelefoneSuporte))
+                        startActivity(intent)
+                    }
+                }
+            }
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

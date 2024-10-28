@@ -47,6 +47,12 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.maskededittext)
 
+    //retrofit(Api)
+    implementation(libs.gson)
+    implementation(libs.retrofit)
+    implementation(libs.converterGson)
+    implementation(libs.firebase.crashlytics.buildtools)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

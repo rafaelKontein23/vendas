@@ -7,10 +7,10 @@ import java.util.InputMismatchException
 class ValidarTextos {
     companion object{
         fun isCNPJ( CNPJ: String): Boolean {
-            var CNPJ = CNPJ.replace(".", "").replace("-", "").replace("/", "")
+            var cnpjFormatado = CNPJ.replace(".", "").replace("-", "").replace("/", "")
 
-            if (CNPJ == "00000000000000" || CNPJ == "11111111111111" || CNPJ == "22222222222222" || CNPJ == "33333333333333" || CNPJ == "44444444444444" || CNPJ == "55555555555555" || CNPJ == "66666666666666" || CNPJ == "77777777777777" || CNPJ == "88888888888888" || CNPJ == "99999999999999" ||
-                (CNPJ.length != 14)
+            if (cnpjFormatado == "00000000000000" || cnpjFormatado == "11111111111111" || cnpjFormatado == "22222222222222" || cnpjFormatado == "33333333333333" || cnpjFormatado == "44444444444444" || cnpjFormatado == "55555555555555" || cnpjFormatado == "66666666666666" || cnpjFormatado == "77777777777777" || cnpjFormatado == "88888888888888" || cnpjFormatado == "99999999999999" ||
+                (cnpjFormatado.length != 14)
             ) return (false)
 
             val dig13: Char
@@ -27,7 +27,7 @@ class ValidarTextos {
                 i = 11
                 while (i >= 0) {
 
-                    num = (CNPJ[i].code - 48)
+                    num = (cnpjFormatado[i].code - 48)
                     sm = sm + (num * peso)
                     peso = peso + 1
                     if (peso == 10) peso = 2
@@ -42,7 +42,7 @@ class ValidarTextos {
                 peso = 2
                 i = 12
                 while (i >= 0) {
-                    num = (CNPJ[i].code - 48)
+                    num = (cnpjFormatado[i].code - 48)
                     sm = sm + (num * peso)
                     peso = peso + 1
                     if (peso == 10) peso = 2
@@ -52,12 +52,11 @@ class ValidarTextos {
                 r = sm % 11
                 dig14 = if ((r == 0) || (r == 1)) '0'
                 else ((11 - r) + 48).toChar()
-                return if ((dig13 == CNPJ[12]) && (dig14 == CNPJ[13])) true
+                return if ((dig13 == cnpjFormatado[12]) && (dig14 == cnpjFormatado[13])) true
                 else false
             } catch (erro: InputMismatchException) {
                 return (false)
             }
         }
-
     }
 }
