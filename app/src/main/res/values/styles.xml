@@ -32,6 +32,13 @@
         <item name="android:textSize">14sp</item>
         <item name="android:letterSpacing">0.025</item>
         <item name="android:height">48dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:layout_marginLeft">24dp</item>
+        <item name="android:layout_marginRight">24dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:layout_marginTop">8dp</item>
         <item name="android:textColorHint">@color/gray500</item>
         <item name="android:background">@drawable/bordas_8_stroke_1_gray300</item>
         <item name="android:textColor">@color/black</item>

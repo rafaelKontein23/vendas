@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.Dialogs
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.Factory.ViewModelMainActivityFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.ViewModelMainActivity
 import br.com.visaogrupo.tudofarmarep.R
@@ -100,7 +101,8 @@ class MainActivity : AppCompatActivity() {
             if(contador == 5){
                 binding.constrainCarregando.visibility = View.VISIBLE
             }else{
-                binding.constrainCarregando.visibility = View.GONE
+                val dialog = Dialogs(this)
+                dialog.dialogTrocaAmbiente()
             }
         }
 
