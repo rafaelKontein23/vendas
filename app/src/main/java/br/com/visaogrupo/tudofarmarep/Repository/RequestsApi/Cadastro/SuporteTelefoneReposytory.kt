@@ -1,27 +1,29 @@
 package br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro
 
+import android.content.Context
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaApi
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaTelefoneSuporte
-import br.com.visaogrupo.tudofarmarep.Utis.ConfiguracoesApi.RetrofitWs
-import br.com.visaogrupo.tudofarmarep.Utis.descritar
-import br.com.visaogrupo.tudofarmarep.Utis.incriptar
+import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.RetrofitWs
+import br.com.visaogrupo.tudofarmarep.Utils.descritar
+import br.com.visaogrupo.tudofarmarep.Utils.incriptar
 import com.google.gson.Gson
-import okhttp3.MediaType
-import okhttp3.RequestBody
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.io.IOException
 
-class SuporteTelefoneReposytory {
+class SuporteTelefoneReposytory(private val context: Context) {
+
+    val retrofitWs = RetrofitWs(context).createService(SincronoCadastro::class.java)
 
     fun buscarNumeroTelefoneSuporte():RespostaTelefoneSuporte?{
         try{
-            val retrofitWs = RetrofitWs().createService(SincronoCadastro::class.java)
             val json = JSONObject().apply {
                 put("param", "")
             }
             val jsonString = json.toString().incriptar()
-            val mediaType = MediaType.parse("application/json")
-            val requestBody = RequestBody.create(mediaType,jsonString)
+            val mediaType = "application/json".toMediaTypeOrNull()
+            val requestBody = jsonString.toRequestBody(mediaType)
             val response = retrofitWs.P_Mobile_Suporte_LinkZap_Lista(requestBody).execute()
             if (response.isSuccessful) {
                 val responseBody = response.body()?.string()!!.descritar()

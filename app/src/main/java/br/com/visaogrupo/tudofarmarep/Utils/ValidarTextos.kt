@@ -1,4 +1,4 @@
-package br.com.visaogrupo.tudofarmarep.Utis
+package br.com.visaogrupo.tudofarmarep.Utils
 
 import java.util.InputMismatchException
 

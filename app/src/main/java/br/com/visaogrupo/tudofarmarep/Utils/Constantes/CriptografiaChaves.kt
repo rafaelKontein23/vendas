@@ -1,4 +1,4 @@
-package br.com.visaogrupo.tudofarmarep.Utis.Constantes
+package br.com.visaogrupo.tudofarmarep.Utils.Constantes
 
 class CriptografiaChaves {
     companion object{

@@ -1,4 +1,4 @@
-package br.com.visaogrupo.tudofarmarep.Utis
+package br.com.visaogrupo.tudofarmarep.Utils
 
 import com.vicmikhailau.maskededittext.MaskedEditText
 import com.vicmikhailau.maskededittext.MaskedFormatter

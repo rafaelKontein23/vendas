@@ -21,6 +21,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -47,12 +54,19 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.maskededittext)
 
+    //jetPack
+    implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
+
     //retrofit(Api)
     implementation(libs.gson)
     implementation(libs.retrofit)
     implementation(libs.converterGson)
     implementation(libs.firebase.crashlytics.buildtools)
 
+    // chucker
+    debugImplementation(libs.chuckerDebug)
+    releaseImplementation(libs.chuckerRelease)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -1,7 +1,7 @@
-package br.com.visaogrupo.tudofarmarep.Utis
+package br.com.visaogrupo.tudofarmarep.Utils
 
 import android.util.Base64
-import br.com.visaogrupo.tudofarmarep.Utis.Constantes.CriptografiaChaves
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.CriptografiaChaves
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec

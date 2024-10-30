@@ -1,49 +1,60 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.view.View.OnFocusChangeListener
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
+import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.Factory.ViewModelMainActivityFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.ViewModelMainActivity
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Utis.FormataTextos
-import br.com.visaogrupo.tudofarmarep.Utis.ValidarTextos
+import br.com.visaogrupo.tudofarmarep.Utils.FormataTextos
+import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
 import br.com.visaogrupo.tudofarmarep.databinding.ActivityMainBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityMainBinding.inflate( layoutInflater )
     }
+    private lateinit var viewModelMainActivity: ViewModelMainActivity
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
-        val viewModelMainActivity = ViewModelMainActivity()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1)
+            }
+        }
+
         FormataTextos.colocaMascaraInput(binding.inputCnpj,"##.###.###/####-##")
 
-        binding.inputCnpj.setOnFocusChangeListener(object :OnFocusChangeListener{
-            override fun onFocusChange(v: View?, isFocus: Boolean) {
-                if (isFocus){
-                    binding.inputCnpj.setBackgroundResource(R.drawable.bordas_radius_8_stroke_1_black)
+        val factory = ViewModelMainActivityFactory(applicationContext)
+        viewModelMainActivity = ViewModelProvider(this, factory)[ViewModelMainActivity::class.java]
 
-                }else{
-                    binding.inputCnpj.setBackgroundResource(R.drawable.bordas_8_stroke_1_gray300)
+        binding.inputCnpj.setOnFocusChangeListener { _, isFocus ->
+            if (isFocus) {
+                binding.inputCnpj.setBackgroundResource(R.drawable.bordas_radius_8_stroke_1_black)
 
-                }
+            } else {
+                binding.inputCnpj.setBackgroundResource(R.drawable.bordas_8_stroke_1_gray300)
+
             }
-        })
+        }
 
         binding.inputCnpj.addTextChangedListener(object :TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -67,17 +78,29 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.suporteLoiuConstrain.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                val numeroTelefoneSuporte =   viewModelMainActivity.buscarNumeroTelefoneSuporte()
-                MainScope().launch {
-                    if(numeroTelefoneSuporte.isEmpty()){
-                        // COLOCAR MENSAGEM DE ERRO AQUI , USAR O AQUIVO DE STRINGS
-                    }else{
-                        val intent = Intent(Intent.ACTION_VIEW)
-                        intent.setData(Uri.parse(numeroTelefoneSuporte))
-                        startActivity(intent)
-                    }
-                }
+            binding.constrainCarregando.visibility = View.VISIBLE
+            viewModelMainActivity.buscarNumeroTelefoneSuporte()
+        }
+        binding.loiuLogo.setOnClickListener {
+            viewModelMainActivity.abrirModalContator()
+        }
+
+        viewModelMainActivity.numeroTelefoneSuporte.observe(this) { numeroTelefoneSuporte ->
+            binding.constrainCarregando.visibility = View.GONE
+            if (numeroTelefoneSuporte.isEmpty()) {
+                Toast.makeText(this, getString(R.string.erroSuporteWhats), Toast.LENGTH_LONG).show()
+            } else {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(numeroTelefoneSuporte)
+                startActivity(intent)
+            }
+        }
+
+        viewModelMainActivity.contadorModal.observe(this){contador ->
+            if(contador == 5){
+                binding.constrainCarregando.visibility = View.VISIBLE
+            }else{
+                binding.constrainCarregando.visibility = View.GONE
             }
         }
 
