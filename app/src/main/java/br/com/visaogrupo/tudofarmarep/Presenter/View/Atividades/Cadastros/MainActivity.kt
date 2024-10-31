@@ -17,12 +17,14 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.Dialogs
-import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.Factory.ViewModelMainActivityFactory
-import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.ViewModelMainActivity
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogsTrocaAmbiente
+import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Factory.ViewModelMainActivityFactory
+import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelMainActivity
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
+import br.com.visaogrupo.tudofarmarep.Utils.Views.validaError
+import br.com.visaogrupo.tudofarmarep.Utils.Views.validaFocus
 import br.com.visaogrupo.tudofarmarep.databinding.ActivityMainBinding
 
 
@@ -47,14 +49,10 @@ class MainActivity : AppCompatActivity() {
         val factory = ViewModelMainActivityFactory(applicationContext)
         viewModelMainActivity = ViewModelProvider(this, factory)[ViewModelMainActivity::class.java]
 
+        viewModelMainActivity.recuperaAmbiente()
+
         binding.inputCnpj.setOnFocusChangeListener { _, isFocus ->
-            if (isFocus) {
-                binding.inputCnpj.setBackgroundResource(R.drawable.bordas_radius_8_stroke_1_black)
-
-            } else {
-                binding.inputCnpj.setBackgroundResource(R.drawable.bordas_8_stroke_1_gray300)
-
-            }
+            binding.inputCnpj.validaFocus(isFocus, this)
         }
 
         binding.inputCnpj.addTextChangedListener(object :TextWatcher{
@@ -62,28 +60,30 @@ class MainActivity : AppCompatActivity() {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val cnpjCap = s.toString()
-                if(!ValidarTextos.isCNPJ(cnpjCap) && cnpjCap.length >= 18){
-                    binding.inputCnpj.setBackgroundResource(R.drawable.bordas_radius_8_stroke_1_red500)
-                    binding.inputCnpj.setTextColor(getColor(R.color.danger500))
-                }else{
-                    binding.inputCnpj.setBackgroundResource(R.drawable.bordas_radius_8_stroke_1_black)
-                    binding.inputCnpj.setTextColor(getColor(R.color.black))
-                }
+                binding.inputCnpj.validaError(!ValidarTextos.isCNPJ(cnpjCap) && cnpjCap.length >= 18, this@MainActivity)
+
             }
             override fun afterTextChanged(s: Editable?) {
             }
         })
 
-        binding.btnContinuar.setOnClickListener {
-            binding.inputCnpj.isEnabled =false
-        }
+
 
         binding.suporteLoiuConstrain.setOnClickListener {
             binding.constrainCarregando.visibility = View.VISIBLE
             viewModelMainActivity.buscarNumeroTelefoneSuporte()
         }
+
         binding.loiuLogo.setOnClickListener {
             viewModelMainActivity.abrirModalContator()
+        }
+
+        binding.btnContinuar.setOnClickListener {
+            val cnpjCap = binding.inputCnpj.text.toString()
+            if(ValidarTextos.isCNPJ(cnpjCap)){
+                //val intent = Intent(this, CadastroActivity::class.java)
+            }
+
         }
 
         viewModelMainActivity.numeroTelefoneSuporte.observe(this) { numeroTelefoneSuporte ->
@@ -99,11 +99,24 @@ class MainActivity : AppCompatActivity() {
 
         viewModelMainActivity.contadorModal.observe(this){contador ->
             if(contador == 5){
-                binding.constrainCarregando.visibility = View.VISIBLE
-            }else{
-                val dialog = Dialogs(this)
-                dialog.dialogTrocaAmbiente()
+                val dialog = DialogsTrocaAmbiente(this,viewModelMainActivity)
+                dialog.dialogSenha()
             }
+        }
+
+        viewModelMainActivity.ambiente.observe(this){ambiente ->
+            if(ambiente == 1){
+                Toast.makeText(this, getString(R.string.ambienteAr), Toast.LENGTH_LONG).show()
+            }else if (ambiente == 2){
+                Toast.makeText(this, getString(R.string.ambienteQA), Toast.LENGTH_LONG).show()
+            }else if (ambiente == 3){
+                Toast.makeText(this, getString(R.string.ambienteExterno), Toast.LENGTH_LONG).show()
+            }else if (ambiente == 4){
+                Toast.makeText(this, getString(R.string.ambienteInterno), Toast.LENGTH_LONG).show()
+            }else if (ambiente == 5){
+                Toast.makeText(this, getString(R.string.ambienteStage), Toast.LENGTH_LONG).show()
+            }
+
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

@@ -2,32 +2,63 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bordas_12_top"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <EditText
         android:id="@+id/inputSenha"
         style="@style/inputPadraoCadastro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="212dp"
+        android:layout_marginTop="16dp"
         android:drawableStart="@drawable/cadeato"
         android:drawablePadding="12dp"
+        android:paddingEnd="32dp"
         android:hint="..."
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/fecharModal">
 
     </EditText>
 
     <ImageView
         android:id="@+id/visualizarSenha"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginEnd="16dp"
+        android:elevation="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:contentDescription="@string/descricaoVisaulizaSenha"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="@+id/inputSenha"
         app:layout_constraintEnd_toEndOf="@+id/inputSenha"
         app:layout_constraintTop_toTopOf="@+id/inputSenha"
         app:srcCompat="@drawable/olho" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnConfereSenha"
+        style="@style/buttonPadraoCadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputSenha">
+
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <ImageView
+        android:id="@+id/fecharModal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/x" />
 </androidx.constraintlayout.widget.ConstraintLayout>

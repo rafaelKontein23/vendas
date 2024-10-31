@@ -1,15 +1,15 @@
 package br.com.visaogrupo.tudofarmarep.Utils
 
 import android.util.Base64
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.CriptografiaChaves
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.CriptografiaChavesSenha
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
 
 fun String.incriptar(): String {
-    val iv = IvParameterSpec(CriptografiaChaves.SECRET_IV.toByteArray())
-    val keySpec = SecretKeySpec(CriptografiaChaves.SECRET_KEY.toByteArray(), "AES")
+    val iv = IvParameterSpec(CriptografiaChavesSenha.SECRET_IV.toByteArray())
+    val keySpec = SecretKeySpec(CriptografiaChavesSenha.SECRET_KEY.toByteArray(), "AES")
     val cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING")
     cipher.init(Cipher.ENCRYPT_MODE, keySpec, iv)
     val encrypted = cipher.doFinal(this.toByteArray())
@@ -18,8 +18,8 @@ fun String.incriptar(): String {
 
 fun String.descritar(): String {
     val decoded = Base64.decode(this, Base64.DEFAULT)
-    val iv = IvParameterSpec(CriptografiaChaves.SECRET_IV.toByteArray())
-    val keySpec = SecretKeySpec(CriptografiaChaves.SECRET_KEY.toByteArray(), "AES")
+    val iv = IvParameterSpec(CriptografiaChavesSenha.SECRET_IV.toByteArray())
+    val keySpec = SecretKeySpec(CriptografiaChavesSenha.SECRET_KEY.toByteArray(), "AES")
     val cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING")
     cipher.init(Cipher.DECRYPT_MODE, keySpec, iv)
     return String(cipher.doFinal(decoded))

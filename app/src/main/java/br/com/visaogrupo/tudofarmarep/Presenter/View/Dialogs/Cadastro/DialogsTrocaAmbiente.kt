@@ -1,0 +1,128 @@
+package br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro
+
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.text.Editable
+import android.text.InputType
+import android.text.TextWatcher
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.view.Window
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelMainActivity
+import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.databinding.DialogSenhaAmbienteBinding
+import br.com.visaogrupo.tudofarmarep.databinding.DialogTrocaAmbienteBinding
+
+class DialogsTrocaAmbiente (private val activity: AppCompatActivity,
+                            private val viewModel: ViewModelMainActivity
+     ) {
+
+     fun dialogSenha() {
+          val dialogSenha = Dialog(activity)
+          val binding = DialogSenhaAmbienteBinding.inflate(LayoutInflater.from(activity))
+
+
+
+          dialogSenha.requestWindowFeature(Window.FEATURE_NO_TITLE)
+          dialogSenha.setContentView(binding.root)
+
+          dialogSenha.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+          dialogSenha.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+          dialogSenha.window?.attributes?.windowAnimations = R.style.animacaoDialog
+          dialogSenha.window?.setGravity(Gravity.BOTTOM)
+          dialogSenha.show()
+
+          viewModel.senhaVisualizar.observe(activity){ senhaVisualizar ->
+               if (senhaVisualizar) {
+                    binding.visualizarSenha.setImageResource(R.drawable.olho_off)
+                    binding.inputSenha.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+               } else {
+                    binding.visualizarSenha.setImageResource(R.drawable.olho)
+                    binding.inputSenha.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+
+               }
+               binding.inputSenha.setSelection(binding.inputSenha.text?.length ?: 0)
+          }
+
+          binding.visualizarSenha.setOnClickListener {
+                viewModel.alterarSenhaVisualizar()
+          }
+
+          viewModel.confereSenha.observe(activity){confereSenha ->
+               if(confereSenha){
+                    dialogSenha.dismiss()
+                    dialogEscolhaAmbiente()
+               }else{
+                    Toast.makeText(activity, activity.getString(R.string.erroSenha), Toast.LENGTH_LONG).show()
+                    binding.inputSenha.setBackgroundResource(R.drawable.bordas_radius_8_stroke_1_red500)
+                    binding.inputSenha.setTextColor(activity.getColor(R.color.danger500))
+               }
+          }
+
+          binding.btnConfereSenha.setOnClickListener {
+               val senhaCap = binding.inputSenha.text.toString()
+               viewModel.confereSenha(senhaCap)
+          }
+
+          binding.inputSenha.addTextChangedListener(object : TextWatcher{
+               override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+               ) {
+               }
+
+               override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    binding.inputSenha.setBackgroundResource(R.drawable.bordas_radius_8_stroke_1_black)
+                    binding.inputSenha.setTextColor(activity.getColor(R.color.black))
+
+               }
+
+               override fun afterTextChanged(s: Editable?) {
+               }
+
+          })
+     }
+
+     fun dialogEscolhaAmbiente() {
+          val dialogEscolhaAmbiente = Dialog(activity)
+          val binding = DialogTrocaAmbienteBinding.inflate(LayoutInflater.from(activity))
+
+          dialogEscolhaAmbiente.requestWindowFeature(Window.FEATURE_NO_TITLE)
+          dialogEscolhaAmbiente.setContentView(binding.root)
+
+          dialogEscolhaAmbiente.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+          dialogEscolhaAmbiente.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+          dialogEscolhaAmbiente.window?.attributes?.windowAnimations = R.style.animacaoDialog
+          dialogEscolhaAmbiente.window?.setGravity(Gravity.BOTTOM)
+          dialogEscolhaAmbiente.show()
+          binding.btnAr.setOnClickListener {
+               viewModel.trocaAmbienteModal(1)
+               dialogEscolhaAmbiente.dismiss()
+          }
+          binding.btnStage.setOnClickListener {
+               viewModel.trocaAmbienteModal(5)
+               dialogEscolhaAmbiente.dismiss()
+          }
+          binding.btnQA.setOnClickListener {
+               viewModel.trocaAmbienteModal(2)
+               dialogEscolhaAmbiente.dismiss()
+          }
+
+          binding.btnE.setOnClickListener {
+               viewModel.trocaAmbienteModal(3)
+               dialogEscolhaAmbiente.dismiss()
+          }
+          binding.btnI.setOnClickListener {
+               viewModel.trocaAmbienteModal(4)
+               dialogEscolhaAmbiente.dismiss()
+          }
+
+     }
+
+}

@@ -5,8 +5,9 @@
     <string name="cnpj">CNPJ</string>
     <string name="continuar">Continuar</string>
 
-    //frases
+    //frases informativas
     <string name="informe">Informe seu CNPJ para prosseguir\ncom o seu acesso</string>
+    <string name="slecioneAmbiente">Informe o ambiente que deseja acessar</string>
 
     //mascaras
     <string name="mascaraCnpj">00.000.000/0000-00</string>
@@ -14,6 +15,24 @@
 
     // mensagem de Erro
     <string name="erroSuporteWhats">Algo deu errado, tente novamente mais tarde</string>
+    <string name="erroSenha">Senha incorreta</string>
+
+    //descrição
+    <string name="descricaoVisaulizaSenha">clique aqui para visualizar senha</string>
+
+
+    // ambientes
+    <string name="strAr">vamos para o ambiente de Ar</string>
+    <string name="strStage">vamos para o ambiente de Stage</string>
+    <string name="strQA">vamos para o ambiente de QA</string>
+    <string name="strExterno">vamos para o ambiente de Externo</string>
+    <string name="strInterno">vamos para o ambiente de Interno</string>
+
+    <string name="ambienteAr">Estamos no Ar</string>
+    <string name="ambienteStage">Estamos no Stage</string>
+    <string name="ambienteQA">Estamos no QA</string>
+    <string name="ambienteExterno">Estamos no Externo</string>
+    <string name="ambienteInterno">Estamos no Interno</string>
 
 
 </resources>

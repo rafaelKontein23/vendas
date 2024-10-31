@@ -1,8 +1,11 @@
 package br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi
 
 import android.content.Context
+import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
+import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -16,7 +19,9 @@ class RetrofitWs(context: Context) {
         .readTimeout(10, TimeUnit.SECONDS)
         .writeTimeout(5, TimeUnit.SECONDS)
         .apply {
-            if (true) {
+            val preferenciasUtils = PreferenciasUtils(context)
+            val ambiente = preferenciasUtils.recuperarTexto(Strings.ambiente, "")
+            if (!ambiente.equals("www") || !ambiente.equals("stage")) {
                 addInterceptor(ChuckerInterceptor.Builder(context).build())
             }
         }
