@@ -34,6 +34,7 @@ class ActCelular : AppCompatActivity() {
         viewModelActCelular = ViewModelProvider(this, factory)[ViewModelActCelular::class.java]
 
         FormataTextos.colocaMascaraInput(binding.inputCelular, Strings.mascaraTelefone)
+
         binding.inputCelular.setText(viewModelActCelular.recuperaCelular())
 
         viewModelActCelular.numeroTelefoneSuporte.observe(this) { numeroTelefoneSuporte ->
@@ -51,6 +52,7 @@ class ActCelular : AppCompatActivity() {
             binding.constrainCarregando.visibility = View.VISIBLE
             viewModelActCelular.buscarNumeroTelefoneSuporte()
         }
+
         binding.inputCelular.isFocus(this)
 
 

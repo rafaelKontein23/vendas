@@ -119,21 +119,28 @@ class ViewModelMainActivity(
             }
             "wwwe"  ->{
                 trocaAmbiente("wwwe")
+                _ambiente.postValue(3)
+
             }
             "qa" -> {
                 trocaAmbiente("qa")
+                _ambiente.postValue(2)
+
             }
             "wwwi" -> {
                 trocaAmbiente("wwwi")
+                _ambiente.postValue(4)
+
             }
             "stage" -> {
                 trocaAmbiente("stage")
             }
             else -> {
-                trocaAmbiente("5456456456465465")
+                trocaAmbiente("wwwe")
             }
         }
     }
+
 
     fun trocaAmbiente(ambiente:String){
         URLs.urlWsBase = "https://${ambiente}.visaogrupo.com.br/ws/"
