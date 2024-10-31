@@ -10,5 +10,14 @@ class FormataTextos {
             val formatter = MaskedFormatter(formato)
             editText .addTextChangedListener(MaskedWatcher(formatter,  editText))
         }
+        fun removeMascaraCelular(celular: String):String {
+            val celularSemFormatacao = celular.replace("(", "").replace(")", "").replace(" ", "").replace("-", "")
+            return celularSemFormatacao
+        }
+        fun removeMascaraCNPJ(cnpj: String):String {
+            val cnpjSemFormatacao = cnpj.replace(".", "").replace("/", "").replace("-", "")
+            return cnpjSemFormatacao
+        }
+
     }
 }

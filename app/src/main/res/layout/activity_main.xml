@@ -86,7 +86,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:drawableStart="@drawable/usuario"
-            android:drawablePadding="12dp"
+            android:drawablePadding="16dp"
             android:hint="@string/mascaraCnpj"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"

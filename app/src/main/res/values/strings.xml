@@ -1,16 +1,22 @@
 <resources>
     <string name="app_name">Loiu</string>
+    //titulos
     <string name="bemVindo">Bem-Vindo(a)</string>
+    <string name="informeCelular">Informe seu celular</string>
     //palavras
     <string name="cnpj">CNPJ</string>
+    <string name="celular">Celular</string>
     <string name="continuar">Continuar</string>
 
     //frases informativas
     <string name="informe">Informe seu CNPJ para prosseguir\ncom o seu acesso</string>
     <string name="slecioneAmbiente">Informe o ambiente que deseja acessar</string>
+    <string name="informeCelularDescricao">Informe seu celular para receber seu\n token de acesso</string>
+
 
     //mascaras
     <string name="mascaraCnpj">00.000.000/0000-00</string>
+    <string name="mascaraCelular">(00)00000-0000</string>"
 
 
     // mensagem de Erro

@@ -5,6 +5,13 @@ class Strings {
     companion object{
         //chaves preferencias
         const val ambiente = "ambiente"
+        const val cnpjCadastro = "cnpj"
+        const val celular = "celular"
+
+
+        // mascaras
+        const val mascaraCNPJ = "##.###.###/####-##"
+        const val mascaraTelefone = "(##)#####-####"
 
     }
 }

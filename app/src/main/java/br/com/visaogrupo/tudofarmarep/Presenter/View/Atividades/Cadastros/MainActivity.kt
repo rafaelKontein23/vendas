@@ -21,10 +21,12 @@ import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogsTro
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Factory.ViewModelMainActivityFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelMainActivity
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
 import br.com.visaogrupo.tudofarmarep.Utils.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
+import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocus
 import br.com.visaogrupo.tudofarmarep.Utils.Views.validaError
-import br.com.visaogrupo.tudofarmarep.Utils.Views.validaFocus
+
 import br.com.visaogrupo.tudofarmarep.databinding.ActivityMainBinding
 
 
@@ -44,16 +46,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        FormataTextos.colocaMascaraInput(binding.inputCnpj,"##.###.###/####-##")
+        FormataTextos.colocaMascaraInput(binding.inputCnpj,Strings.mascaraCNPJ)
 
         val factory = ViewModelMainActivityFactory(applicationContext)
         viewModelMainActivity = ViewModelProvider(this, factory)[ViewModelMainActivity::class.java]
 
         viewModelMainActivity.recuperaAmbiente()
+        binding.inputCnpj.setText( viewModelMainActivity.recuperaCnpj())
 
-        binding.inputCnpj.setOnFocusChangeListener { _, isFocus ->
-            binding.inputCnpj.validaFocus(isFocus, this)
-        }
+        binding.inputCnpj.isFocus(this)
 
         binding.inputCnpj.addTextChangedListener(object :TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -67,8 +68,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-
-
         binding.suporteLoiuConstrain.setOnClickListener {
             binding.constrainCarregando.visibility = View.VISIBLE
             viewModelMainActivity.buscarNumeroTelefoneSuporte()
@@ -80,10 +79,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnContinuar.setOnClickListener {
             val cnpjCap = binding.inputCnpj.text.toString()
-            if(ValidarTextos.isCNPJ(cnpjCap)){
-                //val intent = Intent(this, CadastroActivity::class.java)
+            if(ValidarTextos.isCNPJ(cnpjCap)) {
+                viewModelMainActivity.salvaCnpj(cnpjCap)
+                val intent = Intent(this, ActCelular::class.java)
+                startActivity(intent)
             }
-
         }
 
         viewModelMainActivity.numeroTelefoneSuporte.observe(this) { numeroTelefoneSuporte ->

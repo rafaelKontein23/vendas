@@ -4,10 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.ISuporteTelefone
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.CriptografiaChavesSenha
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
+import br.com.visaogrupo.tudofarmarep.Utils.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,7 +19,7 @@ class ViewModelMainActivity(
     private val suporteTelefoneRepository: SuporteTelefoneReposytory,
     private val salvaTextos: PreferenciasUtils
 
-) :ViewModel(){
+) :ViewModel(), ISuporteTelefone{
     private val _numeroTelefoneSuporte = MutableLiveData<String>()
     val numeroTelefoneSuporte: LiveData<String> get() = _numeroTelefoneSuporte
 
@@ -34,16 +36,23 @@ class ViewModelMainActivity(
     val ambiente: LiveData<Int> = _ambiente
 
 
-    fun buscarNumeroTelefoneSuporte(){
-        viewModelScope.launch(Dispatchers.IO) {
-            val numero = suporteTelefoneRepository.buscarNumeroTelefoneSuporte()
-            _numeroTelefoneSuporte.postValue(numero?.LinkZap ?: "")
-        }
-    }
+
 
     fun abrirModalContator(){
         val novoValor = (_contadorModal.value ?: 0) + 1
         _contadorModal.value = if (novoValor == 6) 0 else novoValor
+    }
+
+    fun salvaCnpj(cnpj:String){
+        viewModelScope.launch(Dispatchers.IO) {
+            val cnpjSemFormatacao = FormataTextos.removeMascaraCNPJ(cnpj)
+            salvaTextos.salvarTexto(cnpjSemFormatacao, Strings.cnpjCadastro)
+        }
+
+    }
+
+    fun recuperaCnpj():String?{
+        return salvaTextos.recuperarTexto(Strings.cnpjCadastro)
     }
 
     fun alterarSenhaVisualizar() {
@@ -129,5 +138,12 @@ class ViewModelMainActivity(
     fun trocaAmbiente(ambiente:String){
         URLs.urlWsBase = "https://${ambiente}.visaogrupo.com.br/ws/"
 
+    }
+
+    override fun buscarNumeroTelefoneSuporte() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val numero = suporteTelefoneRepository.buscarNumeroTelefoneSuporte()
+            _numeroTelefoneSuporte.postValue(numero?.LinkZap ?: "")
+        }
     }
 }
