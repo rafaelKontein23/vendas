@@ -3,8 +3,7 @@ package br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -16,7 +15,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Fa
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActCelular
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
-import br.com.visaogrupo.tudofarmarep.Utils.FormataTextos
+import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocus
 import br.com.visaogrupo.tudofarmarep.Utils.Views.validaError
 import br.com.visaogrupo.tudofarmarep.databinding.ActivityActCelularBinding
@@ -62,9 +61,11 @@ class ActCelular : AppCompatActivity() {
             binding.inputCelular.validaError(codicaoCelular, this@ActCelular)
             if (!codicaoCelular){
                 viewModelActCelular.salvarCelular(celularCap)
+                startActivity(Intent(this, ActToken::class.java))
             }
         }
-        binding.btnContinuar.setOnClickListener {
+
+        binding.setaVoltarImg.setOnClickListener {
             finish()
         }
 

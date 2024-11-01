@@ -5,30 +5,35 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.ISuporteTelefone
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.SolicitaTokenRquest
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaSolicitaToken
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
+import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.TokenRepository
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
-import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ViewModelActCelular (
+class ViewModelActToken(
     private val suporteTelefoneRepository: SuporteTelefoneReposytory,
-    private val salvaTextos: PreferenciasUtils
-
-
+    private  val tokenRepository: TokenRepository,
+    private val  preferenciasUtils: PreferenciasUtils
 ):ViewModel(), ISuporteTelefone {
 
     private val _numeroTelefoneSuporte = MutableLiveData<String>()
     val numeroTelefoneSuporte: LiveData<String> get() = _numeroTelefoneSuporte
+    val _repostaSolicita = MutableLiveData<RespostaSolicitaToken?>()
+    val repostaSolicita: LiveData<RespostaSolicitaToken?> get() = _repostaSolicita
 
-    fun salvarCelular(celular:String){
-        val celularSemFormatacao = FormataTextos.removeMascaraCelular(celular)
-        salvaTextos.salvarTexto(celularSemFormatacao, Strings.celular)
-
-    }
-    fun recuperaCelular():String?{
-        return salvaTextos.recuperarTexto(Strings.celular)
+   fun solicitaToken(telefone:String) {
+       viewModelScope.launch (Dispatchers.IO){
+           val solicitaTokenRquest = SolicitaTokenRquest("", telefone)
+           val respostaSolicitaToken = tokenRepository.solicitaTokenReposiory(solicitaTokenRquest)
+           _repostaSolicita.postValue(respostaSolicitaToken!!)
+       }
+   }
+    fun recuprarNumeroCelular():String?{
+        return  preferenciasUtils.recuperarTexto(Strings.celular)
     }
 
     override fun buscarNumeroTelefoneSuporte() {
@@ -37,6 +42,4 @@ class ViewModelActCelular (
             _numeroTelefoneSuporte.postValue(numero?.LinkZap ?: "")
         }
     }
-
-
 }

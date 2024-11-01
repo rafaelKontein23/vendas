@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue600"
+    tools:context=".Presenter.View.Atividades.Cadastros.MainActivity">
+
+
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="-12dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/cidade"
+        app:layout_constraintBottom_toTopOf="@+id/containerItens"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/loiuLogo"
+        android:layout_width="92dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:foregroundGravity="center"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerItens"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordas_12_top"
+        android:elevation="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/textoTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/manrope_bold"
+            android:text="@string/TokenAcesso"
+            android:textFontWeight="700"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/setaVoltarImg" />
+
+        <TextView
+            android:id="@+id/decricaoToken"
+            style="@style/textoSubTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/informeToken"
+            android:textFontWeight="400"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <EditText
+            android:id="@+id/campoToken1"
+            style="@style/inputPadraoCadastroToken"
+            android:layout_width="0dp"
+            android:layout_height="88dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="40dp"
+
+            android:drawablePadding="12dp"
+            android:inputType="number"
+            android:textFontWeight="700"
+            app:layout_constraintEnd_toStartOf="@+id/campoToken2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/numeroCelular">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/campoToken2"
+            style="@style/inputPadraoCadastroToken"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:textFontWeight="700"
+
+            android:drawablePadding="12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/campoToken1"
+            app:layout_constraintEnd_toStartOf="@+id/campoToken3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/campoToken1"
+            app:layout_constraintTop_toTopOf="@+id/campoToken1">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/campoToken3"
+            style="@style/inputPadraoCadastroToken"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:drawablePadding="12dp"
+            android:inputType="number"
+            android:textFontWeight="700"
+
+            app:layout_constraintBottom_toBottomOf="@+id/campoToken2"
+            app:layout_constraintEnd_toStartOf="@+id/campoToken4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/campoToken2"
+            app:layout_constraintTop_toTopOf="@+id/campoToken2">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/campoToken4"
+            style="@style/inputPadraoCadastroToken"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="24dp"
+            android:drawablePadding="12dp"
+            android:textFontWeight="700"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="@+id/campoToken3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/campoToken3"
+            app:layout_constraintTop_toTopOf="@+id/campoToken3">
+
+        </EditText>
+
+        <TextView
+            android:id="@+id/btnContinuar"
+            style="@style/buttonPadraoCadastro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="40dp"
+
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/naoRecebiTokenCronometro">
+
+        </TextView>
+
+        <ImageView
+            android:id="@+id/setaVoltarImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/seta_esquerda" />
+
+        <TextView
+            android:id="@+id/naoRecebiTokenCronometro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/naoRecebiToken"
+            android:textFontWeight="500"
+            style="@style/textoAzulInformativo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/campoToken3" />
+
+        <TextView
+            android:id="@+id/numeroCelular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            style="@style/textoBold14sp"
+            app:layout_constraintStart_toStartOf="@+id/decricaoToken"
+            app:layout_constraintTop_toBottomOf="@+id/decricaoToken" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/suporteLoiuConstrain"
+        android:background="@drawable/bordas_suporte"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:src="@drawable/suporte_icone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constrainCarregando"
+        android:layout_width="match_parent"
+        android:background="#8A474849"
+        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:elevation="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:progressTint="@color/blue300"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:elevation="21dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ProgressBar>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

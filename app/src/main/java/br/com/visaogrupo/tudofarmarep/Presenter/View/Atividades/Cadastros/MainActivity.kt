@@ -22,7 +22,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Fa
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelMainActivity
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
-import br.com.visaogrupo.tudofarmarep.Utils.FormataTextos
+import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Pushs
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocus
@@ -108,23 +108,29 @@ class MainActivity : AppCompatActivity() {
 
         viewModelMainActivity.ambiente.observe(this){ambiente ->
             val push = Pushs()
-            if(ambiente == 1){
-                Toast.makeText(this, getString(R.string.ambienteAr), Toast.LENGTH_LONG).show()
-            }else if (ambiente == 2){
-                Toast.makeText(this, getString(R.string.ambienteQA), Toast.LENGTH_LONG).show()
-                push.criarNotificacaoPush(this,"Ambiente","Você está no ambiente QA")
+            when (ambiente) {
+                1 -> {
+                    Toast.makeText(this, getString(R.string.ambienteAr), Toast.LENGTH_LONG).show()
+                }
+                2 -> {
+                    Toast.makeText(this, getString(R.string.ambienteQA), Toast.LENGTH_LONG).show()
+                    push.criarNotificacaoPush(this,"Ambiente","Você está no ambiente QA")
 
 
-            }else if (ambiente == 3){
-                Toast.makeText(this, getString(R.string.ambienteExterno), Toast.LENGTH_LONG).show()
-                push.criarNotificacaoPush(this,"Ambiente","Você está no ambiente Externo")
+                }
+                3 -> {
+                    Toast.makeText(this, getString(R.string.ambienteExterno), Toast.LENGTH_LONG).show()
+                    push.criarNotificacaoPush(this,"Ambiente","Você está no ambiente Externo")
 
-            }else if (ambiente == 4){
-                Toast.makeText(this, getString(R.string.ambienteInterno), Toast.LENGTH_LONG).show()
-                push.criarNotificacaoPush(this,"Ambiente","Você está no ambiente Interno")
+                }
+                4 -> {
+                    Toast.makeText(this, getString(R.string.ambienteInterno), Toast.LENGTH_LONG).show()
+                    push.criarNotificacaoPush(this,"Ambiente","Você está no ambiente Interno")
 
-            }else if (ambiente == 5){
-                Toast.makeText(this, getString(R.string.ambienteStage), Toast.LENGTH_LONG).show()
+                }
+                5 -> {
+                    Toast.makeText(this, getString(R.string.ambienteStage), Toast.LENGTH_LONG).show()
+                }
             }
 
         }

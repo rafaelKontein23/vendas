@@ -9,7 +9,7 @@ import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTel
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.CriptografiaChavesSenha
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
-import br.com.visaogrupo.tudofarmarep.Utils.FormataTextos
+import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

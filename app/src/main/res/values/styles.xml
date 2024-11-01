@@ -18,12 +18,32 @@
         <item name="android:fontFamily">@font/manrope</item>
         <item name="android:textStyle">normal</item>
     </style>
+
+    <style name="textoAzulInformativo">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:textColor">@color/blue500</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginRight">24dp</item>
+        <item name="android:layout_marginLeft">24dp</item>
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textStyle">normal</item>
+
+    </style>
     <style name="textoTituloInput">
         <item name="android:textSize">12sp</item>
         <item name="android:letterSpacing">0.015</item>
         <item name="android:textColor">@color/gray500</item>
         <item name="android:fontFamily">@font/manrope</item>
         <item name="android:textStyle">normal</item>
+    </style>
+    <style name="textoBold14sp">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:textColor">@color/gray600</item>
+        <item name="android:fontFamily">@font/manrope_bold</item>
+        <item name="android:textStyle">normal</item>
+
     </style>
 
 
@@ -46,7 +66,22 @@
         <item name="android:textStyle">normal</item>
         
     </style>
+    <style name="inputPadraoCadastroToken">
+        <item name="android:textSize">32sp</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:height">48dp</item>
+        <item name="android:hint">0</item>
+        <item name="android:gravity">center</item>
 
+        <item name="android:paddingBottom">8dp</item>
+
+        <item name="android:textColorHint">@color/gray500</item>
+        <item name="android:background">@drawable/bordas_8_stroke_1_gray300</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textStyle">normal</item>
+
+    </style>
 
     <style name="buttonPadraoCadastro">
         <item name="android:textSize">14sp</item>

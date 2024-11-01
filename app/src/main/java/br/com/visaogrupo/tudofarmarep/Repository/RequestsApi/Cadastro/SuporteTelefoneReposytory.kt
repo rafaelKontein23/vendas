@@ -12,7 +12,9 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.io.IOException
 
-class SuporteTelefoneReposytory(private val context: Context) {
+class SuporteTelefoneReposytory(
+    private val context: Context
+) {
 
     val retrofitWs = RetrofitWs(context).createService(SincronoCadastro::class.java)
 
