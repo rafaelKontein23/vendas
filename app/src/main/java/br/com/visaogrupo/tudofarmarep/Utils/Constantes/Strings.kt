@@ -11,6 +11,7 @@ class Strings {
         // mensagem de Erro
         const val erroSolicitaToken = "Algo deu errado, tente novamente"
 
+
         // titulos
         const val tituloErro = "Ops!"
 

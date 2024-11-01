@@ -7,6 +7,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Vi
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.TokenRepository
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
+import br.com.visaogrupo.tudofarmarep.Utils.SistemaUtils
 
 class ViewModelActTokenFactory (   private val context: Context
 ) : ViewModelProvider.Factory {
@@ -16,7 +17,8 @@ class ViewModelActTokenFactory (   private val context: Context
             val repository = SuporteTelefoneReposytory(context)
             val tokenRepository = TokenRepository(context)
             val preferenciasUtils = PreferenciasUtils(context)
-            return ViewModelActToken(repository, tokenRepository, preferenciasUtils) as T
+            val sistemaUtils = SistemaUtils(context)
+            return ViewModelActToken(repository, tokenRepository, preferenciasUtils, sistemaUtils) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

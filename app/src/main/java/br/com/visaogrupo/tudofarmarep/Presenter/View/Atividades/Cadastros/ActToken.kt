@@ -3,7 +3,10 @@ package br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -38,6 +41,23 @@ class ActToken : AppCompatActivity() {
         val numeroCelular = viewModelActToken.recuprarNumeroCelular() ?: ""
         binding.numeroCelular.text = numeroCelular.aplicarMascaraTelefone()
 
+
+        viewModelActToken.confirmaToken.observe(this){ respostaConfirmaToken ->
+            binding.constrainCarregando.visibility = View.GONE
+            if(respostaConfirmaToken != null){
+                if(respostaConfirmaToken.Sucesso){
+                    Toast.makeText(this, respostaConfirmaToken.Mensagem, Toast.LENGTH_LONG).show()
+                    finish()
+                }else{
+                    Alertas.alertaErro(this,respostaConfirmaToken.Mensagem,Strings.tituloErro){
+                    }
+                }
+            }else{
+                Alertas.alertaErro(this,Strings.erroSolicitaToken,Strings.tituloErro){
+                }
+            }
+        }
+
         viewModelActToken.repostaSolicita.observe(this){ respostaToken ->
             if(respostaToken == null){
                 Alertas.alertaErro(this,Strings.erroSolicitaToken,Strings.tituloErro){
@@ -64,6 +84,9 @@ class ActToken : AppCompatActivity() {
 
         }
 
+        binding.naoRecebiTokenCronometro.setOnClickListener {
+            viewModelActToken.solicitaToken(numeroCelular)
+        }
 
         viewModelActToken.solicitaToken(numeroCelular)
 
@@ -78,6 +101,21 @@ class ActToken : AppCompatActivity() {
             }
         }
 
+        binding.btnContinuar.setOnClickListener {
+            val campoToken1 = binding.campoToken1.text.toString()
+            val campoToken2 = binding.campoToken2.text.toString()
+            val campoToken3 = binding.campoToken3.text.toString()
+            val campoToken4 = binding.campoToken4.text.toString()
+            val token = "$campoToken1$campoToken2$campoToken3$campoToken4"
+            if (token.length == 4) {
+                binding.btnContinuar.isEnabled = false
+                binding.constrainCarregando.visibility = View.VISIBLE
+                viewModelActToken.confirmaToken(token)
+            }else {
+                Toast.makeText(this, getString(R.string.completeToken), Toast.LENGTH_LONG).show()
+            }
+        }
+
         binding.suporteLoiuConstrain.setOnClickListener {
             binding.constrainCarregando.visibility = View.VISIBLE
             viewModelActToken.buscarNumeroTelefoneSuporte()
@@ -87,10 +125,41 @@ class ActToken : AppCompatActivity() {
             finish()
         }
 
+        focusCampoToken(binding.campoToken1, binding.campoToken2,null)
+        focusCampoToken(binding.campoToken2, binding.campoToken3, binding.campoToken1)
+        focusCampoToken(binding.campoToken3, binding.campoToken4, binding.campoToken2)
+        focusCampoToken(binding.campoToken4, null, binding.campoToken3)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    fun focusCampoToken(editText: EditText, editTextFocusProximo:EditText?, editTextAnterior:EditText?) {
+        editText.addTextChangedListener(object:TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val capCampo = s.toString()
+                if(editTextFocusProximo != null){
+                    if (capCampo.length == 1){
+                        editTextFocusProximo.requestFocus()
+                    }
+                }
+                if (editTextAnterior != null){
+                    if (capCampo.isEmpty()){
+                        editTextAnterior.requestFocus()
+                    }
+                }
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        } )
     }
 }

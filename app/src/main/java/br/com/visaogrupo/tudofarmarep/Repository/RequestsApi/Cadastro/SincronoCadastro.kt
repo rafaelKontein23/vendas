@@ -16,4 +16,8 @@ interface SincronoCadastro {
     fun P_Portal_Cadastro_SolicitaToken
     (@Body responseBody: RequestBody): Call<ResponseBody>
 
+    @POST("tudofarmarep/confirma/token")
+    fun P_Portal_Cadastro_ConfirmaToken
+    (@Body responseBody: RequestBody): Call <ResponseBody>
+
 }

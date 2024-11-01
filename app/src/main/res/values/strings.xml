@@ -26,6 +26,7 @@
     // mensagem de Erro
     <string name="erroSuporteWhats">Algo deu errado, tente novamente mais tarde</string>
     <string name="erroSenha">Senha incorreta</string>
+    <string name="completeToken">Complete o token de acesso</string>
 
     //descrição
     <string name="descricaoVisaulizaSenha">clique aqui para visualizar senha</string>
