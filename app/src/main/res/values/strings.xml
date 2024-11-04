@@ -4,6 +4,29 @@
     <string name="bemVindo">Bem-Vindo(a)</string>
     <string name="informeCelular">Informe seu celular</string>
     <string name="TokenAcesso">Token de acesso</string>
+    <string name="DadosCnpj">Dados do CNPJ</string>
+    <string name="DadosPessoal">Dados Pessoal</string>
+    <string name="DadosDocumento">Foto de Documento</string>
+    <string name="DadosAreaAtuacao">Área de Atuação</string>
+    <string name="CodigoIndicacao">Código de Indicação</string>
+    <string name="ContratoAceite">Contrato de Aceitação</string>
+
+    // titulo inputs
+    <string name="possuiCore">Possui CORE ?
+Selecionar...</string>"
+    <string name="razaoSocial">Razão Social</string>
+    <string name="nomeFantasia">Nome Fantasia</string>
+    <string name="cep">CEP</string>
+    <string name="endereco">Endereço</string>
+    <string name="bairro">Bairro</string>
+    <string name="cidade">Cidade</string>
+    <string name="estado">Estado</string>
+
+
+
+
+
+
     //palavras
     <string name="cnpj">CNPJ</string>
     <string name="celular">Celular</string>
@@ -21,6 +44,7 @@
     //mascaras
     <string name="mascaraCnpj">00.000.000/0000-00</string>
     <string name="mascaraCelular">(00)00000-0000</string>"
+    <string name="Selecione">Selecionar...</string>
 
 
     // mensagem de Erro
@@ -44,6 +68,8 @@
     <string name="ambienteQA">Estamos no QA</string>
     <string name="ambienteExterno">Estamos no Externo</string>
     <string name="ambienteInterno">Estamos no Interno</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

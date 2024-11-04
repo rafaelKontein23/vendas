@@ -58,10 +58,11 @@ class ActCelular : AppCompatActivity() {
         binding.btnContinuar.setOnClickListener {
             val celularCap = binding.inputCelular.text.toString()
             val codicaoCelular = celularCap.length < 14
-            binding.inputCelular.validaError(codicaoCelular, this@ActCelular)
             if (!codicaoCelular){
                 viewModelActCelular.salvarCelular(celularCap)
                 startActivity(Intent(this, ActToken::class.java))
+            }else{
+                binding.inputCelular.validaError(codicaoCelular, this@ActCelular)
             }
         }
 

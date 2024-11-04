@@ -43,11 +43,12 @@ class ActToken : AppCompatActivity() {
 
 
         viewModelActToken.confirmaToken.observe(this){ respostaConfirmaToken ->
+            startActivity(Intent(this, ActCabecalho::class.java))
+            binding.btnContinuar.isEnabled = true
             binding.constrainCarregando.visibility = View.GONE
-            if(respostaConfirmaToken != null){
+         /*   if(respostaConfirmaToken != null){
                 if(respostaConfirmaToken.Sucesso){
                     Toast.makeText(this, respostaConfirmaToken.Mensagem, Toast.LENGTH_LONG).show()
-                    finish()
                 }else{
                     Alertas.alertaErro(this,respostaConfirmaToken.Mensagem,Strings.tituloErro){
                     }
@@ -55,7 +56,7 @@ class ActToken : AppCompatActivity() {
             }else{
                 Alertas.alertaErro(this,Strings.erroSolicitaToken,Strings.tituloErro){
                 }
-            }
+            }*/
         }
 
         viewModelActToken.repostaSolicita.observe(this){ respostaToken ->

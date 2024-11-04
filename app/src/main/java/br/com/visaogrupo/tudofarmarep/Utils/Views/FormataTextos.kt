@@ -31,6 +31,29 @@ class FormataTextos {
                 append(this@aplicarMascaraTelefone.substring(7))
             }
         }
+        fun String.aplicarMascaraCnpj(): String {
+            if (this.length != 14) return this
+            return buildString {
+                append(this@aplicarMascaraCnpj.substring(0, 2))
+                append(".")
+                append(this@aplicarMascaraCnpj.substring(2, 5))
+                append(".")
+                append(this@aplicarMascaraCnpj.substring(5, 8))
+                append("/")
+                append(this@aplicarMascaraCnpj.substring(8, 12))
+                append("-")
+                append(this@aplicarMascaraCnpj.substring(12))
+            }
+        }
+        fun String.aplicarMascaraCep(): String {
+            if (this.length != 8) return this
+            return buildString {
+                append(this@aplicarMascaraCep.substring(0, 5))
+                append("-")
+                append(this@aplicarMascaraCep.substring(5))
+            }
+        }
+
 
     }
 }
