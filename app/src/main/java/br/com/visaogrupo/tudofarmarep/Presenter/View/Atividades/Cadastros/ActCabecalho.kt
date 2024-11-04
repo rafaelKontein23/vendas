@@ -39,15 +39,13 @@ class ActCabecalho : AppCompatActivity() {
 
         binding.verPrgressoImg.setOnClickListener {
             if (binding.contrainsProgressVertical.isVisible){
-                binding.contrainsProgressVertical.visibility = View.GONE
                 binding.verPrgressoImg.rotateYView(0f)
 
             }else{
-                binding.contrainsProgressVertical.visibility = View.VISIBLE
                 binding.verPrgressoImg.rotateYView(180f)
-
             }
         }
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

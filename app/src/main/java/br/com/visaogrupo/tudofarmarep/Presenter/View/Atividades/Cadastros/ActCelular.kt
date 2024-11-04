@@ -3,6 +3,8 @@ package br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 
 import android.view.View
 import android.widget.Toast
@@ -15,6 +17,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Fa
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActCelular
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
+import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocus
 import br.com.visaogrupo.tudofarmarep.Utils.Views.validaError
@@ -46,7 +49,17 @@ class ActCelular : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+        binding.inputCelular.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val celularCap = s.toString()
+                binding.inputCelular.validaError( celularCap.length < 14, this@ActCelular)
 
+            }
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
         binding.suporteLoiuConstrain.setOnClickListener {
             binding.constrainCarregando.visibility = View.VISIBLE
             viewModelActCelular.buscarNumeroTelefoneSuporte()
