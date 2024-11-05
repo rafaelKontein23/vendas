@@ -17,7 +17,6 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Fa
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActCelular
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
-import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocus
 import br.com.visaogrupo.tudofarmarep.Utils.Views.validaError
@@ -27,7 +26,7 @@ class ActCelular : AppCompatActivity() {
     private val binding by lazy {
        ActivityActCelularBinding.inflate(layoutInflater)
     }
-    lateinit var  viewModelActCelular: ViewModelActCelular
+    private lateinit var  viewModelActCelular: ViewModelActCelular
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

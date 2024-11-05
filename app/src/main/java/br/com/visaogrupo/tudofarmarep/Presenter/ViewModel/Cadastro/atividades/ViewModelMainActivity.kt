@@ -29,10 +29,10 @@ class ViewModelMainActivity(
     private val _senhaVisualizar = MutableLiveData<Boolean>()
     val senhaVisualizar: LiveData<Boolean> = _senhaVisualizar
 
-    val _confereSenha = MutableLiveData<Boolean>()
+    private val _confereSenha = MutableLiveData<Boolean>()
     val confereSenha: LiveData<Boolean> = _confereSenha
 
-    val _ambiente = MutableLiveData<Int>()
+    private val _ambiente = MutableLiveData<Int>()
     val ambiente: LiveData<Int> = _ambiente
 
 
@@ -48,7 +48,6 @@ class ViewModelMainActivity(
             val cnpjSemFormatacao = FormataTextos.removeMascaraCNPJ(cnpj)
             salvaTextos.salvarTexto(cnpjSemFormatacao, Strings.cnpjCadastro)
         }
-
     }
 
     fun recuperaCnpj():String?{
@@ -61,11 +60,7 @@ class ViewModelMainActivity(
     }
 
     fun confereSenha(senhaCap:String) {
-         if(senhaCap.equals(CriptografiaChavesSenha.senhaAmbiente)){
-             _confereSenha.value = true
-         }else{
-             _confereSenha.value = false
-         }
+        _confereSenha.value = senhaCap == CriptografiaChavesSenha.senhaAmbiente
     }
 
     fun trocaAmbienteModal(ambiente:Int){
@@ -106,7 +101,7 @@ class ViewModelMainActivity(
         }
     }
 
-    fun salvaAmbiente(ambiente:String){
+    private fun salvaAmbiente(ambiente:String){
         trocaAmbiente(ambiente)
         salvaTextos.salvarTexto(ambiente, Strings.ambiente)
     }
@@ -142,7 +137,7 @@ class ViewModelMainActivity(
     }
 
 
-    fun trocaAmbiente(ambiente:String){
+    private fun trocaAmbiente(ambiente:String){
         URLs.urlWsBase = "https://${ambiente}.visaogrupo.com.br/ws/"
 
     }

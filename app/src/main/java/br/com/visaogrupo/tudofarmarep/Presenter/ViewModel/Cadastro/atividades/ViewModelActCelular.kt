@@ -25,7 +25,6 @@ class ViewModelActCelular (
     fun salvarCelular(celular:String){
         val celularSemFormatacao = FormataTextos.removeMascaraCelular(celular)
         salvaTextos.salvarTexto(celularSemFormatacao, Strings.celular)
-
     }
     fun recuperaCelular():String?{
         return salvaTextos.recuperarTexto(Strings.celular)
@@ -37,6 +36,4 @@ class ViewModelActCelular (
             _numeroTelefoneSuporte.postValue(numero?.LinkZap ?: "")
         }
     }
-
-
 }

@@ -3,6 +3,7 @@ package br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.F
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.TokenUseCase
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActToken
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.TokenRepository
@@ -14,11 +15,18 @@ class ViewModelActTokenFactory (   private val context: Context
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ViewModelActToken::class.java)) {
-            val repository = SuporteTelefoneReposytory(context)
+            val suporteTelefoneRepository = SuporteTelefoneReposytory(context)
             val tokenRepository = TokenRepository(context)
             val preferenciasUtils = PreferenciasUtils(context)
             val sistemaUtils = SistemaUtils(context)
-            return ViewModelActToken(repository, tokenRepository, preferenciasUtils, sistemaUtils) as T
+
+            val tokenUseCase = TokenUseCase(
+                tokenRepository,
+                preferenciasUtils,
+                sistemaUtils
+            )
+
+            return ViewModelActToken(suporteTelefoneRepository,tokenUseCase, preferenciasUtils) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

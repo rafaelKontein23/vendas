@@ -1,12 +1,9 @@
 package br.com.visaogrupo.tudofarmarep.Utils.Views
 
 import android.content.Context
-import android.text.Editable
-import android.text.TextWatcher
-import android.widget.EditText
-import androidx.core.app.NotificationCompat.getColor
+import android.widget.Spinner
+import android.widget.TextView
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
 import com.vicmikhailau.maskededittext.MaskedEditText
 // Inputs com Mascaras
 fun MaskedEditText.validaError(isError: Boolean, context: Context) {
@@ -21,7 +18,7 @@ fun MaskedEditText.validaError(isError: Boolean, context: Context) {
 }
 
 fun MaskedEditText.isFocus( context: Context) {
-    this.setOnFocusChangeListener { v, hasFocus ->
+    this.setOnFocusChangeListener { _, hasFocus ->
         if (!hasFocus) {
             this.setBackgroundResource(R.drawable.bordas_radius_8_stroke_1_black)
         } else {
@@ -30,4 +27,17 @@ fun MaskedEditText.isFocus( context: Context) {
         }
     }
 }
+
+fun Spinner.validaError(isError: Boolean, context: Context, textoSpinner: TextView) {
+    if (isError) {
+        this.setBackgroundResource(R.drawable.bordas_radius_8_stroke_1_red500)
+        textoSpinner.setTextColor(context.getColor(R.color.danger500))
+    }else{
+        this.setBackgroundResource(R.drawable.bordas_8_stroke_1_gray300)
+        textoSpinner.setTextColor(context.getColor(R.color.gray400))
+
+    }
+}
+
+
 

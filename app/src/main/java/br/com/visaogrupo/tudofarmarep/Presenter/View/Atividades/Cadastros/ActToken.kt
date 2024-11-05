@@ -29,7 +29,8 @@ class ActToken : AppCompatActivity() {
            ActivityActTokenBinding.inflate(layoutInflater)
     }
     private lateinit var cronometro: Cronometro
-    lateinit var viewModelActToken: ViewModelActToken
+    private lateinit var viewModelActToken: ViewModelActToken
+    private var numeroCelular = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,30 +39,18 @@ class ActToken : AppCompatActivity() {
         val factory = ViewModelActTokenFactory(applicationContext)
         viewModelActToken = ViewModelProvider(this, factory)[ViewModelActToken::class.java]
 
-        val numeroCelular = viewModelActToken.recuprarNumeroCelular() ?: ""
-        binding.numeroCelular.text = numeroCelular.aplicarMascaraTelefone()
+        viewModelActToken.recuperarNumeroCelular()
 
-
-        viewModelActToken.confirmaToken.observe(this){ respostaConfirmaToken ->
-            startActivity(Intent(this, ActCabecalho::class.java))
-            binding.btnContinuar.isEnabled = true
-            binding.constrainCarregando.visibility = View.GONE
-         /*   if(respostaConfirmaToken != null){
-                if(respostaConfirmaToken.Sucesso){
-                    Toast.makeText(this, respostaConfirmaToken.Mensagem, Toast.LENGTH_LONG).show()
-                }else{
-                    Alertas.alertaErro(this,respostaConfirmaToken.Mensagem,Strings.tituloErro){
-                    }
-                }
-            }else{
-                Alertas.alertaErro(this,Strings.erroSolicitaToken,Strings.tituloErro){
-                }
-            }*/
+        viewModelActToken.numeroCelular.observe(this){numeroCelular ->
+            binding.numeroCelular.text = numeroCelular.aplicarMascaraTelefone()
+            this.numeroCelular = numeroCelular
         }
+        viewModelActToken.solicitaToken(numeroCelular)
+
 
         viewModelActToken.repostaSolicita.observe(this){ respostaToken ->
             if(respostaToken == null){
-                Alertas.alertaErro(this,Strings.erroSolicitaToken,Strings.tituloErro){
+                Alertas.alertaErro(this,getString(R.string.erroSolicitaToken),getString(R.string.tituloErro)){
                     finish()
                 }
             }else{
@@ -70,11 +59,11 @@ class ActToken : AppCompatActivity() {
 
                 lifecycleScope.launch {
                     cronometro.tempo.collect { tempoAtualizado ->
-                        if (tempoAtualizado.equals("00:00")){
-                            binding.naoRecebiTokenCronometro.text = "${Strings.naoRecebiToken}"
+                        if (tempoAtualizado == "00:00"){
+                            binding.naoRecebiTokenCronometro.text = getString(R.string.naoRecebiToken)
                             binding.naoRecebiTokenCronometro.isEnabled = true
                         }else{
-                            binding.naoRecebiTokenCronometro.text = "${Strings.reenviarToken} $tempoAtualizado"
+                            binding.naoRecebiTokenCronometro.setText( "${Strings.reenviarToken} $tempoAtualizado")
                             binding.naoRecebiTokenCronometro.isEnabled = false
 
                         }
@@ -89,7 +78,6 @@ class ActToken : AppCompatActivity() {
             viewModelActToken.solicitaToken(numeroCelular)
         }
 
-        viewModelActToken.solicitaToken(numeroCelular)
 
         viewModelActToken.numeroTelefoneSuporte.observe(this) { numeroTelefoneSuporte ->
             binding.constrainCarregando.visibility = View.GONE
@@ -117,6 +105,23 @@ class ActToken : AppCompatActivity() {
             }
         }
 
+        viewModelActToken.confirmaToken.observe(this){ respostaConfirmaToken ->
+            startActivity(Intent(this, ActCabecalho::class.java))
+            binding.btnContinuar.isEnabled = true
+            binding.constrainCarregando.visibility = View.GONE
+            /*   if(respostaConfirmaToken != null){
+                   if(respostaConfirmaToken.Sucesso){
+                       Toast.makeText(this, respostaConfirmaToken.Mensagem, Toast.LENGTH_LONG).show()
+                   }else{
+                       Alertas.alertaErro(this,respostaConfirmaToken.Mensagem,Strings.tituloErro){
+                       }
+                   }
+               }else{
+                   Alertas.alertaErro(this,Strings.erroSolicitaToken,Strings.tituloErro){
+                   }
+               }*/
+        }
+
         binding.suporteLoiuConstrain.setOnClickListener {
             binding.constrainCarregando.visibility = View.VISIBLE
             viewModelActToken.buscarNumeroTelefoneSuporte()
@@ -138,7 +143,7 @@ class ActToken : AppCompatActivity() {
         }
     }
 
-    fun focusCampoToken(editText: EditText, editTextFocusProximo:EditText?, editTextAnterior:EditText?) {
+    private fun focusCampoToken(editText: EditText, editTextFocusProximo:EditText?, editTextAnterior:EditText?) {
         editText.addTextChangedListener(object:TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
@@ -157,7 +162,6 @@ class ActToken : AppCompatActivity() {
                 }
 
             }
-
             override fun afterTextChanged(s: Editable?) {
             }
 

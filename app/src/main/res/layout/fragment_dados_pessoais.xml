@@ -5,256 +5,199 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Presenter.View.Fragments.Cadastro.DadosPessoaisFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroolPessoais"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
 
-   <androidx.constraintlayout.widget.ConstraintLayout
-       android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/textView7"
+                    style="@style/textoTituloInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="48dp"
+                    android:text="@string/nome"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-       android:layout_height="match_parent">
+                </TextView>
 
-       <androidx.core.widget.NestedScrollView
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           app:layout_constraintBottom_toBottomOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toTopOf="parent">
+                <EditText
+                    android:id="@+id/inputNome"
+                    style="@style/inputPadraoCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="@string/nome"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7">
 
-           <androidx.constraintlayout.widget.ConstraintLayout
-               android:layout_width="match_parent"
-               android:layout_height="match_parent">
+                </EditText>
+                <TextView
+                    android:id="@+id/textView8"
+                    style="@style/textoTituloInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/sobrenome"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-               <TextView
-                   android:id="@+id/textView6"
-                   style="@style/textoTituloInput"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginStart="24dp"
-                   android:layout_marginTop="48dp"
-                   android:layout_marginEnd="24dp"
-                   android:text="@string/possuiCore"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toTopOf="parent">
+                </TextView>
 
-               </TextView>
+                <EditText
+                    android:id="@+id/inputSobrenome"
+                    style="@style/inputPadraoCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="@string/sobrenome"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7">
 
-               <Spinner
-                   android:id="@+id/possuiCoreSpinner"
-                   style="@style/inputPadraoCadastro"
-                   android:layout_width="match_parent"
-                   android:layout_height="48dp"
-                   android:popupBackground="@color/white"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/textView6">
+                </EditText>
+                <TextView
+                    android:id="@+id/textView9"
+                    style="@style/textoTituloInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/cpf"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-               </Spinner>
+                </TextView>
 
-               <ImageView
-                   android:id="@+id/imageView"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginEnd="16dp"
-                   android:src="@drawable/seta_baixo"
-                   app:layout_constraintBottom_toBottomOf="@+id/possuiCoreSpinner"
-                   app:layout_constraintEnd_toEndOf="@+id/possuiCoreSpinner"
-                   app:layout_constraintTop_toTopOf="@+id/possuiCoreSpinner" />
+                <EditText
+                    android:id="@+id/inputCpf"
+                    style="@style/inputPadraoCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="@string/mascaraCpf"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7">
 
-               <TextView
-                   android:id="@+id/textCnpjTitulo"
-                   style="@style/textoTituloInput"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="24dp"
-                   android:text="@string/cnpj"
-                   app:layout_constraintStart_toStartOf="@+id/possuiCoreSpinner"
-                   app:layout_constraintTop_toBottomOf="@+id/possuiCoreSpinner" />
+                </EditText>
 
-               <TextView
-                   android:id="@+id/textCnpj"
-                   style="@style/textoBold14spBlack"
-                   android:layout_width="0dp"
-                   android:textFontWeight="600"
-                   android:layout_height="wrap_content"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/textCnpjTitulo" />
+                <TextView
+                    android:id="@+id/textView10"
+                    style="@style/textoTituloInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/dataNacimento"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-               <TextView
-                   android:id="@+id/textRazaoTitulo"
-                   style="@style/textoTituloInput"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="24dp"
-                   android:text="@string/razaoSocial"
-                   app:layout_constraintStart_toStartOf="@+id/possuiCoreSpinner"
-                   app:layout_constraintTop_toBottomOf="@+id/textCnpj" />
+                </TextView>
 
-               <TextView
-                   android:id="@+id/textRazao"
-                   style="@style/textoBold14spBlack"
-                   android:layout_width="0dp"
-                   android:layout_height="wrap_content"
-                   android:textFontWeight="600"
+                <EditText
+                    android:id="@+id/inputDataNacimento"
+                    style="@style/inputPadraoCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="@string/mascaraData"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7">
 
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/textRazaoTitulo" />
+                </EditText>
+                <TextView
+                    style="@style/textoTituloInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/celular"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-               <TextView
-                   android:id="@+id/textFantasiaTitulo"
-                   style="@style/textoTituloInput"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="24dp"
-                   android:text="@string/nomeFantasia"
-                   app:layout_constraintStart_toStartOf="@+id/possuiCoreSpinner"
-                   app:layout_constraintTop_toBottomOf="@+id/textRazao" />
+                </TextView>
 
-               <TextView
-                   android:id="@+id/textFantasia"
-                   style="@style/textoBold14spBlack"
-                   android:layout_width="0dp"
-                   android:textFontWeight="600"
-                   android:layout_height="wrap_content"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/textFantasiaTitulo" />
+                <EditText
+                    android:id="@+id/inputCelular"
+                    style="@style/inputPadraoCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="@string/mascaraCelular"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7">
 
-               <TextView
-                   android:id="@+id/textCepTitulo"
-                   style="@style/textoTituloInput"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="24dp"
-                   android:text="@string/cep"
-                   app:layout_constraintStart_toStartOf="@+id/possuiCoreSpinner"
-                   app:layout_constraintTop_toBottomOf="@+id/textFantasia" />
+                </EditText>
+                <TextView
+                    style="@style/textoTituloInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/telefoneComercial"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-               <TextView
-                   android:id="@+id/textCep"
-                   style="@style/textoBold14spBlack"
-                   android:layout_width="0dp"
-                   android:textFontWeight="600"
+                </TextView>
 
-                   android:layout_height="wrap_content"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/textCepTitulo" />
+                <EditText
+                    android:id="@+id/inputTelefoneComercial"
+                    style="@style/inputPadraoCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="@string/mascaraTelefone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7">
 
+                </EditText>
+                <TextView
+                    style="@style/textoTituloInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/email"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-               <TextView
-                   android:id="@+id/textEnderecoTitulo"
-                   style="@style/textoTituloInput"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="24dp"
-                   android:text="@string/endereco"
-                   app:layout_constraintStart_toStartOf="@+id/possuiCoreSpinner"
-                   app:layout_constraintTop_toBottomOf="@+id/textCep" />
+                </TextView>
 
-               <TextView
-                   android:id="@+id/textEndereco"
-                   style="@style/textoBold14spBlack"
-                   android:layout_width="0dp"
-                   android:textFontWeight="600"
+                <EditText
+                    android:id="@+id/inputEmail"
+                    style="@style/inputPadraoCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="@string/mascaraEmail"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7">
 
-                   android:layout_height="wrap_content"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/textEnderecoTitulo" />
+                </EditText>
 
+                <TextView
+                    android:id="@+id/btnContinuar"
+                    style="@style/buttonPadraoCadastro"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginBottom="32dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-               <TextView
-                   android:id="@+id/textBairroTitulo"
-                   style="@style/textoTituloInput"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="24dp"
-                   android:text="@string/bairro"
-                   app:layout_constraintStart_toStartOf="@+id/possuiCoreSpinner"
-                   app:layout_constraintTop_toBottomOf="@+id/textEndereco" />
+                </TextView>
 
-               <TextView
-                   android:id="@+id/textBairro"
-                   style="@style/textoBold14spBlack"
-                   android:layout_width="0dp"
-                   android:textFontWeight="600"
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                   android:layout_height="wrap_content"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/textBairroTitulo" />
-
-               <TextView
-                   android:id="@+id/textCidadeTitulo"
-                   style="@style/textoTituloInput"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="24dp"
-                   android:text="@string/cidade"
-                   app:layout_constraintStart_toStartOf="@+id/possuiCoreSpinner"
-                   app:layout_constraintTop_toBottomOf="@+id/textBairro" />
-
-               <TextView
-                   android:id="@+id/textCidade"
-                   style="@style/textoBold14spBlack"
-                   android:layout_width="0dp"
-                   android:textFontWeight="600"
-
-                   android:layout_height="wrap_content"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/textCidadeTitulo" />
-
-               <TextView
-                   android:id="@+id/textEstadoTitulo"
-                   style="@style/textoTituloInput"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="24dp"
-                   android:text="@string/estado"
-                   app:layout_constraintStart_toStartOf="@+id/possuiCoreSpinner"
-                   app:layout_constraintTop_toBottomOf="@+id/textCidade" />
-
-               <TextView
-                   android:id="@+id/textEstado"
-                   style="@style/textoBold14spBlack"
-                   android:layout_width="0dp"
-                   android:textFontWeight="600"
-
-                   android:layout_height="wrap_content"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/textEstadoTitulo" />
-
-               <androidx.appcompat.widget.AppCompatButton
-                   android:id="@+id/btnContinuar"
-                   style="@style/buttonPadraoCadastro"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="48dp"
-                   android:layout_marginBottom="32dp"
-                   app:layout_constraintBottom_toBottomOf="parent"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/textEstado">
-
-               </androidx.appcompat.widget.AppCompatButton>
-
-               <TextView
-                   android:id="@+id/textoSelecionadoSpnniner"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   style="@style/textoSelecionar"
-                   android:text="@string/Selecione"
-                   app:layout_constraintBottom_toBottomOf="@+id/possuiCoreSpinner"
-                   app:layout_constraintStart_toStartOf="@+id/possuiCoreSpinner"
-                   app:layout_constraintTop_toTopOf="@+id/possuiCoreSpinner" />
-
-           </androidx.constraintlayout.widget.ConstraintLayout>
-       </androidx.core.widget.NestedScrollView>
-   </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </FrameLayout>

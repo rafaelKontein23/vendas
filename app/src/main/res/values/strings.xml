@@ -11,9 +11,13 @@
     <string name="CodigoIndicacao">Código de Indicação</string>
     <string name="ContratoAceite">Contrato de Aceitação</string>
 
+    // Erros
+    <string name="tituloErro">Ops!</string>
+    <string name="erroSolicitaToken">Algo deu errado, tente novamente</string>
+    <string name="reenviarToken">Reenviar token em </string>
+    <string name="erroCnpj">Não foi possível carregar os dados do CNPJ</string>
     // titulo inputs
-    <string name="possuiCore">Possui CORE ?
-Selecionar...</string>"
+    <string name="possuiCore">Possui CORE ?</string>"
     <string name="razaoSocial">Razão Social</string>
     <string name="nomeFantasia">Nome Fantasia</string>
     <string name="cep">CEP</string>
@@ -23,14 +27,16 @@ Selecionar...</string>"
     <string name="estado">Estado</string>
 
 
-
-
-
-
     //palavras
     <string name="cnpj">CNPJ</string>
     <string name="celular">Celular</string>
     <string name="continuar">Continuar</string>
+    <string name="nome">Nome</string>
+    <string name="sobrenome">Sobrenome</string>
+    <string name="cpf">CPF</string>
+    <string name="dataNacimento">Data de Nacimento</string>
+    <string name="telefoneComercial">Telefone Comercial</string>
+    <string name="email">E-mail</string>
     <string name="TituloErro">Erro</string>
 
     //frases informativas
@@ -43,7 +49,12 @@ Selecionar...</string>"
 
     //mascaras
     <string name="mascaraCnpj">00.000.000/0000-00</string>
-    <string name="mascaraCelular">(00)00000-0000</string>"
+    <string name="mascaraCpf">000.000.000-00</string>
+    <string name="mascaraCep">00000-000</string>
+    <string name="mascaraData">00/00/0000</string>
+    <string name="mascaraCelular">00 0 0000-0000</string>"
+    <string name="mascaraTelefone">(00) 0000-0000</string>
+    <string name="mascaraEmail">email@email</string>
     <string name="Selecione">Selecionar...</string>
 
 
@@ -70,6 +81,8 @@ Selecionar...</string>"
     <string name="ambienteInterno">Estamos no Interno</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 
 
 </resources>
