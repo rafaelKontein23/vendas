@@ -24,4 +24,8 @@ interface SincronoCadastro {
     fun P_Portal_Cadastro_Consulta
     (@Body responseBody: RequestBody): Call <ResponseBody>
 
+    @POST("envia/cadastro")
+    fun P_Cadastro
+    (@Body responseBody: RequestBody): Call <ResponseBody>
+
 }

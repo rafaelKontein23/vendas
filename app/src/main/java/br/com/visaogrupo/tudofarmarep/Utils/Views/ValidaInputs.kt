@@ -41,3 +41,4 @@ fun Spinner.validaError(isError: Boolean, context: Context, textoSpinner: TextVi
 
 
 
+

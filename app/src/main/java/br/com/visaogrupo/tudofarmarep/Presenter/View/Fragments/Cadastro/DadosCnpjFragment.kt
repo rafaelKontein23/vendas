@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Adapters.SpinnerAdapter
@@ -12,12 +13,16 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Vi
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Factory.ViewModelFragmentDadosCnpjFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentDadosCnpj
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.aplicarMascaraCep
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.aplicarMascaraCnpj
 import br.com.visaogrupo.tudofarmarep.Utils.Views.validaError
 import br.com.visaogrupo.tudofarmarep.databinding.FragmentDadosCnpjBinding
 import br.com.visaogrupo.tudofarmarep.databinding.FragmentDadosPessoaisBinding
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 private const val ARG_PARAM1 = "param1"
@@ -25,26 +30,26 @@ private const val ARG_PARAM2 = "param2"
 
 
 class DadosCnpjFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
+
     private var _binding: FragmentDadosCnpjBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModelFragmentDadosCnpj: ViewModelFragmentDadosCnpj
     private lateinit var  viewModelActCabecalho: ViewModelActCabecalho
+    private var mudaTextoSpinner = 0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentDadosCnpjBinding.inflate(inflater, container, false)
         val factory = ViewModelFragmentDadosCnpjFactory(requireContext())
 
@@ -60,17 +65,31 @@ class DadosCnpjFragment : Fragment() {
             binding.possuiCoreSpinner.adapter = adapter
         }
 
-        binding.possuiCoreSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+
+
+       binding.possuiCoreSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
-                view: View,
+                view: View?,
                 position: Int,
                 id: Long
             ) {
-                val selectedItem = parent.getItemAtPosition(position).toString()
-                binding.textoSelecionadoSpnniner.text = selectedItem
-                binding.possuiCoreSpinner.validaError(false, requireContext(), binding.textoSelecionadoSpnniner)
 
+
+                    val selectedItem = parent.getItemAtPosition(position).toString()
+                    binding.possuiCoreSpinner.validaError(false, requireContext(), binding.textoSelecionadoSpnniner)
+                    binding.textoSelecionadoSpnniner.text = selectedItem
+                    mudaTextoSpinner ++
+                    if((mudaTextoSpinner == 2 || mudaTextoSpinner == 1) && FormularioCadastro.cadastro.possuiCore.isNotEmpty() && position == 0){
+                        binding.textoSelecionadoSpnniner.text = FormularioCadastro.cadastro.possuiCore
+
+                        if(mudaTextoSpinner == 1 ){
+                            mudaTextoSpinner = 1
+                        }
+                    }else{
+                        FormularioCadastro.cadastro.possuiCore = selectedItem
+                    }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -100,10 +119,23 @@ class DadosCnpjFragment : Fragment() {
         binding.btnContinuar.setOnClickListener {
             val textoSelecionado = binding.textoSelecionadoSpnniner.text.toString()
             val codicao = textoSelecionado == getString(R.string.Selecione)
+            mudaTextoSpinner = 0
             binding.possuiCoreSpinner.validaError(codicao, requireContext(), binding.textoSelecionadoSpnniner)
             if(codicao){
                binding.scrollViewPessoais.smoothScrollTo(0, binding.possuiCoreSpinner.top)
             }else{
+                viewModelFragmentDadosCnpj.salvarInformacoesCnpj(
+                    binding.textCnpj.text.toString(),
+                    binding.textRazao.text.toString(),
+                    binding.textFantasia.text.toString(),
+                    binding.textCep.text.toString(),
+                    binding.textEndereco.text.toString(),
+                    binding.textCidade.text.toString(),
+                    binding.textEstado.text.toString(),
+                    textoSelecionado
+                )
+                viewModelFragmentDadosCnpj.enviaCadastro()
+
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainerCadastro, DadosPessoaisFragment())
                     .addToBackStack(null)
