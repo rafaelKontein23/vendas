@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +23,7 @@ import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocus
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusCPF
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEditTextBasico
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEmail
+
 import br.com.visaogrupo.tudofarmarep.Utils.Views.validaError
 import br.com.visaogrupo.tudofarmarep.databinding.FragmentDadosPessoaisBinding
 
@@ -84,6 +86,17 @@ class DadosPessoaisFragment : Fragment() {
             override fun afterTextChanged(s: Editable?) {
             }
         })
+        binding.inputEmail.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val emailCap = s.toString()
+                binding.inputEmail.validaError( emailCap.isEmpty() || !emailCap.contains("@") || !emailCap.contains(".com"), requireContext())
+            }
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
+
         binding.inputEmail.isFocusEmail(requireContext())
 
         binding.textViewCelular.setOnClickListener {
@@ -109,8 +122,33 @@ class DadosPessoaisFragment : Fragment() {
                 !ValidarTextos.isCPF(cpf)||
                 dataNacimento.isEmpty() ||
                 email.isEmpty() ||
-                telefoneComercial.isEmpty()){
-                Tos
+                !email.contains("@") ||
+                !email.contains(".com")){
+                Toast.makeText(requireContext(), "Preencha todos os campos corretamente", Toast.LENGTH_SHORT).show()
+                if(email.isEmpty() || !email.contains("@") || !email.contains(".com")){
+                    binding.scroolPessoais.smoothScrollTo(0,  binding.inputEmail.top)
+                    binding.inputEmail.validaError( true, requireContext())
+
+                }
+                if(dataNacimento.isEmpty()){
+                    binding.scroolPessoais.smoothScrollTo(0,  binding.inputDataNacimento.top)
+                    binding.inputDataNacimento.validaError( true , requireContext())
+                }
+
+                if(cpf.isEmpty() || !ValidarTextos.isCPF(cpf)){
+                    binding.scroolPessoais.smoothScrollTo(0,  binding.inputCpf.top)
+                    binding.inputCpf.validaError( true, requireContext())
+                }
+                if(sobrenome.isEmpty()){
+                    binding.scroolPessoais.smoothScrollTo(0,  binding.inputSobrenome.top)
+                    binding.inputSobrenome.validaError( true, requireContext())
+                }
+
+                if(nome.isEmpty()){
+                    binding.scroolPessoais.smoothScrollTo(0,  binding.inputNome.top)
+                    binding.inputNome.validaError( true, requireContext())
+                }
+
 
             }else{
 

@@ -34,6 +34,7 @@ class Alertas {
                 { _, selectedYear, selectedMonth, selectedDay ->
                     val formattedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
                     textView.text = formattedDate
+                    textView.validaError(false, context)
                 },
                 year,
                 month,

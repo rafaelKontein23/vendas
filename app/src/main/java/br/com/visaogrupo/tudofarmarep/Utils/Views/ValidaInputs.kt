@@ -92,6 +92,17 @@ fun EditText.validaError(isError: Boolean, context: Context) {
     }
 }
 
+fun TextView.validaError(isError: Boolean, context: Context) {
+    if (isError) {
+        this.setBackgroundResource(R.drawable.bordas_radius_8_stroke_1_red500)
+        this.setTextColor(context.getColor(R.color.danger500))
+    } else {
+        this.setBackgroundResource(R.drawable.bordas_8_stroke_1_gray300)
+        this.setTextColor(context.getColor(R.color.black))
+    }
+}
+
+
 
 fun EditText.isFocusEditTextBasico(context: Context) {
 
