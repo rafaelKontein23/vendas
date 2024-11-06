@@ -36,10 +36,12 @@ class ViewModelFragmentDadosCnpj(
                               cidade: String,
                               uf: String,
                               possuiCore: String){
-        FormularioCadastro.cadastro.CNPJ = cnpj
+        val cnpjFormat = cnpj.filter { it.isDigit() }
+        val cepFormat = cep.filter { it.isDigit() }
+        FormularioCadastro.cadastro.CNPJ = cnpjFormat
         FormularioCadastro.cadastro.RazaoSocial = razaoSocial
         FormularioCadastro.cadastro.Fantasia = fantasia
-        FormularioCadastro.cadastro.CEP = cep
+        FormularioCadastro.cadastro.CEP = cepFormat
         FormularioCadastro.cadastro.Endereco = endereco
         FormularioCadastro.cadastro.Cidade = cidade
         FormularioCadastro.cadastro.UF = uf
@@ -49,7 +51,7 @@ class ViewModelFragmentDadosCnpj(
     }
     fun enviaCadastro(){
         viewModelScope.launch(Dispatchers.IO) {
-            cadastroUseCase.enviaCadastro(FormularioCadastro.cadastro)
+            cadastroUseCase.enviaCadastro()
         }
     }
 

@@ -1,12 +1,12 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros
 
 import android.os.Bundle
+import android.view.MotionEvent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import androidx.lifecycle.ViewModelProvider
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro.DadosCnpjFragment
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActCabecalho
@@ -14,9 +14,7 @@ import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Animacoes.Progress.Companion.animateProgressBarHorizontal
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Animacoes.rotateYView
 import br.com.visaogrupo.tudofarmarep.databinding.ActivityActCabecalhoBinding
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+
 
 class ActCabecalho : AppCompatActivity() {
     private  val binding: ActivityActCabecalhoBinding by lazy {
@@ -118,4 +116,5 @@ class ActCabecalho : AppCompatActivity() {
             super.onBackPressed()
         }
     }
+
 }

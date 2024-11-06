@@ -11,6 +11,9 @@ class ViewModelActCabecalho :ViewModel(){
     val finalizaAtividade: LiveData<Boolean> get() = _finalizaAtividade
     private val _passoAtual = MutableLiveData<Pair<Int, Float>>()
     val passoAtual: LiveData<Pair<Int, Float>> get() = _passoAtual
+    private val _infoVisvel = MutableLiveData<Int>()
+    val infoVisvel: LiveData<Int> get() = _infoVisvel
+
 
 
     fun mostraCarregando(mostra: Boolean){
@@ -20,6 +23,8 @@ class ViewModelActCabecalho :ViewModel(){
         _finalizaAtividade.postValue(true)
 
     }
+
+    fun ()
 
     fun mudaProgressoCadastro(passo:Int, progress:Float){
         _passoAtual.postValue(Pair(passo, progress))

@@ -1,5 +1,6 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,11 +12,13 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.ActCabecalho
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActCabecalho
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Factory.ViewModelFragmentDadosPessoalFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentDadosPessoais
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
+import br.com.visaogrupo.tudofarmarep.Utils.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
@@ -50,6 +53,7 @@ class DadosPessoaisFragment : Fragment() {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,7 +69,14 @@ class DadosPessoaisFragment : Fragment() {
         FormataTextos.colocaMascaraInput(binding.inputTelefoneComercial, Strings.mascaraTelefone)
         FormataTextos.colocaMascaraInput(binding.inputCelular, Strings.mascaraCelular)
         viewModelFragmentDadosPessoal.recuperaNumeroCelular()
-
+        if(FormularioCadastro.cadastro.nome.isNotEmpty()){
+            binding.inputNome.setText(FormularioCadastro.cadastro.nome)
+            binding.inputSobrenome.setText(FormularioCadastro.cadastro.sobrenome)
+            binding.inputCpf.setText(FormularioCadastro.cadastro.cpf)
+            binding.inputDataNacimento.setText(FormularioCadastro.cadastro.dataNascimento)
+            binding.inputEmail.setText(FormularioCadastro.cadastro.email)
+            binding.inputTelefoneComercial.setText(FormularioCadastro.cadastro.telefoneComercial)
+        }
         viewModelFragmentDadosPessoal.numeroCelular.observe(viewLifecycleOwner){
             binding.inputCelular.setText(it)
             binding.inputCelular.isEnabled = false
@@ -86,6 +97,7 @@ class DadosPessoaisFragment : Fragment() {
             override fun afterTextChanged(s: Editable?) {
             }
         })
+
         binding.inputEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -102,11 +114,10 @@ class DadosPessoaisFragment : Fragment() {
         binding.textViewCelular.setOnClickListener {
             binding.informativoCelular.isVisible = !binding.informativoCelular.isVisible
         }
+
         binding.inputDataNacimento.setOnClickListener {
             Alertas.showDatePickerDialog(binding.inputDataNacimento, requireContext())
         }
-
-
 
         binding.btnContinuar.setOnClickListener {
             val nome = binding.inputNome.text.toString()
@@ -151,20 +162,30 @@ class DadosPessoaisFragment : Fragment() {
 
 
             }else{
-
+                viewModelFragmentDadosPessoal.salvaCamposPessoais(nome, sobrenome, cpf, dataNacimento, email, telefoneComercial)
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainerCadastro, FotoDocumentoFragment())
+                    .addToBackStack(null)
+                    .commit()
             }
         }
+
+
         return binding.root
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DadosPessoaisFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+     fun isInfoVisible(): Boolean {
+        return binding.informativoCelular.isVisible
+    }
+
+    fun hideMenu() {
+        binding.informativoCelular.isVisible = false
+    }
+    fun isTouchInsideMenu(x: Int, y: Int): Boolean {
+        val location = IntArray(2)
+        binding.informativoCelular.getLocationOnScreen(location)
+        val viewX = location[0]
+        val viewY = location[1]
+        return (x >= viewX && x <= viewX + binding.informativoCelular.width && y >= viewY && y <= viewY + binding.informativoCelular.height)
     }
 }

@@ -3,7 +3,9 @@ package br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Fa
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.CadastroUseCase
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentDadosPessoais
+import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CadastroRepository
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 
 class ViewModelFragmentDadosPessoalFactory  (
@@ -14,7 +16,9 @@ class ViewModelFragmentDadosPessoalFactory  (
         if (modelClass.isAssignableFrom(ViewModelFragmentDadosPessoais::class.java)) {
 
             val preferenciasUtils = PreferenciasUtils(context)
-            return ViewModelFragmentDadosPessoais(preferenciasUtils ) as T
+            val cadastroRepository = CadastroRepository(context)
+            val cadastroUseCase = CadastroUseCase(cadastroRepository)
+            return ViewModelFragmentDadosPessoais(preferenciasUtils, cadastroUseCase ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
