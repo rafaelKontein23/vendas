@@ -17,6 +17,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Fa
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActCelular
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
+import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocus
 import br.com.visaogrupo.tudofarmarep.Utils.Views.validaError
@@ -34,7 +35,7 @@ class ActCelular : AppCompatActivity() {
         val factory = ViewModelActCelularFactory(applicationContext)
         viewModelActCelular = ViewModelProvider(this, factory)[ViewModelActCelular::class.java]
 
-        FormataTextos.colocaMascaraInput(binding.inputCelular, Strings.mascaraTelefone)
+        FormataTextos.colocaMascaraInput(binding.inputCelular, Strings.mascaraCelular)
 
         binding.inputCelular.setText(viewModelActCelular.recuperaCelular())
 
@@ -53,7 +54,7 @@ class ActCelular : AppCompatActivity() {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val celularCap = s.toString()
-                binding.inputCelular.validaError( celularCap.length < 14, this@ActCelular)
+                binding.inputCelular.validaError( ValidarTextos.isCelular(celularCap), this@ActCelular)
 
             }
             override fun afterTextChanged(s: Editable?) {

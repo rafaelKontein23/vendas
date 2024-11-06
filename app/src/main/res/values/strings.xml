@@ -45,6 +45,8 @@
     <string name="informeCelularDescricao">Informe seu celular para receber seu\n token de acesso</string>
     <string name="informeToken">Informe abaixo o token enviado para o número</string>
     <string name="naoRecebiToken">não recebi o token</string>
+    <string name="inormacaoCelular">Número informado no \nacesso para recebimento \nde token</string>
+
 
 
     //mascaras
@@ -53,7 +55,7 @@
     <string name="mascaraCep">00000-000</string>
     <string name="mascaraData">00/00/0000</string>
     <string name="mascaraCelular">00 0 0000-0000</string>"
-    <string name="mascaraTelefone">(00) 0000-0000</string>
+    <string name="mascaraTelefone">00 0000-0000</string>
     <string name="mascaraEmail">email@email</string>
     <string name="Selecione">Selecionar...</string>
 

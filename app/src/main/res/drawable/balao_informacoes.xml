@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Triângulo -->
+    <item android:left="8dp" android:top="20dp"> <!-- Adiciona margem para descer o triângulo -->
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="0%"
+            android:pivotY="0%"
+            android:toDegrees="0">
+            <shape android:shape="rectangle">
+                <solid android:color="@color/black" />
+            </shape>
+        </rotate>
+    </item>
+
+    <!-- Retângulo principal do balão -->
+    <item android:left="16dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/black" />
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+</layer-list>

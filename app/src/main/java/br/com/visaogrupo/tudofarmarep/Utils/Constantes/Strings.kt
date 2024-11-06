@@ -10,8 +10,9 @@ class Strings {
 
         // mascaras
         const val mascaraCNPJ = "##.###.###/####-##"
-        const val mascaraTelefone = "(##)#####-####"
-
+        const val mascaraCPF = "###.###.###-##"
+        const val mascaraTelefone = "## ####-####"
+        const val mascaraCelular = "## # ####-####"
         const val reenviarToken = "Reenviar token em "
 
     }
