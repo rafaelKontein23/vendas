@@ -42,9 +42,10 @@ androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifec
 lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version = "lifecycle" }
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version = "lifecycle" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
-glideCompiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
+glideCompiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
 
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+

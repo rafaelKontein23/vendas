@@ -3,19 +3,19 @@ package br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.camera.core.impl.utils.ContextUtil.getApplicationContext
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.ActCameraGaleria
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActCabecalho
-import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.databinding.FragmentDadosPessoaisBinding
+import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelFotoDocumento
 import br.com.visaogrupo.tudofarmarep.databinding.FragmentFotoDocumentoBinding
 
 
@@ -30,6 +30,9 @@ class FotoDocumentoFragment : Fragment() {
     private var _binding: FragmentFotoDocumentoBinding? = null
     private val binding get() = _binding!!
     private lateinit var  viewModelActCabecalho: ViewModelActCabecalho
+    private val REQUEST_IMAGE_CODE = 100
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +51,7 @@ class FotoDocumentoFragment : Fragment() {
         viewModelActCabecalho = ViewModelProvider(requireActivity()).get(ViewModelActCabecalho::class.java)
         viewModelActCabecalho.mudaProgressoCadastro(3, 1f)
 
+
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(requireActivity(),
                 arrayOf(Manifest.permission.CAMERA), 4);
@@ -56,20 +60,21 @@ class FotoDocumentoFragment : Fragment() {
 
 
     binding.adiconarFoto.setOnClickListener {
-            startActivity(Intent(requireContext(), ActCameraGaleria::class.java))
+        val intent = Intent(requireContext(), ActCameraGaleria::class.java)
+        startActivityForResult(intent, REQUEST_IMAGE_CODE)
     }
 
         return binding.root
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FotoDocumentoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_IMAGE_CODE && resultCode == AppCompatActivity.RESULT_OK) {
+            val imageUri: Uri? = data?.getParcelableExtra("image_uri")
+            imageUri?.let {
+
             }
+        }
     }
 }

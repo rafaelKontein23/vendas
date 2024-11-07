@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("org.jetbrains.kotlin.kapt")
+
 }
 
 android {
@@ -77,7 +79,7 @@ dependencies {
 
     // imagens
     implementation(libs.glide)
-    kapt(libs.lifecycle.)
+    kapt(libs.glideCompiler)   // Compiler do Glide com kapt
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

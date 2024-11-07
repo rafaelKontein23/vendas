@@ -20,7 +20,6 @@
     </androidx.camera.view.PreviewView>
 
 
-
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="0dp"
@@ -41,14 +40,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/btn_camera" />
 
-    <ImageView
-        android:id="@+id/imgGaleria"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="50dp"
+        android:background="@drawable/bordas_radius_8_solid_gray100"
+        android:padding="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/bordas_radius_8_solid_gray100" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/imgGaleria"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/bordas_radius_8_solid_gray100" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

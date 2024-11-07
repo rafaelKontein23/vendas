@@ -1,15 +1,20 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
@@ -17,33 +22,58 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelFotoDocumento
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.databinding.ActivityActCameraGaleriaBinding
+import com.bumptech.glide.Glide
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Locale
+
 
 class ActCameraGaleria : AppCompatActivity() {
+    private lateinit var imageCapture: ImageCapture
+
     private val binding by lazy {
         ActivityActCameraGaleriaBinding.inflate(layoutInflater)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
+        if (hasStoragePermission()) {
+            getFirstImage(binding.imgGaleria)
+        } else {
+            requestStoragePermission()
+        }
+        binding.camera.setOnClickListener {
+           val uri =  capturePhoto()
+            val resultIntent = Intent().apply {
+                putExtra("image_uri", uri)
+            }
+            setResult(RESULT_OK, resultIntent)
+            finish()
+
+        }
+
         cameraProviderFuture.addListener({
             val cameraProvider = cameraProviderFuture.get()
-            val preview = Preview.Builder()
-                .build()
-                .also { it.setSurfaceProvider(findViewById<PreviewView>(R.id.camera).surfaceProvider) }
+            val preview = Preview.Builder().build().also {
+                it.setSurfaceProvider(binding.camera.surfaceProvider)
+            }
+            imageCapture = ImageCapture.Builder().build()
+
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
             try {
                 cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(this, cameraSelector, preview)
+                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture)
             } catch (exc: Exception) {
                 Log.e("CameraX", "Erro ao inicializar a câmera.", exc)
             }
         }, ContextCompat.getMainExecutor(this))
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -51,53 +81,88 @@ class ActCameraGaleria : AppCompatActivity() {
             insets
         }
     }
-    private fun isStoragePermissionGranted(): Boolean {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            true
+
+    private fun hasStoragePermission(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ContextCompat.checkSelfPermission(
+                this, Manifest.permission.READ_MEDIA_IMAGES
+            ) == PackageManager.PERMISSION_GRANTED
         } else {
-            ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+            ContextCompat.checkSelfPermission(
+                this, Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
         }
     }
 
     private fun requestStoragePermission() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                6
-            )
-        }
-    }
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 6 && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            loadFirstImageFromGallery()
-        }
-    }
-    private fun loadFirstImageFromGallery() {
-        val imageUri: Uri? = getFirstImageUriFromGallery()
-        imageUri?.let {
-           // Glide.with(this).load(it).into(binding.imgGaleria)
-        }
-    }
-
-    private fun getFirstImageUriFromGallery(): Uri? {
-        val uriExternal: Uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-        val projection = arrayOf(MediaStore.Images.Media._ID)
-        val sortOrder = "${MediaStore.Images.Media.DATE_TAKEN} DESC" // Ordem decrescente por data
-
-        contentResolver.query(uriExternal, projection, null, null, sortOrder).use { cursor ->
-            if (cursor != null && cursor.moveToFirst()) {
-                val idColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID)
-                val id = cursor.getLong(idColumn)
-                return Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id.toString())
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!hasStoragePermission()) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    ActivityCompat.requestPermissions(
+                        this,
+                        arrayOf(Manifest.permission.READ_MEDIA_IMAGES),
+                        1001
+                    )
+                } else {
+                    ActivityCompat.requestPermissions(
+                        this,
+                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                        1001
+                    )
+                }
             }
         }
-        return null
     }
 
+    private fun getFirstImage(imageView: ImageView) {
+        val uri: Uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        val projection = arrayOf(MediaStore.Images.Media._ID, MediaStore.Images.Media.DISPLAY_NAME)
+        val sortOrder = "${MediaStore.Images.Media.DATE_TAKEN} DESC"
+
+        val cursor = contentResolver.query(uri, projection, null, null, sortOrder)
+
+        cursor?.use {
+            if (it.moveToFirst()) {
+                val id = it.getLong(it.getColumnIndexOrThrow(MediaStore.Images.Media._ID))
+                val imageUri: Uri = Uri.withAppendedPath(uri, id.toString())
+                Glide.with(this).load(imageUri).into(imageView)
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1001) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getFirstImage(binding.imgGaleria)
+            } else {
+                requestStoragePermission()
+            }
+        }
+    }
+    private fun capturePhoto():Uri? {
+        val photoFile = File(
+            externalMediaDirs.firstOrNull(),
+            "IMG_${SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(System.currentTimeMillis())}.jpg"
+        )
+        var uriImagem:Uri? = null
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+
+        imageCapture.takePicture(
+            outputOptions,
+            ContextCompat.getMainExecutor(this),
+            object : ImageCapture.OnImageSavedCallback {
+                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+                    val savedUri = Uri.fromFile(photoFile)
+                    uriImagem = savedUri
+
+                }
+
+                override fun onError(exception: ImageCaptureException) {
+                    Log.e("CameraX", "Erro ao capturar imagem: ${exception.message}", exception)
+                }
+            }
+        )
+        return uriImagem
+    }
 }
