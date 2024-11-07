@@ -12,6 +12,9 @@ constraintlayout = "2.1.4"
 lifecycle = "2.8.5"
 firebaseCrashlyticsBuildtools = "3.0.2"
 chucker = "4.0.0"
+camerax = "1.2.2"
+glide = "4.16.0"
+
 
 
 [libraries]
@@ -30,10 +33,16 @@ converterGson = { group = "com.squareup.retrofit2", name = "converter-gson", ver
 firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlyticsBuildtools" }
 chuckerDebug = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "chucker" }
 chuckerRelease = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "chucker" }
-
+camerax-core = { module = "androidx.camera:camera-core", version.ref = "camerax" }
+camerax-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "camerax" }
+camerax-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camerax" }
+camerax-view = { module = "androidx.camera:camera-view", version.ref = "camerax" }
+camerax-extensions = { module = "androidx.camera:camera-extensions", version.ref = "camerax" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version = "lifecycle" }
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version = "lifecycle" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glideCompiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 
 
 [plugins]

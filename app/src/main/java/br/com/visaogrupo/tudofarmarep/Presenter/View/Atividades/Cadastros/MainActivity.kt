@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             val cnpjCap = binding.inputCnpj.text.toString()
             if(ValidarTextos.isCNPJ(cnpjCap)) {
                 viewModelMainActivity.salvaCnpj(cnpjCap)
-                val intent = Intent(this, ActCelular::class.java)
+                val intent = Intent(this, ActCameraGaleria::class.java)
                 startActivity(intent)
             }
         }

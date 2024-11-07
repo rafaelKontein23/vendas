@@ -31,6 +31,7 @@
     <string name="cnpj">CNPJ</string>
     <string name="celular">Celular</string>
     <string name="continuar">Continuar</string>
+    <string name="adiconarFoto">Adicionar Foto</string>
     <string name="nome">Nome</string>
     <string name="sobrenome">Sobrenome</string>
     <string name="cpf">CPF</string>
@@ -46,7 +47,12 @@
     <string name="informeToken">Informe abaixo o token enviado para o número</string>
     <string name="naoRecebiToken">não recebi o token</string>
     <string name="inormacaoCelular">Número informado no \nacesso para recebimento \nde token</string>
-
+    <string name="infoTireUmaFoto">Tire uma foto do seu documento pessoal de identificação (RG ou CNH)</string>
+    <string name="infosFotos">• O documento deve estar aberto e aparecendo  ............. por completo;\n
+        •  Certifique-se que todos os dados estejam legíveis;\n
+        •  Tire a foto em um local iluminado;\n
+        •  Evite reflexos na foto;\n
+        •  Evite fundos estampados na foto.</string>
 
 
     //mascaras

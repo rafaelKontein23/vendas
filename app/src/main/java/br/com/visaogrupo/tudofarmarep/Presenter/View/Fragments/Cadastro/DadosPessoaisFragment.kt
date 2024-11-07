@@ -113,6 +113,7 @@ class DadosPessoaisFragment : Fragment() {
 
         binding.textViewCelular.setOnClickListener {
             binding.informativoCelular.isVisible = !binding.informativoCelular.isVisible
+            viewModelActCabecalho.mudaInfoVisivel(this)
         }
 
         binding.inputDataNacimento.setOnClickListener {

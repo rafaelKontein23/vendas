@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro.DadosCnpjFragment
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro.DadosPessoaisFragment
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActCabecalho
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Animacoes.Progress.Companion.animateProgressBarHorizontal
@@ -20,6 +21,7 @@ class ActCabecalho : AppCompatActivity() {
     private  val binding: ActivityActCabecalhoBinding by lazy {
         ActivityActCabecalhoBinding.inflate(layoutInflater)
     }
+    private var  infoFragmentDadosPessoais : DadosPessoaisFragment? = null
     private lateinit var viewModelActCabecalho: ViewModelActCabecalho
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +40,7 @@ class ActCabecalho : AppCompatActivity() {
         viewModelActCabecalho.mostraCarregando.observe(this){mostraCarregando ->
             binding.constrainCarregando.isVisible = mostraCarregando
         }
+
         viewModelActCabecalho.finalizaAtividade.observe(this){
             onBackPressed()
         }
@@ -62,18 +65,24 @@ class ActCabecalho : AppCompatActivity() {
                 binding.verPrgressoImg.rotateYView(180f)
             }
         }
+
         viewModelActCabecalho.passoAtual.observe(this){passo ->
             mudaProgresso(passo.first, passo.second)
         }
 
+        viewModelActCabecalho.infoVisvelFragement.observe(this){
+             infoFragmentDadosPessoais = it
+
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
     }
-    fun mudaProgresso(progresso: Int, progress:Float){
+    private fun mudaProgresso(progresso: Int, progress:Float){
 
        when (progresso){
           2 ->{
@@ -105,9 +114,8 @@ class ActCabecalho : AppCompatActivity() {
 
        }
     }
+
     override fun onBackPressed() {
-
-
         if (supportFragmentManager.backStackEntryCount > 0) {
             supportFragmentManager.popBackStack()
             val backStackCount = supportFragmentManager.backStackEntryCount
@@ -117,4 +125,15 @@ class ActCabecalho : AppCompatActivity() {
         }
     }
 
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        if (ev != null && infoFragmentDadosPessoais != null  ) {
+            if(infoFragmentDadosPessoais!!.isInfoVisible()){
+                infoFragmentDadosPessoais?.hideMenu()
+                infoFragmentDadosPessoais = null
+                return true
+            }
+            return true
+        }
+        return super.dispatchTouchEvent(ev)
+    }
 }
