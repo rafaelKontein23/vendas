@@ -56,7 +56,7 @@
             android:layout_height="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/bordas_radius_8_solid_gray100" />
+            app:srcCompat="@drawable/galeria" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

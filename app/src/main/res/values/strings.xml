@@ -25,7 +25,9 @@
     <string name="endereco">Endereço</string>
     <string name="bairro">Bairro</string>
     <string name="cidade">Cidade</string>
+    <string name="cidades">Cidades</string>
     <string name="estado">Estado</string>
+    <string name="mesorregioes">Mesorregiões</string>
 
 
     //palavras
@@ -54,6 +56,7 @@
         •  Tire a foto em um local iluminado;\n
         •  Evite reflexos na foto;\n
         •  Evite fundos estampados na foto.</string>
+    <string name="infoMesorregiao">Selecione abaixo as mesorregiões que deseja realizar suas vendas</string>
 
 
     //mascaras
@@ -65,6 +68,7 @@
     <string name="mascaraTelefone">00 0000-0000</string>
     <string name="mascaraEmail">email@email</string>
     <string name="Selecione">Selecionar...</string>
+    <string name="Selecionar">Selecionar</string>
 
 
     // mensagem de Erro

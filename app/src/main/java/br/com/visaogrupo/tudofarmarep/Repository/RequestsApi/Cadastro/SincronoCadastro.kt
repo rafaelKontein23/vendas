@@ -28,4 +28,8 @@ interface SincronoCadastro {
     fun P_Cadastro
     (@Body responseBody: RequestBody): Call <ResponseBody>
 
+    @POST("tudofarmarep/obtem/mesorregioes")
+    fun P_Portal_Cadastro_Mesorregioes_Lista
+    (@Body responseBody: RequestBody): Call<ResponseBody>
+
 }

@@ -106,7 +106,10 @@ class FotoDocumentoFragment : Fragment() {
             if (FormularioCadastro.fotoDocumeto == Uri.EMPTY){
                 Toast.makeText(requireContext(), getString(R.string.erroFoto), Toast.LENGTH_SHORT).show()
             }else{
-
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainerCadastro, DadosAreaDeAtuacaoFragment())
+                    .addToBackStack(null)
+                    .commit()
             }
         }
 
