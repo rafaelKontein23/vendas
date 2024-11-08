@@ -14,7 +14,7 @@ firebaseCrashlyticsBuildtools = "3.0.2"
 chucker = "4.0.0"
 camerax = "1.2.2"
 glide = "4.16.0"
-
+touchimageview = "1.4.1"
 
 
 [libraries]
@@ -43,6 +43,7 @@ lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-lived
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version = "lifecycle" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glideCompiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
+touchimageview = { group = "com.github.MikeOrtiz", name = "TouchImageView", version.ref = "touchimageview" }
 
 
 [plugins]

@@ -8,8 +8,9 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
+            android:orientation="vertical"
             android:layout_height="match_parent"
             android:paddingStart="24dp"
             android:paddingEnd="24dp">
@@ -237,14 +238,22 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
-                android:id="@+id/fotoDocumento"
-                android:layout_width="0dp"
+                android:id="@+id/fundo"
+                android:layout_width="match_parent"
                 android:layout_height="154dp"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/bordas_4_solid_blue500"
+                android:scaleType="fitXY"
+                android:src="@drawable/fundo_foto"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+            <com.ortiz.touchview.TouchImageView
+                android:id="@+id/fotoDocumento"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="24dp"
+           />
+
 
             <TextView
                 android:id="@+id/adiconarFoto"
@@ -252,9 +261,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fotoDocumento">
+                app:layout_constraintTop_toBottomOf="@+id/fundo">
 
             </TextView>
 
@@ -274,7 +284,7 @@
 
             </TextView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
 

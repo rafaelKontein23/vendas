@@ -16,6 +16,7 @@
     <string name="erroSolicitaToken">Algo deu errado, tente novamente</string>
     <string name="reenviarToken">Reenviar token em </string>
     <string name="erroCnpj">Não foi possível carregar os dados do CNPJ</string>
+    <string name="erroFoto">Adicione uma foto do documento</string>
     // titulo inputs
     <string name="possuiCore">Possui CORE ?</string>"
     <string name="razaoSocial">Razão Social</string>

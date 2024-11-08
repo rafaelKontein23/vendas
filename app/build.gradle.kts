@@ -80,6 +80,7 @@ dependencies {
     // imagens
     implementation(libs.glide)
     kapt(libs.glideCompiler)   // Compiler do Glide com kapt
+    implementation(libs.touchimageview)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

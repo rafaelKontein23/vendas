@@ -24,6 +24,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelFotoDocumento
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.databinding.ActivityActCameraGaleriaBinding
 import com.bumptech.glide.Glide
 import java.io.File
@@ -33,6 +34,7 @@ import java.util.Locale
 
 class ActCameraGaleria : AppCompatActivity() {
     private lateinit var imageCapture: ImageCapture
+    private val PICK_IMAGE_REQUEST = 1
 
     private val binding by lazy {
         ActivityActCameraGaleriaBinding.inflate(layoutInflater)
@@ -43,20 +45,16 @@ class ActCameraGaleria : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-
-        if (hasStoragePermission()) {
-            getFirstImage(binding.imgGaleria)
-        } else {
-            requestStoragePermission()
-        }
-        binding.camera.setOnClickListener {
-           val uri =  capturePhoto()
-            val resultIntent = Intent().apply {
-                putExtra("image_uri", uri)
+        binding.imgGaleria.setOnClickListener {
+            if (hasStoragePermission()) {
+                openGallery()
+            } else {
+                requestStoragePermission()
             }
-            setResult(RESULT_OK, resultIntent)
-            finish()
+        }
 
+        binding.camera.setOnClickListener {
+           capturePhoto()
         }
 
         cameraProviderFuture.addListener({
@@ -114,38 +112,40 @@ class ActCameraGaleria : AppCompatActivity() {
         }
     }
 
-    private fun getFirstImage(imageView: ImageView) {
-        val uri: Uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-        val projection = arrayOf(MediaStore.Images.Media._ID, MediaStore.Images.Media.DISPLAY_NAME)
-        val sortOrder = "${MediaStore.Images.Media.DATE_TAKEN} DESC"
-
-        val cursor = contentResolver.query(uri, projection, null, null, sortOrder)
-
-        cursor?.use {
-            if (it.moveToFirst()) {
-                val id = it.getLong(it.getColumnIndexOrThrow(MediaStore.Images.Media._ID))
-                val imageUri: Uri = Uri.withAppendedPath(uri, id.toString())
-                Glide.with(this).load(imageUri).into(imageView)
-            }
-        }
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        intent.type = "image/*"
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 1001) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getFirstImage(binding.imgGaleria)
+                openGallery()
             } else {
                 requestStoragePermission()
             }
         }
     }
-    private fun capturePhoto():Uri? {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
+            val selectedImageUri: Uri = data.data!!
+            val resultIntent = Intent().apply {
+                putExtra("image_uri", selectedImageUri)
+            }
+            FormularioCadastro.fotoDocumeto = selectedImageUri
+            setResult(RESULT_OK, resultIntent)
+            finish()
+        }
+    }
+
+    private fun capturePhoto() {
         val photoFile = File(
             externalMediaDirs.firstOrNull(),
             "IMG_${SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(System.currentTimeMillis())}.jpg"
         )
-        var uriImagem:Uri? = null
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
         imageCapture.takePicture(
@@ -154,7 +154,12 @@ class ActCameraGaleria : AppCompatActivity() {
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     val savedUri = Uri.fromFile(photoFile)
-                    uriImagem = savedUri
+                    val resultIntent = Intent().apply {
+                        putExtra("image_uri", savedUri)
+                    }
+                    FormularioCadastro.fotoDocumeto = savedUri
+                    setResult(RESULT_OK, resultIntent)
+                    finish()
 
                 }
 
@@ -163,6 +168,5 @@ class ActCameraGaleria : AppCompatActivity() {
                 }
             }
         )
-        return uriImagem
     }
 }
