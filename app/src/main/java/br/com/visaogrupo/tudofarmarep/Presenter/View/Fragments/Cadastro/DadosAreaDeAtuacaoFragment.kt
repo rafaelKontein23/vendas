@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogDadosAreaDeAtuacao
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Factory.ViewModelFragmentDadosAreaDeAtuacaoFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentDadosAreaDeAtuacao
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.FormularioCadastro
+import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.obterNomeCompletoUF
 import br.com.visaogrupo.tudofarmarep.databinding.FragmentDadosAreaDeAtuacaoBinding
 
 
@@ -22,8 +25,7 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
     private var _binding: FragmentDadosAreaDeAtuacaoBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModelFragmentDadosAreaDeAtuacao: ViewModelFragmentDadosAreaDeAtuacao
-
-
+    lateinit  var  listaUF: List<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -39,6 +41,23 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
         _binding = FragmentDadosAreaDeAtuacaoBinding.inflate(inflater, container, false)
         val factory = ViewModelFragmentDadosAreaDeAtuacaoFactory(requireContext())
         viewModelFragmentDadosAreaDeAtuacao = ViewModelProvider(this, factory)[ViewModelFragmentDadosAreaDeAtuacao::class.java]
+        val ufSelecionada = FormularioCadastro.cadastro.UF.obterNomeCompletoUF(FormularioCadastro.cadastro.UF)
+        viewModelFragmentDadosAreaDeAtuacao.selecionaUF(ufSelecionada)
+        binding.inputEstadoAreaDeAtuacao.text = ufSelecionada
+
+        viewModelFragmentDadosAreaDeAtuacao.ufSelcionada.observe(viewLifecycleOwner){
+            binding.inputEstadoAreaDeAtuacao.text = it
+            binding.inputCidadesAreaDeAtuacao.text = getText(R.string.todos)
+            binding.inputMesorregioesAreaDeAtuacao.text = getText(R.string.todos)
+        }
+
+
+        binding.inputEstadoAreaDeAtuacao.setOnClickListener {
+            viewModelFragmentDadosAreaDeAtuacao.listaEstados
+            val dialog = DialogDadosAreaDeAtuacao(requireActivity(), viewModelFragmentDadosAreaDeAtuacao)
+            listaUF = viewModelFragmentDadosAreaDeAtuacao.listaEstados.value!!
+            dialog.dialogUF(listaUF)
+        }
         binding.inputMesorregioesAreaDeAtuacao.setOnClickListener {
             viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao("SP")
         }

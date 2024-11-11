@@ -27,6 +27,7 @@
     <string name="cidade">Cidade</string>
     <string name="cidades">Cidades</string>
     <string name="estado">Estado</string>
+    <string name="estados">Estados</string>
     <string name="mesorregioes">Mesorregiões</string>
 
 
@@ -37,6 +38,7 @@
     <string name="adiconarFoto">Adicionar Foto</string>
     <string name="nome">Nome</string>
     <string name="sobrenome">Sobrenome</string>
+    <string name="todos">Todos</string>>
     <string name="cpf">CPF</string>
     <string name="dataNacimento">Data de Nacimento</string>
     <string name="telefoneComercial">Telefone Comercial</string>
@@ -58,6 +60,7 @@
         •  Evite fundos estampados na foto.</string>
     <string name="infoMesorregiao">Selecione abaixo as mesorregiões que deseja realizar suas vendas</string>
 
+    <string name="infoEstados">Selecione abaixo o estado que deseja realizar suas vendas</string>
 
     //mascaras
     <string name="mascaraCnpj">00.000.000/0000-00</string>
