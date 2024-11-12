@@ -14,24 +14,15 @@ import br.com.visaogrupo.tudofarmarep.Utils.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.obterNomeCompletoUF
 import br.com.visaogrupo.tudofarmarep.databinding.FragmentDadosAreaDeAtuacaoBinding
 
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-
 class DadosAreaDeAtuacaoFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var _binding: FragmentDadosAreaDeAtuacaoBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModelFragmentDadosAreaDeAtuacao: ViewModelFragmentDadosAreaDeAtuacao
-    lateinit  var  listaUF: List<String>
+    private lateinit  var  listaUF: List<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -45,34 +36,30 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
         viewModelFragmentDadosAreaDeAtuacao.selecionaUF(ufSelecionada)
         binding.inputEstadoAreaDeAtuacao.text = ufSelecionada
 
-        viewModelFragmentDadosAreaDeAtuacao.ufSelcionada.observe(viewLifecycleOwner){
+        viewModelFragmentDadosAreaDeAtuacao.ufSelecionada.observe(viewLifecycleOwner){
             binding.inputEstadoAreaDeAtuacao.text = it
             binding.inputCidadesAreaDeAtuacao.text = getText(R.string.todos)
             binding.inputMesorregioesAreaDeAtuacao.text = getText(R.string.todos)
         }
 
-
         binding.inputEstadoAreaDeAtuacao.setOnClickListener {
             viewModelFragmentDadosAreaDeAtuacao.listaEstados
-            val dialog = DialogDadosAreaDeAtuacao(requireActivity(), viewModelFragmentDadosAreaDeAtuacao)
+            val dialog = DialogDadosAreaDeAtuacao(requireActivity(),
+                viewModelFragmentDadosAreaDeAtuacao,
+                viewLifecycleOwner)
             listaUF = viewModelFragmentDadosAreaDeAtuacao.listaEstados.value!!
             dialog.dialogUF(listaUF)
         }
         binding.inputMesorregioesAreaDeAtuacao.setOnClickListener {
-            viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao("SP")
+            val dialog = DialogDadosAreaDeAtuacao(requireActivity(),
+                viewModelFragmentDadosAreaDeAtuacao,
+                viewLifecycleOwner)
+
+            dialog.dialogMessoRegiao(binding.inputEstadoAreaDeAtuacao.text.toString())
+
         }
         return binding.root
     }
 
-    companion object {
 
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DadosAreaDeAtuacaoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

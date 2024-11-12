@@ -3,7 +3,6 @@ package br.com.visaogrupo.tudofarmarep.Presenter.View.Adapters
 import android.app.Dialog
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
@@ -42,7 +41,7 @@ class AdapterUF(private val estados: List<String>,
 
              }
             val siglas = estado.split(" - ").last()
-            val siglasUFSelecionada = viewModelFragmentDadosAreaDeAtuacao.ufSelcionada.value!!.split(" - ").last()
+            val siglasUFSelecionada = viewModelFragmentDadosAreaDeAtuacao.ufSelecionada.value!!.split(" - ").last()
             if(siglas == siglasUFSelecionada){
                 binding.imgCheck.isVisible = true
                 binding.textoSelecionarUF.setTextColor(context.getColor(R.color.blue500))

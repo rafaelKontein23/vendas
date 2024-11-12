@@ -8,41 +8,61 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.Window
-import androidx.appcompat.app.AppCompatActivity
+import android.view.WindowManager
+import androidx.core.view.isVisible
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Adapters.AdapterMessoRegiao
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Adapters.AdapterUF
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentDadosAreaDeAtuacao
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.databinding.DialogAreaDeAtuacaoBinding
+import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
+import br.com.visaogrupo.tudofarmarep.Utils.Views.DialogConfig
+import br.com.visaogrupo.tudofarmarep.databinding.DialogMessorrigiaoBinding
 import br.com.visaogrupo.tudofarmarep.databinding.DialogUfBinding
 
-class DialogDadosAreaDeAtuacao(private val context: Context, private val viewModelFragmentDadosAreaDeAtuacao: ViewModelFragmentDadosAreaDeAtuacao) {
+class DialogDadosAreaDeAtuacao(private val context: Context,
+                               private val viewModelFragmentDadosAreaDeAtuacao: ViewModelFragmentDadosAreaDeAtuacao,
+                               private val lifecycleOwner: LifecycleOwner
+
+) {
     
-    fun dialogDadosAreaDeAtuacao(){
-        val dialogAreaDeAtuacao = Dialog(context)
-        val binding = DialogAreaDeAtuacaoBinding.inflate(LayoutInflater.from(context))
+    fun dialogMessoRegiao(uf:String){
+        val binding = DialogMessorrigiaoBinding.inflate(LayoutInflater.from(context))
+        val dialogMesorregiao = Dialog(context).apply {
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            setContentView(DialogMessorrigiaoBinding.inflate(LayoutInflater.from(context)).root)
+        }
+        DialogConfig.configuraDialog(dialogMesorregiao, context)
+        dialogMesorregiao.setContentView(binding.root)
 
 
+        binding.fecharAreaDeAtuacao.setOnClickListener {
+            dialogMesorregiao.dismiss()
+        }
+        viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao(uf)
+        binding.carregandoMessoRegiao.isVisible = true
 
-        dialogAreaDeAtuacao.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialogAreaDeAtuacao.setContentView(binding.root)
+        viewModelFragmentDadosAreaDeAtuacao.listaMesorregiao.observe(lifecycleOwner){ listaRespostaMessoRegiao ->
+            binding.carregandoMessoRegiao.isVisible = false
+            if (listaRespostaMessoRegiao == null){
+                Alertas.alertaErro(context, context.getString(R.string.erroInternet), context.getString(R.string.tituloErro)){
+                    dialogMesorregiao.dismiss()
+                }
+            }else{
+                binding.recyclerAreaDeAtuacao.layoutManager = LinearLayoutManager(context)
+                binding.recyclerAreaDeAtuacao.adapter = AdapterMessoRegiao( listaRespostaMessoRegiao,
+                    viewModelFragmentDadosAreaDeAtuacao)
+            }
+        }
 
-        dialogAreaDeAtuacao.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        dialogAreaDeAtuacao.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialogAreaDeAtuacao.window?.attributes?.windowAnimations = R.style.animacaoDialog
-        dialogAreaDeAtuacao.window?.setGravity(Gravity.BOTTOM)
-        dialogAreaDeAtuacao.show()
     }
     fun  dialogUF(listaUF: List<String>){
         val dialogUF = Dialog(context)
         val binding = DialogUfBinding.inflate(LayoutInflater.from(context))
-        dialogUF.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogUF.setContentView(binding.root)
-        dialogUF.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        dialogUF.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialogUF.window?.attributes?.windowAnimations = R.style.animacaoDialog
-        dialogUF.window?.setGravity(Gravity.BOTTOM)
-        dialogUF.show()
+        DialogConfig.configuraDialog(dialogUF, context)
+
         binding.fecharAreaDeAtuacao.setOnClickListener {
             dialogUF.dismiss()
         }
