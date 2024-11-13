@@ -41,6 +41,7 @@
     <string name="todos">Todos</string>>
     <string name="cpf">CPF</string>
     <string name="dataNacimento">Data de Nacimento</string>
+    <string name="codigoIndicao">Código de indicação</string>
     <string name="telefoneComercial">Telefone Comercial</string>
     <string name="email">E-mail</string>
     <string name="TituloErro">Erro</string>
@@ -60,6 +61,8 @@
         •  Evite fundos estampados na foto.</string>
     <string name="infoMesorregiao">Selecione abaixo as mesorregiões que deseja realizar suas vendas</string>
     <string name="infoCidades">As cidades são de acordo com as\n mesorregiões escolhidas anteriormente</string>
+    <string name="infoIndicacao"> Você foi indicado? Informe o código de quem te indicou e confirme os dados</string>
+    <string name="continuarSemCodigo">Continuar sem código</string>
 
     <string name="infoEstados">Selecione abaixo o estado que deseja realizar suas vendas</string>
 

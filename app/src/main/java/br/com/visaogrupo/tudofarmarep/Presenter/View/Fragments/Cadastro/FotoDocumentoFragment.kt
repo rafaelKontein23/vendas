@@ -26,29 +26,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.transition.Transition
 
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 
 class FotoDocumentoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
     private var _binding: FragmentFotoDocumentoBinding? = null
     private val binding get() = _binding!!
     private lateinit var  viewModelActCabecalho: ViewModelActCabecalho
     private val REQUEST_IMAGE_CODE = 100
 
-
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

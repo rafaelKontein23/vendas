@@ -40,10 +40,21 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="textoAzulInformativo">
+    <style name="textoAzulInformativoblue500">
         <item name="android:textSize">12sp</item>
         <item name="android:letterSpacing">0.025</item>
         <item name="android:textColor">@color/blue500</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginRight">24dp</item>
+        <item name="android:layout_marginLeft">24dp</item>
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textStyle">normal</item>
+
+    </style>
+    <style name="textoAzulInformativoblue600">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:textColor">@color/blue600</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_marginRight">24dp</item>
         <item name="android:layout_marginLeft">24dp</item>

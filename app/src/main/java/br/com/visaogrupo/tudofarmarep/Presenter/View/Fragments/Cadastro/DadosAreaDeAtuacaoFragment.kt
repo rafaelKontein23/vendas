@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogDadosAreaDeAtuacao
+import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActCabecalho
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Factory.ViewModelFragmentDadosAreaDeAtuacaoFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentDadosAreaDeAtuacao
 import br.com.visaogrupo.tudofarmarep.R
@@ -24,6 +25,7 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModelFragmentDadosAreaDeAtuacao: ViewModelFragmentDadosAreaDeAtuacao
     private lateinit  var  listaUF: List<String>
+    private lateinit var  viewModelActCabecalho: ViewModelActCabecalho
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -33,6 +35,9 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
         _binding = FragmentDadosAreaDeAtuacaoBinding.inflate(inflater, container, false)
         val factory = ViewModelFragmentDadosAreaDeAtuacaoFactory(requireContext())
         viewModelFragmentDadosAreaDeAtuacao = ViewModelProvider(this, factory)[ViewModelFragmentDadosAreaDeAtuacao::class.java]
+        viewModelActCabecalho = ViewModelProvider(requireActivity()).get(ViewModelActCabecalho::class.java)
+        viewModelActCabecalho.mudaProgressoCadastro(4, 1f)
+
         val ufSelecionada = FormularioCadastro.cadastro.UF.obterNomeCompletoUF(FormularioCadastro.cadastro.UF)
         viewModelFragmentDadosAreaDeAtuacao.selecionaUF(ufSelecionada)
         binding.inputEstadoAreaDeAtuacao.text = ufSelecionada
