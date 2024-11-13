@@ -5,63 +5,227 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Presenter.View.Fragments.Cadastro.CodigoIndicacaoFragment">
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <androidx.core.widget.NestedScrollView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+               <TextView
+                   android:id="@+id/textView20"
+                   style="@style/textoSubTitulo"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="24dp"
+                   android:layout_marginTop="48dp"
+                   android:layout_marginEnd="24dp"
+                   android:text="@string/infoIndicacao"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent" />
 
 
-        <TextView
-            android:id="@+id/textView20"
-            style="@style/textoSubTitulo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="24dp"
-            android:text="@string/infoIndicacao"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+               <EditText
+                   android:id="@+id/inputCodigoIndicacao"
+                   style="@style/inputPadraoCadastro"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="24dp"
+                   android:hint="@string/codigoIndicao"
+                   android:maxLength="8"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/textView20">
+
+               </EditText>
 
 
-        <EditText
-            android:id="@+id/inputCodigoIndicacao"
-            style="@style/inputPadraoCadastro"
-            android:hint="@string/codigoIndicao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView20">
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:id="@+id/constrainInfosRepresentante"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="24dp"
+                   android:layout_marginEnd="24dp"
+                   android:visibility="gone"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/inputCodigoIndicacao">
 
-        </EditText>
+                   <TextView
+                       android:id="@+id/textView21"
+                       style="@style/textoSubTitulo"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="16dp"
+                       android:text="Dados do Representante"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/btnContinuar"
-            style="@style/buttonPadraoCadastro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:backgroundTint="@color/blue300"
-            app:layout_constraintBottom_toTopOf="@+id/btnContinuarSemCodigo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+                   <androidx.constraintlayout.widget.ConstraintLayout
+                       android:id="@+id/constraintLayout4"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="12dp"
+                       android:background="@drawable/bordas_radius_8_solid_gray100"
+                       android:padding="8dp"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@+id/textView21">
 
-        </TextView>
+                       <TextView
+                           android:id="@+id/textView22"
+                           style="@style/textoTituloInput"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="@string/nome"
+                           app:layout_constraintStart_toStartOf="parent"
+                           app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/btnContinuarSemCodigo"
-            style="@style/textoAzulInformativoblue600"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:text="@string/continuarSemCodigo"
-            android:textFontWeight="600"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                       </TextView>
+
+                       <TextView
+                           android:id="@+id/nomeRepresentante"
+                           style="@style/textoBold14sp"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="8dp"
+                           android:text="-"
+                           app:layout_constraintStart_toStartOf="@+id/textView22"
+                           app:layout_constraintTop_toBottomOf="@+id/textView22">
+
+                       </TextView>
+
+
+                       <TextView
+                           android:id="@+id/textView23"
+                           style="@style/textoTituloInput"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="24dp"
+                           android:text="@string/cnpj"
+                           app:layout_constraintStart_toStartOf="parent"
+                           app:layout_constraintTop_toBottomOf="@+id/nomeRepresentante">
+
+                       </TextView>
+
+                       <TextView
+                           android:id="@+id/cnpjRepresentante"
+                           style="@style/textoBold14sp"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="8dp"
+                           android:text="-"
+                           app:layout_constraintStart_toStartOf="@+id/textView23"
+                           app:layout_constraintTop_toBottomOf="@+id/textView23">
+
+                       </TextView>
+
+                       <TextView
+                           android:id="@+id/textView24"
+                           style="@style/textoTituloInput"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="24dp"
+                           android:text="@string/celular"
+                           app:layout_constraintStart_toStartOf="parent"
+                           app:layout_constraintTop_toBottomOf="@+id/cnpjRepresentante">
+
+                       </TextView>
+
+                       <TextView
+                           android:id="@+id/celularRepresentante"
+                           style="@style/textoBold14sp"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="8dp"
+                           android:text="-"
+                           app:layout_constraintStart_toStartOf="@+id/textView24"
+                           app:layout_constraintTop_toBottomOf="@+id/textView24">
+
+                       </TextView>
+                   </androidx.constraintlayout.widget.ConstraintLayout>
+
+                   <TextView
+                       android:id="@+id/textoIndormaDivergencia"
+                       style="@style/texto_red400_12sp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="16dp"
+                       android:drawableStart="@drawable/atencao"
+                       android:drawablePadding="8dp"
+                       android:text="@string/informaDivergencia"
+                       app:layout_constraintStart_toStartOf="@+id/constraintLayout4"
+                       app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+               </androidx.constraintlayout.widget.ConstraintLayout>
+
+               <ProgressBar
+                   android:id="@+id/carregando"
+                   style="?android:attr/progressBarStyle"
+                   android:visibility="gone"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="60dp"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/inputCodigoIndicacao" />
+
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+       </androidx.core.widget.NestedScrollView>
+       <TextView
+           android:id="@+id/btnContinuar"
+           style="@style/buttonPadraoCadastro"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginBottom="24dp"
+           android:text="Confirma e continuar"
+           app:layout_constraintBottom_toTopOf="@+id/btnContinuarSemCodigo"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent">
+
+       </TextView>
+
+       <TextView
+           android:id="@+id/btnContinuarSemCodigo"
+           style="@style/textoAzulInformativoblue600"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginBottom="40dp"
+           android:text="@string/continuarSemCodigo"
+           android:textFontWeight="600"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent" />
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:id="@+id/constrainCarregando"
+           android:layout_width="match_parent"
+           android:background="#8A474849"
+           android:visibility="gone"
+           android:layout_height="match_parent"
+           android:elevation="40dp"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent">
+
+           <ProgressBar
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:progressTint="@color/blue300"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               android:elevation="21dp"
+               app:layout_constraintTop_toTopOf="parent">
+
+           </ProgressBar>
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+   </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

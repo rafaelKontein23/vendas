@@ -9,6 +9,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Vie
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaMessoRegiao
 import br.com.visaogrupo.tudofarmarep.databinding.ItemMessorregiaoBinding
+import okhttp3.internal.notifyAll
 
 class AdapterMessoRegiao(val respostaMessoRegiao: List<RespostaMessoRegiao>,
                          val viewModelFragmentDadosAreaDeAtuacao: ViewModelFragmentDadosAreaDeAtuacao,
@@ -23,7 +24,7 @@ class AdapterMessoRegiao(val respostaMessoRegiao: List<RespostaMessoRegiao>,
     override fun onBindViewHolder(holder: viewHolderMessoRegiao, position: Int) {
         val respostaMessoRegiao = respostaMessoRegiao[position]
         holder.bind(respostaMessoRegiao, viewModelFragmentDadosAreaDeAtuacao,
-            context)
+            context, this)
     }
     override fun getItemCount(): Int {
            return respostaMessoRegiao.size
@@ -31,7 +32,7 @@ class AdapterMessoRegiao(val respostaMessoRegiao: List<RespostaMessoRegiao>,
     class  viewHolderMessoRegiao(private val binding: ItemMessorregiaoBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(respostaMessoRegiao: RespostaMessoRegiao,
                  viewModelFragmentDadosAreaDeAtuacao: ViewModelFragmentDadosAreaDeAtuacao,
-                 context: Context){
+                 context: Context, adapterMessoRegiao: AdapterMessoRegiao){
             binding.textoSelecionarMessoRegiao.text = respostaMessoRegiao.Mesorregiao_Nome
 
             if(viewModelFragmentDadosAreaDeAtuacao.confereMessoRegiao(respostaMessoRegiao)){
@@ -42,9 +43,10 @@ class AdapterMessoRegiao(val respostaMessoRegiao: List<RespostaMessoRegiao>,
                 binding.textoSelecionarMessoRegiao.setTextColor(context.getColor(R.color.gray600))
             }
 
-            binding.textoSelecionarMessoRegiao.setOnClickListener {
+            binding.constrainMesso.setOnClickListener {
                 if (respostaMessoRegiao.Mesorregiao_Nome == "Todos"){
-                    if (binding.textoSelecionarMessoRegiao.tag == 1){
+                    viewModelFragmentDadosAreaDeAtuacao.alternaSelecaoMessoRegiao()
+                    if (viewModelFragmentDadosAreaDeAtuacao.mesoRegiaoSelecionadaTodos){
                         binding.textoSelecionarMessoRegiao.tag = 0
                         binding.imgCheck.isVisible = false
                         binding.textoSelecionarMessoRegiao.setTextColor(context.getColor(R.color.gray600))
@@ -57,7 +59,7 @@ class AdapterMessoRegiao(val respostaMessoRegiao: List<RespostaMessoRegiao>,
                         viewModelFragmentDadosAreaDeAtuacao.adicionaNaListaTodasMesorregiao()
 
                     }
-
+                    adapterMessoRegiao.notifyDataSetChanged()
                 }else{
                     if(!viewModelFragmentDadosAreaDeAtuacao.confereMessoRegiao(respostaMessoRegiao)){
                         viewModelFragmentDadosAreaDeAtuacao.adicionaNaListaMesorregiao(respostaMessoRegiao)

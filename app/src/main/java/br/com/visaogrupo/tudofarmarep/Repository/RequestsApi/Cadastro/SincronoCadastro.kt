@@ -36,4 +36,8 @@ interface SincronoCadastro {
     fun P_Mobile_Cadastro_Cidade_Consulta
     (@Body responseBody: RequestBody): Call<ResponseBody>
 
+    @POST("indicacao/hash")
+    fun P_Convidado_Hash_Consulta
+    (@Body responseBody: RequestBody): Call<ResponseBody>
+
 }

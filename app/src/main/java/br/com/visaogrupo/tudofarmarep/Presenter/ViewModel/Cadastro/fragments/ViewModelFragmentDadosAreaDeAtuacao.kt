@@ -8,6 +8,7 @@ import br.com.visaogrupo.tudofarmarep.Domain.UseCase.AreaDeAtuacaoUseCase
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.CadastroUseCase
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCidades
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaMessoRegiao
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.ListaUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,6 +20,9 @@ class ViewModelFragmentDadosAreaDeAtuacao(
     private val listaGeralMessoRegiao = ArrayList<RespostaMessoRegiao>()
     private val _listaEstados = MutableLiveData<List<String>>()
     val listaEstados: LiveData<List<String>> = _listaEstados
+    var cidadeSelecionadaTodos = false
+    var mesoRegiaoSelecionadaTodos = false
+
 
     private val _listaMesorregiao = MutableLiveData<ArrayList<RespostaMessoRegiao>?>()
     val listaMesorregiao: LiveData<ArrayList<RespostaMessoRegiao>?> = _listaMesorregiao
@@ -65,6 +69,12 @@ class ViewModelFragmentDadosAreaDeAtuacao(
         _mesorregiaoSelecionada.postValue(listaMessoRegiao)
         _cidadeSelecionada.postValue(listaCidades)
     }
+    fun alternaSelecaoCidade() {
+        cidadeSelecionadaTodos = !cidadeSelecionadaTodos
+    }
+    fun alternaSelecaoMessoRegiao() {
+        mesoRegiaoSelecionadaTodos = !mesoRegiaoSelecionadaTodos
+    }
 
     fun selecionaUF(uf: String) {
         _ufSelecionada.value = uf
@@ -86,20 +96,20 @@ class ViewModelFragmentDadosAreaDeAtuacao(
     fun adicionaNaListaTodasMesorregiao(){
         val lista = _listaMesorregiao.value?.toMutableList() as? ArrayList<RespostaMessoRegiao> ?: ArrayList()
         val listaCidades = _listaCidades.value?.toMutableList() as? ArrayList<RespostaCidades> ?: ArrayList()
-        _mesorregiaoSelecionada.value!!.clear()
-        _cidadeSelecionada.value!!.clear()
         _mesorregiaoSelecionada.postValue(lista)
         _cidadeSelecionada.postValue(listaCidades)
     }
     fun removeDaListaTodasMesorregiao(){
-        val lista = _listaMesorregiao.value?.toMutableList() as? ArrayList<RespostaMessoRegiao> ?: ArrayList()
-        val listaCidades = _listaCidades.value?.toMutableList() as? ArrayList<RespostaCidades> ?: ArrayList()
-        lista.clear()
-        listaCidades.clear()
-        _mesorregiaoSelecionada.value!!.clear()
-        _cidadeSelecionada.value!!.clear()
-        _mesorregiaoSelecionada.postValue(lista)
-        _cidadeSelecionada.postValue(listaCidades)
+
+        _mesorregiaoSelecionada.postValue(ArrayList())
+        _cidadeSelecionada.postValue(ArrayList())
+    }
+    fun adicionaNaListaTodasCidades(){
+        val listaCidades = _listaCidades.value?.toMutableList() ?: ArrayList()
+        _cidadeSelecionada.postValue(ArrayList(listaCidades))
+    }
+    fun removeDaListaTodasCidades(){
+        _cidadeSelecionada.postValue(ArrayList())
     }
 
     fun removeDaListaMesorregiao(mesoRegiao: RespostaMessoRegiao) {
@@ -168,9 +178,21 @@ class ViewModelFragmentDadosAreaDeAtuacao(
 
 
     fun confereMessoRegiaoList(): Boolean {
-        return _mesorregiaoSelecionada.value!!.isEmpty()
+        return _mesorregiaoSelecionada.value!!.isEmpty() ?: false
     }
     fun confereCidadesList(): Boolean {
         return _cidadeSelecionada.value!!.isEmpty()
+    }
+    fun mandaCadatro(){
+        viewModelScope.launch(Dispatchers.IO) {
+            val areaDeAtuacao = areaDeAtuacaoUseCase.converterParaEstado(
+                _ufSelecionada.value!!,
+                _mesorregiaoSelecionada.value!!,
+                _cidadeSelecionada.value!!
+            )
+            FormularioCadastro.cadastroRequestAreaAtuacal = areaDeAtuacao
+
+            cadastroUseCase.enviaCadastro()
+        }
     }
 }

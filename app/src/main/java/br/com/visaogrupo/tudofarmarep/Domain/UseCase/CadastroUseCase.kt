@@ -7,7 +7,7 @@ class CadastroUseCase(
       val  cadastroRepository: CadastroRepository
 ) {
     suspend fun enviaCadastro(){
-        cadastroRepository.enviaCadastro(FormularioCadastro.cadastro)
+        cadastroRepository.enviaCadastro()
     }
 
 }

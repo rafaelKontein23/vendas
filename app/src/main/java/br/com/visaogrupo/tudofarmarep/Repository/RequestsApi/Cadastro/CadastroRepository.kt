@@ -3,8 +3,10 @@ package br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro
 import android.content.Context
 import android.util.Log
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequest
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequestAreaAtuacal
 import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.RetrofitWs
 import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.incriptar
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -14,11 +16,13 @@ class CadastroRepository(context: Context) {
 
     val retrofit = RetrofitWs(context).createService(SincronoCadastro::class.java)
 
-    fun enviaCadastro(cadastroRequest: CadastroRequest){
+    fun enviaCadastro(){
         try {
+            val jsonAreaAtucao = Gson().toJson(FormularioCadastro.cadastroRequestAreaAtuacal).toString()  ?: ""
+            val jsonCadastro = Gson().toJson(FormularioCadastro.cadastro).toString()
 
-            val jsonCadastro = Gson().toJson(cadastroRequest).toString()
-            val jsonChave = "$jsonCadastro${jsonCadastro}".incriptar()
+            val jsonChave = ("json${jsonCadastro}," +
+                    "AreaAtuacao"+jsonAreaAtucao).incriptar()
             val mediaType = "application/json; charset=utf-8".toMediaType()
             val requestBody = jsonChave.toRequestBody(mediaType)
             val reponse = retrofit.P_Cadastro(requestBody).execute()

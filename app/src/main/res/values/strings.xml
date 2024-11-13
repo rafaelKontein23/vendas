@@ -15,6 +15,7 @@
     <string name="tituloErro">Ops!</string>
     <string name="erroSolicitaToken">Algo deu errado, tente novamente</string>
     <string name="reenviarToken">Reenviar token em </string>
+    <string name="erroCodigoIndicacao">Código de indicação inválido </string>>
     <string name="erroCnpj">Não foi possível carregar os dados do CNPJ</string>
     <string name="erroFoto">Adicione uma foto do documento</string>
     // titulo inputs
@@ -48,6 +49,7 @@
 
     //frases informativas
     <string name="informe">Informe seu CNPJ para prosseguir\ncom o seu acesso</string>
+    <string name="informaDivergencia">Informa divergência </string>
     <string name="slecioneAmbiente">Informe o ambiente que deseja acessar</string>
     <string name="informeCelularDescricao">Informe seu celular para receber seu\n token de acesso</string>
     <string name="informeToken">Informe abaixo o token enviado para o número</string>

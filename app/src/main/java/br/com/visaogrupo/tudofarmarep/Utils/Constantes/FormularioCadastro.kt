@@ -2,11 +2,13 @@ package br.com.visaogrupo.tudofarmarep.Utils.Constantes
 
 import android.net.Uri
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequest
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequestAreaAtuacal
 
 class FormularioCadastro {
 
     companion object{
        val cadastro = CadastroRequest()
-        var fotoDocumeto:Uri = Uri.EMPTY
+       var cadastroRequestAreaAtuacal = CadastroRequestAreaAtuacal()
+       var fotoDocumeto:Uri = Uri.EMPTY
     }
 }

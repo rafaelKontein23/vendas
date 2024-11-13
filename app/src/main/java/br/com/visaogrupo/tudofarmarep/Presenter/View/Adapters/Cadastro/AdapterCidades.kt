@@ -23,7 +23,7 @@ class AdapterCidades (
     override fun onBindViewHolder(holder: ViewHolderCidades, position: Int) {
         val respostaCidade = respostaCidades[position]
         holder.bind(respostaCidade, viewModelFragmentDadosAreaDeAtuacao,
-            context)
+            context, this)
     }
     override fun getItemCount(): Int {
         return respostaCidades.size
@@ -34,7 +34,9 @@ class AdapterCidades (
     }
 
     class  ViewHolderCidades( private val binding: ItemCidadeBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(respostaCidades: RespostaCidades,viewModelFragmentDadosAreaDeAtuacao: ViewModelFragmentDadosAreaDeAtuacao, context: Context){
+        fun bind(respostaCidades: RespostaCidades,
+                 viewModelFragmentDadosAreaDeAtuacao: ViewModelFragmentDadosAreaDeAtuacao,
+                 context: Context, adapterCidades: AdapterCidades){
             binding.textoSelecionarCidade.text = respostaCidades.Cidade
             if(viewModelFragmentDadosAreaDeAtuacao.confereCidades(respostaCidades)){
                 binding.imgCheck.isVisible = true
@@ -44,16 +46,33 @@ class AdapterCidades (
                 binding.textoSelecionarCidade.setTextColor(context.getColor(R.color.gray600))
             }
 
-            binding.textoSelecionarCidade.setOnClickListener {
-                if(!viewModelFragmentDadosAreaDeAtuacao.confereCidades(respostaCidades)){
-                    viewModelFragmentDadosAreaDeAtuacao.adicionaNaListaCidades(respostaCidades)
-                    binding.imgCheck.isVisible = true
-                    binding.textoSelecionarCidade.setTextColor(context.getColor(R.color.blue500))
+            binding.constrainCidade.setOnClickListener {
+                if (respostaCidades.Cidade == "Todos"){
+                    viewModelFragmentDadosAreaDeAtuacao.alternaSelecaoCidade()
+
+                    if (viewModelFragmentDadosAreaDeAtuacao.cidadeSelecionadaTodos) {
+                        binding.imgCheck.isVisible = true
+                        binding.textoSelecionarCidade.setTextColor(context.getColor(R.color.blue500))
+                        viewModelFragmentDadosAreaDeAtuacao.adicionaNaListaTodasCidades()
+                    } else {
+                        binding.imgCheck.isVisible = false
+                        binding.textoSelecionarCidade.setTextColor(context.getColor(R.color.gray600))
+                        viewModelFragmentDadosAreaDeAtuacao.removeDaListaTodasCidades()
+                    }
+
+                    adapterCidades.notifyDataSetChanged()
                 }else{
-                    viewModelFragmentDadosAreaDeAtuacao.removeDaListaCidades(respostaCidades)
-                    binding.imgCheck.isVisible = false
-                    binding.textoSelecionarCidade.setTextColor(context.getColor(R.color.gray600))
+                    if(!viewModelFragmentDadosAreaDeAtuacao.confereCidades(respostaCidades)){
+                        viewModelFragmentDadosAreaDeAtuacao.adicionaNaListaCidades(respostaCidades)
+                        binding.imgCheck.isVisible = true
+                        binding.textoSelecionarCidade.setTextColor(context.getColor(R.color.blue500))
+                    }else{
+                        viewModelFragmentDadosAreaDeAtuacao.removeDaListaCidades(respostaCidades)
+                        binding.imgCheck.isVisible = false
+                        binding.textoSelecionarCidade.setTextColor(context.getColor(R.color.gray600))
+                    }
                 }
+
             }
         }
     }

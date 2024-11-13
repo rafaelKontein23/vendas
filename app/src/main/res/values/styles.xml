@@ -101,6 +101,14 @@
 
 
     </style>
+    <style name="texto_red400_12sp">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:fontFamily">@font/manrope</item>
+
+        <item name="android:textColor">@color/danger400</item>
+
+    </style>
 
 
 

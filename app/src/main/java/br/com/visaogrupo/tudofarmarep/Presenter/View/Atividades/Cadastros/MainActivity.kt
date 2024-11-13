@@ -22,6 +22,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Fa
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelMainActivity
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
+import br.com.visaogrupo.tudofarmarep.Utils.IntentUtils
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Pushs
@@ -93,9 +94,7 @@ class MainActivity : AppCompatActivity() {
             if (numeroTelefoneSuporte.isEmpty()) {
                 Toast.makeText(this, getString(R.string.erroSuporteWhats), Toast.LENGTH_LONG).show()
             } else {
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse(numeroTelefoneSuporte)
-                startActivity(intent)
+                IntentUtils.mandaParaWhatsApp(this, numeroTelefoneSuporte)
             }
         }
 

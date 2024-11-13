@@ -34,7 +34,7 @@ class AdapterUF(private val estados: List<String>,
 
              binding.textoSelecionarUF.text = estado
 
-             binding.textoSelecionarUF.setOnClickListener {
+             binding.constrainUF.setOnClickListener {
                  binding.imgCheck.isVisible = true
                  dialog.dismiss()
                  binding.textoSelecionarUF.setTextColor(context.getColor(R.color.blue500))

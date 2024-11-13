@@ -38,11 +38,12 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
         viewModelActCabecalho = ViewModelProvider(requireActivity()).get(ViewModelActCabecalho::class.java)
         viewModelActCabecalho.mudaProgressoCadastro(4, 1f)
 
-        val ufSelecionada = FormularioCadastro.cadastro.UF.obterNomeCompletoUF(FormularioCadastro.cadastro.UF)
+        val ufSelecionada = if(FormularioCadastro.cadastroRequestAreaAtuacal.UF != "") FormularioCadastro.cadastroRequestAreaAtuacal.UF else FormularioCadastro.cadastro.UF
         viewModelFragmentDadosAreaDeAtuacao.selecionaUF(ufSelecionada)
-        binding.inputEstadoAreaDeAtuacao.text = ufSelecionada
+        binding.inputEstadoAreaDeAtuacao.text = ufSelecionada.obterNomeCompletoUF(ufSelecionada)
 
-        viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao(FormularioCadastro.cadastro.UF, true)
+
+        viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao(ufSelecionada, true)
 
         viewModelFragmentDadosAreaDeAtuacao.cidadeSelecionada.observe(viewLifecycleOwner){cidadeSelecionada ->
             if (cidadeSelecionada != null){
@@ -55,6 +56,7 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
                 }else{
                     var cidadesNomes = ""
                     for (cidades in cidadeSelecionada){
+                        if (cidades.Cidade == "Todos") continue
                         cidadesNomes += if (cidades == cidadeSelecionada.last()) "${cidades.Cidade} " else "${cidades.Cidade}, "
                         if(cidadesNomes.length > 35) break
                     }
@@ -77,6 +79,7 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
                 }else{
                     var mesorregioesNomes = ""
                     for (mesoRegiao in mesorregiaoSelecionadas){
+                        if (mesoRegiao.Mesorregiao_Nome == "Todos") continue
                         mesorregioesNomes += if (mesoRegiao == mesorregiaoSelecionadas.last()) "${mesoRegiao.Mesorregiao_Nome} " else "${mesoRegiao.Mesorregiao_Nome}, "
                         if(mesorregioesNomes.length > 35) break
                     }
@@ -126,10 +129,16 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
 
         binding.btnContinuar.setOnClickListener {
             if (viewModelFragmentDadosAreaDeAtuacao.confereMessoRegiaoList() || viewModelFragmentDadosAreaDeAtuacao.confereCidadesList()){
-                binding.inputCidadesAreaDeAtuacao.validaError(true, requireContext())
-                binding.inputMesorregioesAreaDeAtuacao.validaError(true, requireContext())
+                binding.inputCidadesAreaDeAtuacao.validaError(viewModelFragmentDadosAreaDeAtuacao.confereCidadesList(), requireContext())
+                binding.inputMesorregioesAreaDeAtuacao.validaError(viewModelFragmentDadosAreaDeAtuacao.confereMessoRegiaoList(), requireContext())
             }else{
-
+                binding.inputCidadesAreaDeAtuacao.validaError(false, requireContext())
+                binding.inputMesorregioesAreaDeAtuacao.validaError(false, requireContext())
+                viewModelFragmentDadosAreaDeAtuacao.mandaCadatro()
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainerCadastro, CodigoIndicacaoFragment())
+                    .addToBackStack(null)
+                    .commit()
             }
         }
         return binding.root

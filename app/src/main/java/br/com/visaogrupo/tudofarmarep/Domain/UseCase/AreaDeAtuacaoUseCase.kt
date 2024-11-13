@@ -1,7 +1,10 @@
 package br.com.visaogrupo.tudofarmarep.Domain.UseCase
 
 import android.icu.text.UFormat
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequestAreaAtuacal
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.Cidade
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CidadesRequest
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.Mesorregiao
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.MessoRegiaoRequest
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCidades
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCidadesDados
@@ -26,12 +29,38 @@ class AreaDeAtuacaoUseCase(
                 if (listaRespostaMessoRegiao.none { it.Mesorregiao_Nome == item.Mesorregiao_Nome }) {
                     listaRespostaMessoRegiao.add(item)
                 }
-                val cidadeResposta = RespostaCidades(0, item.Municipio)
+                val cidadeResposta = RespostaCidades(item.Mesorregiao_id, item.Municipio)
                 listaCidades.add(cidadeResposta)
             }
             return Triple(listaRespostaMessoRegiao, listaCidades, lista)
         }else{
             return Triple(null, null, null)
         }
+    }
+    fun converterParaEstado(
+        uf: String,
+        listaMesorregioes: List<RespostaMessoRegiao>,
+        listaCidades: List<RespostaCidades>
+    ): CadastroRequestAreaAtuacal {
+        val mesorregioesMapeadas = listaMesorregioes.groupBy { it.Mesorregiao_id }.map { (mesoId, municipios) ->
+            val mesorregiaoNome = municipios.first().Mesorregiao_Nome
+            val cidadees  = ArrayList<Cidade>()
+            listaCidades.forEach {
+                if (it.ID == mesoId) {
+                    val cidade = Cidade(it.Cidade)
+                    cidadees.add(cidade)
+                }
+            }
+            Mesorregiao(
+                Mesorregiao = mesorregiaoNome,
+                Mesorregiao_id = mesoId,
+                Cidades = cidadees
+            )
+        }
+
+        return CadastroRequestAreaAtuacal(
+            UF = uf,
+            Mesorregioes = mesorregioesMapeadas
+        )
     }
 }
