@@ -2,22 +2,19 @@ package br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro
 
 import android.app.Dialog
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.view.Window
-import android.view.WindowManager
 import androidx.core.view.isVisible
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.visaogrupo.tudofarmarep.Presenter.View.Adapters.AdapterMessoRegiao
-import br.com.visaogrupo.tudofarmarep.Presenter.View.Adapters.AdapterUF
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Adapters.Cadastro.AdapterCidades
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Adapters.Cadastro.AdapterMessoRegiao
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Adapters.Cadastro.AdapterUF
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentDadosAreaDeAtuacao
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.Utils.Views.DialogConfig
+import br.com.visaogrupo.tudofarmarep.databinding.DialogCidadesBinding
 import br.com.visaogrupo.tudofarmarep.databinding.DialogMessorrigiaoBinding
 import br.com.visaogrupo.tudofarmarep.databinding.DialogUfBinding
 
@@ -26,7 +23,31 @@ class DialogDadosAreaDeAtuacao(private val context: Context,
                                private val lifecycleOwner: LifecycleOwner
 
 ) {
-    
+    fun dialogCidades(){
+         val binding = DialogCidadesBinding.inflate(LayoutInflater.from(context))
+         val dialogCidades = Dialog(context).apply {
+             requestWindowFeature(Window.FEATURE_NO_TITLE)
+             setContentView(DialogCidadesBinding.inflate(LayoutInflater.from(context)).root)
+         }
+        DialogConfig.configuraDialog(dialogCidades, context)
+        dialogCidades.setContentView(binding.root)
+        binding.fecharAreaDeAtuacao.setOnClickListener {
+            dialogCidades.dismiss()
+        }
+        binding.btnSelecionar.setOnClickListener {
+            dialogCidades.dismiss()
+        }
+        binding.carregandoMessoRegiao.isVisible = true
+        viewModelFragmentDadosAreaDeAtuacao.listaCidadesObs.observe(lifecycleOwner){ listaRespostaCidades ->
+            binding.carregandoMessoRegiao.isVisible = false
+            if (listaRespostaCidades != null){
+                binding.recyclerAreaDeAtuacao.layoutManager = LinearLayoutManager(context)
+                binding.recyclerAreaDeAtuacao.adapter = AdapterCidades( listaRespostaCidades,
+                    viewModelFragmentDadosAreaDeAtuacao, context)
+            }
+        }
+
+    }
     fun dialogMessoRegiao(uf:String){
         val binding = DialogMessorrigiaoBinding.inflate(LayoutInflater.from(context))
         val dialogMesorregiao = Dialog(context).apply {
@@ -40,19 +61,18 @@ class DialogDadosAreaDeAtuacao(private val context: Context,
         binding.fecharAreaDeAtuacao.setOnClickListener {
             dialogMesorregiao.dismiss()
         }
-        viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao(uf)
+        binding.btnSelecionar.setOnClickListener {
+            dialogMesorregiao.dismiss()
+        }
+        viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao(uf, false)
         binding.carregandoMessoRegiao.isVisible = true
 
         viewModelFragmentDadosAreaDeAtuacao.listaMesorregiao.observe(lifecycleOwner){ listaRespostaMessoRegiao ->
             binding.carregandoMessoRegiao.isVisible = false
-            if (listaRespostaMessoRegiao == null){
-                Alertas.alertaErro(context, context.getString(R.string.erroInternet), context.getString(R.string.tituloErro)){
-                    dialogMesorregiao.dismiss()
-                }
-            }else{
+            if (listaRespostaMessoRegiao != null){
                 binding.recyclerAreaDeAtuacao.layoutManager = LinearLayoutManager(context)
                 binding.recyclerAreaDeAtuacao.adapter = AdapterMessoRegiao( listaRespostaMessoRegiao,
-                    viewModelFragmentDadosAreaDeAtuacao)
+                    viewModelFragmentDadosAreaDeAtuacao, context)
             }
         }
 

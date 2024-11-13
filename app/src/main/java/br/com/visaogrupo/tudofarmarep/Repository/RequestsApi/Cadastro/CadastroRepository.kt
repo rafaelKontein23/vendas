@@ -4,8 +4,7 @@ import android.content.Context
 import android.util.Log
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequest
 import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.RetrofitWs
-import br.com.visaogrupo.tudofarmarep.Utils.descritar
-import br.com.visaogrupo.tudofarmarep.Utils.incriptar
+import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.incriptar
 import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody

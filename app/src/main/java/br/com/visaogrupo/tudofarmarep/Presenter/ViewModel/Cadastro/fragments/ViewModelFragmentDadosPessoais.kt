@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.CadastroUseCase
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
-import br.com.visaogrupo.tudofarmarep.Utils.FormularioCadastro
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import kotlinx.coroutines.launch
 

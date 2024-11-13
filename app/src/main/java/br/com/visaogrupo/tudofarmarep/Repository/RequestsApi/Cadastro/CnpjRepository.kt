@@ -4,8 +4,8 @@ import android.content.Context
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RepostaCnpj
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCnpjDados
 import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.RetrofitWs
-import br.com.visaogrupo.tudofarmarep.Utils.descritar
-import br.com.visaogrupo.tudofarmarep.Utils.incriptar
+import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.descritar
+import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.incriptar
 import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody

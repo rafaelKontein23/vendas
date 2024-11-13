@@ -7,21 +7,33 @@ import androidx.appcompat.app.AlertDialog
 import java.util.Calendar
 
 class Alertas {
+
     companion object{
+        private var activeDialog: AlertDialog? = null
+
         fun alertaErro(context: Context, mensagem: String, titulo: String, nao:String = "", sim:String = "Ok", function: () -> Unit){
+            if (activeDialog?.isShowing == true) {
+                return
+            }
+
             val builder = AlertDialog.Builder(context)
-            builder.setTitle(titulo)
-            builder.setMessage(mensagem)
-            builder.setCancelable(false)
-            builder.setNegativeButton(nao){ dialog, which ->
-                dialog.dismiss()
+                .setTitle(titulo)
+                .setMessage(mensagem)
+                .setCancelable(false)
+                .setNegativeButton(nao) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .setPositiveButton(sim) { dialog, _ ->
+                    function()
+                    dialog.dismiss()
+                }
+
+            activeDialog = builder.create()
+            activeDialog?.show()
+
+            activeDialog?.setOnDismissListener {
+                activeDialog = null
             }
-            builder.setPositiveButton(sim) { dialog, which ->
-                function()
-                dialog.dismiss()
-            }
-            val dialog = builder.create()
-            dialog.show()
         }
          fun showDatePickerDialog(textView: TextView, context: Context) {
             val calendar = Calendar.getInstance()

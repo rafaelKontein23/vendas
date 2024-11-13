@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         android:paddingTop="16dp"
         android:paddingStart="24dp"
-        android:tag="1"
         android:paddingBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textoSelecionarMessoRegiao"
+            android:id="@+id/textoSelecionarCidade"
             style="@style/textoAzulSelecionar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,9 +33,9 @@
             android:id="@+id/imgCheck"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/textoSelecionarMessoRegiao"
+            app:layout_constraintBottom_toBottomOf="@+id/textoSelecionarCidade"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textoSelecionarMessoRegiao"
+            app:layout_constraintTop_toTopOf="@+id/textoSelecionarCidade"
             app:srcCompat="@drawable/check_blue500" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

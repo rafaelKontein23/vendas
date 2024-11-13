@@ -42,7 +42,7 @@ class ActCabecalho : AppCompatActivity() {
         }
 
         viewModelActCabecalho.finalizaAtividade.observe(this){
-            onBackPressed()
+            finish()
         }
 
         binding.setaVoltar.setOnClickListener {

@@ -1,12 +1,15 @@
 package br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro
 
 import android.content.Context
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CidadesRequest
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.MessoRegiaoRequest
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCidades
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCidadesDados
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaMessoRegiao
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaMessoRegiaoDados
 import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.RetrofitWs
-import br.com.visaogrupo.tudofarmarep.Utils.descritar
-import br.com.visaogrupo.tudofarmarep.Utils.incriptar
+import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.descritar
+import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.incriptar
 import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -16,9 +19,9 @@ class AreaDeAtuacaoRepository(context: Context) {
 
     val retrofitWs = RetrofitWs(context).createService(SincronoCadastro::class.java)
 
-    fun recuperaDadosMesorregiao(UF: MessoRegiaoRequest) : List<RespostaMessoRegiao>?{
+   suspend fun recuperaDadosMesorregiao(messoRegiaoRequest: MessoRegiaoRequest) : ArrayList<RespostaMessoRegiao>?{
         try{
-            val json = Gson().toJson(UF)
+            val json = Gson().toJson(messoRegiaoRequest)
             val  jsonIncriptado = json.incriptar()
             val mediaType = "application/json".toMediaTypeOrNull()
             val requestBody = jsonIncriptado.toRequestBody(mediaType)
@@ -39,6 +42,5 @@ class AreaDeAtuacaoRepository(context: Context) {
             return null
         }
     }
-
 
 }

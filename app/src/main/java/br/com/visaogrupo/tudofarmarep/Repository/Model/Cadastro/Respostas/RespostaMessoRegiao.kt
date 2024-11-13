@@ -1,7 +1,7 @@
 package br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas
 
 data class RespostaMessoRegiaoDados(
-    val Dados: List<RespostaMessoRegiao>,
+    val Dados: ArrayList<RespostaMessoRegiao>,
     val Mensagem: String,
     val Valido: String,
     val Resultado : String

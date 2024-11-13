@@ -1,14 +1,11 @@
-package br.com.visaogrupo.tudofarmarep.Presenter.View.Adapters
+package br.com.visaogrupo.tudofarmarep.Presenter.View.Adapters.Cadastro
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.view.isVisible
 import br.com.visaogrupo.tudofarmarep.R
 
 class SpinnerAdapter (context: Context,

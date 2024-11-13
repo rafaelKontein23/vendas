@@ -7,10 +7,9 @@ import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.Respos
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaConfirmaToken
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaConfirmaTokenDados
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaSolicitaToken
-import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaTelefoneSuporte
 import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.RetrofitWs
-import br.com.visaogrupo.tudofarmarep.Utils.descritar
-import br.com.visaogrupo.tudofarmarep.Utils.incriptar
+import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.descritar
+import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.incriptar
 import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody

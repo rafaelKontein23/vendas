@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.AreaDeAtuacaoUseCase
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.CadastroUseCase
-import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Model.MessoRegiao
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCidades
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaMessoRegiao
 import br.com.visaogrupo.tudofarmarep.Utils.ListaUtils
 import kotlinx.coroutines.Dispatchers
@@ -16,51 +16,161 @@ class ViewModelFragmentDadosAreaDeAtuacao(
     private val areaDeAtuacaoUseCase: AreaDeAtuacaoUseCase,
     private val cadastroUseCase: CadastroUseCase
 ) : ViewModel() {
-
+    private val listaGeralMessoRegiao = ArrayList<RespostaMessoRegiao>()
     private val _listaEstados = MutableLiveData<List<String>>()
     val listaEstados: LiveData<List<String>> = _listaEstados
+
+    private val _listaMesorregiao = MutableLiveData<ArrayList<RespostaMessoRegiao>?>()
+    val listaMesorregiao: LiveData<ArrayList<RespostaMessoRegiao>?> = _listaMesorregiao
+
+    private val _listaCidades= MutableLiveData<ArrayList<RespostaCidades>?>()
+    val listaCidadesObs: LiveData<ArrayList<RespostaCidades>?> = _listaCidades
 
     private val _ufSelecionada = MutableLiveData<String>()
     val ufSelecionada: LiveData<String> = _ufSelecionada
 
-    private val _mesorregiaoSelecionada = MutableLiveData<List<MessoRegiao>?>()
-    val mesorregiaoSelecionada: LiveData<List<MessoRegiao>?> = _mesorregiaoSelecionada
+    private val _mesorregiaoSelecionada = MutableLiveData<ArrayList<RespostaMessoRegiao>?>()
+    val mesorregiaoSelecionada: LiveData<ArrayList<RespostaMessoRegiao>?> = _mesorregiaoSelecionada
 
-    private val _listaMesorregiao = MutableLiveData<List<RespostaMessoRegiao>?>()
-    val listaMesorregiao: LiveData<List<RespostaMessoRegiao>?> = _listaMesorregiao
+    private val _cidadeSelecionada = MutableLiveData<ArrayList<RespostaCidades>?>()
+    val cidadeSelecionada: LiveData<ArrayList<RespostaCidades>?> = _cidadeSelecionada
 
     init {
         _listaEstados.value = ListaUtils.EstadosUtils.obterListaEstados().toMutableList()
     }
 
-    fun buscaDadosAreaDeAtuacaoMesorregiao(uf: String) {
+    fun buscaDadosAreaDeAtuacaoMesorregiao(uf: String, adicionaInicial: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
-            val resultado = areaDeAtuacaoUseCase.recuperaDadosMesorregiao(uf)
-            _listaMesorregiao.postValue(resultado)
+            val (listaRespostaMessoRegiao, listaRespostaCidades, listaGeralMessoRegiaoList) = areaDeAtuacaoUseCase.recuperaDadosMesorregiao(uf)
+            if (listaGeralMessoRegiaoList != null) {
+                listaGeralMessoRegiao.clear()
+                listaGeralMessoRegiao.addAll(listaGeralMessoRegiaoList)
+            }
+            if (adicionaInicial){
+                _mesorregiaoSelecionada.postValue(listaRespostaMessoRegiao)
+                _cidadeSelecionada.postValue(listaRespostaCidades)
+            }
+            _listaMesorregiao.postValue(listaRespostaMessoRegiao)
+            _listaCidades.postValue(listaRespostaCidades)
         }
+    }
+
+    fun limparListas(){
+        val listaMessoRegiao = _listaMesorregiao.value
+        val listaCidades = _listaCidades.value
+        if (listaMessoRegiao != null && listaCidades != null){
+            _listaMesorregiao.value!!.clear()
+            _listaCidades.value!!.clear()
+        }
+        _mesorregiaoSelecionada.postValue(listaMessoRegiao)
+        _cidadeSelecionada.postValue(listaCidades)
     }
 
     fun selecionaUF(uf: String) {
         _ufSelecionada.value = uf
     }
 
-    fun adicionaNaListaMesorregiao(mesoRegiao: MessoRegiao) {
-        val lista = _mesorregiaoSelecionada.value?.toMutableList() ?: mutableListOf()
+    fun adicionaNaListaMesorregiao(mesoRegiao: RespostaMessoRegiao) {
+        val lista = _mesorregiaoSelecionada.value?.toMutableList() as? ArrayList<RespostaMessoRegiao> ?: ArrayList()
+        val listaCidades = _cidadeSelecionada.value?.toMutableList() as? ArrayList<RespostaCidades> ?: ArrayList()
+
         if (!lista.contains(mesoRegiao)) {
             lista.add(mesoRegiao)
-            _mesorregiaoSelecionada.value = lista
+            adicionaCidadexMesoRegiao(lista, listaCidades)
+
+            _listaCidades.postValue(ArrayList(listaCidades))
+            _cidadeSelecionada.postValue(ArrayList(listaCidades))
+            _mesorregiaoSelecionada.postValue(ArrayList(lista))
         }
     }
+    fun adicionaNaListaTodasMesorregiao(){
+        val lista = _listaMesorregiao.value?.toMutableList() as? ArrayList<RespostaMessoRegiao> ?: ArrayList()
+        val listaCidades = _listaCidades.value?.toMutableList() as? ArrayList<RespostaCidades> ?: ArrayList()
+        _mesorregiaoSelecionada.value!!.clear()
+        _cidadeSelecionada.value!!.clear()
+        _mesorregiaoSelecionada.postValue(lista)
+        _cidadeSelecionada.postValue(listaCidades)
+    }
+    fun removeDaListaTodasMesorregiao(){
+        val lista = _listaMesorregiao.value?.toMutableList() as? ArrayList<RespostaMessoRegiao> ?: ArrayList()
+        val listaCidades = _listaCidades.value?.toMutableList() as? ArrayList<RespostaCidades> ?: ArrayList()
+        lista.clear()
+        listaCidades.clear()
+        _mesorregiaoSelecionada.value!!.clear()
+        _cidadeSelecionada.value!!.clear()
+        _mesorregiaoSelecionada.postValue(lista)
+        _cidadeSelecionada.postValue(listaCidades)
+    }
 
-    fun removeDaListaMesorregiao(mesoRegiao: MessoRegiao) {
-        val lista = _mesorregiaoSelecionada.value?.toMutableList()
-        if (lista != null && lista.contains(mesoRegiao)) {
+    fun removeDaListaMesorregiao(mesoRegiao: RespostaMessoRegiao) {
+        val lista = _mesorregiaoSelecionada.value?.toMutableList() as? ArrayList<RespostaMessoRegiao> ?: ArrayList()
+        val listaCidades = _cidadeSelecionada.value?.toMutableList() as? ArrayList<RespostaCidades> ?: ArrayList()
+
+        if (lista.contains(mesoRegiao)) {
             lista.remove(mesoRegiao)
-            _mesorregiaoSelecionada.value = lista
+            if (lista.isEmpty()) {
+                listaCidades.clear()
+                _cidadeSelecionada.postValue(ArrayList(listaCidades))
+            } else {
+                adicionaCidadexMesoRegiao(lista, listaCidades)
+                _listaCidades.postValue(ArrayList(listaCidades))
+                _cidadeSelecionada.postValue(ArrayList(listaCidades))
+            }
+            _mesorregiaoSelecionada.postValue(ArrayList(lista))
         }
     }
 
-    fun confereMessoRegiao(mesoRegiao: MessoRegiao): Boolean {
-        return if (_mesorregiaoSelecionada.value!!.contains(mesoRegiao)) true else false
+    fun confereMessoRegiao(mesoRegiao: RespostaMessoRegiao): Boolean {
+        return _mesorregiaoSelecionada.value!!.contains(mesoRegiao)
+    }
+
+    fun confereTamanhoListaMesorregiao(): Boolean {
+        if(_mesorregiaoSelecionada.value == null || _listaMesorregiao.value == null) return true
+        return _mesorregiaoSelecionada.value!!.size == _listaMesorregiao.value!!.size
+    }
+
+    fun adicionaNaListaCidades(cidade: RespostaCidades) {
+        val lista = _cidadeSelecionada.value?.toMutableList() as? ArrayList<RespostaCidades> ?: ArrayList()
+        if (!lista.contains(cidade)) {
+            lista.add(cidade)
+            _cidadeSelecionada.postValue(ArrayList(lista))
+        }
+    }
+
+    fun removeDaListaCidades(cidade: RespostaCidades) {
+        val lista = _cidadeSelecionada.value?.toMutableList() as? ArrayList<RespostaCidades> ?: ArrayList()
+        if (lista.contains(cidade)) {
+            lista.remove(cidade)
+            _cidadeSelecionada.postValue(ArrayList(lista))
+        }
+    }
+
+    fun confereCidades(cidades: RespostaCidades): Boolean {
+        return _cidadeSelecionada.value!!.contains(cidades)
+    }
+
+    fun confereTamanhoListaCidades(): Boolean {
+        if(_cidadeSelecionada.value == null || _listaCidades.value == null) return true
+        return _cidadeSelecionada.value!!.size == _listaCidades.value!!.size
+    }
+
+    private fun adicionaCidadexMesoRegiao(lista : ArrayList<RespostaMessoRegiao>, listaCidades: ArrayList<RespostaCidades>){
+        listaCidades.clear()
+        for (messoRegiaoItem in listaGeralMessoRegiao){
+            for (messoRegiaoItemSecundo in lista){
+                if(messoRegiaoItem.Mesorregiao_id == messoRegiaoItemSecundo.Mesorregiao_id  ){
+                    val cidade = RespostaCidades(0,messoRegiaoItem.Municipio)
+                    listaCidades.add(cidade)
+                }
+            }
+        }
+    }
+
+
+    fun confereMessoRegiaoList(): Boolean {
+        return _mesorregiaoSelecionada.value!!.isEmpty()
+    }
+    fun confereCidadesList(): Boolean {
+        return _cidadeSelecionada.value!!.isEmpty()
     }
 }

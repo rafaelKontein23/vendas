@@ -1,4 +1,4 @@
-package br.com.visaogrupo.tudofarmarep.Utils
+package br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi
 
 import android.util.Base64
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.CriptografiaChavesSenha

@@ -98,7 +98,7 @@ fun TextView.validaError(isError: Boolean, context: Context) {
         this.setTextColor(context.getColor(R.color.danger500))
     } else {
         this.setBackgroundResource(R.drawable.bordas_8_stroke_1_gray300)
-        this.setTextColor(context.getColor(R.color.black))
+        this.setTextColor(context.getColor(R.color.gray500))
     }
 }
 

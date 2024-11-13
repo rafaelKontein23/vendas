@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.CadastroUseCase
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.CnpjUseCase
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RepostaCnpj
-import br.com.visaogrupo.tudofarmarep.Utils.FormularioCadastro
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -15,8 +15,8 @@ class ViewModelFragmentDadosCnpj(
      val cnpjUseCase: CnpjUseCase,
      val cadastroUseCase: CadastroUseCase
 ) :ViewModel(){
-     private val _cnpj = MutableLiveData<RepostaCnpj>()
-     val cnpj: LiveData<RepostaCnpj> get()  = _cnpj
+     private val _cnpj = MutableLiveData<RepostaCnpj?>()
+     val cnpj: LiveData<RepostaCnpj?> get()  = _cnpj
 
 
      private val _lista = MutableLiveData<List<String>>()
@@ -25,7 +25,7 @@ class ViewModelFragmentDadosCnpj(
      fun buscaDadosCnpj(){
           viewModelScope.launch(Dispatchers.IO) {
                val responseCnpj = cnpjUseCase.buscaDadosCnpjUseCase()
-               _cnpj.postValue(responseCnpj!!)
+               _cnpj.postValue(responseCnpj)
           }
      }
     fun salvarInformacoesCnpj(cnpj: String,

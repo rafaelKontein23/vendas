@@ -59,6 +59,7 @@
         •  Evite reflexos na foto;\n
         •  Evite fundos estampados na foto.</string>
     <string name="infoMesorregiao">Selecione abaixo as mesorregiões que deseja realizar suas vendas</string>
+    <string name="infoCidades">As cidades são de acordo com as\n mesorregiões escolhidas anteriormente</string>
 
     <string name="infoEstados">Selecione abaixo o estado que deseja realizar suas vendas</string>
 
@@ -79,6 +80,7 @@
     <string name="erroSenha">Senha incorreta</string>
     <string name="completeToken">Complete o token de acesso</string>
     <string name="erroInternet">Erro ao buscar dados</string>
+    <string name="erroMessoRegiao">Seleicone uma mesorregião</string>
 
     //descrição
     <string name="descricaoVisaulizaSenha">clique aqui para visualizar senha</string>

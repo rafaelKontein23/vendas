@@ -89,6 +89,12 @@ class FormataTextos {
             return "$nomeEstado - $sigla"
         }
 
-
+        fun  String.formataTextoGrandes(texto: String, limite: Int): String{
+            if(texto.length > limite){
+                return texto.substring(0, limite) + "..."
+            }else{
+                return texto
+            }
+        }
     }
 }

@@ -1,8 +1,7 @@
 package br.com.visaogrupo.tudofarmarep.Domain.UseCase
 
-import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequest
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CadastroRepository
-import br.com.visaogrupo.tudofarmarep.Utils.FormularioCadastro
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 
 class CadastroUseCase(
       val  cadastroRepository: CadastroRepository

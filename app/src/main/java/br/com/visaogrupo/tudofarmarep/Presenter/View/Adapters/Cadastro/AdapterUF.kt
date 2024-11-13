@@ -1,4 +1,4 @@
-package br.com.visaogrupo.tudofarmarep.Presenter.View.Adapters
+package br.com.visaogrupo.tudofarmarep.Presenter.View.Adapters.Cadastro
 
 import android.app.Dialog
 import android.content.Context
@@ -32,13 +32,16 @@ class AdapterUF(private val estados: List<String>,
                  context: Context,
                  dialog: Dialog) {
 
-            binding.textoSelecionarUF.text = estado
+             binding.textoSelecionarUF.text = estado
+
              binding.textoSelecionarUF.setOnClickListener {
                  binding.imgCheck.isVisible = true
                  dialog.dismiss()
                  binding.textoSelecionarUF.setTextColor(context.getColor(R.color.blue500))
+                 val sigla = estado.split(" - ").last()
+                 viewModelFragmentDadosAreaDeAtuacao.limparListas()
+                 viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao(sigla, true)
                  viewModelFragmentDadosAreaDeAtuacao.selecionaUF(estado)
-
              }
             val siglas = estado.split(" - ").last()
             val siglasUFSelecionada = viewModelFragmentDadosAreaDeAtuacao.ufSelecionada.value!!.split(" - ").last()
