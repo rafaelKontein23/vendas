@@ -30,7 +30,9 @@
             android:exported="false" />
         <activity
             android:name=".Presenter.View.Atividades.Cadastros.ActCabecalho"
-            android:exported="false" />
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+
+             android:exported="false" />
         <activity
             android:name=".Presenter.View.Atividades.Cadastros.ActToken"
             android:exported="false" />

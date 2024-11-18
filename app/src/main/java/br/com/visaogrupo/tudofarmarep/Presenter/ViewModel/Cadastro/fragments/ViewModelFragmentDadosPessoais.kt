@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.CadastroUseCase
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import kotlinx.coroutines.launch
@@ -18,7 +18,7 @@ class ViewModelFragmentDadosPessoais(
     val numeroCelular: LiveData<String?> = _numeroCelular
 
     fun recuperaNumeroCelular() {
-        val numeroCelular = preferenciasUtils.recuperarTexto(Strings.celular)
+        val numeroCelular = preferenciasUtils.recuperarTexto(ProjetoStrings.celular)
         _numeroCelular.postValue(numeroCelular)
     }
 

@@ -1,7 +1,6 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,7 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Factory.ViewModelActTokenFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActToken
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.IntentUtils
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Cronometro
@@ -64,7 +63,7 @@ class ActToken : AppCompatActivity() {
                             binding.naoRecebiTokenCronometro.text = getString(R.string.naoRecebiToken)
                             binding.naoRecebiTokenCronometro.isEnabled = true
                         }else{
-                            binding.naoRecebiTokenCronometro.setText( "${Strings.reenviarToken} $tempoAtualizado")
+                            binding.naoRecebiTokenCronometro.setText( "${ProjetoStrings.reenviarToken} $tempoAtualizado")
                             binding.naoRecebiTokenCronometro.isEnabled = false
 
                         }

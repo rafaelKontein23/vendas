@@ -9,7 +9,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.ISuporteTelefone
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaConfirmaToken
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaSolicitaToken
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -41,7 +41,7 @@ class ViewModelActToken(
     }
     fun recuperarNumeroCelular() {
         viewModelScope.launch {
-            val numero = preferenciasUtils.recuperarTexto(Strings.celular)
+            val numero = preferenciasUtils.recuperarTexto(ProjetoStrings.celular)
             _numeroCelular.postValue(numero!!)
         }
     }

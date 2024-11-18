@@ -1,13 +1,17 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.Settings
+import android.util.Base64
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
@@ -21,6 +25,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
+import br.com.visaogrupo.tudofarmarep.Utils.ImagensUltis
 import br.com.visaogrupo.tudofarmarep.databinding.ActivityActCameraGaleriaBinding
 import java.io.File
 import java.text.SimpleDateFormat
@@ -90,43 +95,67 @@ class ActCameraGaleria : AppCompatActivity() {
     private fun requestStoragePermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!hasStoragePermission()) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    ActivityCompat.requestPermissions(
-                        this,
-                        arrayOf(Manifest.permission.READ_MEDIA_IMAGES),
-                        1001
-                    )
-                } else {
-                    ActivityCompat.requestPermissions(
-                        this,
-                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                        1001
-                    )
+                val permissions = when {
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> {
+                        arrayOf(Manifest.permission.READ_MEDIA_IMAGES)
+                    }
+                    else -> {
+                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    }
                 }
+                ActivityCompat.requestPermissions(this, permissions, 1001)
             }
         }
     }
 
     private fun openGallery() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        intent.type = "image/*"
-        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+        if (hasStoragePermission()) {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            intent.type = "image/*"
+            startActivityForResult(intent, PICK_IMAGE_REQUEST)
+        } else {
+            requestStoragePermission()
+        }
     }
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 1001) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 openGallery()
             } else {
-                requestStoragePermission()
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0])) {
+                    // Mostra uma mensagem explicando a necessidade da permissão
+                    Toast.makeText(this, "Permissão necessária para acessar a galeria", Toast.LENGTH_SHORT).show()
+                    requestStoragePermission()
+                } else {
+                    // Abre as configurações se o usuário escolheu "Não perguntar novamente"
+                    Toast.makeText(this, "Permissão negada. Ative-a nas configurações.", Toast.LENGTH_SHORT).show()
+                    openAppSettings()
+                }
             }
         }
+    }
+    private fun openAppSettings() {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+            data = Uri.fromParts("package", packageName, null)
+        }
+        startActivity(intent)
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
             val selectedImageUri: Uri = data.data!!
+
+            val tempFile = ImagensUltis.copyUriToInternalStorage(this, selectedImageUri)
+
+            if (tempFile != null) {
+                println("Arquivo copiado: ${tempFile.absolutePath}")
+
+                val base64String = ImagensUltis.fileToBase64(tempFile)
+                FormularioCadastro.base64Galeria = base64String.toString()
+            } else {
+                println("Erro ao copiar o arquivo da URI.")
+            }
             val resultIntent = Intent().apply {
                 putExtra("image_uri", selectedImageUri)
             }
@@ -135,6 +164,7 @@ class ActCameraGaleria : AppCompatActivity() {
             finish()
         }
     }
+
 
     private fun capturePhoto() {
         val photoFile = File(
@@ -153,6 +183,7 @@ class ActCameraGaleria : AppCompatActivity() {
                         putExtra("image_uri", savedUri)
                     }
                     FormularioCadastro.fotoDocumeto = savedUri
+                    FormularioCadastro.base64Galeria = ""
                     setResult(RESULT_OK, resultIntent)
                     finish()
 

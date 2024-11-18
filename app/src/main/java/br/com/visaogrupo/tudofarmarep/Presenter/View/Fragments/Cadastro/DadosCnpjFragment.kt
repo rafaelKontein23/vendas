@@ -70,8 +70,6 @@ class DadosCnpjFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-
-
                     val selectedItem = parent.getItemAtPosition(position).toString()
                     binding.possuiCoreSpinner.validaError(false, requireContext(), binding.textoSelecionadoSpnniner)
                     binding.textoSelecionadoSpnniner.text = selectedItem
@@ -132,7 +130,7 @@ class DadosCnpjFragment : Fragment() {
                 viewModelFragmentDadosCnpj.enviaCadastro()
 
                 requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainerCadastro, DadosAreaDeAtuacaoFragment())
+                    .replace(R.id.fragmentContainerCadastro, FotoDocumentoFragment())
                     .addToBackStack(null)
                     .commit()
             }

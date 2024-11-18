@@ -10,5 +10,6 @@ class FormularioCadastro {
        val cadastro = CadastroRequest()
        var cadastroRequestAreaAtuacal = CadastroRequestAreaAtuacal()
        var fotoDocumeto:Uri = Uri.EMPTY
+       var base64Galeria = ""
     }
 }

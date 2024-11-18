@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActCabecalho
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Factory.ViewModelFragmentCodigoIndicacaoFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentCodigoIndicacao
 import br.com.visaogrupo.tudofarmarep.R
@@ -27,6 +28,8 @@ class CodigoIndicacaoFragment : Fragment() {
     private var _binding: FragmentCodigoIndicacaoBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModelFragmentCodigoIndicacao: ViewModelFragmentCodigoIndicacao
+    private lateinit var  viewModelActCabecalho: ViewModelActCabecalho
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +38,9 @@ class CodigoIndicacaoFragment : Fragment() {
         _binding = FragmentCodigoIndicacaoBinding.inflate(inflater, container, false)
         val factory = ViewModelFragmentCodigoIndicacaoFactory(requireContext())
         viewModelFragmentCodigoIndicacao = ViewModelProvider(this, factory)[ViewModelFragmentCodigoIndicacao::class.java]
+        viewModelActCabecalho = ViewModelProvider(requireActivity()).get(ViewModelActCabecalho::class.java)
+        viewModelActCabecalho.mudaProgressoCadastro(5, 1f)
+
         binding.inputCodigoIndicacao.isFocusEditTextBasico(requireContext())
         if (FormularioCadastro.cadastro.hash.isNotEmpty()){
             binding.btnContinuar.setBackgroundResource(R.drawable.bordas_8_blue600)
@@ -82,6 +88,10 @@ class CodigoIndicacaoFragment : Fragment() {
             binding.inputCodigoIndicacao.validaError(campoHash.length < 8, requireContext())
             if (campoHash.length ==8){
                 viewModelFragmentCodigoIndicacao.enviaCadadstro(campoHash)
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainerCadastro, DadosContratoAceiteFragment())
+                    .addToBackStack(null)
+                    .commit()
             }
         }
         viewModelFragmentCodigoIndicacao.numeroTelefoneSuporte.observe(viewLifecycleOwner){numeroTelefoneSuporte->

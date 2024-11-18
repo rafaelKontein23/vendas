@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.ISuporteTelefone
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import kotlinx.coroutines.Dispatchers
@@ -24,10 +24,10 @@ class ViewModelActCelular (
 
     fun salvarCelular(celular:String){
         val celularSemFormatacao = FormataTextos.removeMascaraCelular(celular)
-        salvaTextos.salvarTexto(celularSemFormatacao, Strings.celular)
+        salvaTextos.salvarTexto(celularSemFormatacao, ProjetoStrings.celular)
     }
     fun recuperaCelular():String?{
-        return salvaTextos.recuperarTexto(Strings.celular)
+        return salvaTextos.recuperarTexto(ProjetoStrings.celular)
     }
 
     override fun buscarNumeroTelefoneSuporte() {

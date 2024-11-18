@@ -40,4 +40,9 @@ interface SincronoCadastro {
     fun P_Convidado_Hash_Consulta
     (@Body responseBody: RequestBody): Call<ResponseBody>
 
+    @POST("envia/foto/documento")
+    fun enviaFotoDocumento
+    (@Body responseBody: RequestBody): Call<ResponseBody>
+
+
 }

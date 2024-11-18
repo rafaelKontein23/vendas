@@ -15,7 +15,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Vi
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Factory.ViewModelFragmentDadosPessoalFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentDadosPessoais
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
@@ -62,9 +62,9 @@ class DadosPessoaisFragment : Fragment() {
         viewModelActCabecalho = ViewModelProvider(requireActivity()).get(ViewModelActCabecalho::class.java)
         viewModelActCabecalho.mudaProgressoCadastro(2, 1f)
 
-        FormataTextos.colocaMascaraInput(binding.inputCpf, Strings.mascaraCPF)
-        FormataTextos.colocaMascaraInput(binding.inputTelefoneComercial, Strings.mascaraTelefone)
-        FormataTextos.colocaMascaraInput(binding.inputCelular, Strings.mascaraCelular)
+        FormataTextos.colocaMascaraInput(binding.inputCpf, ProjetoStrings.mascaraCPF)
+        FormataTextos.colocaMascaraInput(binding.inputTelefoneComercial, ProjetoStrings.mascaraTelefone)
+        FormataTextos.colocaMascaraInput(binding.inputCelular, ProjetoStrings.mascaraCelular)
         viewModelFragmentDadosPessoal.recuperaNumeroCelular()
         if(FormularioCadastro.cadastro.nome.isNotEmpty()){
             binding.inputNome.setText(FormularioCadastro.cadastro.nome)

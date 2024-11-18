@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Presenter.View.Fragments.Cadastro.DadosContratoAceiteFragment">
+     <androidx.core.widget.NestedScrollView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+         <androidx.constraintlayout.widget.ConstraintLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+             <TextView
+                 android:id="@+id/textoContrato"
+                 style="@style/textoSubTitulo"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginStart="24dp"
+                 android:layout_marginTop="48dp"
+                 android:layout_marginEnd="24dp"
+                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tempus quam egestas, dignissim lacus in, placerat nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris pretium mauris non magna dignissim, at volutpat neque scelerisque. Etiam dictum lorem a nisl imperdiet, eget vehicula lectus iaculis. Quisque scelerisque neque sed mauris vehicula, ut finibus magna pretium. Pellentesque non eleifend nisi, nec ultricies metus. Maecenas pretium ultrices tortor a dignissim. Suspendisse volutpat ullamcorper velit at faucibus. Nulla pulvinar posuere mi, non euismod velit aliquam vitae. In ullamcorper maximus lorem, ut congue sapien sagittis id. Curabitur id metus eget ipsum vulputate mattis eget at eros. Sed ac ex tristique, aliquam lectus ac, sodales velit. Phasellus lacus risus, blandit et nulla eget, viverra ultricies sem. Etiam ac tortor sodales, pharetra orci ac, dictum massa.
+Sed ullamcorper sapien et imperdiet tempus. Aliquam pulvinar, neque vel interdum ultricies, leo urna faucibus sem, sit amet ultricies nibh nulla eget nibh. In varius ipsum sit .
+dafmklfamnkafnklafnkfalafklnafklfnaklfanklafnklafnklfaklafnkmlfanfaklfanlkfaklnfaklnafklfklklfmnaskklsdvnklndvinvdsidvniodsavbniodbndsbioniodbsniobdsa"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="parent">
+
+             </TextView>
+
+             <TextView
+                 android:id="@+id/textView25"
+                 style="@style/textoSubTitulo"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginStart="12dp"
+                 android:text="@string/euliEAceito"
+                 app:layout_constraintBottom_toBottomOf="@+id/aceiteBoxPoliticaPrivacidade"
+                 app:layout_constraintStart_toEndOf="@+id/aceiteBoxPoliticaPrivacidade"
+                 app:layout_constraintTop_toTopOf="@+id/aceiteBoxPoliticaPrivacidade" />
+
+             <androidx.constraintlayout.widget.ConstraintLayout
+                 android:id="@+id/aceiteBoxPoliticaPrivacidade"
+                 android:layout_width="16dp"
+                 android:layout_height="16dp"
+                 android:tag="0"
+                 android:layout_marginStart="24dp"
+                 android:layout_marginTop="24dp"
+                 android:background="@drawable/bordas_radius_4_strokewidth_1_strokecolor_gray100"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@+id/textoContrato">
+
+                 <ImageView
+                     android:id="@+id/imageView3"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:src="@drawable/check_white"
+                     app:layout_constraintBottom_toBottomOf="parent"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toTopOf="parent" />
+             </androidx.constraintlayout.widget.ConstraintLayout>
+
+             <TextView
+                 android:id="@+id/textoPolitica"
+                 style="@style/textoAzulInformativoblue500_14sp"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_marginStart="4dp"
+                 android:layout_marginEnd="24dp"
+                 android:text="@string/politicaPrivacidade"
+                 android:textAlignment="textStart"
+                 android:textSize="14sp"
+                 app:layout_constraintBottom_toBottomOf="@+id/textView25"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toEndOf="@+id/textView25"
+                 app:layout_constraintTop_toTopOf="@+id/textView25"
+                 app:layout_constraintVertical_bias="0.0" />
+
+             <TextView
+                 android:id="@+id/textView26"
+                 style="@style/textoSubTitulo"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginStart="12dp"
+                 android:text="@string/euliEAceito"
+                 app:layout_constraintBottom_toBottomOf="@+id/aceiteBoxTermosDeUso"
+                 app:layout_constraintStart_toEndOf="@+id/aceiteBoxPoliticaPrivacidade"
+                 app:layout_constraintTop_toTopOf="@+id/aceiteBoxTermosDeUso" />
+
+             <androidx.constraintlayout.widget.ConstraintLayout
+                 android:id="@+id/aceiteBoxTermosDeUso"
+                 android:layout_width="16dp"
+                 android:layout_height="16dp"
+                 android:layout_marginStart="24dp"
+                 android:layout_marginTop="16dp"
+                 android:tag="0"
+
+                 android:background="@drawable/bordas_radius_4_strokewidth_1_strokecolor_gray100"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@+id/aceiteBoxPoliticaPrivacidade">
+                 <ImageView
+                     android:id="@+id/imageView4"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+
+                     android:src="@drawable/check_white"
+                     app:layout_constraintBottom_toBottomOf="parent"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toTopOf="parent" />
+             </androidx.constraintlayout.widget.ConstraintLayout>
+
+             <TextView
+                 android:id="@+id/textoTermosDeUso"
+                 style="@style/textoAzulInformativoblue500_14sp"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_marginStart="4dp"
+                 android:layout_marginEnd="24dp"
+                 android:text="@string/termosDeUso"
+                 android:textAlignment="textStart"
+                 android:textSize="14sp"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toEndOf="@+id/textView25"
+                 app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+             <TextView
+                 android:id="@+id/textoAssinar"
+                 style="@style/textoSubTitulo"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_marginStart="12dp"
+                 android:layout_marginEnd="24dp"
+                 android:text="@string/infoContrato"
+                 app:layout_constraintBottom_toBottomOf="@+id/assinaContratoBox"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toEndOf="@+id/aceiteBoxPoliticaPrivacidade"
+                 app:layout_constraintTop_toTopOf="@+id/assinaContratoBox"
+                 app:layout_constraintVertical_bias="1.0" />
+
+             <androidx.constraintlayout.widget.ConstraintLayout
+                 android:id="@+id/assinaContratoBox"
+                 android:layout_width="16dp"
+                 android:layout_height="16dp"
+                 android:tag="0"
+
+                 android:layout_marginStart="24dp"
+                 android:layout_marginTop="16dp"
+                 android:background="@drawable/bordas_radius_4_strokewidth_1_strokecolor_gray100"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@+id/aceiteBoxTermosDeUso">
+                 <ImageView
+                     android:id="@+id/imageView6"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+
+                     android:src="@drawable/check_white"
+                     app:layout_constraintBottom_toBottomOf="parent"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toTopOf="parent" />
+             </androidx.constraintlayout.widget.ConstraintLayout>
+
+             <TextView
+                 android:id="@+id/btnContinuar"
+                 style="@style/buttonPadraoCadastro"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginStart="24dp"
+                 android:layout_marginTop="40dp"
+                 android:layout_marginEnd="24dp"
+                 android:layout_marginBottom="32dp"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@+id/textoAssinar">
+
+             </TextView>
+         </androidx.constraintlayout.widget.ConstraintLayout>
+     </androidx.core.widget.NestedScrollView>
+
+
+</FrameLayout>

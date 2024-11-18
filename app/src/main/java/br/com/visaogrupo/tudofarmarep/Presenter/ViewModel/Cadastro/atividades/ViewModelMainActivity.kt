@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.ISuporteTelefone
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.CriptografiaChavesSenha
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
@@ -46,12 +46,12 @@ class ViewModelMainActivity(
     fun salvaCnpj(cnpj:String){
         viewModelScope.launch(Dispatchers.IO) {
             val cnpjSemFormatacao = FormataTextos.removeMascaraCNPJ(cnpj)
-            salvaTextos.salvarTexto(cnpjSemFormatacao, Strings.cnpjCadastro)
+            salvaTextos.salvarTexto(cnpjSemFormatacao, ProjetoStrings.cnpjCadastro)
         }
     }
 
     fun recuperaCnpj():String?{
-        return salvaTextos.recuperarTexto(Strings.cnpjCadastro)
+        return salvaTextos.recuperarTexto(ProjetoStrings.cnpjCadastro)
     }
 
     fun alterarSenhaVisualizar() {
@@ -103,11 +103,11 @@ class ViewModelMainActivity(
 
     private fun salvaAmbiente(ambiente:String){
         trocaAmbiente(ambiente)
-        salvaTextos.salvarTexto(ambiente, Strings.ambiente)
+        salvaTextos.salvarTexto(ambiente, ProjetoStrings.ambiente)
     }
 
     fun recuperaAmbiente(){
-        val ambiente = salvaTextos.recuperarTexto(Strings.ambiente)
+        val ambiente = salvaTextos.recuperarTexto(ProjetoStrings.ambiente)
         when(ambiente){
             "www" -> {
                trocaAmbiente("www")

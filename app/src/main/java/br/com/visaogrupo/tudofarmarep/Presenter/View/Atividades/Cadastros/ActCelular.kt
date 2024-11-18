@@ -1,7 +1,6 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Factory.ViewModelActCelularFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActCelular
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.IntentUtils
 import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
@@ -36,7 +35,7 @@ class ActCelular : AppCompatActivity() {
         val factory = ViewModelActCelularFactory(applicationContext)
         viewModelActCelular = ViewModelProvider(this, factory)[ViewModelActCelular::class.java]
 
-        FormataTextos.colocaMascaraInput(binding.inputCelular, Strings.mascaraCelular)
+        FormataTextos.colocaMascaraInput(binding.inputCelular, ProjetoStrings.mascaraCelular)
 
         binding.inputCelular.setText(viewModelActCelular.recuperaCelular())
 

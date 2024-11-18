@@ -5,7 +5,7 @@ import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.Solic
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaConfirmaToken
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaSolicitaToken
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.TokenRepository
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.Strings
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import br.com.visaogrupo.tudofarmarep.Utils.SistemaUtils
 
@@ -21,8 +21,8 @@ class TokenUseCase(
     }
 
     suspend fun confirmaToken(token: String): RespostaConfirmaToken? {
-        val cnpj = preferenciasUtils.recuperarTexto(Strings.cnpjCadastro) ?: ""
-        val celular = preferenciasUtils.recuperarTexto(Strings.celular) ?: ""
+        val cnpj = preferenciasUtils.recuperarTexto(ProjetoStrings.cnpjCadastro) ?: ""
+        val celular = preferenciasUtils.recuperarTexto(ProjetoStrings.celular) ?: ""
         val udid = sistemaUtils.recuperaUdid()
 
         val confirmaTokenRequest = ConfirmaTokenRequest("", celular, token, udid, cnpj)

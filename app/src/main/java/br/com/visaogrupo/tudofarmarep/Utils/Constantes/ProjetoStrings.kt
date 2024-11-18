@@ -1,6 +1,6 @@
 package br.com.visaogrupo.tudofarmarep.Utils.Constantes
 
-class Strings {
+class ProjetoStrings {
 
     companion object{
         //chaves preferencias
@@ -14,6 +14,8 @@ class Strings {
         const val mascaraTelefone = "## ####-####"
         const val mascaraCelular = "## # ####-####"
         const val reenviarToken = "Reenviar token em "
+
+        val strDocumeto = "Identificacao_"
 
     }
 }

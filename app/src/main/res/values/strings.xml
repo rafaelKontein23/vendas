@@ -10,6 +10,7 @@
     <string name="DadosAreaAtuacao">Área de Atuação</string>
     <string name="CodigoIndicacao">Código de Indicação</string>
     <string name="ContratoAceite">Contrato de Aceitação</string>
+    <string name="assinaturaContrato">Assinatura do Contrato</string>
 
     // Erros
     <string name="tituloErro">Ops!</string>
@@ -31,7 +32,7 @@
     <string name="estados">Estados</string>
     <string name="mesorregioes">Mesorregiões</string>
 
-
+    <string name="erroAceites">Aceites os termos de uso e a política de privacidade</string>
     //palavras
     <string name="cnpj">CNPJ</string>
     <string name="celular">Celular</string>
@@ -67,6 +68,16 @@
     <string name="continuarSemCodigo">Continuar sem código</string>
 
     <string name="infoEstados">Selecione abaixo o estado que deseja realizar suas vendas</string>
+    <string name="limparTexto">Limpar assinatura</string>
+
+    <string name="euliEAceito">Eu li e aceito as</string>
+    <string name="politicaPrivacidade">Políticas de Privacidade</string>
+    <string name="termosDeUso">
+        Termos de uso
+    </string>
+    <string name="infoContrato">Eu li e aceito as normas do contrato
+    </string>
+
 
     //mascaras
     <string name="mascaraCnpj">00.000.000/0000-00</string>

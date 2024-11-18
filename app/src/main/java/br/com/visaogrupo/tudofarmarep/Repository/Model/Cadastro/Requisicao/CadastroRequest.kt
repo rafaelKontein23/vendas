@@ -19,6 +19,9 @@ data class CadastroRequest(
     var telefoneComercial: String = "",
     var email: String = "",
     var hash: String = "",
+    var isPoliticaPrivacidade:Boolean = false,
+    var isTermoPolitico :Boolean = false,
+    var isAssinaContrato:Boolean = false
 )
 
 
