@@ -42,16 +42,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tituloModalAreaDeAtuacao" />
 
+    <EditText
+        android:id="@+id/inputBuscaMessoRegiao"
+        style="@style/inputPadraoCadastro"
+        android:layout_width="match_parent"
+        android:drawableStart="@drawable/busca"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:inputType="text"
+        android:drawablePadding="16dp"
+        android:hint="@string/buscaCidades"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subtituloModalAreaDeAtuacao">
+
+    </EditText>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerAreaDeAtuacao"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="195dp"
         android:layout_marginBottom="90dp"
         app:layout_constraintBottom_toTopOf="@+id/btnSelecionar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subtituloModalAreaDeAtuacao" />
+        app:layout_constraintTop_toBottomOf="@+id/inputBuscaMessoRegiao" />
 
     <TextView
         android:id="@+id/btnSelecionar"

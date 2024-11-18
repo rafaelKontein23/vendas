@@ -195,4 +195,14 @@ class ViewModelFragmentDadosAreaDeAtuacao(
             cadastroUseCase.enviaCadastro()
         }
     }
+
+
+    fun buscaCidades(cidade: String): List<RespostaCidades> {
+        val listaCidadesAtual =_listaCidades.value?.toMutableList() as? ArrayList<RespostaCidades> ?: ArrayList()
+        val listaFiltradaCidades = listaCidadesAtual.filter { it.Cidade.contains(cidade, ignoreCase = true) }
+        if (listaFiltradaCidades.isEmpty()){
+
+        }else
+
+    }
 }

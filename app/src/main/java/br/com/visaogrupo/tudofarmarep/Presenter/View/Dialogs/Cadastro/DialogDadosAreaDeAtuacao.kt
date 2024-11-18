@@ -2,6 +2,8 @@ package br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro
 
 import android.app.Dialog
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.Window
 import androidx.core.view.isVisible
@@ -37,6 +39,21 @@ class DialogDadosAreaDeAtuacao(private val context: Context,
         binding.btnSelecionar.setOnClickListener {
             dialogCidades.dismiss()
         }
+
+        binding.inputBuscaMessoRegiao.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+               val cidade = s.toString()
+                viewModelFragmentDadosAreaDeAtuacao.buscaCidades(cidade)
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
         binding.carregandoMessoRegiao.isVisible = true
         viewModelFragmentDadosAreaDeAtuacao.listaCidadesObs.observe(lifecycleOwner){ listaRespostaCidades ->
             binding.carregandoMessoRegiao.isVisible = false
