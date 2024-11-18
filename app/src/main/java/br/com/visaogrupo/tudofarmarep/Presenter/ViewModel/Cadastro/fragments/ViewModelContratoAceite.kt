@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.CadastroUseCase
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import okhttp3.Dispatcher
@@ -16,16 +17,23 @@ class ViewModelContratoAceite(
 )  : ViewModel(){
     val  _contratoAssinado = MutableLiveData<Boolean>()
     val  contratoAssinado get() = _contratoAssinado
+
+    val  _fazCadastro = MutableLiveData<Boolean>()
+    val  fazCadastro get() = _fazCadastro
     fun assinaturaContrato(){
          FormularioCadastro.cadastro.isAssinaContrato = true
         _contratoAssinado.value = true
+
     }
 
 
-    fun enviaCadastroFinal(){
-        viewModelScope.launch (Dispatchers.IO) {
-            var retornoFoto = false
-            var retornoCadastro = false
+    fun enviaCadastroFinal() {
+
+
+       viewModelScope.launch (Dispatchers.IO) {
+           var retornoFoto = false
+           var retornoCadastro = false
+           var retornoAssinatura = false
 
             val tarefaCadastro = async {
                 retornoCadastro = cadastroUseCase.enviaCadastroFinal()
@@ -34,11 +42,15 @@ class ViewModelContratoAceite(
                 retornoFoto =  cadastroUseCase.mandaFotoCadastro()
 
             }
+            val tarefaAssinatura = async {
+                retornoAssinatura = cadastroUseCase.enviaAssinatura()
+            }
             tarefaCadastro.await()
             tarefaFoto.await()
-
-            Log.d("asffsa", "retornoFoto $retornoFoto")
-
+            tarefaAssinatura.await()
+           MainScope().launch {
+               _fazCadastro.value = retornoAssinatura && retornoCadastro && retornoFoto
+           }
         }
     }
 }

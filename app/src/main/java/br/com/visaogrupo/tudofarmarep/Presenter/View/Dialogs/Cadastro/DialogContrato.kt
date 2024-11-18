@@ -12,6 +12,7 @@ import android.view.Window
 import android.view.WindowManager
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelContratoAceite
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Views.DialogConfig
 import br.com.visaogrupo.tudofarmarep.databinding.DialogAssinarContratoBinding
 import br.com.visaogrupo.tudofarmarep.databinding.DialogCidadesBinding
@@ -55,6 +56,9 @@ class DialogContrato(val context: Context, val viewModelContratoAceite: ViewMode
             window.setGravity(Gravity.CENTER)
 
         }
+        FormularioCadastro.savedBitmap?.let { bitmap ->
+            binding.drawingView .setDrawingBitmap(bitmap)
+        }
         binding.fecharModal.setOnClickListener {
             dialogAssina.dismiss()
         }
@@ -70,7 +74,12 @@ class DialogContrato(val context: Context, val viewModelContratoAceite: ViewMode
 
         binding.btnConfirma.setOnClickListener {
             viewModelContratoAceite.assinaturaContrato()
+            val base64Assinatura = binding.drawingView.getDrawingAsBase64()
+            FormularioCadastro.base64Assinatura = base64Assinatura.toString()
             (context as? Activity)?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+            val bitmap = binding.drawingView.getDrawingBitmap()
+            FormularioCadastro.savedBitmap = bitmap
+
             dialogAssina.dismiss()
         }
         dialogAssina.show()

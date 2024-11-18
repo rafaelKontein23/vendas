@@ -10,16 +10,16 @@ import br.com.visaogrupo.tudofarmarep.Utils.ImagensUltis
 class CadastroUseCase(
       val  cadastroRepository: CadastroRepository,
 ) {
-    suspend fun enviaCadastro(){
+     fun enviaCadastro(){
         cadastroRepository.enviaCadastro()
     }
-    suspend fun enviaCadastroFinal():Boolean{
+     fun enviaCadastroFinal():Boolean{
        return cadastroRepository.enviaCadastroFinal()
     }
 
 
 
-    suspend fun mandaFotoCadastro(): Boolean{
+     fun mandaFotoCadastro(): Boolean{
         var base64 = ""
         if (FormularioCadastro.base64Galeria.isEmpty()){
             base64 = ImagensUltis.uriToBase64WithResolver(cadastroRepository.contextUser, FormularioCadastro.fotoDocumeto).toString()
@@ -29,6 +29,12 @@ class CadastroUseCase(
         }
         val nomeArquivo = ProjetoStrings.strDocumeto + FormularioCadastro.cadastro.CNPJ+".jpeg"
         return  cadastroRepository.envioFotoDocumentoBase64(base64, nomeArquivo)
+
+    }
+    fun enviaAssinatura(): Boolean{
+        val base64 = FormularioCadastro.base64Assinatura
+        val nomeArquivo = "${FormularioCadastro.cadastro.CNPJ}/${FormularioCadastro.cadastro.celular}.jpeg"
+        return  cadastroRepository.enviaAssinatura(base64, nomeArquivo)
 
     }
 }

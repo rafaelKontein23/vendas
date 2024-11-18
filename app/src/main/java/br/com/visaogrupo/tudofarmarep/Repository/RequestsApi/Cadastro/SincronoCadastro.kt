@@ -44,5 +44,9 @@ interface SincronoCadastro {
     fun enviaFotoDocumento
     (@Body responseBody: RequestBody): Call<ResponseBody>
 
+    @POST("envio/assinatura")
+    fun enviaAssinatura
+    (@Body responseBody: RequestBody): Call<ResponseBody>
+
 
 }

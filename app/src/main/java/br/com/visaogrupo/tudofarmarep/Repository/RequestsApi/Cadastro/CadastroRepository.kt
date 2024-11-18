@@ -101,4 +101,34 @@ class CadastroRepository(context: Context) {
             return false
         }
     }
+
+    fun enviaAssinatura(base64: String, nomeArquivo: String):Boolean{
+        try {
+            val jsonAssinatura = JSONObject().apply {
+                put("file", base64)
+                put("filename", nomeArquivo)
+                put("path", "assinatura")
+
+            }
+
+            val mediaType = "application/json; charset=utf-8".toMediaType()
+            val requestBody = jsonAssinatura.toString().toRequestBody(mediaType)
+            val reponse = retrofit.enviaAssinatura(requestBody).execute()
+            if(reponse.isSuccessful){
+                Log.d("Sucesso", "sucesso, no Envio da Assinatura")
+                return true
+            }else{
+                return  false
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
+            return false
+
+        }catch (e:IOException){
+            e.printStackTrace()
+            return false
+        }
+
+
+    }
 }

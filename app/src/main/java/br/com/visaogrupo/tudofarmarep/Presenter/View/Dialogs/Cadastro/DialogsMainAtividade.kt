@@ -17,7 +17,7 @@ import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.databinding.DialogSenhaAmbienteBinding
 import br.com.visaogrupo.tudofarmarep.databinding.DialogTrocaAmbienteBinding
 
-class DialogsTrocaAmbiente (private val activity: AppCompatActivity,
+class DialogsMainAtividade (private val activity: AppCompatActivity,
                             private val viewModel: ViewModelMainActivity
      ) {
 
@@ -122,6 +122,11 @@ class DialogsTrocaAmbiente (private val activity: AppCompatActivity,
                viewModel.trocaAmbienteModal(4)
                dialogEscolhaAmbiente.dismiss()
           }
+
+     }
+
+
+     fun dialogBiometria(){
 
      }
 

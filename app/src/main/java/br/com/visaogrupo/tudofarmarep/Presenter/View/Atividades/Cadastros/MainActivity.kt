@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogsTrocaAmbiente
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogsMainAtividade
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Factory.ViewModelMainActivityFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelMainActivity
 import br.com.visaogrupo.tudofarmarep.R
@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             val cnpjCap = binding.inputCnpj.text.toString()
             if(ValidarTextos.isCNPJ(cnpjCap)) {
                 viewModelMainActivity.salvaCnpj(cnpjCap)
-                val intent = Intent(this, ActCelular::class.java)
+                val intent = Intent(this, ActSucessoCadastro::class.java)
                 startActivity(intent)
             }
         }
@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModelMainActivity.contadorModal.observe(this){contador ->
             if(contador == 5){
-                val dialog = DialogsTrocaAmbiente(this,viewModelMainActivity)
+                val dialog = DialogsMainAtividade(this,viewModelMainActivity)
                 dialog.dialogSenha()
             }
         }

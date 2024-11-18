@@ -1,5 +1,6 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.ActSucessoCadastro
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.MainActivity
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogContrato
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActCabecalho
@@ -16,6 +18,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Fac
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelContratoAceite
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
+import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.databinding.FragmentDadosContratoAceiteBinding
 
 
@@ -79,12 +82,22 @@ class DadosContratoAceiteFragment : Fragment() {
             dialog.dialogAssina()
 
         }
+        viewModelContratoAceite.fazCadastro.observe(viewLifecycleOwner){
+            viewModelActCabecalho.mostraCarregando(false)
+            if(it){
+                 val intent = Intent(requireContext(), ActSucessoCadastro::class.java)
+                 startActivity(intent)
+            }else{
+                Alertas.alertaErro(requireContext(), getString(R.string.erroCadastro), getString(R.string.tituloErro) ){
+                }
+            }
+        }
 
         binding.btnContinuar.setOnClickListener {
             if (FormularioCadastro.cadastro.isPoliticaPrivacidade && FormularioCadastro.cadastro.isTermoPolitico && FormularioCadastro.cadastro.isAssinaContrato){
                   viewModelActCabecalho.mostraCarregando(true)
                   viewModelContratoAceite.enviaCadastroFinal()
-                  //viewModelActCabecalho.finalizaAtividade()
+
             }else{
                 Toast.makeText(requireContext(), getString(R.string.erroAceites), Toast.LENGTH_SHORT).show()
             }
