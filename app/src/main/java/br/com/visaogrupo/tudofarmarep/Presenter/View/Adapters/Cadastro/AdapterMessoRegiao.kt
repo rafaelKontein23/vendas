@@ -11,12 +11,12 @@ import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.Respos
 import br.com.visaogrupo.tudofarmarep.databinding.ItemMessorregiaoBinding
 import okhttp3.internal.notifyAll
 
-class AdapterMessoRegiao(val respostaMessoRegiao: List<RespostaMessoRegiao>,
+class AdapterMessoRegiao( respostaMessoRegiao: List<RespostaMessoRegiao>,
                          val viewModelFragmentDadosAreaDeAtuacao: ViewModelFragmentDadosAreaDeAtuacao,
                          val context: Context
     ) : RecyclerView.Adapter<AdapterMessoRegiao.viewHolderMessoRegiao>() {
 
-
+    var respostaMessoRegiao = respostaMessoRegiao
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolderMessoRegiao {
         val binding = ItemMessorregiaoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return viewHolderMessoRegiao(binding)

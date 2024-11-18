@@ -11,22 +11,22 @@ import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.Respos
 import br.com.visaogrupo.tudofarmarep.databinding.ItemCidadeBinding
 
 class AdapterCidades (
-    val respostaCidades: List<RespostaCidades>,
+     respostaCidades: List<RespostaCidades>,
     val viewModelFragmentDadosAreaDeAtuacao: ViewModelFragmentDadosAreaDeAtuacao,
     val context: Context
 ): RecyclerView.Adapter<AdapterCidades.ViewHolderCidades>() {
-
+    var listaCidades = respostaCidades
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCidades {
         val binding = ItemCidadeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolderCidades(binding)
     }
     override fun onBindViewHolder(holder: ViewHolderCidades, position: Int) {
-        val respostaCidade = respostaCidades[position]
+        val respostaCidade = listaCidades[position]
         holder.bind(respostaCidade, viewModelFragmentDadosAreaDeAtuacao,
             context, this)
     }
     override fun getItemCount(): Int {
-        return respostaCidades.size
+        return listaCidades.size
     }
 
     override fun getItemViewType(position: Int): Int {

@@ -12,6 +12,7 @@ import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.AreaDeAtua
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CadastroRepository
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CodigoIndicacaoRepository
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
+import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 
 class ViewModelFragmentCodigoIndicacaoFactory ( private val context: Context
 ) : ViewModelProvider.Factory {
@@ -21,7 +22,8 @@ class ViewModelFragmentCodigoIndicacaoFactory ( private val context: Context
             val codigoIndicacaoRepository = CodigoIndicacaoRepository(context)
             val codigoIndicaoUseCase = CodigoIndicaoUseCase(codigoIndicacaoRepository)
             val cadastroRepository = CadastroRepository(context)
-            val cadastroUseCase = CadastroUseCase(cadastroRepository)
+            val preferenciasUtils = PreferenciasUtils(context)
+            val cadastroUseCase = CadastroUseCase(cadastroRepository, preferenciasUtils)
             val suporteTelefoneReposytory = SuporteTelefoneReposytory(context)
             return ViewModelFragmentCodigoIndicacao(codigoIndicaoUseCase, suporteTelefoneReposytory, cadastroUseCase) as T
         }

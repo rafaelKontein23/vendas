@@ -21,7 +21,8 @@ class ViewModelFragmentDadosAreaDeAtuacaoFactory( private val context: Context
             val areaDeAtuacaoRepository = AreaDeAtuacaoRepository(context)
             val areaDeAtuacaoUseCase = AreaDeAtuacaoUseCase(areaDeAtuacaoRepository)
             val cadastroRepository = CadastroRepository(context)
-            val cadastroUseCase = CadastroUseCase(cadastroRepository)
+            val preferenciasUtils = PreferenciasUtils(context)
+            val cadastroUseCase = CadastroUseCase(cadastroRepository, preferenciasUtils)
             return ViewModelFragmentDadosAreaDeAtuacao(areaDeAtuacaoUseCase, cadastroUseCase) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

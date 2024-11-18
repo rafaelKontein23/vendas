@@ -130,7 +130,7 @@ class DadosCnpjFragment : Fragment() {
                 viewModelFragmentDadosCnpj.enviaCadastro()
 
                 requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainerCadastro, DadosPessoaisFragment())
+                    .replace(R.id.fragmentContainerCadastro, DadosAreaDeAtuacaoFragment())
                     .addToBackStack(null)
                     .commit()
             }

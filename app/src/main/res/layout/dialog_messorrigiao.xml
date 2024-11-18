@@ -42,7 +42,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tituloModalAreaDeAtuacao" />
     <EditText
-        android:id="@+id/inputBuscaCidades"
+        android:id="@+id/inputBuscaMessoRegiao"
         style="@style/inputPadraoCadastro"
         android:layout_width="match_parent"
         android:drawableStart="@drawable/busca"
@@ -66,7 +66,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnSelecionar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputBuscaCidades" />
+        app:layout_constraintTop_toBottomOf="@+id/inputBuscaMessoRegiao" />
 
     <TextView
         android:id="@+id/btnSelecionar"

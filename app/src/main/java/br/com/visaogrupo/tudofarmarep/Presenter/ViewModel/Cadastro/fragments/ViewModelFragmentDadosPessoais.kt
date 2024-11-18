@@ -31,12 +31,15 @@ class ViewModelFragmentDadosPessoais(
 
         val cpfFormat = cpf.filter { it.isDigit() }
         val telefoneFormat = telefoneComercial.filter { it.isDigit() }
+        preferenciasUtils.salvarTexto("${nome} ${sobrenome}", ProjetoStrings.nomeCompleto)
+
         FormularioCadastro.cadastro.nome = nome
         FormularioCadastro.cadastro.sobrenome = sobrenome
         FormularioCadastro.cadastro.cpf = cpfFormat
         FormularioCadastro.cadastro.dataNascimento = dataNacimento
         FormularioCadastro.cadastro.email = email
         FormularioCadastro.cadastro.telefoneComercial = telefoneFormat
+
         enviaCadastro()
 
     }

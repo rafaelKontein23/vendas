@@ -49,6 +49,8 @@
     <string name="email">E-mail</string>
     <string name="TituloErro">Erro</string>
     <string name="finalizar">Finalizar</string>
+    <string name="entrar">Entrar</string>
+
 
     //frases informativas
     <string name="informe">Informe seu CNPJ para prosseguir\ncom o seu acesso</string>
@@ -71,6 +73,7 @@
 
     <string name="infoEstados">Selecione abaixo o estado que deseja realizar suas vendas</string>
     <string name="limparTexto">Limpar assinatura</string>
+    <string name="acessarOutraConta">Acessar outra conta</string>
 
     <string name="euliEAceito">Eu li e aceito as</string>
     <string name="politicaPrivacidade">Políticas de Privacidade</string>

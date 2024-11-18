@@ -30,6 +30,14 @@ class ViewModelFragmentDadosAreaDeAtuacao(
     private val _listaCidades= MutableLiveData<ArrayList<RespostaCidades>?>()
     val listaCidadesObs: LiveData<ArrayList<RespostaCidades>?> = _listaCidades
 
+    private val _listaCidadeBusca= MutableLiveData<ArrayList<RespostaCidades>?>()
+    val listaCidadesBusca: LiveData<ArrayList<RespostaCidades>?> = _listaCidadeBusca
+
+    private val _listaMessoRegiaoBusca= MutableLiveData<ArrayList<RespostaMessoRegiao>?>()
+    val listaMessoRegiaoBusca: LiveData<ArrayList<RespostaMessoRegiao>?> = _listaMessoRegiaoBusca
+
+
+
     private val _ufSelecionada = MutableLiveData<String>()
     val ufSelecionada: LiveData<String> = _ufSelecionada
 
@@ -197,12 +205,25 @@ class ViewModelFragmentDadosAreaDeAtuacao(
     }
 
 
-    fun buscaCidades(cidade: String): List<RespostaCidades> {
+    fun buscaCidades(cidade: String) {
         val listaCidadesAtual =_listaCidades.value?.toMutableList() as? ArrayList<RespostaCidades> ?: ArrayList()
         val listaFiltradaCidades = listaCidadesAtual.filter { it.Cidade.contains(cidade, ignoreCase = true) }
-        if (listaFiltradaCidades.isEmpty()){
-
-        }else
+        if (listaFiltradaCidades.isEmpty() && cidade.isEmpty()){
+            _listaCidadeBusca.postValue(ArrayList(listaCidadesAtual))
+        }else{
+            _listaCidadeBusca.postValue(ArrayList(listaFiltradaCidades))
+        }
 
     }
+    fun buscaMessoRegiao(uf: String) {
+        val listaMessoRegiaoAtual =_listaMesorregiao.value?.toMutableList() as? ArrayList<RespostaMessoRegiao> ?: ArrayList()
+        val listaFiltradaMessoRegiao = listaMessoRegiaoAtual.filter { it.Mesorregiao_Nome.contains(uf, ignoreCase = true) }
+        if (listaFiltradaMessoRegiao.isEmpty() && uf.isEmpty()){
+            _listaMessoRegiaoBusca.postValue(listaMessoRegiaoAtual)
+        }else{
+            _listaMessoRegiaoBusca.postValue(ArrayList(listaFiltradaMessoRegiao))
+        }
+
+    }
+
 }

@@ -17,7 +17,7 @@ class ViewModelFragmentDadosPessoalFactory  (
 
             val preferenciasUtils = PreferenciasUtils(context)
             val cadastroRepository = CadastroRepository(context)
-            val cadastroUseCase = CadastroUseCase(cadastroRepository)
+            val cadastroUseCase = CadastroUseCase(cadastroRepository, preferenciasUtils)
             return ViewModelFragmentDadosPessoais(preferenciasUtils, cadastroUseCase ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

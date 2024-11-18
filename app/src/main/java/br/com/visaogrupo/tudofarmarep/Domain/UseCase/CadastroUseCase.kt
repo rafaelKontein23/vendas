@@ -6,19 +6,20 @@ import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
 import br.com.visaogrupo.tudofarmarep.Utils.ImagensUltis
+import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 
 class CadastroUseCase(
       val  cadastroRepository: CadastroRepository,
+      val preferenciasUtils: PreferenciasUtils
 ) {
      fun enviaCadastro(){
         cadastroRepository.enviaCadastro()
     }
      fun enviaCadastroFinal():Boolean{
-       return cadastroRepository.enviaCadastroFinal()
+        val cadastro = cadastroRepository.enviaCadastroFinal()
+        preferenciasUtils.salvarBool(cadastro, ProjetoStrings.casdastro)
+        return cadastro
     }
-
-
-
      fun mandaFotoCadastro(): Boolean{
         var base64 = ""
         if (FormularioCadastro.base64Galeria.isEmpty()){

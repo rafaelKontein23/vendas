@@ -91,6 +91,13 @@
         <item name="android:fontFamily">@font/manrope</item>
         <item name="android:textStyle">normal</item>
     </style>
+    <style name="texto_gray600_12sp">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.015</item>
+        <item name="android:textColor">@color/gray500</item>
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textStyle">normal</item>
+    </style>
     <style name="textoBold14sp">
         <item name="android:textSize">14sp</item>
         <item name="android:letterSpacing">0.025</item>
@@ -110,6 +117,17 @@
         <item name="android:textStyle">normal</item>
 
 
+    </style>
+
+    <style name="textoBold12spBlack">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginRight">24dp</item>
+        <item name="android:layout_marginLeft">24dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textStyle">normal</item>
     </style>
     <style name="texto_red400_12sp">
         <item name="android:textSize">12sp</item>
@@ -252,6 +270,25 @@
         <item name="android:textStyle">normal</item>
         <item name="android:drawableEnd">@drawable/galeria</item>
         <item name="android:background">@drawable/bordas_radius_8_solid_blue300</item>
+
+    </style>
+    <style name="button_bordas_blue600_textcolor_blue600">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:height">48dp</item>
+        <item name="android:paddingStart">24sp</item>
+        <item name="android:elevation">0dp</item>
+
+        <item name="android:paddingEnd">24sp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:text">@string/adiconarFoto</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textColor">@color/blue600</item>
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:background">@drawable/bordas_radius_8_stroke_1_stoke_color_blue600</item>
 
     </style>
     

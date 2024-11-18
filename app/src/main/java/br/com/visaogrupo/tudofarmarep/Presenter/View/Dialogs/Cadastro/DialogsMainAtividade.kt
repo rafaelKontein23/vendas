@@ -14,6 +14,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelMainActivity
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.Views.DialogConfig
+import br.com.visaogrupo.tudofarmarep.databinding.DialogBiometriaBinding
 import br.com.visaogrupo.tudofarmarep.databinding.DialogSenhaAmbienteBinding
 import br.com.visaogrupo.tudofarmarep.databinding.DialogTrocaAmbienteBinding
 
@@ -127,7 +129,11 @@ class DialogsMainAtividade (private val activity: AppCompatActivity,
 
 
      fun dialogBiometria(){
+          val dialogBiometria = Dialog(activity)
+          val binding = DialogBiometriaBinding.inflate(LayoutInflater.from(activity))
+          dialogBiometria.requestWindowFeature(Window.FEATURE_NO_TITLE)
+          dialogBiometria.setContentView(binding.root)
+          DialogConfig.configuraDialog(dialogBiometria, activity)
 
      }
-
 }

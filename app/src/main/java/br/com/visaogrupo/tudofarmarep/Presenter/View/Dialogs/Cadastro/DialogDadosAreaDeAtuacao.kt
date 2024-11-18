@@ -25,7 +25,11 @@ class DialogDadosAreaDeAtuacao(private val context: Context,
                                private val lifecycleOwner: LifecycleOwner
 
 ) {
+     var adapterCidades : AdapterCidades? = null
+     var adapterMessoRegiao : AdapterMessoRegiao? = null
+
     fun dialogCidades(){
+
          val binding = DialogCidadesBinding.inflate(LayoutInflater.from(context))
          val dialogCidades = Dialog(context).apply {
              requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -38,6 +42,14 @@ class DialogDadosAreaDeAtuacao(private val context: Context,
         }
         binding.btnSelecionar.setOnClickListener {
             dialogCidades.dismiss()
+        }
+        viewModelFragmentDadosAreaDeAtuacao.listaCidadesBusca.observe(lifecycleOwner){
+            if (adapterCidades != null && it != null){
+                adapterCidades?.listaCidades  = it!!
+                adapterCidades?.notifyDataSetChanged()
+            }
+
+
         }
 
         binding.inputBuscaMessoRegiao.addTextChangedListener(object : TextWatcher{
@@ -59,8 +71,9 @@ class DialogDadosAreaDeAtuacao(private val context: Context,
             binding.carregandoMessoRegiao.isVisible = false
             if (listaRespostaCidades != null){
                 binding.recyclerAreaDeAtuacao.layoutManager = LinearLayoutManager(context)
-                binding.recyclerAreaDeAtuacao.adapter = AdapterCidades( listaRespostaCidades,
+                adapterCidades =  AdapterCidades( listaRespostaCidades,
                     viewModelFragmentDadosAreaDeAtuacao, context)
+                binding.recyclerAreaDeAtuacao.adapter =adapterCidades
             }
         }
 
@@ -84,12 +97,35 @@ class DialogDadosAreaDeAtuacao(private val context: Context,
         viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao(uf, false)
         binding.carregandoMessoRegiao.isVisible = true
 
+        viewModelFragmentDadosAreaDeAtuacao.listaMessoRegiaoBusca.observe(lifecycleOwner){
+            if (adapterMessoRegiao != null && it != null){
+                adapterMessoRegiao?.respostaMessoRegiao  = it!!
+                adapterMessoRegiao?.notifyDataSetChanged()
+            }
+
+
+        }
+        binding.inputBuscaMessoRegiao.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val mesoRegiao = s.toString()
+                viewModelFragmentDadosAreaDeAtuacao.buscaMessoRegiao(mesoRegiao)
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
+
         viewModelFragmentDadosAreaDeAtuacao.listaMesorregiao.observe(lifecycleOwner){ listaRespostaMessoRegiao ->
             binding.carregandoMessoRegiao.isVisible = false
             if (listaRespostaMessoRegiao != null){
                 binding.recyclerAreaDeAtuacao.layoutManager = LinearLayoutManager(context)
-                binding.recyclerAreaDeAtuacao.adapter = AdapterMessoRegiao( listaRespostaMessoRegiao,
+                adapterMessoRegiao =  AdapterMessoRegiao( listaRespostaMessoRegiao,
                     viewModelFragmentDadosAreaDeAtuacao, context)
+                binding.recyclerAreaDeAtuacao.adapter = adapterMessoRegiao
             }
         }
 

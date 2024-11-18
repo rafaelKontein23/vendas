@@ -35,8 +35,14 @@ class ViewModelMainActivity(
     private val _ambiente = MutableLiveData<Int>()
     val ambiente: LiveData<Int> = _ambiente
 
+    private  val _fezCadastro = MutableLiveData<Boolean>()
+    val  fezCadastro: LiveData<Boolean> = _fezCadastro
 
 
+    fun verificaCadastro(){
+        val cadastro = salvaTextos.recuperarBool(ProjetoStrings.casdastro)
+        _fezCadastro.value = cadastro
+    }
 
     fun abrirModalContator(){
         val novoValor = (_contadorModal.value ?: 0) + 1

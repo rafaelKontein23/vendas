@@ -47,12 +47,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
+
         FormataTextos.colocaMascaraInput(binding.inputCnpj,ProjetoStrings.mascaraCNPJ)
 
         val factory = ViewModelMainActivityFactory(applicationContext)
         viewModelMainActivity = ViewModelProvider(this, factory)[ViewModelMainActivity::class.java]
-
+        viewModelMainActivity.verificaCadastro()
         viewModelMainActivity.recuperaAmbiente()
+
+        viewModelMainActivity.fezCadastro.observe(this){
+            if(it){
+                val dialogsMainAtividade = DialogsMainAtividade(this,viewModelMainActivity)
+                dialogsMainAtividade.dialogBiometria()
+            }
+        }
 
         binding.inputCnpj.setText( viewModelMainActivity.recuperaCnpj())
 

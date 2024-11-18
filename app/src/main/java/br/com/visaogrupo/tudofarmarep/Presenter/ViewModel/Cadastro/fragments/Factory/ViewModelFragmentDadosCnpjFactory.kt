@@ -20,7 +20,7 @@ class ViewModelFragmentDadosCnpjFactory ( private val context: Context
             val preferenciasUtils = PreferenciasUtils(context)
             val cnpjUseCase = CnpjUseCase(cnpjRepository, preferenciasUtils)
             val cadastroRepository = CadastroRepository(context)
-            val cadastroUseCase = CadastroUseCase(cadastroRepository)
+            val cadastroUseCase = CadastroUseCase(cadastroRepository, preferenciasUtils)
             return ViewModelFragmentDadosCnpj(cnpjUseCase, cadastroUseCase) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
