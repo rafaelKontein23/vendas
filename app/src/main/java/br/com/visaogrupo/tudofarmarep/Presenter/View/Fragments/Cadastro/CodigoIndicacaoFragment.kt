@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActCabecalho
@@ -29,6 +30,7 @@ class CodigoIndicacaoFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModelFragmentCodigoIndicacao: ViewModelFragmentCodigoIndicacao
     private lateinit var  viewModelActCabecalho: ViewModelActCabecalho
+    var codigoIndicacaoValido = true
 
 
     override fun onCreateView(
@@ -53,6 +55,7 @@ class CodigoIndicacaoFragment : Fragment() {
             binding.carregando.isVisible = false
             if(dadosIndicacao == null){
                 binding.constrainInfosRepresentante.isVisible = false
+                codigoIndicacaoValido = false
                 binding.btnContinuar.setBackgroundResource(R.drawable.bordas_radius_8_solid_blue300)
                Alertas.alertaErro(requireContext(), getString(R.string.erroCodigoIndicacao), getString(R.string.tituloErro)){
                    binding.inputCodigoIndicacao.validaError(false, requireContext())
@@ -64,6 +67,8 @@ class CodigoIndicacaoFragment : Fragment() {
                 binding.nomeRepresentante.text = dadosIndicacao.Nome
                 binding.cnpjRepresentante.text = dadosIndicacao.CNPJ.aplicarMascaraCnpj()
                 binding.celularRepresentante.text = dadosIndicacao.Telefone.aplicarMascaraTelefone()
+                codigoIndicacaoValido = true
+
             }
         }
         binding.inputCodigoIndicacao.addTextChangedListener(object : TextWatcher{
@@ -85,14 +90,23 @@ class CodigoIndicacaoFragment : Fragment() {
         })
         binding.btnContinuar.setOnClickListener {
             val campoHash = binding.inputCodigoIndicacao.text.toString()
-            binding.inputCodigoIndicacao.validaError(campoHash.length < 8, requireContext())
-            if (campoHash.length ==8){
+            if (campoHash.length ==8 && codigoIndicacaoValido){
+                binding.inputCodigoIndicacao.validaError(false, requireContext())
                 viewModelFragmentCodigoIndicacao.enviaCadadstro(campoHash)
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainerCadastro, DadosContratoAceiteFragment())
                     .addToBackStack(null)
                     .commit()
+            }else{
+                binding.inputCodigoIndicacao.validaError(true, requireContext())
+                Toast.makeText(requireContext(), getString(R.string.erroCodigoIndicacao), Toast.LENGTH_SHORT).show()
             }
+        }
+        binding.btnContinuarSemCodigo.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerCadastro, DadosContratoAceiteFragment())
+                .addToBackStack(null)
+                .commit()
         }
         viewModelFragmentCodigoIndicacao.numeroTelefoneSuporte.observe(viewLifecycleOwner){numeroTelefoneSuporte->
             binding.constrainCarregando.isVisible = false

@@ -125,6 +125,25 @@ fun EditText.isFocusEditTextBasico(context: Context) {
         }
     }
 }
+fun EditText.isFocusEditTextBasicoSemErro(context: Context) {
+
+    this.setOnFocusChangeListener { _, hasFocus ->
+
+        if (!hasFocus) {
+
+                this.setBackgroundResource(R.drawable.bordas_8_stroke_1_gray300)
+                this.setTextColor(context.getColor(R.color.black))
+
+        } else {
+
+            this.setBackgroundResource(R.drawable.bordas_radius_8_stroke_1_black)
+            this.setTextColor(context.getColor(R.color.black))
+
+
+        }
+    }
+}
+
 
 
 

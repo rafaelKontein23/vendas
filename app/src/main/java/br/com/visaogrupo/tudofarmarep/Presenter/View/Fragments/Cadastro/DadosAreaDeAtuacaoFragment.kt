@@ -42,10 +42,12 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
         viewModelFragmentDadosAreaDeAtuacao.selecionaUF(ufSelecionada)
         binding.inputEstadoAreaDeAtuacao.text = ufSelecionada.obterNomeCompletoUF(ufSelecionada)
 
-
+        bloqueiaCampo(true)
         viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao(ufSelecionada, true)
 
         viewModelFragmentDadosAreaDeAtuacao.cidadeSelecionada.observe(viewLifecycleOwner){cidadeSelecionada ->
+            bloqueiaCampo(false)
+
             if (cidadeSelecionada != null){
                 if(viewModelFragmentDadosAreaDeAtuacao.confereTamanhoListaCidades()){
                     binding.inputCidadesAreaDeAtuacao.text = getText(R.string.todos)
@@ -69,6 +71,8 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
         }
 
         viewModelFragmentDadosAreaDeAtuacao.mesorregiaoSelecionada.observe(viewLifecycleOwner){ mesorregiaoSelecionadas ->
+            bloqueiaCampo(false)
+
             if (mesorregiaoSelecionadas != null){
                 if(viewModelFragmentDadosAreaDeAtuacao.confereTamanhoListaMesorregiao()){
                     binding.inputMesorregioesAreaDeAtuacao.text = getText(R.string.todos)
@@ -92,6 +96,9 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
         }
 
         viewModelFragmentDadosAreaDeAtuacao.ufSelecionada.observe(viewLifecycleOwner){
+            bloqueiaCampo(true)
+
+
             binding.inputEstadoAreaDeAtuacao.text = it
             binding.inputCidadesAreaDeAtuacao.text = getText(R.string.todos)
             binding.inputMesorregioesAreaDeAtuacao.text = getText(R.string.todos)
@@ -142,5 +149,11 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
             }
         }
         return binding.root
+    }
+
+    fun bloqueiaCampo(isvisivel : Boolean){
+        viewModelActCabecalho.mostraCarregando(isvisivel)
+        binding.btnContinuar.isEnabled = !isvisivel
+
     }
 }

@@ -18,6 +18,10 @@ class FormataTextos {
             val cnpjSemFormatacao = cnpj.replace(".", "").replace("/", "").replace("-", "")
             return cnpjSemFormatacao
         }
+        fun removeMascaraTelefone(telefone: String):String {
+            val telefoneSemFormatacao = telefone.replace(" ", "").replace("-", "")
+            return telefoneSemFormatacao
+        }
 
         fun String.aplicarMascaraTelefone(): String {
             if (this.length != 11) return this

@@ -229,7 +229,7 @@
                    app:layout_constraintStart_toStartOf="parent"
                    app:layout_constraintTop_toBottomOf="@+id/textEstadoTitulo" />
 
-               <androidx.appcompat.widget.AppCompatButton
+               <TextView
                    android:id="@+id/btnContinuar"
                    style="@style/buttonPadraoCadastro"
                    android:layout_width="match_parent"
@@ -239,9 +239,10 @@
                    app:layout_constraintBottom_toBottomOf="parent"
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/textEstado">
+                   app:layout_constraintTop_toBottomOf="@+id/textEstado"
+                   app:layout_constraintVertical_bias="0.0">
 
-               </androidx.appcompat.widget.AppCompatButton>
+               </TextView>
 
                <TextView
                    android:id="@+id/textoSelecionadoSpnniner"

@@ -186,7 +186,7 @@ class ViewModelFragmentDadosAreaDeAtuacao(
 
 
     fun confereMessoRegiaoList(): Boolean {
-        return _mesorregiaoSelecionada.value!!.isEmpty() ?: false
+        return _mesorregiaoSelecionada.value!!.isEmpty()
     }
     fun confereCidadesList(): Boolean {
         return _cidadeSelecionada.value!!.isEmpty()

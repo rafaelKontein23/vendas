@@ -74,7 +74,9 @@ class DadosContratoAceiteFragment : Fragment() {
 
         }
         binding.assinaContratoBox.setOnClickListener {
-            mudarcheck(binding.assinaContratoBox)
+            activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+            val dialog = DialogContrato(requireContext(), viewModelContratoAceite)
+            dialog.dialogAssina()
         }
         binding.textoAssinar.setOnClickListener {
             activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
@@ -112,7 +114,7 @@ class DadosContratoAceiteFragment : Fragment() {
             constraintLayout.setBackgroundResource(R.drawable.bordas_8_blue600)
         }else{
             constraintLayout.tag = "0"
-            constraintLayout.setBackgroundResource(R.drawable.bordas_radius_4_strokewidth_1_strokecolor_gray100)
+            constraintLayout.setBackgroundResource(R.drawable.bordas_radius_4_solid_blue600)
         }
     }
 

@@ -47,7 +47,7 @@ class DadosCnpjFragment : Fragment() {
         _binding = FragmentDadosCnpjBinding.inflate(inflater, container, false)
         val factory = ViewModelFragmentDadosCnpjFactory(requireContext())
 
-        viewModelActCabecalho = ViewModelProvider(this)[ViewModelActCabecalho::class.java]
+        viewModelActCabecalho = ViewModelProvider(requireActivity()).get(ViewModelActCabecalho::class.java)
         viewModelFragmentDadosCnpj = ViewModelProvider(this, factory)[ViewModelFragmentDadosCnpj::class.java]
         viewModelFragmentDadosCnpj.alimentaSpinerCore()
 

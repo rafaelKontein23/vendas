@@ -75,6 +75,7 @@
     <string name="infoEstados">Selecione abaixo o estado que deseja realizar suas vendas</string>
     <string name="limparTexto">Limpar assinatura</string>
     <string name="acessarOutraConta">Acessar outra conta</string>
+    <string name="tokenSolicitadoComSucesso">Token solicitado com sucesso</string>
 
 
     <string name="euliEAceito">Eu li e aceito as</string>

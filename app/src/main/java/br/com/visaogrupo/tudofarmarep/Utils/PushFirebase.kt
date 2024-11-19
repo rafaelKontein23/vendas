@@ -21,8 +21,7 @@ import kotlinx.coroutines.launch
 class PushFirebase : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        // TODO(developer): Handle FCM messages here.
-        // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
+
         Log.d("", "From: ${remoteMessage.from}")
 
         if (remoteMessage.data.isNotEmpty()) {

@@ -11,6 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Factory.ViewModelActTokenFactory
@@ -45,10 +46,12 @@ class ActToken : AppCompatActivity() {
             binding.numeroCelular.text = numeroCelular.aplicarMascaraTelefone()
             this.numeroCelular = numeroCelular
         }
+        binding.constrainCarregando.isVisible = true
         viewModelActToken.solicitaToken(numeroCelular)
 
 
         viewModelActToken.repostaSolicita.observe(this){ respostaToken ->
+            binding.constrainCarregando.isVisible = false
             if(respostaToken == null){
                 Alertas.alertaErro(this,getString(R.string.erroSolicitaToken),getString(R.string.tituloErro)){
                     finish()
@@ -56,7 +59,9 @@ class ActToken : AppCompatActivity() {
             }else{
                 cronometro = Cronometro(respostaToken.TempoTokenSegundos)
                 cronometro.iniciar()
+                Alertas.alertaAviso(this,getString(R.string.tokenSolicitadoComSucesso)){
 
+                }
                 lifecycleScope.launch {
                     cronometro.tempo.collect { tempoAtualizado ->
                         if (tempoAtualizado == "00:00"){
@@ -75,6 +80,7 @@ class ActToken : AppCompatActivity() {
         }
 
         binding.naoRecebiTokenCronometro.setOnClickListener {
+            binding.constrainCarregando.isVisible = true
             viewModelActToken.solicitaToken(numeroCelular)
         }
 

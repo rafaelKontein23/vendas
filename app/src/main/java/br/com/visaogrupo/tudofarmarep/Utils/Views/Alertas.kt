@@ -35,6 +35,30 @@ class Alertas {
                 activeDialog = null
             }
         }
+        fun alertaAviso(context: Context, mensagem: String, nao:String = "", sim:String = "Ok", function: () -> Unit){
+            if (activeDialog?.isShowing == true) {
+                return
+            }
+
+            val builder = AlertDialog.Builder(context)
+                .setTitle("Loiu informa")
+                .setMessage(mensagem)
+                .setCancelable(false)
+                .setNegativeButton(nao) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .setPositiveButton(sim) { dialog, _ ->
+                    function()
+                    dialog.dismiss()
+                }
+
+            activeDialog = builder.create()
+            activeDialog?.show()
+
+            activeDialog?.setOnDismissListener {
+                activeDialog = null
+            }
+        }
          fun showDatePickerDialog(textView: TextView, context: Context) {
             val calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)

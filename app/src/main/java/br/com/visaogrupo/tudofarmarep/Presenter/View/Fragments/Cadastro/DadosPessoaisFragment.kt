@@ -22,6 +22,7 @@ import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusCPF
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEditTextBasico
+import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEditTextBasicoSemErro
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEmail
 
 import br.com.visaogrupo.tudofarmarep.Utils.Views.validaError
@@ -83,7 +84,7 @@ class DadosPessoaisFragment : Fragment() {
         binding.inputNome.isFocusEditTextBasico(requireContext())
         binding.inputSobrenome.isFocusEditTextBasico(requireContext())
         binding.inputCpf.isFocusCPF(requireContext())
-        binding.inputTelefoneComercial.isFocusEditTextBasico(requireContext())
+        binding.inputTelefoneComercial.isFocusEditTextBasicoSemErro(requireContext())
         binding.inputCpf.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -124,6 +125,7 @@ class DadosPessoaisFragment : Fragment() {
             val dataNacimento = binding.inputDataNacimento.text.toString()
             val email = binding.inputEmail.text.toString()
             val telefoneComercial = binding.inputTelefoneComercial.text.toString()
+            val telefoneSemFormato = FormataTextos.removeMascaraTelefone(telefoneComercial)
 
             if(nome.isEmpty() ||
                 sobrenome.isEmpty() ||
@@ -132,12 +134,16 @@ class DadosPessoaisFragment : Fragment() {
                 dataNacimento.isEmpty() ||
                 email.isEmpty() ||
                 !email.contains("@") ||
-                !email.contains(".com")){
+                !email.contains(".com") || (telefoneSemFormato.isNotEmpty() && telefoneSemFormato.length < 10 )){
                 Toast.makeText(requireContext(), "Preencha todos os campos corretamente", Toast.LENGTH_SHORT).show()
                 if(email.isEmpty() || !email.contains("@") || !email.contains(".com")){
                     binding.scroolPessoais.smoothScrollTo(0,  binding.inputEmail.top)
                     binding.inputEmail.validaError( true, requireContext())
 
+                }
+                if(telefoneSemFormato.isNotEmpty() && telefoneSemFormato.length < 10){
+                    binding.scroolPessoais.smoothScrollTo(0,  binding.inputTelefoneComercial.top)
+                    binding.inputTelefoneComercial.validaError( true, requireContext())
                 }
                 if(dataNacimento.isEmpty()){
                     binding.scroolPessoais.smoothScrollTo(0,  binding.inputDataNacimento.top)
