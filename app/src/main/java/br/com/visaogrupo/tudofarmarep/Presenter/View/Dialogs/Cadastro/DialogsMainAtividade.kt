@@ -10,11 +10,16 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.MainActivity
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelMainActivity
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Views.DialogConfig
+import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.aplicarMascaraCnpj
+import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.aplicarMascaraTelefone
+import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.iniciaisNome
 import br.com.visaogrupo.tudofarmarep.databinding.DialogBiometriaBinding
 import br.com.visaogrupo.tudofarmarep.databinding.DialogSenhaAmbienteBinding
 import br.com.visaogrupo.tudofarmarep.databinding.DialogTrocaAmbienteBinding
@@ -128,12 +133,49 @@ class DialogsMainAtividade (private val activity: AppCompatActivity,
      }
 
 
-     fun dialogBiometria(){
+     fun dialogBiometria(viewModel: ViewModelMainActivity, context: MainActivity){
           val dialogBiometria = Dialog(activity)
           val binding = DialogBiometriaBinding.inflate(LayoutInflater.from(activity))
           dialogBiometria.requestWindowFeature(Window.FEATURE_NO_TITLE)
           dialogBiometria.setContentView(binding.root)
           DialogConfig.configuraDialog(dialogBiometria, activity)
+          dialogBiometria.window?.let { window ->
+               val layoutParams = window.attributes?.apply {
+                    width = WindowManager.LayoutParams.MATCH_PARENT
+                    height = WindowManager.LayoutParams.WRAP_CONTENT
+               }
+               window.attributes = layoutParams
+               window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+               window.attributes?.windowAnimations = R.style.animacaoDialog
+               window.setGravity(Gravity.BOTTOM)
+          }
+          binding.btnEntrar.setOnClickListener {
+               if (viewModel.checkBiometricSupport(context)){
+                    viewModel.showBiometricPrompt(context = context)
+
+               }else{
+                    Toast.makeText(context, context.getString(R.string.erroiometria), Toast.LENGTH_LONG).show()
+               }
+          }
+          viewModel.celularUsuario.observe(context){
+               binding.celularRepresentante.text = it.aplicarMascaraTelefone()
+          }
+          viewModel.nomeusaurio.observe(context){
+               if(it.isNotEmpty()){
+                    binding.nomeUsuario.text = it
+                    binding.textoIniciais.text =  it.iniciaisNome()
+               }
+          }
+
+
+
+          viewModel.recuperaInformacoesUser()
+          val  cnpj = viewModel.recuperaCnpj()
+          if (cnpj != null){
+               binding.cnpjRepresentante.text = cnpj.aplicarMascaraCnpj()
+
+          }
+          dialogBiometria.show()
 
      }
 }

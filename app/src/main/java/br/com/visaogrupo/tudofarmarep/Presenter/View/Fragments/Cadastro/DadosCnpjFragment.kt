@@ -20,8 +20,7 @@ import br.com.visaogrupo.tudofarmarep.Utils.Views.validaError
 import br.com.visaogrupo.tudofarmarep.databinding.FragmentDadosCnpjBinding
 
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+
 
 
 class DadosCnpjFragment : Fragment() {
@@ -130,7 +129,7 @@ class DadosCnpjFragment : Fragment() {
                 viewModelFragmentDadosCnpj.enviaCadastro()
 
                 requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainerCadastro, DadosAreaDeAtuacaoFragment())
+                    .replace(R.id.fragmentContainerCadastro, DadosPessoaisFragment())
                     .addToBackStack(null)
                     .commit()
             }

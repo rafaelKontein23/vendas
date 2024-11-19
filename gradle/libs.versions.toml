@@ -44,6 +44,8 @@ lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtim
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glideCompiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
 touchimageview = { group = "com.github.MikeOrtiz", name = "TouchImageView", version.ref = "touchimageview" }
+androidx-biometric = { module = "androidx.biometric:biometric", version = "1.2.0-alpha05" }
+
 
 
 [plugins]

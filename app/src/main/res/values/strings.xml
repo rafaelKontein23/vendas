@@ -20,6 +20,7 @@
     <string name="erroCnpj">Não foi possível carregar os dados do CNPJ</string>
     <string name="erroFoto">Adicione uma foto do documento</string>
     <string name="erroCadastro">Algo deu errado no envio de cadastro, tente novamente em instantes</string>
+    <string name="erroiometria"> </string>
     // titulo inputs
     <string name="possuiCore">Possui CORE ?</string>"
     <string name="razaoSocial">Razão Social</string>
@@ -74,6 +75,7 @@
     <string name="infoEstados">Selecione abaixo o estado que deseja realizar suas vendas</string>
     <string name="limparTexto">Limpar assinatura</string>
     <string name="acessarOutraConta">Acessar outra conta</string>
+
 
     <string name="euliEAceito">Eu li e aceito as</string>
     <string name="politicaPrivacidade">Políticas de Privacidade</string>

@@ -31,6 +31,11 @@ class FormataTextos {
                 append(this@aplicarMascaraTelefone.substring(7))
             }
         }
+        fun String.iniciaisNome(): String {
+            val nomes = this.split(" ")
+            val iniciais = nomes[0].first().toString() + nomes[1].first().toString()
+            return iniciais
+        }
         fun String.aplicarMascaraCnpj(): String {
             if (this.length != 14) return this
             return buildString {

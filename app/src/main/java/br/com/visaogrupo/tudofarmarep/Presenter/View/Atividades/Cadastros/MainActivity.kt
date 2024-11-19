@@ -5,12 +5,14 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import androidx.biometric.BiometricPrompt
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -59,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         viewModelMainActivity.fezCadastro.observe(this){
             if(it){
                 val dialogsMainAtividade = DialogsMainAtividade(this,viewModelMainActivity)
-                dialogsMainAtividade.dialogBiometria()
+                dialogsMainAtividade.dialogBiometria(viewModelMainActivity, this)
             }
         }
 
@@ -89,7 +91,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnContinuar.setOnClickListener {
-            val cnpjCap = binding.inputCnpj.text.toString()
+
+           val cnpjCap = binding.inputCnpj.text.toString()
             if(ValidarTextos.isCNPJ(cnpjCap)) {
                 viewModelMainActivity.salvaCnpj(cnpjCap)
                 val intent = Intent(this, ActCelular::class.java)

@@ -1,9 +1,15 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades
 
+import android.app.Activity
+import android.content.Context
+import androidx.biometric.BiometricManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewModelScope
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.MainActivity
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.ISuporteTelefone
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.CriptografiaChavesSenha
@@ -38,9 +44,20 @@ class ViewModelMainActivity(
     private  val _fezCadastro = MutableLiveData<Boolean>()
     val  fezCadastro: LiveData<Boolean> = _fezCadastro
 
+    private  val _nomeusaurio = MutableLiveData<String>()
+    val nomeusaurio: LiveData<String> = _nomeusaurio
+    val _celularUsuario = MutableLiveData<String>()
+    val celularUsuario: LiveData<String> = _celularUsuario
 
-    fun verificaCadastro(){
-        val cadastro = salvaTextos.recuperarBool(ProjetoStrings.casdastro)
+
+    fun verificaCadastro( cnpj: String){
+        val cnpjFormat = FormataTextos.removeMascaraCNPJ(cnpj)
+        var cadastro = salvaTextos.recuperarBool(ProjetoStrings.casdastro)
+        val cnpjSalvo = salvaTextos.recuperarTexto(ProjetoStrings.cnpjCadastro)
+        if(cnpjSalvo != cnpjFormat){
+            cadastro = false
+        }
+
         _fezCadastro.value = cadastro
     }
 
@@ -154,4 +171,62 @@ class ViewModelMainActivity(
             _numeroTelefoneSuporte.postValue(numero?.LinkZap ?: "")
         }
     }
+
+    fun recuperaInformacoesUser(){
+        val nome = salvaTextos.recuperarTexto(ProjetoStrings.nomeCompleto, "") ?: ""
+        val celular = salvaTextos.recuperarTexto(ProjetoStrings.celular) ?: ""
+        _nomeusaurio.postValue(nome)
+        _celularUsuario.postValue(celular)
+
+    }
+
+    fun showBiometricPrompt(context: MainActivity) {
+        val executor = ContextCompat.getMainExecutor(context)
+
+        val biometricPrompt = BiometricPrompt(context, executor,
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    var kasmkavs= ""
+                }
+
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+                    var kasmkavs= ""
+                }
+
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                    var kasmkavs= ""
+                }
+            })
+
+        val promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Autenticação Requerida")
+            .setSubtitle("Use sua biometria ou o PIN do dispositivo para continuar")
+            .setAllowedAuthenticators(
+                BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL
+            )
+            .build()
+
+        biometricPrompt.authenticate(promptInfo)
+    }
+
+    fun checkBiometricSupport(context: MainActivity): Boolean {
+        val biometricManager = BiometricManager.from(context)
+        return when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)) {
+            BiometricManager.BIOMETRIC_SUCCESS -> true
+            BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> {
+                false
+            }
+            BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> {
+                false
+            }
+            BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> {
+                false
+            }
+            else -> false
+        }
+    }
+
 }

@@ -45,7 +45,7 @@ class DialogDadosAreaDeAtuacao(private val context: Context,
         }
         viewModelFragmentDadosAreaDeAtuacao.listaCidadesBusca.observe(lifecycleOwner){
             if (adapterCidades != null && it != null){
-                adapterCidades?.listaCidades  = it!!
+                adapterCidades?.listaCidades  = it
                 adapterCidades?.notifyDataSetChanged()
             }
 
@@ -99,11 +99,9 @@ class DialogDadosAreaDeAtuacao(private val context: Context,
 
         viewModelFragmentDadosAreaDeAtuacao.listaMessoRegiaoBusca.observe(lifecycleOwner){
             if (adapterMessoRegiao != null && it != null){
-                adapterMessoRegiao?.respostaMessoRegiao  = it!!
+                adapterMessoRegiao?.respostaMessoRegiao  = it
                 adapterMessoRegiao?.notifyDataSetChanged()
             }
-
-
         }
         binding.inputBuscaMessoRegiao.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

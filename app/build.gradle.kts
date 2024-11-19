@@ -76,6 +76,8 @@ dependencies {
     implementation(libs.camerax.lifecycle)
     implementation(libs.camerax.view)
     implementation(libs.camerax.extensions)
+    // biometria
+    implementation(libs.androidx.biometric)
 
     // imagens
     implementation(libs.glide)
