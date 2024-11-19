@@ -56,6 +56,7 @@ class ViewModelMainActivity(
         val cnpjSalvo = salvaTextos.recuperarTexto(ProjetoStrings.cnpjCadastro)
         if(cnpjSalvo != cnpjFormat){
             cadastro = false
+            salvaTextos.salvarBool(cadastro, ProjetoStrings.casdastro)
         }
 
         _fezCadastro.value = cadastro

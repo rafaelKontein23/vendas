@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1018715969916",
+    "project_id": "loiu-ec6ba",
+    "storage_bucket": "loiu-ec6ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018715969916:android:ed184c468b128da851ecf9",
+        "android_client_info": {
+          "package_name": "br.com.visaogrupo.tudofarmarep"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEXbWUeSWsQ8vkBv6QB5dAeUPzezKN-ns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

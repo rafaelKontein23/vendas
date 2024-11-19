@@ -15,6 +15,7 @@ chucker = "4.0.0"
 camerax = "1.2.2"
 glide = "4.16.0"
 touchimageview = "1.4.1"
+firebaseMessagingKtx = "24.1.0"
 
 
 [libraries]
@@ -45,10 +46,14 @@ glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glideCompiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
 touchimageview = { group = "com.github.MikeOrtiz", name = "TouchImageView", version.ref = "touchimageview" }
 androidx-biometric = { module = "androidx.biometric:biometric", version = "1.2.0-alpha05" }
+firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
 
 
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+google-services = { id = "com.google.gms.google-services", version = "4.3.15" }
+
+
 

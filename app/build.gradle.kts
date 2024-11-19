@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("org.jetbrains.kotlin.kapt")
+    alias(libs.plugins.google.services)
 
 }
 
@@ -65,6 +66,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converterGson)
     implementation(libs.firebase.crashlytics.buildtools)
+    implementation(libs.firebase.messaging.ktx)
 
     // chucker
     debugImplementation(libs.chuckerDebug)

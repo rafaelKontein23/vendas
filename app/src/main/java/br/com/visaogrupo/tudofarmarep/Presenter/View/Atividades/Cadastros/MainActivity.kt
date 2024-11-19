@@ -24,6 +24,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Vi
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.IntentUtils
+import br.com.visaogrupo.tudofarmarep.Utils.PushFirebase
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Pushs
@@ -55,7 +56,6 @@ class MainActivity : AppCompatActivity() {
 
         val factory = ViewModelMainActivityFactory(applicationContext)
         viewModelMainActivity = ViewModelProvider(this, factory)[ViewModelMainActivity::class.java]
-        viewModelMainActivity.verificaCadastro()
         viewModelMainActivity.recuperaAmbiente()
 
         viewModelMainActivity.fezCadastro.observe(this){
@@ -66,6 +66,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.inputCnpj.setText( viewModelMainActivity.recuperaCnpj())
+        viewModelMainActivity.verificaCadastro(binding.inputCnpj.text.toString())
+
+        val pushFirebase = PushFirebase()
+        pushFirebase.recuperaDeviceToken()
+
 
         binding.inputCnpj.isFocus(this)
 
