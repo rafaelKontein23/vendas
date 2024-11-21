@@ -4,16 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.visaogrupo.tudofarmarep.Domain.UseCase.CadastroUseCase
-import br.com.visaogrupo.tudofarmarep.Domain.UseCase.CnpjUseCase
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CnpjUseCase
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RepostaCnpj
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ViewModelFragmentDadosCnpj(
-     val cnpjUseCase: CnpjUseCase,
-     val cadastroUseCase: CadastroUseCase
+    val cnpjUseCase: CnpjUseCase,
+    val cadastroUseCase: CadastroUseCase
 ) :ViewModel(){
      private val _cnpj = MutableLiveData<RepostaCnpj?>()
      val cnpj: LiveData<RepostaCnpj?> get()  = _cnpj

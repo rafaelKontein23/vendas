@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.visaogrupo.tudofarmarep.Domain.UseCase.CadastroUseCase
-import br.com.visaogrupo.tudofarmarep.Domain.UseCase.CodigoIndicaoUseCase
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CodigoIndicaoUseCase
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.ISuporteTelefone
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCodigoIndicacao
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory

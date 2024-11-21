@@ -3,14 +3,11 @@ package br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Fa
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import br.com.visaogrupo.tudofarmarep.Domain.UseCase.AreaDeAtuacaoUseCase
-import br.com.visaogrupo.tudofarmarep.Domain.UseCase.CadastroUseCase
-import br.com.visaogrupo.tudofarmarep.Domain.UseCase.CnpjUseCase
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.AreaDeAtuacaoUseCase
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentDadosAreaDeAtuacao
-import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentDadosCnpj
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.AreaDeAtuacaoRepository
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CadastroRepository
-import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CnpjRepository
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 
 class ViewModelFragmentDadosAreaDeAtuacaoFactory( private val context: Context

@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.visaogrupo.tudofarmarep.Domain.UseCase.TokenUseCase
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.LoginUseCase
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.TokenUseCase
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.ISuporteTelefone
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaConfirmaToken
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaSolicitaToken
@@ -17,7 +18,8 @@ import kotlinx.coroutines.launch
 class ViewModelActToken(
     private val suporteTelefoneRepository: SuporteTelefoneReposytory,
     private val tokenUseCase: TokenUseCase,
-    private val preferenciasUtils: PreferenciasUtils
+    private val preferenciasUtils: PreferenciasUtils,
+    private val loginUseCase: LoginUseCase
 
 ) : ViewModel(), ISuporteTelefone {
 
@@ -40,10 +42,10 @@ class ViewModelActToken(
         }
     }
     fun recuperarNumeroCelular() {
-        viewModelScope.launch {
-            val numero = preferenciasUtils.recuperarTexto(ProjetoStrings.celular)
-            _numeroCelular.postValue(numero!!)
-        }
+
+        val numero = preferenciasUtils.recuperarTexto(ProjetoStrings.celular)
+        _numeroCelular.postValue(numero!!)
+
     }
 
     fun confirmaToken(token: String) {
@@ -51,6 +53,14 @@ class ViewModelActToken(
             val respostaConfirmaToken = tokenUseCase.confirmaToken(token)
             _confirmaToken.postValue(respostaConfirmaToken)
         }
+    }
+
+    fun buscaInformacoesLogin(){
+        viewModelScope.launch(Dispatchers.IO) {
+            val login= loginUseCase.logaUsuario()
+
+        }
+
     }
 
     override fun buscarNumeroTelefoneSuporte() {

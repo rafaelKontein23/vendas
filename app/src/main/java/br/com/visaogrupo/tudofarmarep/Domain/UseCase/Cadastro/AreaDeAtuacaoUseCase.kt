@@ -1,13 +1,10 @@
-package br.com.visaogrupo.tudofarmarep.Domain.UseCase
+package br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro
 
-import android.icu.text.UFormat
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequestAreaAtuacal
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.Cidade
-import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CidadesRequest
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.Mesorregiao
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.MessoRegiaoRequest
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCidades
-import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCidadesDados
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaMessoRegiao
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.AreaDeAtuacaoRepository
 

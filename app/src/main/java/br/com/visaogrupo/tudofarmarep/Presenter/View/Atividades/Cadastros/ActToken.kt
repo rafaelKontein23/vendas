@@ -45,9 +45,10 @@ class ActToken : AppCompatActivity() {
         viewModelActToken.numeroCelular.observe(this){numeroCelular ->
             binding.numeroCelular.text = numeroCelular.aplicarMascaraTelefone()
             this.numeroCelular = numeroCelular
+            binding.constrainCarregando.isVisible = true
+            viewModelActToken.solicitaToken(numeroCelular)
         }
-        binding.constrainCarregando.isVisible = true
-        viewModelActToken.solicitaToken(numeroCelular)
+
 
 
         viewModelActToken.repostaSolicita.observe(this){ respostaToken ->
@@ -110,20 +111,20 @@ class ActToken : AppCompatActivity() {
         }
 
         viewModelActToken.confirmaToken.observe(this){ respostaConfirmaToken ->
-            startActivity(Intent(this, ActCabecalho::class.java))
+
             binding.btnContinuar.isEnabled = true
             binding.constrainCarregando.visibility = View.GONE
-            /*   if(respostaConfirmaToken != null){
-                   if(respostaConfirmaToken.Sucesso){
-                       Toast.makeText(this, respostaConfirmaToken.Mensagem, Toast.LENGTH_LONG).show()
-                   }else{
-                       Alertas.alertaErro(this,respostaConfirmaToken.Mensagem,Strings.tituloErro){
+               if(respostaConfirmaToken != null){
+                   Alertas.alertaErro(this,respostaConfirmaToken.Mensagem,getString(R.string.tituloErro)){
+                       if(respostaConfirmaToken.Sucesso){
+                            binding.constrainCarregando.isVisible = true
+                            viewModelActToken.buscaInformacoesLogin()
                        }
                    }
                }else{
-                   Alertas.alertaErro(this,Strings.erroSolicitaToken,Strings.tituloErro){
+                   Alertas.alertaErro(this, "nao sei ainda oq colocar aqui","aloo"){
                    }
-               }*/
+               }
         }
 
         binding.suporteLoiuConstrain.setOnClickListener {

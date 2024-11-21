@@ -2,10 +2,10 @@ package br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao
 
 data class ConfirmaTokenRequest (
 
-    val email:String,
-    val telefone:String,
-    val token:String,
-    val udid:String,
-    val cnpj:String
+    val Email:String,
+    val Telefone:String,
+    val Token:String,
+    val UDID:String,
+    val CNPJ:String
 
 )

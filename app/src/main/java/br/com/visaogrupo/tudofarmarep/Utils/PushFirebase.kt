@@ -72,15 +72,13 @@ class PushFirebase : FirebaseMessagingService() {
              }
     }
 
-    fun recuperaDeviceToken():String{
-        var deviceToken = ""
+    fun recuperaDeviceToken(){
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
                 Log.w("TAG", "Fetching FCM registration token failed", task.exception)
                 return@OnCompleteListener
             }
-             deviceToken = task.result
+            SistemaUtils.deviceToken =  task.result
         })
-        return deviceToken
     }
 }

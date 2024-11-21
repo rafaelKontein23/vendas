@@ -48,5 +48,9 @@ interface SincronoCadastro {
     fun enviaAssinatura
     (@Body responseBody: RequestBody): Call<ResponseBody>
 
+    @POST("loga/usuario")
+    fun P_Login
+    (@Body responseBody: RequestBody): Call<ResponseBody>
+
 
 }

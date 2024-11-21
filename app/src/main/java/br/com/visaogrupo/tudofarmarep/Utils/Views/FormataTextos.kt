@@ -36,9 +36,14 @@ class FormataTextos {
             }
         }
         fun String.iniciaisNome(): String {
-            val nomes = this.split(" ")
-            val iniciais = nomes[0].first().toString() + nomes[1].first().toString()
-            return iniciais
+            try {
+                val nomes = this.split(" ")
+                val iniciais = nomes[0].first().toString() + nomes[1].first().toString()
+                return iniciais
+            }catch (e:Exception){
+                return this.first().toString()
+            }
+
         }
         fun String.aplicarMascaraCnpj(): String {
             if (this.length != 14) return this

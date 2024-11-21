@@ -3,11 +3,14 @@ package br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.F
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import br.com.visaogrupo.tudofarmarep.Domain.UseCase.TokenUseCase
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.LoginUseCase
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.TokenUseCase
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActToken
+import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.LoginRepository
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.TokenRepository
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
+import br.com.visaogrupo.tudofarmarep.Utils.PushFirebase
 import br.com.visaogrupo.tudofarmarep.Utils.SistemaUtils
 
 class ViewModelActTokenFactory (   private val context: Context
@@ -25,8 +28,14 @@ class ViewModelActTokenFactory (   private val context: Context
                 preferenciasUtils,
                 sistemaUtils
             )
+            val loginRepository = LoginRepository(context)
+            val loginUseCase = LoginUseCase(
+                loginRepository,
+                preferenciasUtils,
+                sistemaUtils
+            )
 
-            return ViewModelActToken(suporteTelefoneRepository,tokenUseCase, preferenciasUtils) as T
+            return ViewModelActToken(suporteTelefoneRepository,tokenUseCase, preferenciasUtils, loginUseCase) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

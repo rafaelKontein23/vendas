@@ -1,10 +1,8 @@
-package br.com.visaogrupo.tudofarmarep.Domain.UseCase
+package br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro
 
-import android.content.Context
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CadastroRepository
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
 import br.com.visaogrupo.tudofarmarep.Utils.ImagensUltis
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 

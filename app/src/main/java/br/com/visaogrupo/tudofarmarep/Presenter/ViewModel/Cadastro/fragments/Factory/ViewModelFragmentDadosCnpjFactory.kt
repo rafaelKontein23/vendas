@@ -3,8 +3,8 @@ package br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Fa
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import br.com.visaogrupo.tudofarmarep.Domain.UseCase.CadastroUseCase
-import br.com.visaogrupo.tudofarmarep.Domain.UseCase.CnpjUseCase
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CnpjUseCase
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentDadosCnpj
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CadastroRepository
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CnpjRepository

@@ -1,4 +1,4 @@
-package br.com.visaogrupo.tudofarmarep.Domain.UseCase
+package br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro
 
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RepostaCnpj
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CnpjRepository

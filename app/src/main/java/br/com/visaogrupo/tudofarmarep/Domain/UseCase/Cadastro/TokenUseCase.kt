@@ -1,4 +1,4 @@
-package br.com.visaogrupo.tudofarmarep.Domain.UseCase
+package br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro
 
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.ConfirmaTokenRequest
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.SolicitaTokenRquest
@@ -7,16 +7,19 @@ import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.Respos
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.TokenRepository
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
+import br.com.visaogrupo.tudofarmarep.Utils.PushFirebase
 import br.com.visaogrupo.tudofarmarep.Utils.SistemaUtils
 
 class TokenUseCase(
     private val tokenRepository: TokenRepository,
     private val preferenciasUtils: PreferenciasUtils,
-    private val sistemaUtils: SistemaUtils
+    private val sistemaUtils: SistemaUtils,
 ) {
 
     suspend fun solicitaToken(telefone: String): RespostaSolicitaToken? {
-        val solicitaTokenRequest = SolicitaTokenRquest("", telefone)
+        val udid = sistemaUtils.recuperaUdid()
+        val cnpj = preferenciasUtils.recuperarTexto(ProjetoStrings.cnpjCadastro) ?: ""
+        val solicitaTokenRequest = SolicitaTokenRquest( telefone , UDID = udid, CNPJ =  cnpj,DeviceToken= SistemaUtils.deviceToken )
         return tokenRepository.solicitaTokenReposiory(solicitaTokenRequest)
     }
 
