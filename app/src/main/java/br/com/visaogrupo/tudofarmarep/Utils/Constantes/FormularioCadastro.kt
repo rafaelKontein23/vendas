@@ -8,11 +8,21 @@ import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.Cadas
 class FormularioCadastro {
 
     companion object{
-       val cadastro = CadastroRequest()
+       var cadastro = CadastroRequest()
        var cadastroRequestAreaAtuacal = CadastroRequestAreaAtuacal()
        var fotoDocumeto:Uri = Uri.EMPTY
        var base64Galeria = ""
        var base64Assinatura = ""
         var savedBitmap: Bitmap? = null
+
+
+        fun limpaCadastro(){
+            cadastro = CadastroRequest()
+            cadastroRequestAreaAtuacal = CadastroRequestAreaAtuacal()
+
+            fotoDocumeto = Uri.EMPTY
+            base64Galeria = ""
+            base64Assinatura = ""
+        }
     }
 }

@@ -270,8 +270,9 @@
                 <LinearLayout
                     android:id="@+id/progressVerticalDocumento"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="0"
+                    android:visibility="gone"
                     android:background="@drawable/passo_azul"
                     android:orientation="vertical">
 
@@ -292,7 +293,8 @@
                 <LinearLayout
                     android:id="@+id/progressVerticalAtuacao"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:layout_weight="0"
                     android:background="@drawable/passo_azul"
                     android:orientation="vertical">
@@ -314,8 +316,9 @@
                 <LinearLayout
                     android:id="@+id/progressVerticalIndicacao"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="0"
+                    android:visibility="gone"
                     android:background="@drawable/passo_azul"
                     android:orientation="vertical">
 
@@ -336,8 +339,9 @@
                 <LinearLayout
                     android:id="@+id/progressVerticalContratoAceite"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="0"
+                    android:visibility="gone"
                     android:background="@drawable/passo_final_azul"
                     android:orientation="vertical">
 

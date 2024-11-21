@@ -5,14 +5,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import androidx.biometric.BiometricPrompt
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.biometric.BiometricManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -23,6 +21,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogsMai
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Factory.ViewModelMainActivityFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelMainActivity
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.IntentUtils
 import br.com.visaogrupo.tudofarmarep.Utils.PushFirebase
@@ -117,6 +116,7 @@ class MainActivity : AppCompatActivity() {
            val cnpjCap = binding.inputCnpj.text.toString()
             if(ValidarTextos.isCNPJ(cnpjCap)) {
                 viewModelMainActivity.salvaCnpj(cnpjCap)
+                FormularioCadastro.limpaCadastro()
                 val intent = Intent(this, ActCelular::class.java)
                 startActivity(intent)
             }

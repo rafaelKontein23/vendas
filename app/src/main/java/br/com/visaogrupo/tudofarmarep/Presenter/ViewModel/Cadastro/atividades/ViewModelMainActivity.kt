@@ -58,6 +58,7 @@ class ViewModelMainActivity(
     val celularUsuario: LiveData<String> = _celularUsuario
 
 
+
     fun verificaCadastro( cnpj: String){
         val cnpjFormat = FormataTextos.removeMascaraCNPJ(cnpj)
         var cadastro = salvaTextos.recuperarBool(ProjetoStrings.casdastro)

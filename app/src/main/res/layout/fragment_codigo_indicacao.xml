@@ -8,9 +8,15 @@
    <androidx.constraintlayout.widget.ConstraintLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent">
+
        <androidx.core.widget.NestedScrollView
            android:layout_width="match_parent"
-           android:layout_height="match_parent">
+           android:layout_height="match_parent"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent">
+
            <androidx.constraintlayout.widget.ConstraintLayout
                android:layout_width="match_parent"
                android:layout_height="match_parent">
@@ -166,10 +172,10 @@
                <ProgressBar
                    android:id="@+id/carregando"
                    style="?android:attr/progressBarStyle"
-                   android:visibility="gone"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginTop="60dp"
+                   android:visibility="gone"
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintStart_toStartOf="parent"
                    app:layout_constraintTop_toBottomOf="@+id/inputCodigoIndicacao" />

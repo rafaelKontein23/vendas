@@ -32,9 +32,6 @@ interface SincronoCadastro {
     fun P_Portal_Cadastro_Mesorregioes_Lista
     (@Body responseBody: RequestBody): Call<ResponseBody>
 
-    @POST("tudofarmarep/retorna/cidades/uf")
-    fun P_Mobile_Cadastro_Cidade_Consulta
-    (@Body responseBody: RequestBody): Call<ResponseBody>
 
     @POST("indicacao/hash")
     fun P_Convidado_Hash_Consulta

@@ -110,6 +110,8 @@ class ActToken : AppCompatActivity() {
             }
         }
         viewModelActToken.login.observe(this){
+            startActivity(Intent(this,ActCabecalho::class.java))
+
             binding.constrainCarregando.isVisible = false
             if(it != null){
                   if(it.Representante_ID != 0){

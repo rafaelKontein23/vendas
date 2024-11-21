@@ -89,6 +89,7 @@ class DadosContratoAceiteFragment : Fragment() {
             if(it){
                  val intent = Intent(requireContext(), ActSucessoCadastro::class.java)
                  startActivity(intent)
+                 requireActivity().finish()
             }else{
                 Alertas.alertaErro(requireContext(), getString(R.string.erroCadastro), getString(R.string.tituloErro) ){
                 }

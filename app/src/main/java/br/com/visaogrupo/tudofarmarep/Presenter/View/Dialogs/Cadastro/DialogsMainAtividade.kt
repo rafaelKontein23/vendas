@@ -1,6 +1,7 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.text.Editable
@@ -13,6 +14,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.ActToken
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.MainActivity
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelMainActivity
 import br.com.visaogrupo.tudofarmarep.R
@@ -171,6 +173,10 @@ class DialogsMainAtividade (private val activity: AppCompatActivity,
                     binding.nomeUsuario.text = it
                     binding.textoIniciais.text =  it.iniciaisNome()
                }
+          }
+          binding.btnEntrarComToken.setOnClickListener {
+               dialogBiometria.dismiss()
+               context.startActivity(Intent(context, ActToken::class.java))
           }
 
           viewModel.recuperaInformacoesUser()

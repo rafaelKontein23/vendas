@@ -5,90 +5,107 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Presenter.View.Fragments.Cadastro.DadosAreaDeAtuacaoFragment">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView17"
-            style="@style/textoTituloInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="24dp"
-            android:text="@string/estado"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/inputEstadoAreaDeAtuacao"
-            style="@style/inputPadraoCadastro"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:paddingTop="14dp"
-            android:textColor="@color/gray500"
-            android:layout_height="wrap_content"
+
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView17"
-            android:drawableEnd="@drawable/seta_baixo"/>
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="150dp"
+
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView17"
+                    style="@style/textoTituloInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/estado"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/inputEstadoAreaDeAtuacao"
+                    style="@style/inputPadraoCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/seta_baixo"
+                    android:paddingTop="14dp"
+                    android:textColor="@color/gray500"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
 
-        <TextView
-            android:id="@+id/textView18"
-            style="@style/textoTituloInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="@string/mesorregioes"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputEstadoAreaDeAtuacao" />
+                <TextView
+                    android:id="@+id/textView18"
+                    style="@style/textoTituloInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/mesorregioes"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/inputEstadoAreaDeAtuacao" />
 
-        <TextView
-            android:id="@+id/inputMesorregioesAreaDeAtuacao"
-            style="@style/inputPadraoCadastro"
-            android:layout_width="match_parent"
-            android:paddingTop="14dp"
-            android:textColor="@color/gray500"
-            android:text="@string/todos"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView18"
-            android:drawableEnd="@drawable/seta_baixo"/>
+                <TextView
+                    android:id="@+id/inputMesorregioesAreaDeAtuacao"
+                    style="@style/inputPadraoCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/seta_baixo"
+                    android:paddingTop="14dp"
+                    android:text="@string/todos"
+                    android:textColor="@color/gray500"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
 
+                <TextView
+                    android:id="@+id/textView19"
+                    style="@style/textoTituloInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/cidades"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/inputMesorregioesAreaDeAtuacao" />
 
-        <TextView
-            android:id="@+id/textView19"
-            style="@style/textoTituloInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="@string/cidades"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputMesorregioesAreaDeAtuacao" />
+                <TextView
+                    android:id="@+id/inputCidadesAreaDeAtuacao"
+                    style="@style/inputPadraoCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/seta_baixo"
+                    android:paddingTop="14dp"
+                    android:text="@string/todos"
+                    android:textColor="@color/gray500"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
-        <TextView
-            android:id="@+id/inputCidadesAreaDeAtuacao"
-            style="@style/inputPadraoCadastro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="14dp"
-            android:text="@string/todos"
-            android:textColor="@color/gray500"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView19"
-            android:drawableEnd="@drawable/seta_baixo"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
 
         <TextView
             android:id="@+id/btnContinuar"
@@ -99,10 +116,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </FrameLayout>
