@@ -20,6 +20,16 @@ class PreferenciasUtils (val context: Context) {
         editor.apply()
     }
 
+    fun salvaInteiro(valor: Int, chave: String){
+        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val editor = prefs.edit()
+        editor.putInt(chave, valor)
+        editor.apply()
+    }
+    fun recuperarInteiro(chave: String, valorDefault: Int = 0): Int {
+        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        return prefs.getInt(chave, valorDefault)
+    }
 
     fun recuperarTexto(chave: String, valorDefault: String = ""): String? {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -29,8 +39,5 @@ class PreferenciasUtils (val context: Context) {
     fun recuperarBool(chave: String, valorDefault: Boolean = false): Boolean {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         return prefs.getBoolean(chave, valorDefault)
-
     }
-
-
 }

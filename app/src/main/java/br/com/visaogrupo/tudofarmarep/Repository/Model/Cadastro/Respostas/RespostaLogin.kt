@@ -8,6 +8,18 @@ data class RespostaLoginDados (
 )
 
 data class RespostaLogin(
+    val Representante_ID: Int,
+    val Nome: String,
+    val Celular:String,
+    val CNPJ:String,
+    val Teste:Boolean,
+    val FotoPerfil:String,
+    val FotoDocumento:String,
+    val Hash:String,
+    val mensagem:String,
+    val status_cod:Int,
+)
+data class RespostaLoginErro(
     val status_cod:Int,
     val Mesnsagem:String
 )

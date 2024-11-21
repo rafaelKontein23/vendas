@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogsMainAtividade
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Factory.ViewModelMainActivityFactory
@@ -27,6 +28,7 @@ import br.com.visaogrupo.tudofarmarep.Utils.IntentUtils
 import br.com.visaogrupo.tudofarmarep.Utils.PushFirebase
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
+import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Pushs
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocus
 import br.com.visaogrupo.tudofarmarep.Utils.Views.validaError
@@ -71,6 +73,21 @@ class MainActivity : AppCompatActivity() {
         val pushFirebase = PushFirebase()
         pushFirebase.recuperaDeviceToken()
 
+        viewModelMainActivity.login.observe(this){
+            binding.constrainCarregando.isVisible = false
+            if(it != null){
+                if(it.Representante_ID != 0){
+                    viewModelMainActivity.salvarDadosUsuario(it.Representante_ID,it.Nome,it.Hash,it.FotoPerfil)
+                }else{
+                    Alertas.alertaErro(this,getString(R.string.erroDeLogin),getString(R.string.tituloErro)){
+
+                    }
+                }
+            }else{
+                Alertas.alertaErro(this,getString(R.string.erroPadrao),getString(R.string.tituloErro)){
+                }
+            }
+        }
 
         binding.inputCnpj.isFocus(this)
 

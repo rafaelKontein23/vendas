@@ -109,6 +109,25 @@ class ActToken : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.completeToken), Toast.LENGTH_LONG).show()
             }
         }
+        viewModelActToken.login.observe(this){
+            binding.constrainCarregando.isVisible = false
+            if(it != null){
+                  if(it.Representante_ID != 0){
+                      viewModelActToken.salvarDadosUsuario(it.Representante_ID,it.Nome,it.Hash,it.FotoPerfil)
+                      // aqui vai pra home
+                  }else{
+                      if (it.status_cod == 0){
+                          startActivity(Intent(this,ActCabecalho::class.java))
+                      }else{
+                          Alertas.alertaErro(this,it.mensagem,getString(R.string.tituloErro)){
+                          }
+                      }
+                  }
+            }else{
+                Alertas.alertaErro(this,getString(R.string.erroPadrao),getString(R.string.tituloErro)){
+                }
+            }
+        }
 
         viewModelActToken.confirmaToken.observe(this){ respostaConfirmaToken ->
 

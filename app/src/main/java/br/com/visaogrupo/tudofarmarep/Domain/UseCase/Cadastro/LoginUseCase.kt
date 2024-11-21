@@ -22,6 +22,7 @@ class LoginUseCase (
         val loginRequest = LoginRequest(CNPJ = cnpj,Celular =  celular,DeviceToken = SistemaUtils.deviceToken,UDID = udid, VersaoApp = ProjetoStrings.versapApp, Dispositivo =  dispositivo)
 
         val respostaLogin  =  loginRepository.logaUsuario(loginRequest)
+
         return respostaLogin
     }
 

@@ -21,6 +21,9 @@
     <string name="erroFoto">Adicione uma foto do documento</string>
     <string name="erroCadastro">Algo deu errado no envio de cadastro, tente novamente em instantes</string>
     <string name="erroiometria"> </string>
+    <string name="erroPadrao">Algo deu errado, tente novamente</string>
+    <string name="erroDeLogin">Algo deu errado, tente fazer login de outra forma</string>
+
     // titulo inputs
     <string name="possuiCore">Possui CORE ?</string>"
     <string name="razaoSocial">Razão Social</string>

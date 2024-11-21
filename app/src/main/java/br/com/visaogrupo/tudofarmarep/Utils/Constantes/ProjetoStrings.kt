@@ -10,6 +10,9 @@ class ProjetoStrings {
         const val celular = "celular"
         const val nomeCompleto = "nomeCompleto"
         const val casdastro = "cadastroRealizado"
+        const val reprenteID = "Representante_ID"
+        const val hash = "hash"
+        const val caminhoFotoPerfil = "caminhoFotoPerfil"
 
         // mascaras
         const val mascaraCNPJ = "##.###.###/####-##"

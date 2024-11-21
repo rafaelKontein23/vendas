@@ -8,6 +8,7 @@ import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.LoginUseCase
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.TokenUseCase
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.ISuporteTelefone
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaConfirmaToken
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaLogin
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaSolicitaToken
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
@@ -35,6 +36,9 @@ class ViewModelActToken(
     private val _confirmaToken = MutableLiveData<RespostaConfirmaToken?>()
     val confirmaToken: LiveData<RespostaConfirmaToken?> get() = _confirmaToken
 
+    private val _login = MutableLiveData<RespostaLogin?>()
+    val login: LiveData<RespostaLogin?> get() = _login
+
     fun solicitaToken(telefone: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val respostaSolicitaToken = tokenUseCase.solicitaToken(telefone)
@@ -58,11 +62,15 @@ class ViewModelActToken(
     fun buscaInformacoesLogin(){
         viewModelScope.launch(Dispatchers.IO) {
             val login= loginUseCase.logaUsuario()
-
+            _login.postValue(login)
         }
-
     }
-
+    fun salvarDadosUsuario(id:Int, nome:String, hash:String, fotoPerfil:String){
+        preferenciasUtils.salvaInteiro(id,ProjetoStrings.reprenteID)
+        preferenciasUtils.salvarTexto(nome,ProjetoStrings.nomeCompleto)
+        preferenciasUtils.salvarTexto(hash,ProjetoStrings.hash)
+        preferenciasUtils.salvarTexto(fotoPerfil,ProjetoStrings.caminhoFotoPerfil)
+    }
     override fun buscarNumeroTelefoneSuporte() {
         viewModelScope.launch(Dispatchers.IO) {
             val numero = suporteTelefoneRepository.buscarNumeroTelefoneSuporte()

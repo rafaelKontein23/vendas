@@ -9,8 +9,10 @@ import androidx.lifecycle.ViewModel
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewModelScope
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.LoginUseCase
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.MainActivity
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.ISuporteTelefone
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaLogin
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.CriptografiaChavesSenha
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
@@ -23,7 +25,9 @@ import kotlinx.coroutines.launch
 
 class ViewModelMainActivity(
     private val suporteTelefoneRepository: SuporteTelefoneReposytory,
-    private val salvaTextos: PreferenciasUtils
+    private val salvaTextos: PreferenciasUtils,
+    private val loginUseCase: LoginUseCase
+
 
 ) :ViewModel(), ISuporteTelefone{
     private val _numeroTelefoneSuporte = MutableLiveData<String>()
@@ -32,6 +36,9 @@ class ViewModelMainActivity(
     private val _contadorModal  = MutableLiveData(0)
     val contadorModal: LiveData<Int> get() = _contadorModal
 
+
+    private val _login = MutableLiveData<RespostaLogin?>()
+    val login: LiveData<RespostaLogin?> get() = _login
     private val _senhaVisualizar = MutableLiveData<Boolean>()
     val senhaVisualizar: LiveData<Boolean> = _senhaVisualizar
 
@@ -160,7 +167,19 @@ class ViewModelMainActivity(
         }
     }
 
+    fun buscaInformacoesLogin(){
+        viewModelScope.launch(Dispatchers.IO) {
+            val login= loginUseCase.logaUsuario()
+            _login.postValue(login)
+        }
+    }
+    fun salvarDadosUsuario(id:Int, nome:String, hash:String, fotoPerfil:String){
+        salvaTextos.salvaInteiro(id,ProjetoStrings.reprenteID)
+        salvaTextos.salvarTexto(nome,ProjetoStrings.nomeCompleto)
+        salvaTextos.salvarTexto(hash,ProjetoStrings.hash)
+        salvaTextos.salvarTexto(fotoPerfil,ProjetoStrings.caminhoFotoPerfil)
 
+    }
     private fun trocaAmbiente(ambiente:String){
         URLs.urlWsBase = "https://${ambiente}.visaogrupo.com.br/ws/"
 
@@ -188,7 +207,7 @@ class ViewModelMainActivity(
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    var kasmkavs= ""
+                    buscaInformacoesLogin()
                 }
 
                 override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
