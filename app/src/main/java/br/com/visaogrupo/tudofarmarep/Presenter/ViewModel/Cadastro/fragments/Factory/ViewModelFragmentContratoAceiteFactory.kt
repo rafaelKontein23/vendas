@@ -16,7 +16,7 @@ class ViewModelFragmentContratoAceiteFactory ( private val context: Context
             val cadastroRepository = CadastroRepository(context)
             val preferenciasUtils = PreferenciasUtils(context)
             val cadastroUseCase = CadastroUseCase(cadastroRepository, preferenciasUtils)
-            return ViewModelContratoAceite(cadastroUseCase) as T
+            return ViewModelContratoAceite(cadastroUseCase, preferenciasUtils) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

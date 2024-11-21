@@ -157,6 +157,12 @@ class DialogsMainAtividade (private val activity: AppCompatActivity,
                     Toast.makeText(context, context.getString(R.string.erroiometria), Toast.LENGTH_LONG).show()
                }
           }
+          binding.btnAcessarOutraConta.setOnClickListener {
+               dialogBiometria.dismiss()
+          }
+          binding.fecharModal.setOnClickListener {
+               dialogBiometria.dismiss()
+          }
           viewModel.celularUsuario.observe(context){
                binding.celularRepresentante.text = it.aplicarMascaraTelefone()
           }
@@ -166,8 +172,6 @@ class DialogsMainAtividade (private val activity: AppCompatActivity,
                     binding.textoIniciais.text =  it.iniciaisNome()
                }
           }
-
-
 
           viewModel.recuperaInformacoesUser()
           val  cnpj = viewModel.recuperaCnpj()

@@ -5,13 +5,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
+import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class ViewModelContratoAceite(
-    private val cadastroUseCase: CadastroUseCase
+    private val cadastroUseCase: CadastroUseCase,
+    private val preferenciasUtils: PreferenciasUtils
 )  : ViewModel(){
     val  _contratoAssinado = MutableLiveData<Boolean>()
     val  contratoAssinado get() = _contratoAssinado
@@ -22,6 +25,10 @@ class ViewModelContratoAceite(
          FormularioCadastro.cadastro.isAssinaContrato = true
         _contratoAssinado.value = true
 
+    }
+    fun salvaCnpj(cnpjLogin:String){
+
+         preferenciasUtils.salvarTexto(cnpjLogin, ProjetoStrings.cnpjLogin)
     }
 
 
@@ -46,9 +53,13 @@ class ViewModelContratoAceite(
             tarefaCadastro.await()
             tarefaFoto.await()
             tarefaAssinatura.await()
-           MainScope().launch {
-               _fazCadastro.value = retornoAssinatura && retornoCadastro && retornoFoto
-           }
+            MainScope().launch {
+                if (retornoAssinatura && retornoCadastro && retornoFoto){
+                    _fazCadastro.value = true
+                    preferenciasUtils.salvarTexto(FormularioCadastro.cadastro.CNPJ, ProjetoStrings.cnpjLogin)
+
+                }
+            }
         }
     }
 }

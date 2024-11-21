@@ -7,6 +7,7 @@ class ProjetoStrings {
         //chaves preferencias
         const val ambiente = "ambiente"
         const val cnpjCadastro = "cnpj"
+        const val cnpjLogin = "cnpjLogin"
         const val celular = "celular"
         const val nomeCompleto = "nomeCompleto"
         const val casdastro = "cadastroRealizado"

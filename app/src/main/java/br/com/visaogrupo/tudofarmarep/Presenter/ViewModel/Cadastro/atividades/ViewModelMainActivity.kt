@@ -15,6 +15,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.ISuporteTelefone
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaLogin
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.CriptografiaChavesSenha
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
@@ -60,7 +61,7 @@ class ViewModelMainActivity(
     fun verificaCadastro( cnpj: String){
         val cnpjFormat = FormataTextos.removeMascaraCNPJ(cnpj)
         var cadastro = salvaTextos.recuperarBool(ProjetoStrings.casdastro)
-        val cnpjSalvo = salvaTextos.recuperarTexto(ProjetoStrings.cnpjCadastro)
+        val cnpjSalvo = salvaTextos.recuperarTexto(ProjetoStrings.cnpjLogin)
         if(cnpjSalvo != cnpjFormat){
             cadastro = false
             salvaTextos.salvarBool(cadastro, ProjetoStrings.casdastro)
@@ -77,6 +78,7 @@ class ViewModelMainActivity(
     fun salvaCnpj(cnpj:String){
         viewModelScope.launch(Dispatchers.IO) {
             val cnpjSemFormatacao = FormataTextos.removeMascaraCNPJ(cnpj)
+            FormularioCadastro.cadastro.CNPJ = cnpjSemFormatacao
             salvaTextos.salvarTexto(cnpjSemFormatacao, ProjetoStrings.cnpjCadastro)
         }
     }
@@ -178,6 +180,7 @@ class ViewModelMainActivity(
         salvaTextos.salvarTexto(nome,ProjetoStrings.nomeCompleto)
         salvaTextos.salvarTexto(hash,ProjetoStrings.hash)
         salvaTextos.salvarTexto(fotoPerfil,ProjetoStrings.caminhoFotoPerfil)
+
 
     }
     private fun trocaAmbiente(ambiente:String){

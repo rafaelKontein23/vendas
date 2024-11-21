@@ -114,10 +114,11 @@ class ActToken : AppCompatActivity() {
             if(it != null){
                   if(it.Representante_ID != 0){
                       viewModelActToken.salvarDadosUsuario(it.Representante_ID,it.Nome,it.Hash,it.FotoPerfil)
-                      // aqui vai pra home
                   }else{
                       if (it.status_cod == 0){
+                          viewModelActToken.mudaStatusCadastro()
                           startActivity(Intent(this,ActCabecalho::class.java))
+
                       }else{
                           Alertas.alertaErro(this,it.mensagem,getString(R.string.tituloErro)){
                           }

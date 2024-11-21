@@ -11,6 +11,7 @@ import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.Respos
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaLogin
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaSolicitaToken
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import kotlinx.coroutines.Dispatchers
@@ -65,11 +66,17 @@ class ViewModelActToken(
             _login.postValue(login)
         }
     }
+    fun mudaStatusCadastro(){
+        preferenciasUtils.salvarBool(false, ProjetoStrings.casdastro)
+    }
     fun salvarDadosUsuario(id:Int, nome:String, hash:String, fotoPerfil:String){
         preferenciasUtils.salvaInteiro(id,ProjetoStrings.reprenteID)
         preferenciasUtils.salvarTexto(nome,ProjetoStrings.nomeCompleto)
         preferenciasUtils.salvarTexto(hash,ProjetoStrings.hash)
         preferenciasUtils.salvarTexto(fotoPerfil,ProjetoStrings.caminhoFotoPerfil)
+        preferenciasUtils.salvarTexto(FormularioCadastro.cadastro.CNPJ, ProjetoStrings.cnpjLogin)
+        preferenciasUtils.salvarBool(true, ProjetoStrings.casdastro)
+
     }
     override fun buscarNumeroTelefoneSuporte() {
         viewModelScope.launch(Dispatchers.IO) {
