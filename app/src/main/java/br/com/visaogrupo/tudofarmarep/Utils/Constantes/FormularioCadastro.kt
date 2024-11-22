@@ -19,7 +19,6 @@ class FormularioCadastro {
         fun limpaCadastro(){
             cadastro = CadastroRequest()
             cadastroRequestAreaAtuacal = CadastroRequestAreaAtuacal()
-
             fotoDocumeto = Uri.EMPTY
             base64Galeria = ""
             base64Assinatura = ""

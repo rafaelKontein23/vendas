@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    tools:context=".Views.Fragments.FragmentGraficosHome">
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:background="@drawable/bordas_grafico_home"
+       android:elevation="4dp"
+       android:layout_margin="6dp"
+       android:outlineAmbientShadowColor="@color/gray400"
+       android:outlineSpotShadowColor="@color/gray400"
+       android:layout_height="match_parent">
+
+      <TextView
+          android:id="@+id/graficoTextPedidos"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="8dp"
+          android:drawableEnd="@drawable/seta_para_baixo"
+          android:drawablePadding="4dp"
+          android:fontFamily="@font/manrope_medium"
+
+          android:text="Pedidos de Agosto"
+          android:textColor="@color/gray900"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/verMaisGraficosPedidos"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="16dp"
+          android:text="ver mais"
+          android:visibility="gone"
+          android:textColor="@color/blue400"
+          android:textSize="12sp"
+          app:layout_constraintBottom_toBottomOf="@+id/graficoTextPedidos"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="@+id/graficoTextPedidos" />
+
+      <View
+          android:id="@+id/view11"
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:layout_marginTop="8dp"
+          android:background="@color/gray100"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/graficoTextPedidos">
+
+      </View>
+
+      <com.github.mikephil.charting.charts.PieChart
+          android:id="@+id/pieChart"
+          android:layout_width="0dp"
+          android:layout_height="0dp"
+          android:layout_marginStart="16dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/view11" >
+
+
+      </com.github.mikephil.charting.charts.PieChart>
+
+      <TextView
+          android:id="@+id/diaGraficoPedido"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:visibility="gone"
+          android:layout_marginTop="10dp"
+          android:text="13 de agosto"
+          android:textColor="@color/gray500"
+          android:textSize="12sp"
+          android:fontFamily="@font/roboto"
+          android:letterSpacing="0.015"
+
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="@+id/pieChart" />
+
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

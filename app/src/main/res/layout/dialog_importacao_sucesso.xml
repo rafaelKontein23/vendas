@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/bordas_cima_detalhe_produto"
+    android:backgroundTint="@color/white"
+    android:layout_marginTop="45dp"
+    android:paddingBottom="16dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textView81"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/manrope"
+        android:letterSpacing="0.015"
+        android:text="Importação Finalizada"
+        android:textColor="@color/gray800"
+        android:textFontWeight="600"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/fecharDialogModelo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/x" />
+
+    <TextView
+        android:id="@+id/textView86"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/manrope"
+        android:letterSpacing="0.015"
+        android:text="CNPJs no Arquivo"
+        android:textColor="@color/gray500"
+        android:textFontWeight="600"
+        app:layout_constraintStart_toStartOf="@+id/textView81"
+        app:layout_constraintTop_toBottomOf="@+id/textView81" />
+
+    <ImageView
+        android:id="@+id/imageView25"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView86"
+        app:layout_constraintEnd_toStartOf="@+id/quantidadeArquivo"
+        app:layout_constraintStart_toEndOf="@+id/textView86"
+        app:layout_constraintTop_toTopOf="@+id/textView86"
+        app:srcCompat="@drawable/linhapontilhada" />
+
+    <TextView
+        android:id="@+id/quantidadeArquivo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/manrope"
+        android:textSize="14sp"
+        android:textColor="@color/gray900"
+
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/textView86"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView86" />
+
+    <TextView
+        android:id="@+id/textView800"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/manrope"
+        android:letterSpacing="0.015"
+        android:text="CNPJs Importados"
+        android:textColor="@color/gray500"
+        android:textFontWeight="600"
+        app:layout_constraintStart_toStartOf="@+id/textView81"
+        app:layout_constraintTop_toBottomOf="@+id/textView86" />
+
+    <ImageView
+        android:id="@+id/imageView2775"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView800"
+        app:layout_constraintEnd_toStartOf="@+id/quantidadeArquivo"
+        app:layout_constraintStart_toEndOf="@+id/textView86"
+        app:layout_constraintTop_toTopOf="@+id/textView800"
+        app:srcCompat="@drawable/linhapontilhada" />
+
+    <TextView
+        android:id="@+id/quantidadeArquivoCorretos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/manrope"
+        android:text="0"
+        android:textColor="@color/gray900"
+
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView800"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView800" />
+
+    <TextView
+        android:id="@+id/textView87"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/manrope"
+        android:letterSpacing="0.015"
+        android:text="CNPJs Inaptos"
+        android:textColor="@color/gray500"
+        android:textFontWeight="600"
+        app:layout_constraintStart_toStartOf="@+id/textView81"
+        app:layout_constraintTop_toBottomOf="@+id/textView800" />
+
+    <ImageView
+        android:id="@+id/imageView26"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView87"
+        app:layout_constraintEnd_toStartOf="@+id/quantidadeArquivo"
+        app:layout_constraintStart_toEndOf="@+id/textView86"
+        app:layout_constraintTop_toTopOf="@+id/textView87"
+        app:srcCompat="@drawable/linhapontilhada" />
+
+    <TextView
+        android:id="@+id/quantidadeInaptos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/manrope"
+        android:text="0"
+        android:textColor="@color/gray900"
+
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView87"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView87" />
+
+    <TextView
+        android:id="@+id/textView88"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/manrope"
+        android:letterSpacing="0.015"
+        android:text="estes não serão adicionados a sua carteira"
+        android:textColor="@color/gray400"
+        android:textFontWeight="400"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/textView87"
+        app:layout_constraintTop_toBottomOf="@+id/textView87" />
+
+
+    <TextView
+        android:id="@+id/textView89"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/manrope"
+        android:letterSpacing="0.015"
+        android:drawableEnd="@drawable/infoiconcinza"
+        android:text="CNPJs sem Dados Disponíveis"
+        android:textColor="@color/gray500"
+        android:textFontWeight="600"
+        app:layout_constraintStart_toStartOf="@+id/textView81"
+        app:layout_constraintTop_toBottomOf="@+id/textView88" />
+
+    <ImageView
+        android:id="@+id/imageView27"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView89"
+        app:layout_constraintEnd_toStartOf="@+id/quantidadeArquivo"
+        app:layout_constraintStart_toEndOf="@+id/textView89"
+        app:layout_constraintTop_toTopOf="@+id/textView89"
+        app:srcCompat="@drawable/linhapontilhada" />
+
+    <TextView
+        android:id="@+id/quantidadeIndisponivel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/manrope"
+        android:text="0"
+
+        android:textColor="@color/gray900"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView89"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView89" />
+
+    <TextView
+        android:id="@+id/concluir"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bordas_8dp_gray300"
+        android:backgroundTint="@color/success600"
+        android:fontFamily="@font/manrope"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Concluir"
+        android:textColor="@color/gray50"
+        android:textFontWeight="500"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView89" />
+</androidx.constraintlayout.widget.ConstraintLayout>

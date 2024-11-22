@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/bordas_cima_detalhe_produto"
+    android:backgroundTint="@color/white"
+    android:layout_marginTop="45dp"
+    android:paddingBottom="16dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView81"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/manrope"
+        android:letterSpacing="0.015"
+        android:text="Modelo de Importação"
+        android:textColor="@color/gray800"
+        android:textFontWeight="600"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fecharDialogModelo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/x" />
+
+    <ImageView
+        android:id="@+id/imageView27"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView81"
+        app:srcCompat="@drawable/modelo_image" />
+
+    <TextView
+        android:id="@+id/textView84"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lineHeight="20dp"
+        android:fontFamily="@font/manrope"
+        android:letterSpacing="0.015"
+        android:textColor="@color/gray600"
+        android:layout_marginTop="16dp"
+        android:text="Para importar sua carteira de CNPJ, você só precisa criar um arquivo com a coluna 'A' preenchida, onde cada linha contenha um CNPJ, conforme mostrado na imagem acima."
+        app:layout_constraintEnd_toEndOf="@+id/imageView27"
+        app:layout_constraintStart_toStartOf="@+id/imageView27"
+        app:layout_constraintTop_toBottomOf="@+id/imageView27" />
+
+    <TextView
+        android:id="@+id/baixarModelo"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bordas_8dp_gray300"
+        android:backgroundTint="@color/info600"
+        android:drawableEnd="@drawable/seta_baixar"
+        android:fontFamily="@font/manrope"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        android:text="Modelo de Importação"
+        android:textColor="@color/gray50"
+        android:textFontWeight="500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView84" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

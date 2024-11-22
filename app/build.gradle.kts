@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.converterGson)
     implementation(libs.firebase.crashlytics.buildtools)
     implementation(libs.firebase.messaging.ktx)
+    implementation(libs.play.services.location)
 
     // chucker
     debugImplementation(libs.chuckerDebug)
@@ -85,6 +86,15 @@ dependencies {
     implementation(libs.glide)
     kapt(libs.glideCompiler)   // Compiler do Glide com kapt
     implementation(libs.touchimageview)
+
+
+    //excel
+    implementation(libs.poi)
+    implementation(libs.poi.ooxml)
+
+    //grafico
+    implementation(libs.mpandroidchart)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

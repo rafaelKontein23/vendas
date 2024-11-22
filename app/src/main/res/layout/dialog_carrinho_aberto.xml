@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/bordas_cima_detalhe_produto"
+    android:backgroundTint="@color/white"
+    android:paddingBottom="24dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textView90"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/manrope"
+        android:text="Este CNPJ possui um carrinho \nem aberto"
+        android:lineHeight="20dp"
+        android:textColor="@color/gray600"
+        android:textFontWeight="600"
+        app:layout_constraintEnd_toStartOf="@+id/fechar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fechar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fechar" />
+
+    <TextView
+        android:id="@+id/textView91"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/manrope"
+        android:textSize="12sp"
+        android:textColor="@color/gray500"
+        android:layout_marginEnd="16dp"
+        android:text="Deseja limpar esse carrinho para acessar a cotação ?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView90" />
+
+    <TextView
+        android:id="@+id/limparCarrinho"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+
+        android:background="@drawable/borda_arredondada_4"
+        android:backgroundTint="@color/success600"
+        android:text="Sim"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fechaModalCarrinho"
+        app:layout_constraintTop_toTopOf="@+id/fechaModalCarrinho" />
+
+    <TextView
+        android:id="@+id/fechaModalCarrinho"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+       android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bordas_vermelha_4dp"
+        android:text="Não"
+        android:textColor="@color/danger500"
+        app:layout_constraintEnd_toStartOf="@+id/limparCarrinho"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView91" />
+</androidx.constraintlayout.widget.ConstraintLayout>

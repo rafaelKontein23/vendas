@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@color/blue500"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Views.Activitys.ActCarrinho">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/blue500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/voltarCarrinho"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/seta_volta_loja" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="Carrinho"
+
+            android:textColor="@color/white"
+            android:textFontWeight="600"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/voltarCarrinho"
+            app:layout_constraintStart_toEndOf="@+id/voltarCarrinho"
+            app:layout_constraintTop_toTopOf="@+id/voltarCarrinho" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:background="@color/white"
+        android:isScrollContainer="true"
+        android:paddingBottom="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:windowSoftInputMode="adjustPan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/contrainInfos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bordas_menu_cima"
+                android:clipToPadding="false"
+                android:elevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/cnpjSelecionado"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:lineHeight="25.6dp"
+                    android:text="11.985.401/0001-01"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/pedido"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:lineHeight="19.2dp"
+                    android:text="pedido #1"
+                    android:textColor="@color/white"
+                    android:textFontWeight="500"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/cnpjSelecionado"
+                    app:layout_constraintStart_toStartOf="@+id/cnpjSelecionado"
+                    app:layout_constraintTop_toBottomOf="@+id/cnpjSelecionado" />
+
+                <TextView
+                    android:id="@+id/nomeLoja"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:lineHeight="19.2dp"
+                    android:text="-"
+                    android:textColor="@color/white"
+                    android:textFontWeight="500"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/cnpjSelecionado"
+                    app:layout_constraintStart_toStartOf="@+id/cnpjSelecionado"
+                    app:layout_constraintTop_toBottomOf="@+id/pedido" />
+
+                <TextView
+                    android:id="@+id/enderecoCNPJ"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/rota"
+                    android:visibility="gone"
+                    android:text="Rua maria Lucinda 1765 - São Paulo - SP"
+                    android:textColor="@color/gray100"
+                    app:layout_constraintEnd_toEndOf="@+id/nomeLoja"
+                    app:layout_constraintStart_toStartOf="@+id/nomeLoja"
+                    app:layout_constraintTop_toBottomOf="@+id/nomeLoja" />
+
+                <TextView
+                    android:id="@+id/telefone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="(11)94312-9558 |"
+                    android:visibility="gone"
+                    android:textColor="@color/gray200"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/enderecoCNPJ"
+                    app:layout_constraintTop_toBottomOf="@+id/enderecoCNPJ">
+
+                </TextView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyProdutosCarrinho"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contrainInfos" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bordas_redonda_cinza"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/modalValores">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/InfosComiisao"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <TextView
+                        android:id="@+id/textView52"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginStart="12dp"
+                        android:gravity="left"
+                        android:text="Comissão"
+                        android:textColor="@color/gray500"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/visualizarComissao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/visualiza" />
+
+                    <TextView
+                        android:id="@+id/valorComiisao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="-"
+                        android:textColor="@color/gray900"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/oplTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Operadores Logísticos"
+                android:textColor="@color/gray700"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textOperadorMax"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Escolha até 3 operadores"
+                android:textColor="@color/gray500" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerOpl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView19"
+                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+            <TextView
+                android:id="@+id/loopTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Selecione looping"
+                android:textColor="@color/gray700"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/itemDescricaoLopping"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Selecione mais operadores para fazer o processamento do seu pedido e ter mais chances de todos seus itens serem faturados"
+                android:textColor="@color/gray500" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerOplloopin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView19"
+                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+            <TextView
+                android:id="@+id/formaDePagamentoTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Forma de Pagamento"
+                android:textColor="@color/gray700"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="573dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyFormaDePagmento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+               android:nestedScrollingEnabled="false"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView54"
+                app:layout_constraintTop_toBottomOf="@+id/textView54" />
+
+            <TextView
+                android:id="@+id/textView71"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Observação do Pedido"
+                android:textColor="@color/gray700"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/recyFormaDePagmento"
+                app:layout_constraintTop_toBottomOf="@+id/recyFormaDePagmento" />
+
+            <TextView
+                android:id="@+id/textView133"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="16dp"
+                android:text="Você pode adicionar uma observação para o seu pedido"
+                android:textColor="@color/gray500"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView40"
+                app:layout_constraintTop_toBottomOf="@+id/textView71" />
+
+            <EditText
+                android:id="@+id/edtObservaocao"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:gravity="top|start"
+                android:maxLength="255"
+                android:layout_marginStart="16dp"
+                android:paddingStart="12sp"
+                android:scrollbars="vertical"
+                android:textSize="12sp"
+                android:paddingRight="12sp"
+                android:textColor="@color/gray900"
+                android:paddingTop="2dp"
+                android:overScrollMode="ifContentScrolls"
+                android:inputType="textMultiLine"
+                android:scrollHorizontally="false"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bordas_8dp_gray300"
+                app:layout_constraintEnd_toEndOf="@+id/textView133"
+                app:layout_constraintStart_toStartOf="@+id/textView133"
+                app:layout_constraintTop_toBottomOf="@+id/textView133" />
+
+             <TextView
+                 android:id="@+id/quantidadeCaractereObservacao"
+                 android:layout_width="match_parent"
+                 android:textSize="10sp"
+                 android:textAlignment="textEnd"
+                 android:text="0/255"
+                 android:fontFamily="@font/roboto"
+                 android:layout_marginEnd="16dp"
+                 android:layout_marginTop="4dp"
+                 android:textColor="@color/gray400"
+                 android:layout_height="wrap_content">
+             </TextView>
+
+            <TextView
+                android:id="@+id/textView55"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_marginTop="16dp"
+                android:text="Número Pedido Cliente"
+                android:textColor="@color/gray700"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="573dp" />
+
+            <TextView
+                android:id="@+id/textView199"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Você pode adicionar um número de pedidos"
+                android:textColor="@color/gray500" />
+
+            <EditText
+                android:id="@+id/numeroPedidoEdit"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:maxLength="10"
+                android:paddingStart="12dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:inputType="text"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/gray900"
+                android:background="@drawable/bordas_8dp_gray300"
+                app:layout_constraintEnd_toEndOf="@+id/textView133"
+                app:layout_constraintStart_toStartOf="@+id/textView133"
+                app:layout_constraintTop_toBottomOf="@+id/textView133" />
+            <TextView
+                android:id="@+id/quantidadeCaracterenumeroPedido"
+                android:layout_width="match_parent"
+                android:textSize="10sp"
+                android:textAlignment="textEnd"
+                android:text="0/10"
+                android:fontFamily="@font/roboto"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/gray400"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/continuarComprando"
+                android:layout_width="match_parent"
+                android:background="@drawable/bordas_strok_2_strokercolor_blue500"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="140dp"
+
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/blue600"
+                android:gravity="center"
+
+                android:text="Continuar comprando nesta loja" />
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/fundo"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:orientation="horizontal"
+            android:weightSum="100"
+            android:background="#727AA0FF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/barraProgressoMinimo"
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_weight="10"
+                android:background="@color/blue400"
+                android:layout_height="match_parent">
+             </LinearLayout>
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue400_20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fundo">
+
+            <TextView
+                android:id="@+id/textvalorMinimo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Pedido Mínimo R$ 0,00 "
+                android:textColor="@color/blue400"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </TextView>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/valorFalta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bordas_botao_4"
+                android:backgroundTint="@color/danger300_20"
+                android:paddingStart="8dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView58"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="faltam "
+                    android:textColor="@color/danger700"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textValorFaltante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="R$ 0,00"
+                    android:textColor="@color/danger700"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView58"
+                    app:layout_constraintStart_toEndOf="@+id/textView58"
+                    app:layout_constraintTop_toTopOf="@+id/textView58">
+
+                </TextView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue600"
+            android:padding="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout12">
+
+            <TextView
+                android:id="@+id/textunidadeTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="5 uni."
+                android:textColor="@color/gray100"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btnFinalizarPedido">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/textvalorTotalCarrinho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:text="R$ 0,00"
+                android:textColor="@color/gray100"
+                app:layout_constraintBottom_toBottomOf="@+id/btnFinalizarPedido"
+                app:layout_constraintStart_toStartOf="@+id/textunidadeTotal"
+                app:layout_constraintTop_toBottomOf="@+id/textunidadeTotal">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/stTextTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="R$ 19,64"
+                android:textColor="@color/danger500"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textvalorTotalCarrinho"
+                app:layout_constraintStart_toEndOf="@+id/textvalorTotalCarrinho"
+                app:layout_constraintTop_toTopOf="@+id/textvalorTotalCarrinho" />
+
+            <TextView
+                android:id="@+id/btnFinalizarPedido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bordas_botao_4"
+                android:backgroundTint="@color/success600"
+                android:drawableRight="@drawable/carrinho"
+                android:drawablePadding="12dp"
+                android:elevation="12dp"
+                android:fontFamily="@font/roboto_medium"
+                android:outlineAmbientShadowColor="@color/success300"
+                android:outlineSpotShadowColor="@color/success300"
+                android:padding="12dp"
+                android:paddingStart="16dp"
+                android:text="Enviar"
+                android:textColor="@color/gray100"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </TextView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constrainCarregando"
+        android:layout_width="match_parent"
+        android:elevation="30dp"
+        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:background="#4A35393C"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="38dp"
+            android:src="@drawable/carregando"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ProgressBar>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

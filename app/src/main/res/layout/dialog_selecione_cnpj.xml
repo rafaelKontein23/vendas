@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/bordas_cima_detalhe_produto"
+    android:layout_marginTop="45dp"
+    android:backgroundTint="@color/white"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/manrope_medium"
+
+        android:text="Selecione um CNPJ"
+        android:textColor="@color/gray900"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fecharCnpjs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView14"
+        app:srcCompat="@drawable/x" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bordas_12_top"
+        android:backgroundTint="@color/gray100"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriacao">
+
+        <TextView
+            android:id="@+id/minhaCarteiraText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+
+            android:outlineAmbientShadowColor="@color/gray1000"
+            android:outlineSpotShadowColor="@color/gray1000"
+
+
+            android:layout_weight="1"
+            android:background="@drawable/bordas_8dp_branca"
+            android:elevation="4dp"
+            android:fontFamily="@font/manrope_medium"
+            android:paddingLeft="4dp"
+            android:paddingTop="8dp"
+
+            android:paddingRight="4dp"
+            android:paddingBottom="8dp"
+            android:text="Minha Carteira"
+            android:textAlignment="center"
+
+            android:textColor="@color/blue500"
+            android:textSize="12sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/proximosText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="1"
+            android:elevation="4dp"
+            android:fontFamily="@font/manrope_medium"
+            android:paddingLeft="4dp"
+            android:paddingTop="8dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="8dp"
+            android:text="Base CNPJs"
+            android:textAlignment="center"
+            android:textColor="@color/gray400"
+            android:textSize="12sp">
+
+        </TextView>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/inputBuscaCliente"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bordas_input_busca"
+        android:drawableStart="@drawable/lupa_cinza"
+        android:drawablePadding="12dp"
+        android:fontFamily="@font/manrope"
+        android:inputType=""
+        android:hint="Buscar por CNPJ, Razão Social ou Cidade"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        android:textColor="@color/gray800"
+        android:textColorHint="@color/gray400"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+    </EditText>
+
+
+    <TextView
+        android:id="@+id/totalCnpjs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="carregando informações..."
+        android:textColor="@color/gray600"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/inputBuscaCliente" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerCnpjs"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        android:clipToPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalCnpjs" />
+
+    <TextView
+        android:id="@+id/descriacao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/roboto"
+        android:textSize="12sp"
+        android:visibility="gone"
+        android:textColor="@color/gray600"
+        android:text="Selecione um CNPJ da sua carteira para gerar o link para venda remota"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constrainImporta"
+        android:layout_width="125dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="24dp"
+        android:elevation="10dp"
+        android:layout_marginBottom="24dp"
+        android:outlineAmbientShadowColor="@color/success300"
+        android:outlineSpotShadowColor="@color/success300"
+        android:background="@drawable/bordas_importa_carteira"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout20"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bordas_importa_carteira"
+
+            android:backgroundTint="@color/success600"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/seta_importar" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/improtaText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Importar"
+            android:textColor="@color/gray50"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout20"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/infoIcones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/totalCnpjs"
+        app:layout_constraintStart_toEndOf="@+id/totalCnpjs"
+        app:layout_constraintTop_toTopOf="@+id/totalCnpjs"
+        app:srcCompat="@drawable/infoiconcinza" />
+
+    <ProgressBar
+        android:id="@+id/progressBarCnpj"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalCnpjs" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

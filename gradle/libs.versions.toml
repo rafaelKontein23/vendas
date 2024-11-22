@@ -16,7 +16,9 @@ camerax = "1.2.2"
 glide = "4.16.0"
 touchimageview = "1.4.1"
 firebaseMessagingKtx = "24.1.0"
-
+mpandroidchart = "3.1.0"
+poi = "5.2.3"
+playServicesLocation = "21.3.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,7 +49,10 @@ glideCompiler = { group = "com.github.bumptech.glide", name = "compiler", versio
 touchimageview = { group = "com.github.MikeOrtiz", name = "TouchImageView", version.ref = "touchimageview" }
 androidx-biometric = { module = "androidx.biometric:biometric", version = "1.2.0-alpha05" }
 firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
-
+mpandroidchart = { group = "com.github.PhilJay", name = "MPAndroidChart", version.ref = "mpandroidchart" }
+poi = { group = "org.apache.poi", name = "poi", version.ref = "poi" }
+poi-ooxml = { group = "org.apache.poi", name = "poi-ooxml", version.ref = "poi" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 
 
 [plugins]

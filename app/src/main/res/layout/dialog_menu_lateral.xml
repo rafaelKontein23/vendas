@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:background="@color/white"
+
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/nomeRepresentante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/gray700"
+        android:textSize="16sp"
+        android:fontFamily="@font/manrope"
+        android:textFontWeight="600"
+        android:letterSpacing="0.025"
+        android:text="Rafael Kon Tein"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecymenuLateral"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView93" />
+
+    <TextView
+        android:id="@+id/cnpjRepresentante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/manrope_medium"
+        android:letterSpacing="0.025"
+        android:text="26.002.955/0001-71"
+        android:textColor="@color/gray500"
+        android:textFontWeight="500"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/nomeRepresentante"
+        app:layout_constraintTop_toBottomOf="@+id/nomeRepresentante" />
+
+    <TextView
+        android:id="@+id/textView93"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="MENU"
+
+        android:textColor="@color/gray500"
+        android:textSize="10sp"
+        android:fontFamily="@font/manrope"
+        android:textFontWeight="600"
+        android:letterSpacing="0.125"
+        app:layout_constraintStart_toStartOf="@+id/cnpjRepresentante"
+        app:layout_constraintTop_toBottomOf="@+id/cnpjRepresentante" />
+
+    <TextView
+        android:id="@+id/sair"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+
+
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/manrope_medium"
+        android:letterSpacing="0.025"
+        android:text="Sair"
+        android:textColor="@color/gray500"
+        android:textFontWeight="500"
+
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/sairIcone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sairIcone"
+        app:layout_constraintTop_toTopOf="@+id/sairIcone" />
+
+    <ImageView
+        android:id="@+id/sairIcone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+
+        android:tint="@color/gray500"
+        app:layout_constraintStart_toStartOf="@+id/RecymenuLateral"
+        app:layout_constraintTop_toBottomOf="@+id/RecymenuLateral"
+        app:srcCompat="@drawable/sair" />
+</androidx.constraintlayout.widget.ConstraintLayout>

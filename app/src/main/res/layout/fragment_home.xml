@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragmentHome"
+    android:background="#F8FAFC"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Views.Fragments.FragmentHome">
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:id="@+id/constraintLayout10"
+       android:layout_width="match_parent"
+
+       android:layout_height="match_parent">
+
+       <androidx.core.widget.NestedScrollView
+           android:id="@+id/scrollView3"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent">
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:layout_width="match_parent"
+               android:paddingBottom="40dp"
+
+               android:layout_height="wrap_content">
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:id="@+id/contrainsBaners"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/bordas_menu_cima"
+                   android:elevation="2dp"
+
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintHorizontal_bias="1.0"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent">
+
+                   <androidx.viewpager2.widget.ViewPager2
+                       android:id="@+id/CarroselBaner"
+                       android:layout_width="match_parent"
+                       android:layout_height="188dp"
+                       android:layout_marginStart="16dp"
+                       android:layout_marginTop="16dp"
+                       android:layout_marginEnd="16dp"
+                       android:orientation="horizontal"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintHorizontal_bias="0.0"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent">
+
+                   </androidx.viewpager2.widget.ViewPager2>
+
+                   <LinearLayout
+                       android:id="@+id/indicatorLayout"
+                       android:layout_width="0dp"
+                       android:layout_height="20dp"
+                       android:layout_alignParentBottom="true"
+                       android:layout_centerHorizontal="true"
+                       android:layout_marginStart="16dp"
+                       android:layout_marginTop="8dp"
+                       android:layout_marginEnd="16dp"
+                       android:layout_marginBottom="12dp"
+                       android:gravity="center"
+                       android:orientation="horizontal"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@+id/CarroselBaner" />
+               </androidx.constraintlayout.widget.ConstraintLayout>
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:id="@+id/constraintLayout17"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="16dp"
+                   android:layout_marginTop="32dp"
+                   android:layout_marginEnd="16dp"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintHorizontal_bias="0.0"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/contrainsBaners">
+
+                   <TextView
+                       android:id="@+id/pedidoText"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="16dp"
+                       android:layout_marginTop="8dp"
+                       android:drawablePadding="4dp"
+                       android:fontFamily="@font/manrope_medium"
+                       android:drawableEnd="@drawable/seta_para_baixo"
+                       android:text="Carrinhos em Aberto"
+                       android:textColor="@color/gray900"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent" />
+
+                   <TextView
+                       android:id="@+id/verMaisResumo"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginEnd="16dp"
+                       android:text="ver mais"
+                       android:visibility="gone"
+                       android:textColor="@color/blue400"
+                       android:textSize="12sp"
+                       app:layout_constraintBottom_toBottomOf="@+id/pedidoText"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintTop_toTopOf="@+id/pedidoText" />
+
+
+                   <androidx.viewpager2.widget.ViewPager2
+                       android:id="@+id/carrosselResumoGanhos"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="16dp"
+                       android:orientation="horizontal"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@+id/pedidoText" />
+
+                   <ImageView
+                       android:id="@+id/imgVisualizarResulmo"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:layout_marginStart="12dp"
+                       android:src="@drawable/sem_visu"
+                       app:layout_constraintBottom_toBottomOf="@+id/pedidoText"
+                       app:layout_constraintStart_toEndOf="@+id/pedidoText"
+                       app:layout_constraintTop_toTopOf="@+id/pedidoText" />
+
+
+               </androidx.constraintlayout.widget.ConstraintLayout>
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+
+                   android:id="@+id/bolinhaPrimiraResumo"
+                   android:layout_width="6dp"
+                   android:layout_height="6dp"
+                   android:layout_marginTop="16dp"
+                   android:background="@drawable/bordas_grafico_home"
+                   android:backgroundTint="@color/blue300"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/constraintLayout17">
+
+               </androidx.constraintlayout.widget.ConstraintLayout>
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+
+                   android:id="@+id/bolinhaSegundaResumo"
+                   android:layout_width="6dp"
+                   android:layout_height="6dp"
+                   android:layout_marginStart="8dp"
+                   android:layout_marginTop="16dp"
+                   android:background="@drawable/bordas_grafico_home"
+                   android:backgroundTint="@color/gray200"
+                   app:layout_constraintStart_toEndOf="@+id/bolinhaPrimiraResumo"
+                   app:layout_constraintTop_toBottomOf="@+id/constraintLayout17">
+
+               </androidx.constraintlayout.widget.ConstraintLayout>
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:id="@+id/constraintLayout18"
+                   android:layout_width="match_parent"
+                   android:layout_height="259dp"
+                   android:layout_marginStart="16dp"
+                   android:layout_marginTop="32dp"
+
+                   android:layout_marginEnd="16dp"
+
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/bolinhaPrimiraResumo">
+
+
+                   <androidx.viewpager2.widget.ViewPager2
+                       android:id="@+id/viewPagerGraficos"
+                       android:layout_width="match_parent"
+                       android:layout_height="0dp"
+                       android:orientation="horizontal"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent" />
+               </androidx.constraintlayout.widget.ConstraintLayout>
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+
+                   android:id="@+id/bolinhaPrimiraGrafico"
+                   android:layout_width="6dp"
+                   android:layout_height="6dp"
+                   android:layout_marginTop="16dp"
+                   android:visibility="gone"
+                   android:background="@drawable/bordas_grafico_home"
+                   android:backgroundTint="@color/blue300"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/constraintLayout18">
+
+               </androidx.constraintlayout.widget.ConstraintLayout>
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+
+                   android:id="@+id/bolinhaSegundaGrafico"
+                   android:layout_width="6dp"
+                   android:layout_height="6dp"
+                   android:layout_marginStart="8dp"
+                   android:visibility="gone"
+                   android:layout_marginTop="16dp"
+                   android:background="@drawable/bordas_grafico_home"
+                   android:backgroundTint="@color/gray200"
+                   app:layout_constraintStart_toEndOf="@+id/bolinhaPrimiraResumo"
+                   app:layout_constraintTop_toBottomOf="@+id/constraintLayout18">
+
+               </androidx.constraintlayout.widget.ConstraintLayout>
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:id="@+id/containerPedidosPendentes"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="16dp"
+                   android:layout_marginTop="24dp"
+                   android:layout_marginEnd="16dp"
+                   android:background="@drawable/bordas_grafico_home"
+                   android:elevation="2dp"
+                   android:outlineAmbientShadowColor="@color/gray400"
+                   android:outlineSpotShadowColor="@color/gray400"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/constraisCotacao">
+
+                   <TextView
+                       android:id="@+id/graficoText"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="16dp"
+                       android:layout_marginTop="8dp"
+                       android:drawablePadding="4dp"
+                       android:fontFamily="@font/manrope_medium"
+                       android:text="Carrinhos em Aberto"
+                       android:textColor="@color/gray900"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent" />
+
+                   <TextView
+                       android:id="@+id/verMaisPedidoPendentes"
+                       android:layout_width="wrap_content"
+                       android:layout_height="0dp"
+                       android:layout_marginEnd="16dp"
+                       android:text="ver mais"
+                       android:textColor="@color/blue400"
+                       android:textSize="12sp"
+                       app:layout_constraintBottom_toBottomOf="@+id/graficoText"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintTop_toTopOf="@+id/graficoText" />
+
+                   <androidx.recyclerview.widget.RecyclerView
+                       android:id="@+id/RecyclerViewPedidosPendentes"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="8dp"
+                       android:layout_marginBottom="12dp"
+                       android:nestedScrollingEnabled="false"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@+id/graficoText">
+
+                   </androidx.recyclerview.widget.RecyclerView>
+               </androidx.constraintlayout.widget.ConstraintLayout>
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:id="@+id/constraisCotacao"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="32dp"
+                   android:layout_marginBottom="8dp"
+                   android:background="@drawable/bordas_grafico_home"
+                   android:elevation="2dp"
+                   android:outlineAmbientShadowColor="@color/gray400"
+                   android:outlineSpotShadowColor="@color/gray400"
+                   app:layout_constraintBottom_toTopOf="@+id/containerPedidosPendentes"
+                   app:layout_constraintEnd_toEndOf="@+id/constraintLayout18"
+                   app:layout_constraintStart_toStartOf="@+id/constraintLayout18"
+                   app:layout_constraintTop_toTopOf="@+id/bolinhaPrimiraGrafico">
+
+                   <TextView
+                       android:id="@+id/textView85"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="16dp"
+                       android:layout_marginTop="8dp"
+                       android:fontFamily="@font/manrope_medium"
+
+                       android:letterSpacing="0.015"
+                       android:text="Cotações Recebidas"
+
+                       android:textColor="@color/gray900"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent">
+
+                   </TextView>
+
+                   <View
+                       android:id="@+id/view17"
+                       android:layout_width="match_parent"
+                       android:layout_height="1dp"
+                       android:layout_marginTop="8dp"
+                       android:background="@color/gray100"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@+id/textView85" />
+
+                   <androidx.recyclerview.widget.RecyclerView
+                       android:id="@+id/recyCotacao"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="8dp"
+                       android:nestedScrollingEnabled="false"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@+id/view17" />
+               </androidx.constraintlayout.widget.ConstraintLayout>
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+       </androidx.core.widget.NestedScrollView>
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
