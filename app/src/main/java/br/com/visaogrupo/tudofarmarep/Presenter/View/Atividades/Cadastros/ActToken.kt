@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Home.ActHome
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Factory.ViewModelActTokenFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActToken
 import br.com.visaogrupo.tudofarmarep.R
@@ -115,13 +116,15 @@ class ActToken : AppCompatActivity() {
             if(it != null){
                   if(it.Representante_ID != 0){
                       viewModelActToken.salvarDadosUsuario(it.Representante_ID,it.Nome,it.Hash,it.FotoPerfil)
+                      startActivity(Intent(this,ActHome::class.java))
+
                   }else{
-                      if (it.status_cod == 0){
+                      if (it.Status_Cod == 0){
                           viewModelActToken.mudaStatusCadastro()
                           startActivity(Intent(this,ActCabecalho::class.java))
 
                       }else{
-                          Alertas.alertaErro(this,it.mensagem,getString(R.string.tituloErro)){
+                          Alertas.alertaErro(this,it.Mensagem,getString(R.string.tituloErro)){
                           }
                       }
                   }

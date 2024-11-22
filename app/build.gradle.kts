@@ -9,7 +9,9 @@ plugins {
 android {
     namespace = "br.com.visaogrupo.tudofarmarep"
     compileSdk = 34
-
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
     defaultConfig {
         applicationId = "br.com.visaogrupo.tudofarmarep"
         minSdk = 26
@@ -19,6 +21,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildFeatures {
         viewBinding = true
     }

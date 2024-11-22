@@ -21,7 +21,7 @@ import br.com.visaogrupo.tudofarmarep.Objetos.CarrinhoItemCotacao
 import br.com.visaogrupo.tudofarmarep.Objetos.Cnpj
 import br.com.visaogrupo.tudofarmarep.Objetos.Cotacao
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Syncs.retrofit.URLs
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
 import br.com.visaogrupo.tudofarmarep.Views.dialogs.DialogCarrinhoAberto
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.CoroutineScope

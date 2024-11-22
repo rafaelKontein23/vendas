@@ -61,7 +61,7 @@ import br.com.visaogrupo.tudofarmarep.Objetos.Empresa
 import br.com.visaogrupo.tudofarmarep.Objetos.LojaComparador
 import br.com.visaogrupo.tudofarmarep.Objetos.Lojas
 import br.com.visaogrupo.tudofarmarep.Objetos.Produtos
-import br.com.visaogrupo.tudofarmarep.Syncs.retrofit.URLs
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
 import br.com.visaogrupo.tudofarmarep.Views.Activitys.ActCarrinho
 
 import br.com.visaogrupo.tudofarmarep.Views.dialogs.DialogFiltros

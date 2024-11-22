@@ -12,7 +12,7 @@ import br.com.visaogrupo.tudofarmarep.Carga.interfaces.AtualizaProdutosOperadore
 import br.com.visaogrupo.tudofarmarep.Objetos.Lojas
 import br.com.visaogrupo.tudofarmarep.Objetos.Operadores
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Syncs.retrofit.URLs
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
 import br.com.visaogrupo.tudofarmarep.Views.dialogs.DialogOpls
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.MainScope

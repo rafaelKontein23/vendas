@@ -25,7 +25,6 @@ import br.com.visaogrupo.tudofarmarep.Carga.ultis.FormatarTexto
 import br.com.visaogrupo.tudofarmarep.Objetos.CarrinhoItemCotacao
 import br.com.visaogrupo.tudofarmarep.Objetos.Cnpj
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Syncs.retrofit.URLs
 import br.com.visaogrupo.tudofarmarep.Views.Fragments.FragmentHome
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

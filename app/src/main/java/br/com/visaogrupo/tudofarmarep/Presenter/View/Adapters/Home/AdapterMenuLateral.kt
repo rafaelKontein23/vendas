@@ -13,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import br.com.visaogrupo.tudofarmarep.Carga.interfaces.AtualizaWebView
 import br.com.visaogrupo.tudofarmarep.Objetos.Menulateral
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Syncs.retrofit.URLs
-import br.com.visaogrupo.tudofarmarep.Views.Activitys.ActWebViewPaginas
-import br.com.visaogrupo.tudofarmarep.Views.dialogs.DialogMenuLateral
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
 import com.bumptech.glide.Glide
 
 class AdapterMenuLateral(val listaMenuLateral: ArrayList<Menulateral>, val atualizaWebView: AtualizaWebView, val dialogMenuLateral: Dialog) : RecyclerView.Adapter<AdapterMenuLateral.ViewHolderMenuLateral>() {

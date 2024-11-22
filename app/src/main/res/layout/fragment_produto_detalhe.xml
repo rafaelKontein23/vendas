@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    android:background="#666666">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bordas_cima_detalhe_produto"
+            android:backgroundTint="@color/white">
+
+            <ImageView
+                android:id="@+id/fecharDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/x" />
+
+            <ImageView
+                android:id="@+id/imgProduto"
+                android:layout_width="312dp"
+                android:layout_height="186dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/padrao" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constarinLinks"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginStart="16dp"
+                android:visibility="gone"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bordas_redonda_cinza"
+                android:backgroundTint="@color/blue300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgProduto">
+
+                <TextView
+                    android:id="@+id/tituloFicha"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:text="Ficha"
+                    android:textColor="@color/gray50"
+                    android:textFontWeight="400"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tituloBulas"
+                    app:layout_constraintTop_toBottomOf="@+id/fichaIcon" />
+
+                <TextView
+                    android:id="@+id/tituloSite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:text="Site"
+                    android:textColor="@color/gray50"
+
+
+                    android:textFontWeight="400"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tituloMidias"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/siteIcon" />
+
+                <TextView
+                    android:id="@+id/tituloMidias"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:text="Mídias"
+                    android:textColor="@color/gray50"
+
+                    android:textFontWeight="400"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tituloBulas"
+                    app:layout_constraintStart_toEndOf="@+id/tituloSite"
+                    app:layout_constraintTop_toBottomOf="@+id/mediaIcon" />
+
+                <TextView
+                    android:id="@+id/tituloBulas"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:text="Bulas"
+                    android:textColor="@color/gray50"
+
+
+                    android:textFontWeight="400"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tituloFicha"
+                    app:layout_constraintStart_toEndOf="@+id/tituloMidias"
+                    app:layout_constraintTop_toBottomOf="@+id/bulasIcon" />
+
+                <ImageView
+                    android:id="@+id/siteIcon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toStartOf="@+id/mediaIcon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/site" />
+
+                <ImageView
+                    android:id="@+id/mediaIcon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toStartOf="@+id/bulasIcon"
+                    app:layout_constraintStart_toEndOf="@+id/siteIcon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/midia" />
+
+                <ImageView
+                    android:id="@+id/bulasIcon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="1dp"
+                    app:layout_constraintEnd_toStartOf="@+id/fichaIcon"
+                    app:layout_constraintStart_toEndOf="@+id/mediaIcon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/bulas" />
+
+                <ImageView
+                    android:id="@+id/fichaIcon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/bulasIcon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ficha" />
+
+                <View
+                    android:id="@+id/view14"
+                    android:layout_width="1dp"
+                    android:background="#66F8FAFC"
+                    android:layout_height="21dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/siteIcon"
+                    app:layout_constraintStart_toEndOf="@+id/siteIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view15"
+                    android:layout_width="1dp"
+                    android:layout_height="21dp"
+                    android:background="#66F8FAFC"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/mediaIcon"
+                    app:layout_constraintStart_toEndOf="@+id/mediaIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view16"
+                    android:layout_width="1dp"
+                    android:layout_height="21dp"
+                    android:background="#66F8FAFC"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/fichaIcon"
+                    app:layout_constraintStart_toEndOf="@+id/bulasIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/nomeProdutos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="nome do Produto"
+                android:textColor="@color/gray900"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constarinLinks" />
+
+            <TextView
+                android:id="@+id/barra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="0000000000000"
+                android:textColor="@color/blue500"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/nomeProdutos"
+                app:layout_constraintTop_toBottomOf="@+id/nomeProdutos" />
+
+            <TextView
+                android:id="@+id/valorPorSemDesconto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:visibility="gone"
+                android:text="R$ 00,00"
+                android:textColor="@color/gray900"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/barra"
+                app:layout_constraintTop_toBottomOf="@+id/barra" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/modalValores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bordas_redonda_cinza"
+                android:paddingLeft="16dp"
+                android:paddingTop="8dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/valorPorSemDesconto">
+
+                <TextView
+                    android:id="@+id/textView41"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="de"
+                    android:textColor="@color/gray500"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/textView43"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView43"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="desconto"
+                    android:textColor="@color/gray500"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/textView42"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textView41"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView42"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="por"
+                    android:textColor="@color/gray500"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textView43"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/valorDe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="R$ 00,00"
+                    android:textColor="@color/gray900"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/textView41"
+                    app:layout_constraintStart_toStartOf="@+id/textView41"
+                    app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+                <TextView
+                    android:id="@+id/valorDesconto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0%"
+                    android:textColor="@color/gray900"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/textView43"
+                    app:layout_constraintStart_toEndOf="@+id/textView41"
+                    app:layout_constraintTop_toBottomOf="@+id/textView43" />
+
+                <TextView
+                    android:id="@+id/valorPor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="R$ 00,00"
+                    android:textColor="@color/gray900"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/textView42"
+                    app:layout_constraintStart_toEndOf="@+id/textView43"
+                    app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+                <TextView
+                    android:id="@+id/stTextUnitario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="R$ 19,64"
+                    android:textColor="@color/danger500"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/valorPor"
+                    app:layout_constraintStart_toStartOf="@+id/valorPor"
+                    app:layout_constraintTop_toBottomOf="@+id/valorPor" />
+
+                <View
+                    android:id="@+id/view9"
+                    android:layout_width="1dp"
+                    android:layout_height="16dp"
+                    android:background="@color/gray300"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textView41"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view10"
+                    android:layout_width="1dp"
+                    android:layout_height="16dp"
+                    android:background="@color/gray300"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textView42"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bordas_redonda_cinza"
+                android:paddingBottom="4dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/modalValores">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/containViewLoiu"
+                    android:layout_width="0dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/bordas_redonda_cinza"
+                    android:backgroundTint="@color/gray900"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/visualizarComissao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/visualiza" />
+
+                    <TextView
+                        android:id="@+id/tituloComiisao"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Loiu"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/visualizarComissao"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/InfosComiisao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/containViewLoiu">
+
+                    <TextView
+                        android:id="@+id/textView50"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+
+                        android:text="percentual"
+                        android:textColor="@color/gray500"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toStartOf="@+id/textView51"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView51"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="unitária"
+                        android:textColor="@color/gray500"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toStartOf="@+id/textView52"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/textView50"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView52"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+                        android:text="Total"
+                        android:textColor="@color/gray500"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/textView51"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/valorRealComissao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/gray900"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/textView51"
+                        app:layout_constraintStart_toEndOf="@+id/textView50"
+                        app:layout_constraintTop_toBottomOf="@+id/textView50" />
+
+                    <TextView
+                        android:id="@+id/valorPorcentagem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0%"
+                        android:textColor="@color/gray900"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/textView50"
+                        app:layout_constraintStart_toStartOf="@+id/textView50"
+                        app:layout_constraintTop_toBottomOf="@+id/textView51" />
+
+                    <TextView
+                        android:id="@+id/valorComiisao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:text="-"
+                        android:textColor="@color/gray900"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/textView52"
+                        app:layout_constraintStart_toEndOf="@+id/textView51"
+                        app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+                    <View
+                        android:id="@+id/view12"
+                        android:layout_width="1dp"
+                        android:layout_height="16dp"
+                        android:background="@color/gray300"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/textView50" />
+
+                    <View
+                        android:id="@+id/view13"
+                        android:layout_width="1dp"
+                        android:layout_height="16dp"
+                        android:background="@color/gray300"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/textView52"
+                        app:layout_constraintStart_toEndOf="@+id/textView51" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textView72"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="42dp"
+                android:text="total"
+                android:textColor="@color/gray500"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout11"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout11" />
+
+            <TextView
+                android:id="@+id/totalValor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R$ 00,00"
+                android:textColor="@color/gray900"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/textView72"
+                app:layout_constraintTop_toBottomOf="@+id/textView72" />
+
+            <TextView
+                android:id="@+id/botaoMenos"
+                android:layout_width="36dp"
+                android:layout_height="32dp"
+                android:background="@drawable/bordas_botao_esquerdo_menos"
+
+                android:clickable="true"
+                android:gravity="center"
+                android:text="-"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/inputQuantidade"
+                app:layout_constraintTop_toTopOf="@+id/inputQuantidade" />
+
+            <TextView
+                android:id="@+id/botaoMais"
+                android:layout_width="36dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="16dp"
+
+                android:background="@drawable/bordas_botao_direito_mais"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="+"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/inputQuantidade" />
+
+            <EditText
+                android:id="@+id/inputQuantidade"
+                android:layout_width="60dp"
+                android:layout_height="32dp"
+                android:hint="0"
+                android:maxLength="5"
+                android:gravity="center"
+                android:inputType="number"
+                android:textColor="@color/gray500"
+                android:textSize="14sp"
+                android:background="@drawable/bordas_input_produto"
+                app:layout_constraintBottom_toBottomOf="@+id/totalValor"
+                app:layout_constraintEnd_toStartOf="@+id/botaoMais"
+                app:layout_constraintTop_toTopOf="@+id/textView72">
+
+            </EditText>
+
+            <TextView
+                android:id="@+id/continuar"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bordas_button_filtrar"
+                android:backgroundTint="@color/successg500"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Continuar"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stTextTotal" />
+
+            <ImageView
+                android:id="@+id/imageView26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/line" />
+
+            <TextView
+                android:id="@+id/stTextTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="R$ 19,64"
+                android:textColor="@color/danger500"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/totalValor"
+                app:layout_constraintTop_toBottomOf="@+id/totalValor" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</FrameLayout>

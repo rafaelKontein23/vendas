@@ -1,11 +1,9 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Home
 
 import android.animation.ObjectAnimator
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.util.Log
 import android.view.animation.LinearInterpolator
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -14,7 +12,6 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
@@ -34,7 +31,7 @@ import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Home.TaskConstroiHa
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
-import br.com.visaogrupo.tudofarmarep.Utils.bagunçaHome.Requests
+import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.Requests
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

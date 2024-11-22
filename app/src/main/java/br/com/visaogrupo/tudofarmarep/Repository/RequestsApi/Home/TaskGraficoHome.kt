@@ -3,9 +3,9 @@ package br.com.visaogrupo.tudofarmarep.Carga.Tasks.TasksHome
 import br.com.visaogrupo.tudofarmarep.Carga.interfaces.Isync
 import br.com.visaogrupo.tudofarmarep.Objetos.GraficoMarca
 
-import br.com.visaogrupo.tudofarmarep.Utils.bagunçaHome.Criptho
-import br.com.visaogrupo.tudofarmarep.Utils.bagunçaHome.RetrofitWS
-import br.com.visaogrupo.tudofarmarep.Utils.bagunçaHome.Support
+import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.Criptho
+import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.RetrofitWS
+import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.Support
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okio.IOException

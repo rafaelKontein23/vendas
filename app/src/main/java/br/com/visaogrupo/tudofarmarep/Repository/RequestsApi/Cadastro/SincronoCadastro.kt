@@ -12,8 +12,8 @@ interface SincronoCadastro {
     fun P_Mobile_Suporte_LinkZap_Lista
     (@Body responseBody: RequestBody): Call<ResponseBody>
 
-    @POST("tudofarmarep/solicita/token/celular")
-    fun P_Portal_Cadastro_SolicitaToken
+    @POST("solicita/token/Loiu")
+    fun P_SolicitaToken
     (@Body responseBody: RequestBody): Call<ResponseBody>
 
     @POST("tudofarmarep/confirma/token")

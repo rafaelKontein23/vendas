@@ -16,8 +16,8 @@ data class RespostaLogin(
     val FotoPerfil:String,
     val FotoDocumento:String,
     val Hash:String,
-    val mensagem:String,
-    val status_cod:Int,
+    val Mensagem:String,
+    val Status_Cod:Int,
 )
 data class RespostaLoginErro(
     val status_cod:Int,

@@ -49,10 +49,10 @@ import br.com.visaogrupo.tudofarmarep.Objetos.Empresa
 import br.com.visaogrupo.tudofarmarep.Objetos.Lojas
 import br.com.visaogrupo.tudofarmarep.Objetos.Produtos
 import br.com.visaogrupo.tudofarmarep.Objetos.Progressiva
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Loja.ActLojaOnlineWebView
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Syncs.retrofit.URLs
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
 import br.com.visaogrupo.tudofarmarep.Views.Activitys.ActCarrinho
-import br.com.visaogrupo.tudofarmarep.Views.Activitys.ActLojaOnlineWebView
 import br.com.visaogrupo.tudofarmarep.Views.Fragments.reprsentanteID
 import br.com.visaogrupo.tudofarmarep.Views.dialogs.DialogFiltros
 import br.com.visaogrupo.tudofarmarep.Views.dialogs.DialogFiltrosLojas
@@ -516,7 +516,7 @@ class AdapterRecyclerLojas(
                 val spannable = SpannableString(nomeBarra)
                 val barraStart = nomeBarra.indexOf(produto.Barra)
                 val barraEnd = barraStart + produto.Barra.length
-                val blueColor = ContextCompat.getColor(itemView.context, R.color.azulLoiu)
+                val blueColor = ContextCompat.getColor(itemView.context, R.color.blue500)
 
 
                 inputAdicionar.setOnEditorActionListener { v, actionId, event ->

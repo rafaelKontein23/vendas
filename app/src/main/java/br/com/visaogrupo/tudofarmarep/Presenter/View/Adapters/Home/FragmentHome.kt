@@ -39,9 +39,13 @@ import br.com.visaogrupo.tudofarmarep.Controlers.ControlerFragmentHome
 import br.com.visaogrupo.tudofarmarep.Objetos.Banners
 import br.com.visaogrupo.tudofarmarep.Objetos.CarrinhoAbertos
 import br.com.visaogrupo.tudofarmarep.Objetos.PedidosPendentes
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.MainActivity
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.home.DialogSeledorData
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.FragmentGraficosHome
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.FragmentResumoComissao
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.FragmentResumoPedidosAtendidos
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Views.Activitys.Tela_comecar
-import br.com.visaogrupo.tudofarmarep.Views.dialogs.DialogSeledorData
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -237,7 +241,7 @@ class FragmentHome( ) : Fragment(), AtualizaMesResumo{
                 withContext(Dispatchers.Main){
                     atualizaProgres?.escondeProgress(false)
                     Alertas.alertaErro(contextHome!!, "Verifique sua conexão com a internet e tente novamente.", "Ops!"){
-                        val  intent = Intent(contextHome!!, Tela_comecar::class.java)
+                        val  intent = Intent(contextHome!!, MainActivity::class.java)
                         context.startActivity(intent)
                     }
                 }

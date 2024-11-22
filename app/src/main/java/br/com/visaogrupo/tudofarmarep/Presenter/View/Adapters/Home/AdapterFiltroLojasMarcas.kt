@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.visaogrupo.tudofarmarep.Objetos.Lojas
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Syncs.retrofit.URLs
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
 import com.bumptech.glide.Glide
 
 class AdapterFiltroLojasMarcas (MarcasLojas: ArrayList<Pair<Int, Any>>, constrainFiltroMarcaTodos:ConstraintLayout, checkFiltroMarcaTodos:CheckBox) : RecyclerView.Adapter<AdapterFiltroLojasMarcas.ViewHolderFiltroLojaMarca>() {

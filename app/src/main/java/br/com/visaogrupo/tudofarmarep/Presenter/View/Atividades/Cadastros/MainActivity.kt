@@ -78,9 +78,16 @@ class MainActivity : AppCompatActivity() {
                 if(it.Representante_ID != 0){
                     viewModelMainActivity.salvarDadosUsuario(it.Representante_ID,it.Nome,it.Hash,it.FotoPerfil)
                 }else{
-                    Alertas.alertaErro(this,getString(R.string.erroDeLogin),getString(R.string.tituloErro)){
+                    if(it.Status_Cod == 99){
+                        Alertas.alertaErro(this,it.Mensagem,getString(R.string.tituloErro)){
+                            startActivity(Intent(this,ActToken::class.java))
+                        }
+                    }else{
+                        Alertas.alertaErro(this,getString(R.string.erroDeLogin),getString(R.string.tituloErro)){
 
+                        }
                     }
+
                 }
             }else{
                 Alertas.alertaErro(this,getString(R.string.erroPadrao),getString(R.string.tituloErro)){

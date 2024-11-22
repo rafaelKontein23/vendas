@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.visaogrupo.tudofarmarep.Carga.interfaces.InterfaceScrolaLista
 import br.com.visaogrupo.tudofarmarep.Objetos.Lojas
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Syncs.retrofit.URLs
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
 import com.bumptech.glide.Glide
 
 class AdapterFiltrosLojas(listaLojasFiltros : ArrayList<Lojas>, interfaceScrolaLista: InterfaceScrolaLista) : RecyclerView.Adapter<AdapterFiltrosLojas.viewHolderFiltroLoja>() {
