@@ -18,6 +18,8 @@ touchimageview = "1.4.1"
 firebaseMessagingKtx = "24.1.0"
 mpandroidchart = "3.1.0"
 poi = "5.2.3"
+picasso = "2.71828"
+
 playServicesLocation = "21.3.0"
 
 [libraries]
@@ -53,6 +55,7 @@ mpandroidchart = { group = "com.github.PhilJay", name = "MPAndroidChart", versio
 poi = { group = "org.apache.poi", name = "poi", version.ref = "poi" }
 poi-ooxml = { group = "org.apache.poi", name = "poi-ooxml", version.ref = "poi" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
+picasso = { module = "com.squareup.picasso:picasso", version = "2.71828" }
 
 
 [plugins]

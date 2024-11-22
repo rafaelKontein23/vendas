@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/contrainInfos">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contrainInfos"
+        android:layout_width="match_parent"
+        android:elevation="4dp"
+        android:paddingBottom="12dp"
+
+
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordas_menu_cima"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/cnpjSelecionado"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:lineHeight="25.6dp"
+            android:text="11.985.401/0001-01"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/adicionarCarteira"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/razaoSocial"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:lineHeight="19.2dp"
+            android:text="Visao Grupo s e LTDA"
+            android:textColor="@color/white"
+            android:textFontWeight="500"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/cnpjSelecionado"
+            app:layout_constraintTop_toBottomOf="@+id/cnpjSelecionado" />
+
+        <TextView
+            android:id="@+id/enderecoCNPJ"
+            android:layout_width="0dp"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:drawableRight="@drawable/rota"
+            android:text="Rua maria Lucinda 1765 - São Paulo - SP"
+            android:textColor="@color/gray200"
+            app:layout_constraintEnd_toEndOf="@+id/razaoSocial"
+            app:layout_constraintStart_toStartOf="@+id/razaoSocial"
+            app:layout_constraintTop_toBottomOf="@+id/razaoSocial" />
+
+        <TextView
+            android:id="@+id/adicionarCarteira"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Carteira"
+            android:background="@drawable/bordas_100_stroke_1_blue_300"
+            android:drawablePadding="4dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:paddingEnd="8dp"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:paddingStart="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/cnpjSelecionado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cnpjSelecionado" />
+
+        <ImageView
+            android:id="@+id/imgCarteira"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/adicionarCarteira"
+            app:layout_constraintStart_toStartOf="@+id/adicionarCarteira"
+            app:layout_constraintTop_toTopOf="@+id/adicionarCarteira"
+            app:srcCompat="@drawable/carteira" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:paddingBottom="16dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contrainInfos">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/CarroselBaner"
+            android:layout_width="match_parent"
+            android:layout_height="188dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.viewpager2.widget.ViewPager2>
+
+        <LinearLayout
+            android:id="@+id/indicatorLayout"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CarroselBaner" />
+
+        <TextView
+            android:id="@+id/lojasDisponivel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/roboto_medium"
+            android:lineSpacingExtra="6sp"
+            android:text="Lojas Disponíveis"
+
+            android:textColor="@color/gray600"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/constrainFiltroLoja"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/constrainFiltroLoja" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constrainFiltroLoja"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bordas_filtros"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/indicatorLayout">
+
+            <ImageView
+                android:id="@+id/imageView20"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="16dp"
+                android:tint="@color/gray400"
+                app:layout_constraintBottom_toBottomOf="@+id/filtroLojas"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/filtroLojas"
+                app:srcCompat="@drawable/iconarrow" />
+
+            <TextView
+                android:id="@+id/filtroLojas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Todas Lojas"
+                android:textColor="@color/gray600"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0">
+
+            </TextView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

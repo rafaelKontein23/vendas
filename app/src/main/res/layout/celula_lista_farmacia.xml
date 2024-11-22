@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constain_celula"
+    android:layout_width="match_parent"
+    android:layout_marginStart="24dp"
+    android:layout_marginEnd="24dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="8dp"
+    android:paddingBottom="8dp"
+    android:paddingEnd="16dp"
+    android:paddingStart="16dp"
+    android:background="@drawable/bordascelula"
+    android:backgroundTint="#5494A3B8"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/predio_farma"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/titulo_farma"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/predio_lista" />
+
+    <TextView
+        android:id="@+id/titulo_farma"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/inter"
+        android:letterSpacing=".025"
+        android:lineHeight="20dp"
+        android:text="TextView"
+        android:textColor="#0F172A"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/predio_farma"
+        app:layout_constraintTop_toBottomOf="@+id/disatnciaPDV" />
+
+    <TextView
+        android:id="@+id/rua_farma"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+
+        android:layout_marginEnd="16dp"
+        android:letterSpacing=".05"
+        android:lineHeight="18dp"
+
+
+        android:text="TextView"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/predio_farma"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_farma" />
+
+    <TextView
+        android:id="@+id/cep_farma"
+        android:layout_width="0dp"
+
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:letterSpacing=".05"
+        android:lineHeight="18dp"
+        android:text="TextView"
+        android:textSize="12dp"
+
+
+        app:layout_constraintEnd_toEndOf="@+id/rua_farma"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/rua_farma"
+        app:layout_constraintTop_toBottomOf="@+id/rua_farma" />
+
+    <TextView
+        android:id="@+id/disatnciaPDV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:drawableStart="@drawable/iconarrow"
+        android:gravity="start|center"
+        android:text="TextView"
+
+
+        android:textSize="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/predio_farma"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/acessar_pdvs"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/borda_arredondada"
+        android:backgroundTint="@color/preto"
+        android:drawableEnd="@drawable/seta_direita"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
+        android:text="Acessar PDV"
+
+        android:textColor="@color/branco"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/cep_farma"
+        app:layout_constraintTop_toBottomOf="@+id/cnpj_farma" />
+
+    <TextView
+        android:id="@+id/cnpj_farma"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/predio_farma"
+        app:layout_constraintTop_toBottomOf="@+id/cep_farma" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

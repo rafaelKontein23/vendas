@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:id="@+id/contrainsProdtudos"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/nomeProdutoAaZ"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:letterSpacing="0.025"
+        android:text="CREME DENTAL COLGATE SENSITIVE PRO ALIVIO IMEDIATO 60G - 7898100243150"
+        android:textColor="@color/gray900"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/lixeira"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/valorPF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="R$ 24,36"
+
+        android:textColor="@color/gray400"
+        android:textSize="12dp"
+
+        app:layout_constraintStart_toStartOf="@+id/nomeProdutoAaZ"
+        app:layout_constraintTop_toBottomOf="@+id/nomeProdutoAaZ" />
+
+    <EditText
+        android:id="@+id/inputAdicionar"
+        android:layout_width="38dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="16dp"
+        android:inputType="numberDecimal"
+        android:gravity="center"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/gray800"
+        android:maxLength="5"
+        android:background="@drawable/bordas_input_produto_aaz"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nomeProdutoAaZ">
+
+    </EditText>
+
+    <TextView
+        android:id="@+id/lixeira"
+        android:layout_width="20dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bordas_lixeira"
+        android:text=""
+        android:backgroundTint="@color/danger500"
+        android:drawableBottom="@drawable/lixeira"
+        android:paddingBottom="7dp"
+        app:layout_constraintBottom_toBottomOf="@+id/inputAdicionar"
+        app:layout_constraintEnd_toStartOf="@+id/inputAdicionar"
+        app:layout_constraintTop_toTopOf="@+id/inputAdicionar" />
+
+    <TextView
+        android:id="@+id/textDeconto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text=""
+        android:textColor="@color/success600"
+
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/valorPF"
+        app:layout_constraintStart_toEndOf="@+id/valorPF"
+        app:layout_constraintTop_toTopOf="@+id/valorPF" />
+
+    <TextView
+        android:id="@+id/valorComDesconto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text=""
+        android:textColor="@color/gray900"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/textDeconto"
+        app:layout_constraintTop_toBottomOf="@+id/nomeProdutoAaZ" />
+
+    <TextView
+        android:id="@+id/totalSomado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="R$ 00,00"
+        android:textStyle="bold"
+        android:textColor="@color/gray900"
+        app:layout_constraintEnd_toEndOf="@+id/inputAdicionar"
+        app:layout_constraintTop_toBottomOf="@+id/inputAdicionar" />
+
+    <TextView
+        android:id="@+id/stTextTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text=""
+        android:textColor="@color/danger500"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/totalSomado"
+        app:layout_constraintTop_toBottomOf="@+id/totalSomado" />
+
+    <TextView
+        android:id="@+id/stTextUnitario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text=""
+        android:textColor="@color/danger500"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/valorComDesconto"
+        app:layout_constraintStart_toEndOf="@+id/valorComDesconto" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/gray200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/valorComDesconto" />
+</androidx.constraintlayout.widget.ConstraintLayout>

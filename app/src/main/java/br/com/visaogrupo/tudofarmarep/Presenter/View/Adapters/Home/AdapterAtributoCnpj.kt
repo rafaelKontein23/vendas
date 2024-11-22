@@ -7,7 +7,6 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.visaogrupo.tudofarmarep.Objetos.Atributo
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Syncs.retrofit.URLs
 import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
@@ -30,8 +29,6 @@ class AdapterAtributoCnpj (val listaAtributos: ArrayList<Atributo>): RecyclerVie
 
             }
         }
-
-
     }
 
     override fun getItemCount(): Int {

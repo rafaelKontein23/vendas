@@ -259,7 +259,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:fontFamily="@font/marope"
+            android:fontFamily="@font/manrope"
             android:textColor="@color/gray500"
             android:text="Atualizando Cargas..."
             android:textSize="12sp"

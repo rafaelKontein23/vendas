@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/constarinCotacao"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_marca"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/bordas_imagem"
+            android:padding="9dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.514"
+            app:srcCompat="@drawable/excluirfoto" />
+
+        <TextView
+            android:id="@+id/razaoSocialCotacao"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/roboto"
+            android:letterSpacing="0.015"
+            android:text="DROGARIA FAPE LTDA"
+            android:textColor="@color/gray800"
+            android:textFontWeight="550"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/valorTotalPedido"
+            app:layout_constraintStart_toEndOf="@+id/img_marca"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/cnpjCotacao"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/roboto"
+
+            android:letterSpacing="0.015"
+            android:text="26.002.955/0001-01"
+            android:textColor="@color/gray500"
+            android:textFontWeight="400"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/valorTotalPedido"
+            app:layout_constraintStart_toStartOf="@+id/razaoSocialCotacao"
+            app:layout_constraintTop_toBottomOf="@+id/razaoSocialCotacao" />
+
+        <TextView
+            android:id="@+id/nomeDonoFarmacia"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/roboto"
+            android:letterSpacing="0.015"
+            android:text="Rafael Kon"
+            android:textColor="@color/gray500"
+            android:textFontWeight="400"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/razaoSocialCotacao"
+            app:layout_constraintTop_toBottomOf="@+id/cnpjCotacao" />
+
+        <TextView
+            android:id="@+id/nomeLojaCotacao"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/roboto"
+            android:letterSpacing="0.015"
+            android:text="Colgate - Santa Cruz"
+            android:textColor="@color/gray500"
+            android:textFontWeight="400"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/valorTotalPedido"
+            app:layout_constraintStart_toStartOf="@+id/razaoSocialCotacao"
+            app:layout_constraintTop_toBottomOf="@+id/nomeDonoFarmacia" />
+
+
+        <TextView
+            android:id="@+id/valorTotalPedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/roboto"
+            android:letterSpacing="0.015"
+            android:text="R$ 2019,20"
+            android:textColor="@color/gray800"
+            android:textFontWeight="600"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/cnpjCotacao"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/razaoSocialCotacao" />
+
+        <TextView
+            android:id="@+id/dtaPedido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="28/08"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toEndOf="@+id/valorTotalPedido"
+            app:layout_constraintStart_toStartOf="@+id/valorTotalPedido"
+            app:layout_constraintTop_toBottomOf="@+id/valorTotalPedido" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/viewLinha"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/gray100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
