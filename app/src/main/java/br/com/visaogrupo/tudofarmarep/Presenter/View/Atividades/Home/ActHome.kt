@@ -56,6 +56,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, A
     lateinit var  textoCarga : TextView
     lateinit var imgCarga:ImageView
     private var inciaLoja = 12
+    var context: ActHome? = null
 
 
     private lateinit var financeiroLinear :LinearLayout
@@ -79,7 +80,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, A
         constrainCarregando = findViewById(R.id.constrainCarregando)
         tituloTopo = findViewById(R.id.tituloTopo)
         homeLinear = findViewById(R.id.homeLinear)
-
+         context = this
         homeLinear.setOnClickListener {
             homeLinear.isEnabled = false
             val fragmentHomeItem = FragmentHome.newInstance(this, this) // Usa o newInstance
@@ -98,12 +99,22 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, A
             dialogcnpj.dialogCnpjs(this,iniciaLoja = inciaLoja, atividade = this)
         }
         duvidas.setOnClickListener {
-            val suporteTelefoneReposytory = SuporteTelefoneReposytory(this)
-            val resposta = suporteTelefoneReposytory.buscarNumeroTelefoneSuporte()
-            if (resposta != null) {
-                val intent = Intent(Intent.ACTION_DIAL)
-                intent.data = android.net.Uri.parse("tel:${resposta.ContatoWhatsApp}")
-                startActivity(intent)
+            CoroutineScope(Dispatchers.IO).launch{
+                val suporteTelefoneReposytory = SuporteTelefoneReposytory(context!!)
+                val resposta = suporteTelefoneReposytory.buscarNumeroTelefoneSuporte()
+                MainScope().launch {
+                    if (resposta != null) {
+                        try {
+                            val intent = Intent(Intent.ACTION_VIEW)
+                            val url = "https://api.whatsapp.com/send?phone=${resposta.ContatoWhatsApp}"
+                            intent.data = android.net.Uri.parse(url)
+                            startActivity(intent)
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+
+                        }
+                    }
+                }
             }
         }
         vendaLinear.setOnClickListener {
@@ -141,7 +152,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, A
                     val prefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
 
                     val cnpj = prefs.getString("cnpj", "-")
-                    val nome = prefs.getString("nome", "-")
+                    val nome = prefs.getString(ProjetoStrings.nomeCompleto, "-")
                     val dialogMenuLateral = DialogMenuLateral()
                     dialogMenuLateral.dialogMenu(this@ActHome, listaMenulateral, this@ActHome, nome!!, cnpj!!)
                 }

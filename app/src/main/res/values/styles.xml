@@ -326,5 +326,9 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>
+    <style name="DialoAnimationMenu">
+        <item name="android:windowEnterAnimation">@anim/entra_esquerda</item>
+        <item name="android:windowExitAnimation">@anim/sai_esquerda</item>
 
+    </style>
 </resources>

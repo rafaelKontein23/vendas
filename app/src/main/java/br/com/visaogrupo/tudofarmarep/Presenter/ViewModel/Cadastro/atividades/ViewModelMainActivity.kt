@@ -176,16 +176,34 @@ class ViewModelMainActivity(
             _login.postValue(login)
         }
     }
-    fun salvarDadosUsuario(id:Int, nome:String, hash:String, fotoPerfil:String){
+    fun salvarDadosUsuario(id:Int, nome:String, hash:String, fotoPerfil:String, uf:String){
         salvaTextos.salvaInteiro(id,ProjetoStrings.reprenteID)
         salvaTextos.salvarTexto(nome,ProjetoStrings.nomeCompleto)
         salvaTextos.salvarTexto(hash,ProjetoStrings.hash)
         salvaTextos.salvarTexto(fotoPerfil,ProjetoStrings.caminhoFotoPerfil)
+        salvaTextos.salvarTexto(uf,ProjetoStrings.uf)
 
 
     }
     private fun trocaAmbiente(ambiente:String){
-        URLs.urlWsBase = "https://${ambiente}.visaogrupo.com.br/ws/"
+        if (ambiente == "stage"){
+            URLs.urlWsBase = "https://www.visaogrupo.com.br/ws/"
+            URLs.urlWs = "https://www.visaogrupo.com.br/"
+        }else{
+            URLs.urlWsBase = "https://${ambiente}.visaogrupo.com.br/ws/"
+            URLs.urlWs = "https://${ambiente}.visaogrupo.com.br/"
+        }
+
+
+        URLs.urlImagensLoja = "https://${ambiente}.loiu.com.br/Cargas/images/lojas/icones"
+        URLs.urlImagensCnpjs = "https://${ambiente}.loiu.com.br/Cargas/images/icones/"
+        URLs.urlImagensOpls = "https://${ambiente}.visaogrupo.com.br/ImagensOpls/"
+        URLs.urlMarcas = "https://${ambiente}.loiu.com.br/"
+        URLs.urlVendaRometa = "https://${ambiente}.vendaremota.loiu.com.br/meu-hash/"
+        URLs.Url_pdf = "https://${ambiente}.loiu.com.br/Docs/Extract/Usuarios/"
+        URLs.URL_Webviewmob = "https://${ambiente}.stage.loiu.com.br/Autenticacao/LoginMobile?login="
+        URLs.URL_convite = "https://${ambiente}.loiu.com.br/"
+
 
     }
 

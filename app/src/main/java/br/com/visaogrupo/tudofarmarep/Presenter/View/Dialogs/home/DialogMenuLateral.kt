@@ -31,7 +31,7 @@ class DialogMenuLateral {
 
         dialogMenuLateral.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialogMenuLateral.getWindow()?.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        dialogMenuLateral.window!!.attributes.windowAnimations = R.style.animacaoDialog
+        dialogMenuLateral.window!!.attributes.windowAnimations = R.style.DialoAnimationMenu
         dialogMenuLateral.window!!.setGravity(Gravity.LEFT)
         dialogMenuLateral.show()
 

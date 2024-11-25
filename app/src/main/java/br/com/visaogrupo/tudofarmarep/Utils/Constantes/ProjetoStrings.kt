@@ -13,6 +13,7 @@ class ProjetoStrings {
         const val casdastro = "cadastroRealizado"
         const val reprenteID = "reprsentante_id"
         const val hash = "hash"
+        const val uf= "UF"
         const val caminhoFotoPerfil = "caminhoFotoPerfil"
 
         // mascaras

@@ -18,8 +18,5 @@ data class RespostaLogin(
     val Hash:String,
     val Mensagem:String,
     val Status_Cod:Int,
-)
-data class RespostaLoginErro(
-    val status_cod:Int,
-    val Mesnsagem:String
+    val UF:String
 )

@@ -69,11 +69,12 @@ class ViewModelActToken(
     fun mudaStatusCadastro(){
         preferenciasUtils.salvarBool(false, ProjetoStrings.casdastro)
     }
-    fun salvarDadosUsuario(id:Int, nome:String, hash:String, fotoPerfil:String){
+    fun salvarDadosUsuario(id:Int, nome:String, hash:String, fotoPerfil:String, uf:String){
         preferenciasUtils.salvaInteiro(id,ProjetoStrings.reprenteID)
         preferenciasUtils.salvarTexto(nome,ProjetoStrings.nomeCompleto)
         preferenciasUtils.salvarTexto(hash,ProjetoStrings.hash)
         preferenciasUtils.salvarTexto(fotoPerfil,ProjetoStrings.caminhoFotoPerfil)
+        preferenciasUtils.salvarTexto(uf,ProjetoStrings.uf)
         preferenciasUtils.salvarTexto(FormularioCadastro.cadastro.CNPJ, ProjetoStrings.cnpjLogin)
         preferenciasUtils.salvarBool(true, ProjetoStrings.casdastro)
 

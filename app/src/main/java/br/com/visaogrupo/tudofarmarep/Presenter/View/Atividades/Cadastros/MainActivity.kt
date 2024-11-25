@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
             if(it != null){
                 MainScope().launch {
                     if(it.Representante_ID != 0){
-                        viewModelMainActivity.salvarDadosUsuario(it.Representante_ID,it.Nome,it.Hash,it.FotoPerfil)
+                        viewModelMainActivity.salvarDadosUsuario(it.Representante_ID,it.Nome,it.Hash,it.FotoPerfil, it.UF)
                         val intent = Intent(context, ActHome::class.java)
                         startActivity(intent)
                     }else{

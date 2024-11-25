@@ -16,7 +16,7 @@ class TaskZipProgressiva {
         try {
             try {
                 val downloadService = RetrofitCliente().createService(Isync::class.java)
-                val request = downloadService.downloadFile("Cargas/Progressiva/Progressiva_SP.zip")
+                val request = downloadService.downloadFile("Cargas/Progressiva/Progressiva_${uf}.zip")
                 val response = request.execute()
                 if (response.isSuccessful) {
                     response.body()?.let { body ->
