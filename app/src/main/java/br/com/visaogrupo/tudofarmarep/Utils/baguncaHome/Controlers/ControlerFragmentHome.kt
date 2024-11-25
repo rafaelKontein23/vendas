@@ -1,5 +1,6 @@
 package br.com.visaogrupo.tudofarmarep.Controlers
 
+import ResumoMes
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
@@ -17,7 +18,6 @@ import br.com.visaogrupo.tudofarmarep.Carga.ultis.RecuperasDatas
 import br.com.visaogrupo.tudofarmarep.Carga.ultis.Requests
 import br.com.visaogrupo.tudofarmarep.DAO.DAOCarrinho
 import br.com.visaogrupo.tudofarmarep.Objetos.ListasHome
-import br.com.visaogrupo.tudofarmarep.Objetos.ResumoMes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -35,7 +35,7 @@ class ControlerFragmentHome {
         val dataFormat =SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val dataAtual = dataFormat.format(Date())
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        val reprsentanteID = prefs.getString("reprsentante_id", "0")!!.toInt()
+        val reprsentanteID = prefs.getInt("reprsentante_id", 0)
 
         withContext(Dispatchers.IO) {
             try {

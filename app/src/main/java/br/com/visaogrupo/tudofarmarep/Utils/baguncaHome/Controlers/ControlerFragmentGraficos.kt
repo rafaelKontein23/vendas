@@ -34,27 +34,27 @@ class ControlerFragmentGraficos {
             listaCorOpacidade.add((Color.parseColor("#00000000")))
         }
 
-        var totalPedidos = listaGraficos.sumOf { it -> it.PedidosRealizados }
+        var totalPedidos = listaGraficos.sumOf { it -> it.pedidosRealizados }
         val minPorcentagem = 10f
         val ajusteMinimo = 12f
 
         val totalAjustado = listaGraficos.map { marca ->
-            val porcentagem = (marca.PedidosRealizados.toFloat() / totalPedidos) * 100
-            marca.PedidoRealizadosOriginal = marca.PedidosRealizados
+            val porcentagem = (marca.pedidosRealizados.toFloat() / totalPedidos) * 100
+            marca.pedidoRealizadosOriginal = marca.pedidosRealizados
             if (porcentagem < minPorcentagem) {
 
                 val pedidosAjustados = (ajusteMinimo / 100) * totalPedidos
-                marca.copy(PedidosRealizados = pedidosAjustados.toInt())
+                marca.copy(pedidosRealizados = pedidosAjustados.toInt())
             } else {
                 marca
             }
         }
         for (marca in totalAjustado) {
-            val pedidos = marca.PedidosRealizados.toFloat()
-            entries.add(PieEntry(pedidos, marca.Marca))
+            val pedidos = marca.pedidosRealizados.toFloat()
+            entries.add(PieEntry(pedidos, marca.marca))
 
 
-            val corMarca = Color.parseColor(marca.CorMarca)
+            val corMarca = Color.parseColor(marca.corMarca)
             val corComOpacidade = ColorUtils.setAlphaComponent(corMarca, (0.20f * 255).toInt())
             listaCorMarcas.add(corMarca)
             listaCorOpacidade.add(corComOpacidade)
@@ -143,7 +143,8 @@ class ControlerFragmentGraficos {
             val tarefaBuscaMes = async {
                 val taskResumoMes = TaskGraficoHome()
                 val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-                val reprsentanteID = prefs.getString("reprsentante_id", "0")!!.toInt()
+                val reprsentanteID = prefs.getInt("reprsentante_id", 0)
+
                 val  listaResumoMesTaskGrafico = taskResumoMes.buscaGraficoHome(data = datSelecionada, representanteID = reprsentanteID)
                 listaResumoMesGrafico.addAll(listaResumoMesTaskGrafico)
             }

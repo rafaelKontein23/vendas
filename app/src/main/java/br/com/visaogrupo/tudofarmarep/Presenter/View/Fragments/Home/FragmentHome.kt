@@ -68,10 +68,11 @@ private lateinit var containerPedidosPendentes:ConstraintLayout
 lateinit var contrainsBaners:ConstraintLayout
 lateinit var  adapterPedidoPendentes :AdapterPedidoPendentes
 var isVerMaisPedidoPendentes = false
-var fragmentResumoPedidosAtendidos = FragmentResumoPedidosAtendidos(ArrayList())
-var fragmentResumoComissao = FragmentResumoComissao(ArrayList())
+lateinit  var fragmentResumoPedidosAtendidos :FragmentResumoPedidosAtendidos
+lateinit var fragmentResumoComissao : FragmentResumoComissao
 lateinit var constraisCotacao :ConstraintLayout
 lateinit var recyCotacao:RecyclerView
+lateinit var fragmentGraficosHome : FragmentGraficosHome
 
 
 var reprsentanteID = 0
@@ -86,9 +87,8 @@ private var inciaLoja = 12
 
 
 
-class FragmentHome( ) : Fragment(), AtualizaMesResumo{
+class FragmentHome : Fragment(), AtualizaMesResumo{
 
-    var fragmentGraficosHome = FragmentGraficosHome(ArrayList())
     private var atualizaCargaProgresso: AtualizaCargaProgresso? = null
     private var atualizaProgres: AtualizaProgress? = null
     companion object {
@@ -104,6 +104,7 @@ class FragmentHome( ) : Fragment(), AtualizaMesResumo{
             }
         }
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -150,7 +151,7 @@ class FragmentHome( ) : Fragment(), AtualizaMesResumo{
 
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(contextHome!!)
-         reprsentanteID = prefs.getString("reprsentante_id", "0")!!.toInt()
+         reprsentanteID = prefs.getInt("reprsentante_id", 0)
         pedidoText.setOnClickListener {
            val dialogData = DialogSeledorData()
             dialogData.SeletorData(contextHome!!, contextThis!!)
@@ -273,14 +274,15 @@ class FragmentHome( ) : Fragment(), AtualizaMesResumo{
                     }
                     if (isAdded){
                         val adaptererFragmentItens = AdapterFragmentItens(context)
-                        fragmentResumoPedidosAtendidos = FragmentResumoPedidosAtendidos(listaHome.resumoMes)
-                        fragmentResumoComissao = FragmentResumoComissao(listaHome.resumoMes)
+                        fragmentResumoPedidosAtendidos =  FragmentResumoPedidosAtendidos.newInstance(listaHome.resumoMes)
+                        fragmentResumoComissao =  FragmentResumoComissao.newInstance(listaHome.resumoMes)
                         adaptererFragmentItens.addFragment(fragmentResumoPedidosAtendidos)
                         adaptererFragmentItens.addFragment(fragmentResumoComissao)
                         carrosselResumoGanhos.adapter = adaptererFragmentItens
 
 
                         val adapterGraficos = AdapterFragmentItens(context)
+                        fragmentGraficosHome= FragmentGraficosHome.newInstance(listaHome.graficosHome)
                         fragmentGraficosHome.listaGraficos = listaHome.graficosHome
                         adapterGraficos.addFragment(fragmentGraficosHome)
                         viewPagerGraficos.adapter = adapterGraficos

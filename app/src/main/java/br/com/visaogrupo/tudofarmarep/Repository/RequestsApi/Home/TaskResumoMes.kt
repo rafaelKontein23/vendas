@@ -1,7 +1,7 @@
 package br.com.visaogrupo.tudofarmarep.Carga.Tasks.TasksHome
 
+import ResumoMes
 import br.com.visaogrupo.tudofarmarep.Carga.interfaces.Isync
-import br.com.visaogrupo.tudofarmarep.Objetos.ResumoMes
 import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.Criptho
 import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.RetrofitWS
 import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.Support

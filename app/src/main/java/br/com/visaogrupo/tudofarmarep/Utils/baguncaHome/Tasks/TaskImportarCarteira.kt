@@ -17,7 +17,8 @@ class TaskImportarCarteira {
     fun importarCarteira(listaJson: MutableList<String>, context: Context):Triple<ArrayList<CnpjsImportados>, ArrayList<String>, ArrayList<String>> {
         try {
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-            val reprsentanteID = prefs.getString("reprsentante_id", "0")!!.toInt()
+            val reprsentanteID = prefs.getInt("reprsentante_id", 0)
+
             val isync = RetrofitWS().createService(Isync::class.java)
             var cnpjs = ""
             for ((position, cnpj) in listaJson.withIndex()) {

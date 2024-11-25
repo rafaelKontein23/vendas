@@ -139,14 +139,14 @@ class ActToken : AppCompatActivity() {
             binding.btnContinuar.isEnabled = true
             binding.constrainCarregando.visibility = View.GONE
                if(respostaConfirmaToken != null){
-                   Alertas.alertaErro(this,respostaConfirmaToken.Mensagem,getString(R.string.tituloErro)){
+                   Alertas.alertaErro(this,respostaConfirmaToken.Mensagem,getString(R.string.loiuInforma)){
                        if(respostaConfirmaToken.Sucesso){
                             binding.constrainCarregando.isVisible = true
                             viewModelActToken.buscaInformacoesLogin()
                        }
                    }
                }else{
-                   Alertas.alertaErro(this, "nao sei ainda oq colocar aqui","aloo"){
+                   Alertas.alertaErro(this, getString(R.string.erroPadrao),getString(R.string.tituloErro)){
                    }
                }
         }

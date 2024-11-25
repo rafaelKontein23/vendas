@@ -18,6 +18,7 @@ import android.util.TypedValue
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.Window
+import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
@@ -52,7 +53,8 @@ class DialogCnpjs {
 
         val listaCnpjAux = ArrayList<Cnpj>()
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        val reprsentanteID = prefs.getString("reprsentante_id", "0")!!.toInt()
+        val reprsentanteID = prefs.getInt("reprsentante_id", 0)
+
 
         val dialogSelecioneCnpj = Dialog(context)
         dialogSelecioneCnpj.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -63,7 +65,14 @@ class DialogCnpjs {
 
         dialogSelecioneCnpj.show()
         dialogSelecioneCnpj.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialogSelecioneCnpj.getWindow()?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialogSelecioneCnpj.window?.let { window ->
+            val layoutParams = window.attributes?.apply {
+                width = WindowManager.LayoutParams.MATCH_PARENT
+                height = (context.resources.displayMetrics.heightPixels * 0.95).toInt()
+            }
+            window.attributes = layoutParams
+
+        }
         dialogSelecioneCnpj.window!!.attributes.windowAnimations = R.style.animacaoDialog
         dialogSelecioneCnpj.window!!.setGravity(Gravity.BOTTOM)
 

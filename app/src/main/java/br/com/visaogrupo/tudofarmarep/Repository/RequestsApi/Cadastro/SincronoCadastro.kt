@@ -12,12 +12,12 @@ interface SincronoCadastro {
     fun P_Mobile_Suporte_LinkZap_Lista
     (@Body responseBody: RequestBody): Call<ResponseBody>
 
-    @POST("solicita/token/Loiu")
+    @POST("solicita/loiu/token")
     fun P_SolicitaToken
     (@Body responseBody: RequestBody): Call<ResponseBody>
 
-    @POST("tudofarmarep/confirma/token")
-    fun P_Portal_Cadastro_ConfirmaToken
+    @POST("loiu/confirma/token")
+    fun P_ConfirmaToken
     (@Body responseBody: RequestBody): Call <ResponseBody>
 
     @POST("tudofarmarep/dados/empresa")

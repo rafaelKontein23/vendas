@@ -123,7 +123,7 @@ class ControlerCarrinho {
 
         val ip = CapturaIP.pegaIP()
        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-       val reprsentanteID = prefs.getString("reprsentante_id", "0")!!.toInt()
+       val reprsentanteID = prefs.getInt("reprsentante_id", 0)
         val jsonPedido = "[{\n" +
                 "\"Pedido_id\": $pedidoId,\n" +
                 "\"Representante_id\": $reprsentanteID,\n" +

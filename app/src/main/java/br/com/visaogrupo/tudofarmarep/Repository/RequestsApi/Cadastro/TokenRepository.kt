@@ -23,7 +23,7 @@ class TokenRepository(context: Context) {
             val json = Gson().toJson(solicitaTokenRquest).toString().incriptar()
             val mediaType = "application/json".toMediaTypeOrNull()
             val requestBody = json.toRequestBody( mediaType)
-            val response = retrofitWs.P_Portal_Cadastro_SolicitaToken(requestBody).execute()
+            val response = retrofitWs.P_SolicitaToken(requestBody).execute()
             if (response.isSuccessful) {
                 val responseBody = response.body()?.string()?.descritar()
                 val gson = Gson()
@@ -49,7 +49,7 @@ class TokenRepository(context: Context) {
 
             val mediaType = "application/json".toMediaTypeOrNull()
             val requestBody = jsonToken.toRequestBody( mediaType)
-            val response = retrofitWs.P_Portal_Cadastro_ConfirmaToken(requestBody).execute()
+            val response = retrofitWs.P_ConfirmaToken(requestBody).execute()
             if (response.isSuccessful) {
                 val responseBody = response.body()?.string()?.descritar()
                 val gson = Gson()

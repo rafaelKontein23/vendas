@@ -51,9 +51,10 @@ import br.com.visaogrupo.tudofarmarep.Objetos.Produtos
 import br.com.visaogrupo.tudofarmarep.Objetos.Progressiva
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Loja.ActLojaOnlineWebView
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
+import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import br.com.visaogrupo.tudofarmarep.Views.Activitys.ActCarrinho
-import br.com.visaogrupo.tudofarmarep.Views.Fragments.reprsentanteID
 import br.com.visaogrupo.tudofarmarep.Views.dialogs.DialogFiltros
 import br.com.visaogrupo.tudofarmarep.Views.dialogs.DialogFiltrosLojas
 import br.com.visaogrupo.tudofarmarep.Views.dialogs.DialogOpls
@@ -372,7 +373,8 @@ class AdapterRecyclerLojas(
                     CoroutineScope(Dispatchers.IO).launch {
                         val adiconcarCarteiraCnpj = TaskAdicionarCarteira()
                         var statusCarteira = if(empresa.isCarteira) 0 else 1
-                        val  adicionar  = adiconcarCarteiraCnpj.adicionarCarteira(reprsentanteID, empresa.cnpj, statusCarteira)
+                        val preferenciasUtils = PreferenciasUtils(context)
+                        val  adicionar  = adiconcarCarteiraCnpj.adicionarCarteira(preferenciasUtils.recuperarInteiro(ProjetoStrings.reprenteID), empresa.cnpj, statusCarteira)
                         if (adicionar){
                             empresa.isCarteira = !empresa.isCarteira
                             if(statusCarteira == 0){

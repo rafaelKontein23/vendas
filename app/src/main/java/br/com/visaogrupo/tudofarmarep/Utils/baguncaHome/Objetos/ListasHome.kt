@@ -1,5 +1,7 @@
 package br.com.visaogrupo.tudofarmarep.Objetos
 
+import ResumoMes
+
 data class ListasHome (
     var banners: ArrayList<Banners> = ArrayList(),
     var graficosHome: ArrayList<GraficoMarca> =ArrayList(),

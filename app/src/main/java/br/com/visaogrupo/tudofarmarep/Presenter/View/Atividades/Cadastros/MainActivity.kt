@@ -1,6 +1,7 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -17,6 +18,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Home.ActHome
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogsMainAtividade
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Factory.ViewModelMainActivityFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelMainActivity
@@ -33,6 +35,8 @@ import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocus
 import br.com.visaogrupo.tudofarmarep.Utils.Views.validaError
 
 import br.com.visaogrupo.tudofarmarep.databinding.ActivityMainBinding
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate( layoutInflater )
     }
     private lateinit var viewModelMainActivity: ViewModelMainActivity
+    var context: MainActivity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +55,10 @@ class MainActivity : AppCompatActivity() {
                 ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1)
             }
         }
-
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 2)
+        }
+       context = this
 
 
         FormataTextos.colocaMascaraInput(binding.inputCnpj,ProjetoStrings.mascaraCNPJ)
@@ -75,23 +83,31 @@ class MainActivity : AppCompatActivity() {
         viewModelMainActivity.login.observe(this){
             binding.constrainCarregando.isVisible = false
             if(it != null){
-                if(it.Representante_ID != 0){
-                    viewModelMainActivity.salvarDadosUsuario(it.Representante_ID,it.Nome,it.Hash,it.FotoPerfil)
-                }else{
-                    if(it.Status_Cod == 99){
-                        Alertas.alertaErro(this,it.Mensagem,getString(R.string.tituloErro)){
-                            startActivity(Intent(this,ActToken::class.java))
-                        }
+                MainScope().launch {
+                    if(it.Representante_ID != 0){
+                        viewModelMainActivity.salvarDadosUsuario(it.Representante_ID,it.Nome,it.Hash,it.FotoPerfil)
+                        val intent = Intent(context, ActHome::class.java)
+                        startActivity(intent)
                     }else{
-                        Alertas.alertaErro(this,getString(R.string.erroDeLogin),getString(R.string.tituloErro)){
+                        if(it.Status_Cod == 99){
+                            Alertas.alertaErro(context!!,it.Mensagem,getString(R.string.tituloErro)){
+                                startActivity(Intent(context,ActToken::class.java))
+                            }
+                        }else{
+                            Alertas.alertaErro(context as MainActivity,getString(R.string.erroDeLogin),getString(R.string.tituloErro)){
 
+                            }
                         }
-                    }
 
+                    }
                 }
+
             }else{
-                Alertas.alertaErro(this,getString(R.string.erroPadrao),getString(R.string.tituloErro)){
+                MainScope().launch {
+                    Alertas.alertaErro(context!!,getString(R.string.erroPadrao),getString(R.string.tituloErro)){
+                    }
                 }
+
             }
         }
 

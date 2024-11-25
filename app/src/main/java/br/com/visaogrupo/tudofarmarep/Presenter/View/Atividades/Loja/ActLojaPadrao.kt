@@ -93,14 +93,10 @@ class ActLojaPadrao : AppCompatActivity(), InterfaceRemoverProtudosView, TrocaIn
     private lateinit var enderecoCNPJ: TextView
     private lateinit var telefone: TextView
     private lateinit var celular: TextView
-    private lateinit var constrainFiltroLoja: ConstraintLayout
     private lateinit var recyLojas: RecyclerView
-    private lateinit var lojasDisponivel: TextView
-    private lateinit var filtroLojas: TextView
     private lateinit var contrainsItens: ConstraintLayout
     private lateinit var filtroLojasRecy: RecyclerView
-
-        public lateinit var constrainsTopFixo: ConstraintLayout
+    lateinit var constrainsTopFixo: ConstraintLayout
 
 
     var  lojasAux: ArrayList<Pair<Int, Any>> = ArrayList()
@@ -119,8 +115,6 @@ class ActLojaPadrao : AppCompatActivity(), InterfaceRemoverProtudosView, TrocaIn
     lateinit var constrainOpls: ConstraintLayout
     lateinit var abrirProdutudos: ImageView
     lateinit var tituloTortal: TextView
-    private lateinit var  carroselBaner: ViewPager2;
-    private lateinit var indicatorLayout: LinearLayout
     lateinit var totalValor: TextView
     lateinit var nomeLoja: TextView
     lateinit var imgMarca: ImageView
@@ -155,16 +149,13 @@ class ActLojaPadrao : AppCompatActivity(), InterfaceRemoverProtudosView, TrocaIn
         razaoSocial = findViewById(R.id.razaoSocial)
         enderecoCNPJ = findViewById(R.id.enderecoCNPJ)
         telefone = findViewById(R.id.telefone)
-        indicatorLayout = findViewById(R.id.indicatorLayout)
-        carroselBaner = findViewById(R.id.CarroselBaner)
+
         celular = findViewById(R.id.celular)
-        constrainFiltroLoja = findViewById(R.id.constrainFiltroLoja)
         recyLojas = findViewById(R.id.recyLojas)
         filtroLojasRecy = findViewById(R.id.filtroLojasRecy)
         carregandoLoja = findViewById(R.id.carregandoLoja)
         contrainInfos = findViewById(R.id.contrainInfos)
         setaFiltroDireita = findViewById(R.id.setaFiltroDireito)
-        lojasDisponivel = findViewById(R.id.lojasDisponivel)
         contrainsItens = findViewById(R.id.contrainsItens)
         buscaItens = findViewById(R.id.buscaItens)
         limparBusca = findViewById(R.id.limparBusca)
@@ -181,12 +172,11 @@ class ActLojaPadrao : AppCompatActivity(), InterfaceRemoverProtudosView, TrocaIn
         setaFiltroEsquerda = findViewById(R.id.setaFiltroEsquerda)
         contrainsTopo = findViewById(R.id.contrainsTopo)
         nomeOperadorSelecionado = findViewById(R.id.nomeOperadorSelecionado)
-        filtroLojas = findViewById(R.id.filtroLojas)
         filtroContainer = findViewById(R.id.filtroContainer)
         quantidaeFiltro = findViewById(R.id.quantidaeFiltro)
         stTextTotal = findViewById(R.id.stTextTotal)
         val prefs = PreferenceManager.getDefaultSharedPreferences(this@ActLojaPadrao)
-        reprsentanteID = prefs.getString("reprsentante_id", "0")!!.toInt()
+        reprsentanteID = prefs.getInt("reprsentante_id", 0)
         val bundle = intent.getBundleExtra("cnpjSelecionadoBundle")
         val bundlecotacao= intent.getBundleExtra("cotacaoBundle")
         val  bundleCarrinho = intent.getBundleExtra("listaCarrinhoBundle")
@@ -273,15 +263,7 @@ class ActLojaPadrao : AppCompatActivity(), InterfaceRemoverProtudosView, TrocaIn
             v.updatePadding(left = systemBars.left, top = systemBars.top, right = systemBars.right, bottom = systemBars.bottom)
             insets
         }
-        constrainFiltroLoja.setOnClickListener{
-            MainScope().launch {
-                val dialogFiltroLoja = DialogFiltrosLojas()
-                for (i in lojasPrimeiraFiltros){
-                    (i.second as Lojas ).checada = false
-                }
-                dialogFiltroLoja.doFilter(this@ActLojaPadrao, lojasPrimeiraFiltros, this@ActLojaPadrao)
-            }
-        }
+
         recyLojas.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
 
@@ -424,9 +406,12 @@ class ActLojaPadrao : AppCompatActivity(), InterfaceRemoverProtudosView, TrocaIn
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val filtro = s.toString()
                 if (filtro.isEmpty()){
-                    adapterRecyclerLojas.listaLojas.clear()
-                    adapterRecyclerLojas.listaLojas.addAll( lojasAux)
-                    adapterRecyclerLojas.notifyDataSetChanged()
+                    if(adapterRecyclerLojas != null){
+                        adapterRecyclerLojas.listaLojas.clear()
+                        adapterRecyclerLojas.listaLojas.addAll( lojasAux)
+                        adapterRecyclerLojas.notifyDataSetChanged()
+                    }
+
                 }else{
                     val filteredList = lojasAux.filter { pair ->
                         if (pair.second is Produtos) {
@@ -1009,7 +994,6 @@ class ActLojaPadrao : AppCompatActivity(), InterfaceRemoverProtudosView, TrocaIn
                  totalValor.isVisible = false
              }
              contrainsTopo.isVisible = true
-             filtroLojas.isVisible = true
              Glide.with(this@ActLojaPadrao).load(URLs.urlImagensLoja+"/"+lojaSelecionada.imagem).into(imgMarca)
              nomeOperadorSelecionado.text = if (lojaSelecionada.nomeOperadorSelecionado.isEmpty()) "Selecione" else lojaSelecionada.nomeOperadorSelecionado.toLowerCase()
              if(!recyLojas.isVisible){

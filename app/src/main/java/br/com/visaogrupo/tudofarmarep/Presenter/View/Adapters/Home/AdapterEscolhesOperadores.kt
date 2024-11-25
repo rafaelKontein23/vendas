@@ -14,7 +14,6 @@ import br.com.visaogrupo.tudofarmarep.Objetos.CotacaoCarrinho
 import br.com.visaogrupo.tudofarmarep.Objetos.Lojas
 import br.com.visaogrupo.tudofarmarep.Objetos.OperadorLogistico
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Views.Fragments.adapterPedidoPendentes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope

@@ -28,7 +28,7 @@ class TokenUseCase(
         val celular = preferenciasUtils.recuperarTexto(ProjetoStrings.celular) ?: ""
         val udid = sistemaUtils.recuperaUdid()
 
-        val confirmaTokenRequest = ConfirmaTokenRequest("", celular, token, udid, cnpj)
+        val confirmaTokenRequest = ConfirmaTokenRequest( celular, token,cnpj, SistemaUtils.deviceToken )
         return tokenRepository.confirmaTokenRepository(confirmaTokenRequest)
     }
 }

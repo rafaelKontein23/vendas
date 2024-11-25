@@ -235,7 +235,7 @@ class RoundedSlicesPieChartRenderer(
                         textSize = 30f
                         textAlign = Paint.Align.CENTER
                     }
-                    val text =  if(listagraficoMaca.isEmpty()) "" else listagraficoMaca[j].PedidoRealizadosOriginal.toString()
+                    val text =  if(listagraficoMaca.isEmpty()) "" else listagraficoMaca[j].pedidoRealizadosOriginal.toString()
 
                     val textBounds = Rect()
                     textPaint.getTextBounds(text, 0, text.length, textBounds)

@@ -56,6 +56,9 @@
     <string name="entrar">Entrar</string>
 
 
+    <string name="loiuInforma">Loiu informa</string>
+
+
     //frases informativas
     <string name="informe">Informe seu CNPJ para prosseguir\ncom o seu acesso</string>
     <string name="informaDivergencia">Informa divergência </string>
@@ -80,6 +83,8 @@
     <string name="acessarOutraConta">Acessar outra conta</string>
     <string name="tokenSolicitadoComSucesso">Token solicitado com sucesso</string>
     <string name="entrarComToken">Entrar com token</string>
+
+
 
 
     <string name="euliEAceito">Eu li e aceito as</string>

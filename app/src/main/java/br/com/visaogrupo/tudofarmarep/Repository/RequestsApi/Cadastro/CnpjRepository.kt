@@ -29,7 +29,11 @@ class CnpjRepository (context: Context) {
                 val gson = Gson()
                 val respostaApi = gson.fromJson(responseBody, RespostaCnpjDados::class.java)
                 val dadosCnpj: List<RepostaCnpj> = respostaApi.Dados
+                if (dadosCnpj.first().CNPJ == null){
+                    return null
+                }
                 return dadosCnpj.first()
+
             } else {
                 return  null
             }

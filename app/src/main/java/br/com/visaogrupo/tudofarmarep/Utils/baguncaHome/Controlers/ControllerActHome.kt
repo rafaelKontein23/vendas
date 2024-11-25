@@ -14,7 +14,8 @@ class ControllerActHome {
         var listaMenulateral = ArrayList<Menulateral>()
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
 
-        val reprsentanteID = prefs.getString("reprsentante_id", "0")!!.toInt()
+        val reprsentanteID = prefs.getInt("reprsentante_id", 0)
+
 
         withContext(Dispatchers.IO){
             val tarefaMenu = async {
