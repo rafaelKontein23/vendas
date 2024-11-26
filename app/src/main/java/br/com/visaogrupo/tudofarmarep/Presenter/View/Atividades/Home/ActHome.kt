@@ -16,6 +16,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentContainerView
+import androidx.lifecycle.ViewModelProvider
 import br.com.visaogrupo.tudofarmarep.Carga.interfaces.AtualizaCargaProgresso
 import br.com.visaogrupo.tudofarmarep.Carga.interfaces.AtualizaProgress
 import br.com.visaogrupo.tudofarmarep.Carga.interfaces.AtualizaWebView
@@ -25,6 +26,8 @@ import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.home.DialogMenuLate
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.home.DialogSuccesoCarteiraImportada
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.FragmentHome
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.FragmentsWebView
+import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Atividades.Factory.ViewModelActHomeFactory
+import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Atividades.ViewModelActHome
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Home.TaskConstroiHash
@@ -48,6 +51,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, A
     private lateinit var homeLinear:LinearLayout
     private lateinit var containerfragments : FragmentContainerView
     private lateinit var vendaLinear:LinearLayout
+    private lateinit var viewModelActHome:ViewModelActHome
     private val fragmentHome by lazy {
         FragmentHome.newInstance(this, this)
     }
@@ -80,10 +84,13 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, A
         constrainCarregando = findViewById(R.id.constrainCarregando)
         tituloTopo = findViewById(R.id.tituloTopo)
         homeLinear = findViewById(R.id.homeLinear)
-         context = this
+        val factory = ViewModelActHomeFactory(applicationContext)
+       // viewModelActHome = ViewModelProvider(this, factory)[factory, ViewModelActHome::class.java]
+
+        context = this
         homeLinear.setOnClickListener {
             homeLinear.isEnabled = false
-            val fragmentHomeItem = FragmentHome.newInstance(this, this) // Usa o newInstance
+            val fragmentHomeItem = FragmentHome.newInstance(this, this)
             tituloTopo.text = "Home"
             supportFragmentManager.beginTransaction()
                 .replace(R.id.containerfragments, fragmentHomeItem)

@@ -480,7 +480,8 @@ class ActLojaPadrao : AppCompatActivity(), InterfaceRemoverProtudosView, TrocaIn
 
                                     for (carrinhoItem  in listaCarrinho) {
                                         val protudoItem =
-                                            lojasAux.find { it.second is Produtos && (it.second as Produtos).Barra == carrinhoItem.barra }
+                                            lojasAux.find { it.second is Produtos && (it.second as Produtos).Barra == carrinhoItem.barra  && (it.second as Produtos).lojaID == lojaSelecionada.Loja_ID
+                                            }
                                         if (protudoItem != null) {
                                             (protudoItem.second as Produtos).quantidadeAdicionada = carrinhoItem.quantidade
                                             (protudoItem.second as Produtos).valorProdutoTotal = alterarItem(carrinhoItem.quantidade, (protudoItem.second as Produtos))
@@ -532,8 +533,8 @@ class ActLojaPadrao : AppCompatActivity(), InterfaceRemoverProtudosView, TrocaIn
         if (cotacao != null){
             val daoCotacao = DAOCotacao()
             daoCotacao.insereCotacao(daoHelper, cotacao)
+            produto.lojaID = loja.Loja_ID
         }
-
         daoTBCarrinho.buscarItens(daoHelper,produto,loja, empresa.razaoSocial)
 
     }

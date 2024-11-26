@@ -197,7 +197,7 @@ class ViewModelMainActivity(
 
         URLs.urlImagensLoja = "https://${ambiente}.loiu.com.br/Cargas/images/lojas/icones"
         URLs.urlImagensCnpjs = "https://${ambiente}.loiu.com.br/Cargas/images/icones/"
-        URLs.urlImagensOpls = "https://${ambiente}.visaogrupo.com.br/ImagensOpls/"
+        URLs.urlImagensOpls = "https://${ambiente}.loiu.com.br/img/logos/distribuidoras/"
         URLs.urlMarcas = "https://${ambiente}.loiu.com.br/"
         URLs.urlVendaRometa = "https://${ambiente}.vendaremota.loiu.com.br/meu-hash/"
         URLs.Url_pdf = "https://${ambiente}.loiu.com.br/Docs/Extract/Usuarios/"

@@ -5,7 +5,7 @@ data class Produtos(
     val Marca_ID: Int,
     val Nome: String,
     val Imagem: String,
-    val lojaID: Int,
+    var lojaID: Int,
     val listaProgressiva:ArrayList<Progressiva> = arrayListOf(),
     val cnpj: String = "",
     var progressiva: Progressiva? = null,
@@ -16,4 +16,4 @@ data class Produtos(
     var idProgressiva: Int = 0,
     var valorMaximo : Double = 0.0,
 
-)
+    )

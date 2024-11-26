@@ -2,7 +2,7 @@ package br.com.visaogrupo.tudofarmarep.Utils.Constantes
 
 class URLs {
     companion object {
-        var urlWsBase = "https://wwwe.visaogrupo.com.br/ws/"
+        var urlWsBase = "https://www.visaogrupo.com.br/ws/"
 
         var URL_convite: String = "https://www.loiu.com.br/"
 
@@ -14,7 +14,7 @@ class URLs {
 
         var urlWs: String = "https://www.visaogrupo.com.br/"
 
-        var urlImagensOpls: String = "https://stage.loiu.com.br/Cargas/images/opls/"
+        var urlImagensOpls: String = "https://stage.loiu.com.br/img/logos/distribuidoras/"
 
         var urlImagensLoja: String = "https://stage.loiu.com.br/Cargas/images/lojas/icones"
 
