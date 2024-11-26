@@ -6,6 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.PorterDuff
 import android.util.AttributeSet
 import android.util.Base64
 import android.view.MotionEvent
@@ -18,6 +19,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
     private val paths = mutableListOf<Path>()
     private var currentPath: Path? = null
     private var restoredBitmap: Bitmap? = null
+    var hasDrawing = false
 
     init {
         paint.color = Color.BLACK
@@ -37,6 +39,10 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
 
     fun getDrawingAsBase64(): String {
         val bitmap = getDrawingBitmap()
+        if (bitmap.toString() == "") {
+            return ""
+        }
+
         val outputStream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
         return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT)
@@ -77,15 +83,24 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
             MotionEvent.ACTION_UP -> {
                 currentPath = null
             }
+
         }
+        hasDrawing = true
 
         invalidate()
         return true
+    }
+    fun hasDrawing(): Boolean {
+        return hasDrawing
     }
 
     fun clear() {
         paths.clear()
         restoredBitmap = null
+        hasDrawing = false
+
+        val canvas = Canvas(getDrawingBitmap())
+        canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
         invalidate()
     }
 }

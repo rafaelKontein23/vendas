@@ -10,6 +10,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Toast
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelContratoAceite
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
@@ -66,6 +67,9 @@ class DialogContrato(val context: Context, val viewModelContratoAceite: ViewMode
             (context as? Activity)?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
         }
         binding.limparAssinatura.setOnClickListener {
+            FormularioCadastro.cadastro.isAssinaContrato = false
+            FormularioCadastro.base64Assinatura = ""
+
             binding.drawingView.clear()
         }
         dialogAssina.setOnDismissListener {
@@ -73,14 +77,19 @@ class DialogContrato(val context: Context, val viewModelContratoAceite: ViewMode
         }
 
         binding.btnConfirma.setOnClickListener {
-            viewModelContratoAceite.assinaturaContrato()
             val base64Assinatura = binding.drawingView.getDrawingAsBase64()
+            if (!binding.drawingView.hasDrawing) {
+                Toast.makeText(context, "Por favor, assine antes de confirmar.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             FormularioCadastro.base64Assinatura = base64Assinatura.toString()
             (context as? Activity)?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
             val bitmap = binding.drawingView.getDrawingBitmap()
             FormularioCadastro.savedBitmap = bitmap
 
             dialogAssina.dismiss()
+            viewModelContratoAceite.assinaturaContrato()
+
         }
         dialogAssina.show()
     }

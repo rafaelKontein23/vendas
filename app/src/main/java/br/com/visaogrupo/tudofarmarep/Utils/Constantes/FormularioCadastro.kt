@@ -22,6 +22,8 @@ class FormularioCadastro {
             fotoDocumeto = Uri.EMPTY
             base64Galeria = ""
             base64Assinatura = ""
+            savedBitmap = null
+
         }
     }
 }

@@ -32,9 +32,11 @@
         tools:targetApi="31">
         <activity
             android:name=".Presenter.View.Atividades.Cadastros.ActSucessoCadastro"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Presenter.View.Atividades.Loja.ActLojaOnlineWebView"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Views.Activitys.ActImportaCarteira"
@@ -58,19 +60,24 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Presenter.View.Atividades.Cadastros.ActCameraGaleria"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Presenter.View.Atividades.Cadastros.ActCabecalho"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
             android:exported="false" />
         <activity
             android:name=".Presenter.View.Atividades.Cadastros.ActToken"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Presenter.View.Atividades.Cadastros.ActCelular"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Presenter.View.Atividades.Cadastros.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

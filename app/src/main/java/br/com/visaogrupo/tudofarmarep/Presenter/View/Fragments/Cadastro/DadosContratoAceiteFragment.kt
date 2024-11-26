@@ -1,5 +1,6 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro
 
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -47,22 +48,32 @@ class DadosContratoAceiteFragment : Fragment() {
         if (FormularioCadastro.cadastro.isTermoPolitico){
             mudarcheck(binding.aceiteBoxTermosDeUso)
         }
+        if (FormularioCadastro.cadastro.isAssinaContrato){
+            mudarcheck(binding.assinaContratoBox)
+        }
 
         viewModelContratoAceite.contratoAssinado.observe(viewLifecycleOwner){
             if (it){
+                (activity as Activity).requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
                 FormularioCadastro.cadastro.isAssinaContrato = true
                 mudarcheck(binding.assinaContratoBox)
+
             }
+            binding.scroolcontrato.post {
+                binding.scroolcontrato.fullScroll(View.FOCUS_DOWN)
+            }
+
         }
 
         binding.textoPolitica.setOnClickListener {
             val  dialog = DialogContrato(requireContext(), viewModelContratoAceite)
-            dialog.dialogContratoPolitica(getString(R.string.politicaPrivacidade), "Soajknjksnkjnkjsa")
+            dialog.dialogContratoPolitica(getString(R.string.politicaPrivacidade), getString(R.string.politica))
 
         }
         binding.textoTermosDeUso.setOnClickListener {
             val  dialog = DialogContrato(requireContext(), viewModelContratoAceite)
-            dialog.dialogContratoPolitica(getString(R.string.termosDeUso), "Soajknjksnkjnkjsa")
+            dialog.dialogContratoPolitica(getString(R.string.termosDeUso), "${getString(R.string.temoDeuso)}  ${getString(R.string.segundaParteTermos)}")
         }
         binding.aceiteBoxPoliticaPrivacidade.setOnClickListener {
             mudarcheck(binding.aceiteBoxPoliticaPrivacidade)
@@ -74,11 +85,15 @@ class DadosContratoAceiteFragment : Fragment() {
 
         }
         binding.assinaContratoBox.setOnClickListener {
+            (activity as Activity).requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+
             activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
             val dialog = DialogContrato(requireContext(), viewModelContratoAceite)
             dialog.dialogAssina()
         }
         binding.textoAssinar.setOnClickListener {
+            (activity as Activity).requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+
             activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
             val dialog = DialogContrato(requireContext(), viewModelContratoAceite)
             dialog.dialogAssina()

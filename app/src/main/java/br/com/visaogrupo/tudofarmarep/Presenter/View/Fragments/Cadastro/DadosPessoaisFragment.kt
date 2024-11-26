@@ -64,7 +64,7 @@ class DadosPessoaisFragment : Fragment() {
         viewModelActCabecalho.mudaProgressoCadastro(2, 1f)
 
         FormataTextos.colocaMascaraInput(binding.inputCpf, ProjetoStrings.mascaraCPF)
-        FormataTextos.colocaMascaraInput(binding.inputTelefoneComercial, ProjetoStrings.mascaraTelefone)
+        FormataTextos.colocaMascaraInput(binding.inputTelefoneComercial, ProjetoStrings.mascaraCelular)
         FormataTextos.colocaMascaraInput(binding.inputCelular, ProjetoStrings.mascaraCelular)
         viewModelFragmentDadosPessoal.recuperaNumeroCelular()
         if(FormularioCadastro.cadastro.nome.isNotEmpty()){
@@ -140,28 +140,40 @@ class DadosPessoaisFragment : Fragment() {
                     binding.scroolPessoais.smoothScrollTo(0,  binding.inputEmail.top)
                     binding.inputEmail.validaError( true, requireContext())
 
+                }else{
+                    binding.inputEmail.validaError( false, requireContext())
                 }
                 if(telefoneSemFormato.isNotEmpty() && telefoneSemFormato.length < 10){
                     binding.scroolPessoais.smoothScrollTo(0,  binding.inputTelefoneComercial.top)
                     binding.inputTelefoneComercial.validaError( true, requireContext())
+                }else{
+                    binding.inputTelefoneComercial.validaError( false, requireContext())
                 }
                 if(dataNacimento.isEmpty()){
                     binding.scroolPessoais.smoothScrollTo(0,  binding.inputDataNacimento.top)
                     binding.inputDataNacimento.validaError( true , requireContext())
+                }else{
+                    binding.inputDataNacimento.validaError( false, requireContext())
                 }
 
                 if(cpf.isEmpty() || !ValidarTextos.isCPF(cpf)){
                     binding.scroolPessoais.smoothScrollTo(0,  binding.inputCpf.top)
                     binding.inputCpf.validaError( true, requireContext())
+                }else{
+                    binding.inputCpf.validaError( false, requireContext())
                 }
                 if(sobrenome.isEmpty()){
                     binding.scroolPessoais.smoothScrollTo(0,  binding.inputSobrenome.top)
                     binding.inputSobrenome.validaError( true, requireContext())
+                }else{
+                    binding.inputSobrenome.validaError( false, requireContext())
                 }
 
                 if(nome.isEmpty()){
                     binding.scroolPessoais.smoothScrollTo(0,  binding.inputNome.top)
                     binding.inputNome.validaError( true, requireContext())
+                }else{
+                    binding.inputNome.validaError( false, requireContext())
                 }
 
 
