@@ -182,6 +182,10 @@ class ViewModelFragmentDadosAreaDeAtuacao(
                 }
             }
         }
+        if(!listaCidades.contains( RespostaCidades(0, "Todos"))){
+            val cidade = RespostaCidades(0, "Todos")
+            listaCidades.add(0,cidade)
+        }
     }
 
 
