@@ -54,8 +54,8 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
 
-            android:outlineAmbientShadowColor="@color/gray1000"
-            android:outlineSpotShadowColor="@color/gray1000"
+            android:outlineAmbientShadowColor="@color/gray900"
+            android:outlineSpotShadowColor="@color/gray900"
 
 
             android:layout_weight="1"

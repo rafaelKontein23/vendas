@@ -40,9 +40,7 @@ class ViewModelContratoAceite(
            var retornoCadastro = false
            var retornoAssinatura = false
 
-            val tarefaCadastro = async {
-                retornoCadastro = cadastroUseCase.enviaCadastroFinal()
-            }
+
             val tarefaFoto = async {
                 retornoFoto =  cadastroUseCase.mandaFotoCadastro()
 
@@ -50,6 +48,9 @@ class ViewModelContratoAceite(
             val tarefaAssinatura = async {
                 retornoAssinatura = cadastroUseCase.enviaAssinatura()
             }
+           val tarefaCadastro = async {
+               retornoCadastro = cadastroUseCase.enviaCadastroFinal()
+           }
             tarefaCadastro.await()
             tarefaFoto.await()
             tarefaAssinatura.await()

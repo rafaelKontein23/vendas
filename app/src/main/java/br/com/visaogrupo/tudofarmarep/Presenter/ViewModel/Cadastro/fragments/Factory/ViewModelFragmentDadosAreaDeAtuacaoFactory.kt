@@ -9,6 +9,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Vie
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.AreaDeAtuacaoRepository
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CadastroRepository
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
+import br.com.visaogrupo.tudofarmarep.Utils.SistemaUtils
 
 class ViewModelFragmentDadosAreaDeAtuacaoFactory( private val context: Context
 ) : ViewModelProvider.Factory {
@@ -19,7 +20,8 @@ class ViewModelFragmentDadosAreaDeAtuacaoFactory( private val context: Context
             val areaDeAtuacaoUseCase = AreaDeAtuacaoUseCase(areaDeAtuacaoRepository)
             val cadastroRepository = CadastroRepository(context)
             val preferenciasUtils = PreferenciasUtils(context)
-            val cadastroUseCase = CadastroUseCase(cadastroRepository, preferenciasUtils)
+            val sistemaUtils = SistemaUtils(context)
+            val cadastroUseCase = CadastroUseCase(cadastroRepository, preferenciasUtils,sistemaUtils)
             return ViewModelFragmentDadosAreaDeAtuacao(areaDeAtuacaoUseCase, cadastroUseCase) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

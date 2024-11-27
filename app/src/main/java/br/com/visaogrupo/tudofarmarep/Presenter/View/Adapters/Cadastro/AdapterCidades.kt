@@ -47,7 +47,7 @@ class AdapterCidades (
             }
 
             binding.constrainCidade.setOnClickListener {
-                if (respostaCidades.Cidade == "Todos"){
+                if (respostaCidades.Cidade == "Todas"){
                     viewModelFragmentDadosAreaDeAtuacao.alternaSelecaoCidade()
 
                     if (viewModelFragmentDadosAreaDeAtuacao.cidadeSelecionadaTodos) {

@@ -173,9 +173,10 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, A
         remotoLinear.setOnClickListener {
                 CoroutineScope(Dispatchers.IO).launch {
                     val taskControihash = TaskConstroiHash()
-                    val prefs = PreferenciasUtils(this@ActHome)
-                    val reprsentanteID = prefs.recuperarTexto(ProjetoStrings.reprenteID)
-                    val  hash =  taskControihash.constroiHash(reprsentanteID!!.toInt())
+                    val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+
+                    val reprsentanteID = prefs.getInt(ProjetoStrings.reprenteID, 0)
+                    val  hash =  taskControihash.constroiHash(reprsentanteID)
                     withContext(Dispatchers.Main) {
                         val intent = Intent(Intent.ACTION_SEND)
                         intent.setType("text/plain")

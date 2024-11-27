@@ -7,6 +7,7 @@ import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelContratoAceite
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CadastroRepository
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
+import br.com.visaogrupo.tudofarmarep.Utils.SistemaUtils
 
 class ViewModelFragmentContratoAceiteFactory ( private val context: Context
 ) : ViewModelProvider.Factory {
@@ -15,7 +16,8 @@ class ViewModelFragmentContratoAceiteFactory ( private val context: Context
         if (modelClass.isAssignableFrom(ViewModelContratoAceite::class.java)) {
             val cadastroRepository = CadastroRepository(context)
             val preferenciasUtils = PreferenciasUtils(context)
-            val cadastroUseCase = CadastroUseCase(cadastroRepository, preferenciasUtils)
+            val sistemaUtils = SistemaUtils(context)
+            val cadastroUseCase = CadastroUseCase(cadastroRepository, preferenciasUtils,sistemaUtils)
             return ViewModelContratoAceite(cadastroUseCase, preferenciasUtils) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

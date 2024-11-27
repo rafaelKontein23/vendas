@@ -44,7 +44,7 @@ class AdapterMessoRegiao( respostaMessoRegiao: List<RespostaMessoRegiao>,
             }
 
             binding.constrainMesso.setOnClickListener {
-                if (respostaMessoRegiao.Mesorregiao_Nome == "Todos"){
+                if (respostaMessoRegiao.Mesorregiao_Nome == "Todas"){
                     viewModelFragmentDadosAreaDeAtuacao.alternaSelecaoMessoRegiao()
                     if (viewModelFragmentDadosAreaDeAtuacao.mesoRegiaoSelecionadaTodos){
                         binding.textoSelecionarMessoRegiao.tag = 0

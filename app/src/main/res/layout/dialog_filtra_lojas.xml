@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Todos"
+            android:text="Todas"
             android:textColor="@color/gray600"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

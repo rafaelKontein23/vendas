@@ -23,6 +23,7 @@ import br.com.visaogrupo.tudofarmarep.Utils.IntentUtils
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Cronometro
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.aplicarMascaraTelefone
+import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEditTextBasicoSemErro
 import br.com.visaogrupo.tudofarmarep.databinding.ActivityActTokenBinding
 import kotlinx.coroutines.launch
 
@@ -49,8 +50,10 @@ class ActToken : AppCompatActivity() {
             binding.constrainCarregando.isVisible = true
             viewModelActToken.solicitaToken(numeroCelular)
         }
-
-
+        binding.campoToken1.isFocusEditTextBasicoSemErro(applicationContext)
+        binding.campoToken2.isFocusEditTextBasicoSemErro(applicationContext)
+        binding.campoToken3.isFocusEditTextBasicoSemErro(applicationContext)
+        binding.campoToken4.isFocusEditTextBasicoSemErro(applicationContext)
 
         viewModelActToken.repostaSolicita.observe(this){ respostaToken ->
             binding.constrainCarregando.isVisible = false

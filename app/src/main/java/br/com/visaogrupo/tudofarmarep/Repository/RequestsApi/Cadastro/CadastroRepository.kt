@@ -6,6 +6,7 @@ import android.util.Log
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequest
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequestAreaAtuacal
 import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.RetrofitWs
+import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.descritar
 import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.incriptar
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import com.google.gson.Gson
@@ -25,10 +26,15 @@ class CadastroRepository(context: Context) {
             val jsonAreaAtucao = Gson().toJson(FormularioCadastro.cadastroRequestAreaAtuacal).toString()  ?: ""
             val jsonCadastro = Gson().toJson(FormularioCadastro.cadastro).toString()
 
-            val jsonChave = ("json${jsonCadastro}," +
-                    "AreaAtuacao"+jsonAreaAtucao).incriptar()
+            val jsonChave = JSONObject().apply {
+                put("JsonCadastro", jsonCadastro)
+                put("JsonAreaAtuacao", jsonAreaAtucao)
+            }
+
+
+            val jsonChaveIncript = jsonChave.toString().incriptar()
             val mediaType = "application/json; charset=utf-8".toMediaType()
-            val requestBody = jsonChave.toRequestBody(mediaType)
+            val requestBody = jsonChaveIncript.toRequestBody(mediaType)
             val reponse = retrofit.P_Cadastro(requestBody).execute()
             if(reponse.isSuccessful){
                 Log.d("Sucesso", "sucesso, no Envio do Cadastro")
@@ -74,16 +80,23 @@ class CadastroRepository(context: Context) {
 
     fun enviaCadastroFinal() :Boolean{
         try {
-            val jsonAreaAtucao = Gson().toJson(FormularioCadastro.cadastroRequestAreaAtuacal).toString()  ?: ""
-            val jsonCadastro = Gson().toJson(FormularioCadastro.cadastro).toString()
+            val jsonAreaAtucao = Gson().toJson(FormularioCadastro.cadastroRequestAreaAtuacal) ?: ""
+            val jsonCadastro = Gson().toJson(FormularioCadastro.cadastro)
 
-            val jsonChave = ("json${jsonCadastro}," +
-                    "AreaAtuacao"+jsonAreaAtucao).incriptar()
+            val jsonChave = JSONObject().apply {
+                put("JsonCadastro", JSONObject(jsonCadastro))  // Aqui você converte a string para um objeto JSON
+                put("JsonAreaAtuacao", JSONObject(jsonAreaAtucao))  // Aqui você faz o mesmo
+            }
+
+
+            val jsonChaveIncript = jsonChave.toString().incriptar()
             val mediaType = "application/json; charset=utf-8".toMediaType()
-            val requestBody = jsonChave.toRequestBody(mediaType)
+            val requestBody = jsonChaveIncript.toRequestBody(mediaType)
             val reponse = retrofit.P_Cadastro(requestBody).execute()
             if(reponse.isSuccessful){
+                val responsestr  = reponse.body()!!.string().descritar()
                 Log.d("Sucesso", "sucesso, no Envio do Cadastro")
+
                 return true
 
 

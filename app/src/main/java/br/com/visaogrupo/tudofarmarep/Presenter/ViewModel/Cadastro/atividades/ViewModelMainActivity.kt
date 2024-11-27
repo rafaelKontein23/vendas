@@ -201,7 +201,7 @@ class ViewModelMainActivity(
         URLs.urlMarcas = "https://${ambiente}.loiu.com.br/"
         URLs.urlVendaRometa = "https://${ambiente}.vendaremota.loiu.com.br/meu-hash/"
         URLs.Url_pdf = "https://${ambiente}.loiu.com.br/Docs/Extract/Usuarios/"
-        URLs.URL_Webviewmob = "https://${ambiente}.stage.loiu.com.br/Autenticacao/LoginMobile?login="
+        URLs.URL_Webviewmob = "https://${ambiente}.loiu.com.br/Autenticacao/LoginMobile?login="
         URLs.URL_convite = "https://${ambiente}.loiu.com.br/"
 
 

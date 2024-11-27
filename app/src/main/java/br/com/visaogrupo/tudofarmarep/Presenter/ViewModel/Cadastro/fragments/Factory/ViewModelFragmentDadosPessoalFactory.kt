@@ -7,6 +7,7 @@ import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentDadosPessoais
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CadastroRepository
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
+import br.com.visaogrupo.tudofarmarep.Utils.SistemaUtils
 
 class ViewModelFragmentDadosPessoalFactory  (
     private val context: Context
@@ -17,7 +18,8 @@ class ViewModelFragmentDadosPessoalFactory  (
 
             val preferenciasUtils = PreferenciasUtils(context)
             val cadastroRepository = CadastroRepository(context)
-            val cadastroUseCase = CadastroUseCase(cadastroRepository, preferenciasUtils)
+            val sistemaUtils = SistemaUtils(context)
+            val cadastroUseCase = CadastroUseCase(cadastroRepository, preferenciasUtils,sistemaUtils)
             return ViewModelFragmentDadosPessoais(preferenciasUtils, cadastroUseCase ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

@@ -44,10 +44,10 @@ class CodigoIndicacaoFragment : Fragment() {
         viewModelActCabecalho.mudaProgressoCadastro(5, 1f)
 
         binding.inputCodigoIndicacao.isFocusEditTextBasico(requireContext())
-        if (FormularioCadastro.cadastro.hash.isNotEmpty()){
+        if (FormularioCadastro.cadastro.hashIndicacao.isNotEmpty()){
             binding.btnContinuar.setBackgroundResource(R.drawable.bordas_8_blue600)
-            binding.inputCodigoIndicacao.setText(FormularioCadastro.cadastro.hash)
-            viewModelFragmentCodigoIndicacao.buscaInformacaoIndicacao(FormularioCadastro.cadastro.hash)
+            binding.inputCodigoIndicacao.setText(FormularioCadastro.cadastro.hashIndicacao)
+            viewModelFragmentCodigoIndicacao.buscaInformacaoIndicacao(FormularioCadastro.cadastro.hashIndicacao)
         }else{
             binding.btnContinuar.setBackgroundResource(R.drawable.bordas_radius_8_solid_blue300)
         }

@@ -4,12 +4,6 @@ package br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao
 data class CadastroRequest(
     var possuiCore: String = "",
     var CNPJ: String = "",
-    var RazaoSocial: String = "",
-    var Fantasia: String = "",
-    var CEP: String = "",
-    var Endereco: String = "",
-    var Bairro: String = "",
-    var Cidade: String = "",
     var UF: String = "",
     var nome:String = "",
     var sobrenome:String = "",
@@ -18,10 +12,20 @@ data class CadastroRequest(
     var celular: String = "",
     var telefoneComercial: String = "",
     var email: String = "",
-    var hash: String = "",
+    var hashIndicacao: String = "",
     var isPoliticaPrivacidade:Boolean = false,
-    var isTermoPolitico :Boolean = false,
-    var isAssinaContrato:Boolean = false
+    var isTermoPolitica :Boolean = false,
+    var isAssinaContrato:Boolean = false,
+    var DeviceToken: String = "",
+    var UDID:String = "",
+    var VersaoaAPP:String = "",
+    var Dispositivo :String = "",
+    var SistemaOperacional :String = "", // versão do android
+    var Plataforma :String = "Android",
+    var FotoDocumento :String = "",
+    var ImagemAssinatura:String = ""
+
+
 )
 
 

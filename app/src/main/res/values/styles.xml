@@ -98,7 +98,7 @@
     <style name="textoTituloInput">
         <item name="android:textSize">12sp</item>
         <item name="android:letterSpacing">0.015</item>
-        <item name="android:textColor">@color/gray500</item>
+        <item name="android:textColor">@color/gray600</item>
         <item name="android:fontFamily">@font/manrope</item>
         <item name="android:textStyle">normal</item>
     </style>

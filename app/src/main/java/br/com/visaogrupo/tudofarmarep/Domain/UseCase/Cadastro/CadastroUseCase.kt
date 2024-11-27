@@ -5,15 +5,27 @@ import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.ImagensUltis
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
+import br.com.visaogrupo.tudofarmarep.Utils.SistemaUtils
 
 class CadastroUseCase(
       val  cadastroRepository: CadastroRepository,
-      val preferenciasUtils: PreferenciasUtils
+      val preferenciasUtils: PreferenciasUtils,
+      val sistemaUtils: SistemaUtils
 ) {
      fun enviaCadastro(){
         cadastroRepository.enviaCadastro()
     }
      fun enviaCadastroFinal():Boolean{
+
+         FormularioCadastro.cadastro.DeviceToken = SistemaUtils.deviceToken
+         FormularioCadastro.cadastro.UDID = sistemaUtils.recuperaUdid()
+         FormularioCadastro.cadastro.VersaoaAPP = ProjetoStrings.versapApp
+         FormularioCadastro.cadastro.Dispositivo = sistemaUtils.recuperaNomeDispositivo()
+         FormularioCadastro.cadastro.SistemaOperacional = sistemaUtils.recuperaSO()
+         val nomeArquivo = ProjetoStrings.strDocumeto + FormularioCadastro.cadastro.CNPJ+".jpeg"
+         FormularioCadastro.cadastro.FotoDocumento = nomeArquivo
+         FormularioCadastro.cadastro.ImagemAssinatura =  "${FormularioCadastro.cadastro.CNPJ}/${FormularioCadastro.cadastro.celular}.jpeg"
+
         val cadastro = cadastroRepository.enviaCadastroFinal()
         preferenciasUtils.salvarBool(cadastro, ProjetoStrings.casdastro)
         return cadastro

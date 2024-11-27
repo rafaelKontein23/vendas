@@ -45,7 +45,7 @@ class DadosContratoAceiteFragment : Fragment() {
         if (FormularioCadastro.cadastro.isPoliticaPrivacidade ){
               mudarcheck(binding.aceiteBoxPoliticaPrivacidade)
         }
-        if (FormularioCadastro.cadastro.isTermoPolitico){
+        if (FormularioCadastro.cadastro.isTermoPolitica){
             mudarcheck(binding.aceiteBoxTermosDeUso)
         }
         if (FormularioCadastro.cadastro.isAssinaContrato){
@@ -81,7 +81,7 @@ class DadosContratoAceiteFragment : Fragment() {
         }
         binding.aceiteBoxTermosDeUso.setOnClickListener {
             mudarcheck(binding.aceiteBoxTermosDeUso)
-            FormularioCadastro.cadastro.isTermoPolitico = binding.aceiteBoxTermosDeUso.tag == "1"
+            FormularioCadastro.cadastro.isTermoPolitica = binding.aceiteBoxTermosDeUso.tag == "1"
 
         }
         binding.assinaContratoBox.setOnClickListener {
@@ -112,7 +112,7 @@ class DadosContratoAceiteFragment : Fragment() {
         }
 
         binding.btnContinuar.setOnClickListener {
-            if (FormularioCadastro.cadastro.isPoliticaPrivacidade && FormularioCadastro.cadastro.isTermoPolitico && FormularioCadastro.cadastro.isAssinaContrato){
+            if (FormularioCadastro.cadastro.isPoliticaPrivacidade && FormularioCadastro.cadastro.isTermoPolitica && FormularioCadastro.cadastro.isAssinaContrato){
                   viewModelActCabecalho.mostraCarregando(true)
                   viewModelContratoAceite.enviaCadastroFinal()
 

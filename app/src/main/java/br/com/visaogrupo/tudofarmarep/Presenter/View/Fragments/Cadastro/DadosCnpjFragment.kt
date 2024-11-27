@@ -118,13 +118,8 @@ class DadosCnpjFragment : Fragment() {
             }else{
                 viewModelFragmentDadosCnpj.salvarInformacoesCnpj(
                     binding.textCnpj.text.toString(),
-                    binding.textRazao.text.toString(),
-                    binding.textFantasia.text.toString(),
-                    binding.textCep.text.toString(),
-                    binding.textEndereco.text.toString(),
-                    binding.textCidade.text.toString(),
-                    binding.textEstado.text.toString(),
-                    textoSelecionado
+                    textoSelecionado,
+                    binding.textEstado.text.toString()
                 )
                 viewModelFragmentDadosCnpj.enviaCadastro()
 

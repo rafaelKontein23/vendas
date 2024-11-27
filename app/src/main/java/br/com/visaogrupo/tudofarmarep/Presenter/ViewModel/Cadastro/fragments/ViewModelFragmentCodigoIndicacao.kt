@@ -31,7 +31,7 @@ class ViewModelFragmentCodigoIndicacao(
 
     fun enviaCadadstro(hash: String){
         viewModelScope.launch (Dispatchers.IO){
-            FormularioCadastro.cadastro.hash = hash
+            FormularioCadastro.cadastro.hashIndicacao = hash
             cadastroUseCase.enviaCadastro()
         }
     }

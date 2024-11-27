@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
 
 class ActWebViewPaginas : AppCompatActivity() {
@@ -19,8 +20,8 @@ class ActWebViewPaginas : AppCompatActivity() {
         setContentView(R.layout.activity_act_web_view_paginas)
         webview = findViewById(R.id.webViewPaginas)
         val prefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-        var cnpj = prefs.getString("cnpjfim", "")
-        var cel = prefs.getString("celfinal", "")
+        var cnpj = prefs.getString(ProjetoStrings.cnpjLogin ,"")
+        var cel = prefs.getString(ProjetoStrings.celular, "")
         cnpj = cnpj!!.replace("/", "").replace(".", "").replace("-", "")
         cel = cel!!.replace("(", "").replace(")", "").replace(" ", "")
         val urlmob = prefs.getString("URL_Webviewmob", URLs.URL_Webviewmob)

@@ -14,13 +14,15 @@ class SistemaUtils(private val context: Context) {
     }
 
     fun recuperaNomeDispositivo():String{
-        val versao = Build.VERSION.RELEASE
 
         val produto = Build.PRODUCT
         val modelo = Build.MODEL
         val fabricante = Build.MANUFACTURER
-        return  "$versao $produto $modelo $fabricante"
+        return  "$produto $modelo $fabricante"
 
+    }
+    fun recuperaSO():String{
+        return Build.VERSION.RELEASE
     }
 
 }

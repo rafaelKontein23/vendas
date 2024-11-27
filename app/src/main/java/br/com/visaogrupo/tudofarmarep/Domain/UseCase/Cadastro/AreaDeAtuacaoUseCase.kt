@@ -17,7 +17,7 @@ class AreaDeAtuacaoUseCase(
         val lista = areaDeAtuacaoRepository.recuperaDadosMesorregiao(mesoRegiaoRequest)
         val listaRespostaMessoRegiao = ArrayList<RespostaMessoRegiao>()
         val listaCidades = ArrayList<RespostaCidades>()
-        val item = RespostaMessoRegiao(0, "Todos", "Todos")
+        val item = RespostaMessoRegiao(0, "Todas", "Todas")
 
         if (lista != null) {
             lista.add(0, item)

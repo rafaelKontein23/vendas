@@ -11,6 +11,7 @@ import android.webkit.WebViewClient
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
 
 
@@ -32,8 +33,8 @@ class FragmentsWebView : Fragment() {
 
         constrainCarregadno.isVisible = true
         val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        var cnpj = prefs.getString("cnpjfim", "") ?: ""
-        var cel = prefs.getString("celfinal", "") ?: ""
+        var cnpj = prefs.getString(ProjetoStrings.cnpjLogin, "") ?: ""
+        var cel = prefs.getString(ProjetoStrings.celular, "") ?: ""
         cnpj = cnpj.replace("/", "").replace(".", "").replace("-", "")
         cel = cel.replace("(", "").replace(")", "").replace(" ", "")
         val urlmob = URLs.URL_Webviewmob

@@ -8,12 +8,15 @@ import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CnpjUseCase
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RepostaCnpj
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
+import br.com.visaogrupo.tudofarmarep.Utils.SistemaUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ViewModelFragmentDadosCnpj(
     val cnpjUseCase: CnpjUseCase,
-    val cadastroUseCase: CadastroUseCase
+    val cadastroUseCase: CadastroUseCase,
+    val sistemaUtils: SistemaUtils
 ) :ViewModel(){
      private val _cnpj = MutableLiveData<RepostaCnpj?>()
      val cnpj: LiveData<RepostaCnpj?> get()  = _cnpj
@@ -29,24 +32,17 @@ class ViewModelFragmentDadosCnpj(
           }
      }
     fun salvarInformacoesCnpj(cnpj: String,
-                              razaoSocial: String,
-                              fantasia: String,
-                              cep: String,
-                              endereco: String,
-                              cidade: String,
-                              uf: String,
-                              possuiCore: String){
+                              possuiCore: String,
+                              uf: String ){
         val cnpjFormat = cnpj.filter { it.isDigit() }
-        val cepFormat = cep.filter { it.isDigit() }
         FormularioCadastro.cadastro.CNPJ = cnpjFormat
-        FormularioCadastro.cadastro.RazaoSocial = razaoSocial
-        FormularioCadastro.cadastro.Fantasia = fantasia
-        FormularioCadastro.cadastro.CEP = cepFormat
-        FormularioCadastro.cadastro.Endereco = endereco
-        FormularioCadastro.cadastro.Cidade = cidade
-        FormularioCadastro.cadastro.UF = uf
         FormularioCadastro.cadastro.possuiCore = possuiCore
-
+        FormularioCadastro.cadastro.UF = uf
+        FormularioCadastro.cadastro.DeviceToken = SistemaUtils.deviceToken
+        FormularioCadastro.cadastro.UDID = sistemaUtils.recuperaUdid()
+        FormularioCadastro.cadastro.VersaoaAPP = ProjetoStrings.versapApp
+        FormularioCadastro.cadastro.Dispositivo = sistemaUtils.recuperaNomeDispositivo()
+        FormularioCadastro.cadastro.SistemaOperacional = sistemaUtils.recuperaSO()
 
     }
     fun enviaCadastro(){
