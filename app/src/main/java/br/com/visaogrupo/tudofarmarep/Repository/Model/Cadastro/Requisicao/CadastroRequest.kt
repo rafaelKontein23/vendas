@@ -2,7 +2,8 @@ package br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao
 
 
 data class CadastroRequest(
-    var possuiCore: String = "",
+    var possuiCoreText: String = "",
+    var possuiCore:Boolean = false,
     var CNPJ: String = "",
     var UF: String = "",
     var nome:String = "",

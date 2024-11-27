@@ -16,10 +16,11 @@ class SuporteTelefoneReposytory(
     private val context: Context
 ) {
 
-    val retrofitWs = RetrofitWs(context).createService(SincronoCadastro::class.java)
 
     fun buscarNumeroTelefoneSuporte():RespostaTelefoneSuporte?{
         try{
+            val retrofitWs = RetrofitWs(context).createService(SincronoCadastro::class.java)
+
             val json = JSONObject().apply {
                 put("param", "")
             }

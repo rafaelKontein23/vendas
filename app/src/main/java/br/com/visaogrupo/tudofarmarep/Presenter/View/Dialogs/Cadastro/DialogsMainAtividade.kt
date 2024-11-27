@@ -151,6 +151,7 @@ class DialogsMainAtividade (private val activity: AppCompatActivity,
                window.attributes?.windowAnimations = R.style.animacaoDialog
                window.setGravity(Gravity.BOTTOM)
           }
+          dialogBiometria.setCancelable(false)
           binding.btnEntrar.setOnClickListener {
                if (viewModel.checkBiometricSupport(context)){
                     viewModel.showBiometricPrompt(context = context)

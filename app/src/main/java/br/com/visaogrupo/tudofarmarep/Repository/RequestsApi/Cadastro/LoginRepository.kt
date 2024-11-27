@@ -16,10 +16,11 @@ import java.io.IOException
 class LoginRepository(
     context: Context
 ) {
-    val retrofitWs = RetrofitWs(context).createService(SincronoCadastro::class.java)
-
+     var context: Context = context
      fun logaUsuario(loginRequest: LoginRequest) : RespostaLogin? {
         try {
+            val retrofitWs = RetrofitWs(context).createService(SincronoCadastro::class.java)
+
             val jsonLogin = Gson().toJson(loginRequest).toString().incriptar()
             val requestBody = jsonLogin.toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
             val response =  retrofitWs.P_Login(requestBody).execute()

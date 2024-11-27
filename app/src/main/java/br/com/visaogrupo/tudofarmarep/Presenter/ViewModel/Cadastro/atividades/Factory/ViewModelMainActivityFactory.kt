@@ -16,6 +16,7 @@ class ViewModelMainActivityFactory(
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ViewModelMainActivity::class.java)) {
+
             val repository = SuporteTelefoneReposytory(context)
             val salvaTextos = PreferenciasUtils(context)
             val loginRepository = LoginRepository(context)

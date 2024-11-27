@@ -25,6 +25,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Vi
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
 import br.com.visaogrupo.tudofarmarep.Utils.IntentUtils
 import br.com.visaogrupo.tudofarmarep.Utils.PushFirebase
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
@@ -62,7 +63,6 @@ class MainActivity : AppCompatActivity() {
 
 
         FormataTextos.colocaMascaraInput(binding.inputCnpj,ProjetoStrings.mascaraCNPJ)
-
         val factory = ViewModelMainActivityFactory(applicationContext)
         viewModelMainActivity = ViewModelProvider(this, factory)[ViewModelMainActivity::class.java]
         viewModelMainActivity.recuperaAmbiente()
@@ -85,20 +85,15 @@ class MainActivity : AppCompatActivity() {
             if(it != null){
                 MainScope().launch {
                     if(it.Representante_ID != 0){
-                        viewModelMainActivity.salvarDadosUsuario(it.Representante_ID,it.Nome,it.Hash,it.FotoPerfil, it.UF)
+                        viewModelMainActivity.salvarDadosUsuario(it.Representante_ID,it.Nome ?: "",it.Hash ?: "",it.FotoPerfil ?: "", it.UF ?: "")
                         val intent = Intent(context, ActHome::class.java)
                         startActivity(intent)
                     }else{
-                        if(it.Status_Cod == 99){
-                            Alertas.alertaErro(context!!,it.Mensagem,getString(R.string.tituloErro)){
+                        Alertas.alertaErro(context!!,it.Mensagem,getString(R.string.tituloErro)){
+                            if(it.Status_Cod == 99){
                                 startActivity(Intent(context,ActToken::class.java))
                             }
-                        }else{
-                            Alertas.alertaErro(context as MainActivity,getString(R.string.erroDeLogin),getString(R.string.tituloErro)){
-
-                            }
                         }
-
                     }
                 }
 

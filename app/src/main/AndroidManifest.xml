@@ -18,8 +18,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -30,14 +28,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Loiu"
         tools:targetApi="31">
+
         <activity
             android:name=".Presenter.View.Atividades.Cadastros.ActSucessoCadastro"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Presenter.View.Atividades.Loja.ActLojaOnlineWebView"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Views.Activitys.ActImportaCarteira"
             android:exported="false"
@@ -60,31 +59,32 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Presenter.View.Atividades.Cadastros.ActCameraGaleria"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Presenter.View.Atividades.Cadastros.ActCabecalho"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Presenter.View.Atividades.Cadastros.ActToken"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Presenter.View.Atividades.Cadastros.ActCelular"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Presenter.View.Atividades.Cadastros.MainActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
             android:name=".Utils.PushFirebase"
             android:exported="false">

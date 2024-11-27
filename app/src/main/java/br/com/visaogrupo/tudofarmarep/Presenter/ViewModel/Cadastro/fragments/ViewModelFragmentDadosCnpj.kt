@@ -36,7 +36,12 @@ class ViewModelFragmentDadosCnpj(
                               uf: String ){
         val cnpjFormat = cnpj.filter { it.isDigit() }
         FormularioCadastro.cadastro.CNPJ = cnpjFormat
-        FormularioCadastro.cadastro.possuiCore = possuiCore
+        if (possuiCore == "Sim"){
+            FormularioCadastro.cadastro.possuiCore = true
+
+        }else{
+            FormularioCadastro.cadastro.possuiCore = false
+        }
         FormularioCadastro.cadastro.UF = uf
         FormularioCadastro.cadastro.DeviceToken = SistemaUtils.deviceToken
         FormularioCadastro.cadastro.UDID = sistemaUtils.recuperaUdid()

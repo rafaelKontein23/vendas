@@ -73,15 +73,23 @@ class DadosCnpjFragment : Fragment() {
                     binding.possuiCoreSpinner.validaError(false, requireContext(), binding.textoSelecionadoSpnniner)
                     binding.textoSelecionadoSpnniner.text = selectedItem
                     mudaTextoSpinner ++
-                    if((mudaTextoSpinner == 2 || mudaTextoSpinner == 1) && FormularioCadastro.cadastro.possuiCore.isNotEmpty() && position == 0){
-                        binding.textoSelecionadoSpnniner.text = FormularioCadastro.cadastro.possuiCore
+                    if((mudaTextoSpinner == 2 || mudaTextoSpinner == 1) && FormularioCadastro.cadastro.possuiCoreText.isNotEmpty() && position == 0){
+                        binding.textoSelecionadoSpnniner.text = FormularioCadastro.cadastro.possuiCoreText
 
                         if(mudaTextoSpinner == 1 ){
                             mudaTextoSpinner = 1
                         }
                     }else{
-                        FormularioCadastro.cadastro.possuiCore = selectedItem
+                        FormularioCadastro.cadastro.possuiCoreText = selectedItem
+
                     }
+                  if(selectedItem.toLowerCase() == "sim"){
+                      FormularioCadastro.cadastro.possuiCore = true
+                  }else if (selectedItem.toLowerCase() == "não"){
+                      FormularioCadastro.cadastro.possuiCore = false
+
+                  }
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {

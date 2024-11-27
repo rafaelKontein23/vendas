@@ -5,6 +5,9 @@ import android.util.Base64
 import android.util.Log
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequest
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequestAreaAtuacal
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCadastro
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCadastroDados
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCodigoIndicacaoDados
 import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.RetrofitWs
 import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.descritar
 import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.incriptar
@@ -78,7 +81,7 @@ class CadastroRepository(context: Context) {
         }
     }
 
-    fun enviaCadastroFinal() :Boolean{
+    fun enviaCadastroFinal() : Boolean {
         try {
             val jsonAreaAtucao = Gson().toJson(FormularioCadastro.cadastroRequestAreaAtuacal) ?: ""
             val jsonCadastro = Gson().toJson(FormularioCadastro.cadastro)
@@ -95,9 +98,15 @@ class CadastroRepository(context: Context) {
             val reponse = retrofit.P_Cadastro(requestBody).execute()
             if(reponse.isSuccessful){
                 val responsestr  = reponse.body()!!.string().descritar()
-                Log.d("Sucesso", "sucesso, no Envio do Cadastro")
+                val gson = Gson().fromJson(responsestr, RespostaCadastroDados::class.java)
+                val dados = gson.Dados
+                if(dados.first().Sucesso == 0){
+                    return false
 
-                return true
+                }else{
+                    return true
+
+                }
 
 
             }else{

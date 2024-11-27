@@ -186,25 +186,7 @@ class ViewModelMainActivity(
 
     }
     private fun trocaAmbiente(ambiente:String){
-        if (ambiente == "stage"){
-            URLs.urlWsBase = "https://www.visaogrupo.com.br/ws/"
-            URLs.urlWs = "https://www.visaogrupo.com.br/"
-        }else{
-            URLs.urlWsBase = "https://${ambiente}.visaogrupo.com.br/ws/"
-            URLs.urlWs = "https://${ambiente}.visaogrupo.com.br/"
-        }
-
-
-        URLs.urlImagensLoja = "https://${ambiente}.loiu.com.br/Cargas/images/lojas/icones"
-        URLs.urlImagensCnpjs = "https://${ambiente}.loiu.com.br/Cargas/images/icones/"
-        URLs.urlImagensOpls = "https://${ambiente}.loiu.com.br/img/logos/distribuidoras/"
-        URLs.urlMarcas = "https://${ambiente}.loiu.com.br/"
-        URLs.urlVendaRometa = "https://${ambiente}.vendaremota.loiu.com.br/meu-hash/"
-        URLs.Url_pdf = "https://${ambiente}.loiu.com.br/Docs/Extract/Usuarios/"
-        URLs.URL_Webviewmob = "https://${ambiente}.loiu.com.br/Autenticacao/LoginMobile?login="
-        URLs.URL_convite = "https://${ambiente}.loiu.com.br/"
-
-
+       URLs.trocaAmbiente(ambiente)
     }
 
     override fun buscarNumeroTelefoneSuporte() {

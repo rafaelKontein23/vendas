@@ -118,11 +118,11 @@ class ActToken : AppCompatActivity() {
             binding.constrainCarregando.isVisible = false
             if(it != null){
                   if(it.Representante_ID != 0){
-                      viewModelActToken.salvarDadosUsuario(it.Representante_ID,it.Nome,it.Hash ?: "",it.FotoPerfil, it.UF)
+                      viewModelActToken.salvarDadosUsuario(it.Representante_ID,it.Nome?: "",it.Hash ?: "",it.FotoPerfil ?: "", it.UF ?:"" )
                       startActivity(Intent(this,ActHome::class.java))
 
                   }else{
-                      if (it.Status_Cod == 0){
+                      if (it.Status_Cod == 88){
                           viewModelActToken.mudaStatusCadastro()
                           startActivity(Intent(this,ActCabecalho::class.java))
 

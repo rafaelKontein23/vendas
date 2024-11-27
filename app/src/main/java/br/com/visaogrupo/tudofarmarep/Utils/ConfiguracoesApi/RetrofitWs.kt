@@ -26,7 +26,7 @@ class RetrofitWs(context: Context) {
         .build()
 
     private val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl(URLs.urlWsBase)
+        .baseUrl(URLs.urlWsBase )
         .client(cliente)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
