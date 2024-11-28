@@ -17,7 +17,6 @@ class URLs {
 
         // Função para trocar o ambiente apenas se não tiver sido configurado
         fun trocaAmbiente(ambiente: String) {
-            if (!isInitialized) {
                 if (ambiente == "stage") {
                     urlWsBase = "https://www.visaogrupo.com.br/ws/"
                     urlWs = "https://www.visaogrupo.com.br/"
@@ -35,8 +34,7 @@ class URLs {
                 URL_Webviewmob = "https://${ambiente}.loiu.com.br/Autenticacao/LoginMobile?login="
                 URL_convite = "https://${ambiente}.loiu.com.br/"
 
-                isInitialized = true
-            }
+
         }
 
         fun isConfigured(): Boolean {
