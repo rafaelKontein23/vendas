@@ -85,6 +85,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, A
         tituloTopo = findViewById(R.id.tituloTopo)
         homeLinear = findViewById(R.id.homeLinear)
         val factory = ViewModelActHomeFactory(applicationContext)
+        textoCarga.isVisible = true
        // viewModelActHome = ViewModelProvider(this, factory)[factory, ViewModelActHome::class.java]
 
         context = this

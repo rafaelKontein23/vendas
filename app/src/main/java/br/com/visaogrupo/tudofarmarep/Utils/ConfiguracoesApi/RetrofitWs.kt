@@ -18,8 +18,8 @@ class RetrofitWs(context: Context) {
         .writeTimeout(5, TimeUnit.SECONDS)
         .apply {
             val preferenciasUtils = PreferenciasUtils(context)
-            val ambiente = preferenciasUtils.recuperarTexto(ProjetoStrings.ambiente, "")
-            if (!ambiente.equals("www") || !ambiente.equals("stage")) {
+            val ambiente = preferenciasUtils.recuperarBool(ProjetoStrings.isUsuarioTeste, false)
+            if (ambiente) {
                 addInterceptor(ChuckerInterceptor.Builder(context).build())
             }
         }

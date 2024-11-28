@@ -141,10 +141,13 @@ class FragmentHome : Fragment(), AtualizaMesResumo{
 
         if(isAdded){
             try {
-                buscaInfosIniciais(contextThis!!)
-
-            }catch (e:Exception){
-                Log.e("erro",e.message.toString())
+                if (contextThis != null && contextHome != null && atualizaCargaProgresso != null) {
+                    buscaInfosIniciais(contextThis!!)
+                } else {
+                    Log.e("erro", "Contexto é null")
+                }
+            } catch (e: Exception) {
+                Log.e("erro", e.message.toString())
             }
 
         }

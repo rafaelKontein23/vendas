@@ -23,6 +23,15 @@ class LoginUseCase (
 
         val respostaLogin  =  loginRepository.logaUsuario(loginRequest)
 
+        if(respostaLogin != null){
+            preferenciasUtils.salvarBool(respostaLogin.Teste, ProjetoStrings.isUsuarioTeste)
+            if (respostaLogin.Representante_ID != 0){
+                preferenciasUtils.salvarTexto(ProjetoStrings.cnpjLogin, respostaLogin.CNPJ)
+                preferenciasUtils.salvarTexto(ProjetoStrings.celular, respostaLogin.Celular)
+            }
+        }
+
+
         return respostaLogin
     }
 

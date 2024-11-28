@@ -21,6 +21,8 @@ import br.com.visaogrupo.tudofarmarep.Objetos.Lojas
 import br.com.visaogrupo.tudofarmarep.Objetos.Marcas
 import br.com.visaogrupo.tudofarmarep.Objetos.Produtos
 import br.com.visaogrupo.tudofarmarep.Objetos.Progressiva
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
+import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -50,7 +52,9 @@ class Requests {
 
                 val tarefaBaixaPrgressiva = launch {
                     var taskBaixaProgressiva = TaskZipProgressiva()
-                    pathProgressiva=    taskBaixaProgressiva.buscaZipProgressiva(context,"SP")
+                    val preferenciasUtils = PreferenciasUtils(context)
+                    val uf = preferenciasUtils.recuperarTexto(ProjetoStrings.uf, "") ?: ""
+                    pathProgressiva=    taskBaixaProgressiva.buscaZipProgressiva(context,uf)
                     error = pathProgressiva.isEmpty()
                 }
 
