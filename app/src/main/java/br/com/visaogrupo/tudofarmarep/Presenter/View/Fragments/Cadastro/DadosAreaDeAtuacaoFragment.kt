@@ -107,13 +107,19 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
                     binding.inputMesorregioesAreaDeAtuacao.text = getText(R.string.Selecione)
                 }else{
                     var mesorregioesNomes = ""
-                    for (mesoRegiao in mesorregiaoSelecionadas){
-                        if (mesoRegiao.Mesorregiao_Nome == "Todos") continue
-                        mesorregioesNomes += if (mesoRegiao == mesorregiaoSelecionadas.last()) "${mesoRegiao.Mesorregiao_Nome} " else "${mesoRegiao.Mesorregiao_Nome}, "
-                        if(mesorregioesNomes.length > 35) break
+                    val confere = viewModelFragmentDadosAreaDeAtuacao.confereTamanhoListaMesorregiao()
+                    if (confere){ // continuar aquiiiiii
+                        binding.inputMesorregioesAreaDeAtuacao.text = getText(R.string.todos)
+                    }else{
+                        for (mesoRegiao in mesorregiaoSelecionadas){
+                            if (mesoRegiao.Mesorregiao_Nome == "Todos") continue
+                            mesorregioesNomes += if (mesoRegiao == mesorregiaoSelecionadas.last()) "${mesoRegiao.Mesorregiao_Nome} " else "${mesoRegiao.Mesorregiao_Nome}, "
+                            if(mesorregioesNomes.length > 35) break
+                        }
+                        binding.inputMesorregioesAreaDeAtuacao.text = mesorregioesNomes.formataTextoGrandes(mesorregioesNomes,35)
+                        binding.inputMesorregioesAreaDeAtuacao.validaError(false, requireContext())
                     }
-                    binding.inputMesorregioesAreaDeAtuacao.text = mesorregioesNomes.formataTextoGrandes(mesorregioesNomes,35)
-                    binding.inputMesorregioesAreaDeAtuacao.validaError(false, requireContext())
+
                 }
             }else{
                 Alertas.alertaErro(requireContext(), mensagem =   getString(R.string.erroSuporteWhats), titulo =  getString(R.string.tituloErro)){}
