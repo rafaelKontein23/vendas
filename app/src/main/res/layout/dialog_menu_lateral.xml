@@ -2,39 +2,25 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:background="@color/blue600"
 
     android:layout_height="match_parent">
+
 
     <TextView
         android:id="@+id/nomeRepresentante"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/gray700"
-        android:textSize="16sp"
         android:fontFamily="@font/manrope"
-        android:textFontWeight="600"
         android:letterSpacing="0.025"
         android:text="Rafael Kon Tein"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RecymenuLateral"
-        android:layout_width="200dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="64dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView93" />
+        android:textColor="@color/white"
+        android:textFontWeight="600"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout21"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout21" />
 
     <TextView
         android:id="@+id/cnpjRepresentante"
@@ -44,9 +30,10 @@
         android:fontFamily="@font/manrope_medium"
         android:letterSpacing="0.025"
         android:text="26.002.955/0001-71"
-        android:textColor="@color/gray500"
+        android:textColor="@color/white"
         android:textFontWeight="500"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout21"
         app:layout_constraintStart_toStartOf="@+id/nomeRepresentante"
         app:layout_constraintTop_toBottomOf="@+id/nomeRepresentante" />
 
@@ -54,16 +41,17 @@
         android:id="@+id/textView93"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="MENU"
+        android:layout_marginStart="16dp"
 
-        android:textColor="@color/gray500"
-        android:textSize="10sp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/manrope"
-        android:textFontWeight="600"
         android:letterSpacing="0.125"
-        app:layout_constraintStart_toStartOf="@+id/cnpjRepresentante"
-        app:layout_constraintTop_toBottomOf="@+id/cnpjRepresentante" />
+        android:text="MENU"
+        android:textColor="@color/white"
+        android:textFontWeight="600"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout21" />
 
     <TextView
         android:id="@+id/sair"
@@ -81,19 +69,233 @@
 
         android:textSize="14sp"
         android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@+id/sairIcone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/sairIcone"
-        app:layout_constraintTop_toTopOf="@+id/sairIcone" />
+        app:layout_constraintStart_toEndOf="@+id/sairIcone" />
 
     <ImageView
         android:id="@+id/sairIcone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
 
-        android:tint="@color/gray500"
-        app:layout_constraintStart_toStartOf="@+id/RecymenuLateral"
-        app:layout_constraintTop_toBottomOf="@+id/RecymenuLateral"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/sair" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout21"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bordas_raidus_100_solid_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/fotoPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:src="@drawable/perfil"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:background="@drawable/bordas_raidus_100_solid_white"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/lapis"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </ImageView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bordas_radiustop_22_solid_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView93"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:id="@+id/linearMenuHome"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="22dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/iconeHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/home" />
+                <TextView
+                    android:id="@+id/menuTexto"
+                    style="@style/texto_gray850_14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/home"
+                    android:textFontWeight="500"
+                    app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                    app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                    app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearMenuMeusDados"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="22dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/pessoa" />
+                <TextView
+                    style="@style/texto_gray850_14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/meusDados"
+                    android:textFontWeight="500"
+                    app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                    app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                    app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearAreaAruacao"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="22dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/pessoa" />
+                <TextView
+                    style="@style/texto_gray850_14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/DadosAreaAtuacao"
+                    android:textFontWeight="500"
+                    app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                    app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                    app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearSubsMenusDadosCadastrais"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="12dp"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/linearMenuDadosCadastrais"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/texto_gray850_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/DadosCadastrais"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearMenuMinhaEmpresa"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12sp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/texto_gray850_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/MinhaEmpresa"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearMenuDadosBancarios"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12sp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/texto_gray850_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/DadosBancários"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/fecharMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/x_branco" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

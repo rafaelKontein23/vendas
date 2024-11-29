@@ -11,6 +11,11 @@
     <string name="CodigoIndicacao">Código de Indicação</string>
     <string name="ContratoAceite">Contrato de Aceitação</string>
     <string name="assinaturaContrato">Assinatura do Contrato</string>
+    <string name="home">Home</string>
+    <string name="meusDados">Meus Dados</string>
+    <string name="DadosCadastrais">Dados cadastrais</string>
+    <string name="MinhaEmpresa">Minha empresa</string>
+    <string name="DadosBancários">Dados Bancários</string>
 
     // Erros
     <string name="tituloErro">Ops!</string>

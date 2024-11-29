@@ -87,8 +87,10 @@ class FotoDocumentoFragment : Fragment() {
             if (FormularioCadastro.fotoDocumeto == Uri.EMPTY){
                 Toast.makeText(requireContext(), getString(R.string.erroFoto), Toast.LENGTH_SHORT).show()
             }else{
+                val dadosAreaAtuacao = DadosAreaDeAtuacaoFragment.newInstance(true)
+
                 requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainerCadastro, DadosAreaDeAtuacaoFragment())
+                    .replace(R.id.fragmentContainerCadastro, dadosAreaAtuacao)
                     .addToBackStack(null)
                     .commit()
             }

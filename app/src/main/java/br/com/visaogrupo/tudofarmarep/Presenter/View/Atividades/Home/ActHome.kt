@@ -21,9 +21,12 @@ import br.com.visaogrupo.tudofarmarep.Carga.interfaces.AtualizaCargaProgresso
 import br.com.visaogrupo.tudofarmarep.Carga.interfaces.AtualizaProgress
 import br.com.visaogrupo.tudofarmarep.Carga.interfaces.AtualizaWebView
 import br.com.visaogrupo.tudofarmarep.Controlers.ControllerActHome
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Home.interfaces.AtualizaFragmentHome
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.home.DialogCnpjs
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.home.DialogMenuLateral
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.home.DialogSuccesoCarteiraImportada
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro.DadosAreaDeAtuacaoFragment
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro.DadosPessoaisFragment
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.FragmentHome
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.FragmentsWebView
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Atividades.Factory.ViewModelActHomeFactory
@@ -33,6 +36,7 @@ import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTel
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Home.TaskConstroiHash
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
+import br.com.visaogrupo.tudofarmarep.Utils.Enuns.EnumMenu
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.Requests
 
@@ -44,7 +48,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, AtualizaWebView {
+class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, AtualizaWebView, AtualizaFragmentHome {
     private lateinit var pdv :ImageView
     private lateinit var remotoLinear:LinearLayout
     private lateinit var menu:ImageView
@@ -153,18 +157,11 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, A
         }
 
         menu.setOnClickListener {
-            val controllerActHome = ControllerActHome()
-            CoroutineScope(Dispatchers.IO).launch {
-               var listaMenulateral = controllerActHome.buscaMenuLateral(this@ActHome)
-                MainScope().launch {
-                    val prefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-
-                    val cnpj = prefs.getString("cnpj", "-")
-                    val nome = prefs.getString(ProjetoStrings.nomeCompleto, "-")
-                    val dialogMenuLateral = DialogMenuLateral()
-                    dialogMenuLateral.dialogMenu(this@ActHome, listaMenulateral, this@ActHome, nome!!, cnpj!!)
-                }
-           }
+                val prefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+                val cnpj = prefs.getString(ProjetoStrings.cnpjLogin, "-")
+                val nome = prefs.getString(ProjetoStrings.nomeCompleto, "-")
+                val dialogMenuLateral = DialogMenuLateral()
+                dialogMenuLateral.dialogMenu(this@ActHome, this@ActHome, nome!!, cnpj!!, this)
         }
         if(DialogSuccesoCarteiraImportada.abreDialogCarteira){
             DialogSuccesoCarteiraImportada.abreDialogCarteira = false
@@ -299,5 +296,29 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, A
         homeLinear.isEnabled = true
 
 
+    }
+
+    override fun atualizaWebView(nome: String, id: EnumMenu) {
+        tituloTopo.text = nome
+        when(id){
+            EnumMenu.HOME -> {
+                supportFragmentManager.beginTransaction().addToBackStack(null)
+                    .replace(R.id.containerfragments, fragmentHome).commit()
+            }
+            EnumMenu.DADOSCADASTRAIS -> {
+                val dadosPessoaisFragment = DadosPessoaisFragment()
+
+                supportFragmentManager.beginTransaction().addToBackStack(null)
+                    .replace(R.id.containerfragments, dadosPessoaisFragment).commit()
+            }
+
+            EnumMenu.MINHAEMPRASA -> TODO()
+            EnumMenu.DADOScADASTRAIS -> TODO()
+            EnumMenu.DADOSAREATUACAO -> {
+                val dadosAreaDeAtuacaoFragment  = DadosAreaDeAtuacaoFragment.newInstance(false)
+                supportFragmentManager.beginTransaction().addToBackStack(null)
+                    .replace(R.id.containerfragments, dadosAreaDeAtuacaoFragment).commit()
+            }
+        }
     }
 }

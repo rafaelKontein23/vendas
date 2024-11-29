@@ -6,11 +6,14 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.ViewGroup
 import android.view.Window
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.visaogrupo.tudofarmarep.Adapter.AdapterItenCnpj
@@ -19,48 +22,73 @@ import br.com.visaogrupo.tudofarmarep.Carga.interfaces.AtualizaWebView
 import br.com.visaogrupo.tudofarmarep.Carga.ultis.FormatarTexto
 import br.com.visaogrupo.tudofarmarep.Objetos.Menulateral
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.MainActivity
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Home.interfaces.AtualizaFragmentHome
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.Enuns.EnumMenu
+import br.com.visaogrupo.tudofarmarep.databinding.DialogCidadesBinding
+import br.com.visaogrupo.tudofarmarep.databinding.DialogMenuLateralBinding
 
 class DialogMenuLateral {
 
-    fun dialogMenu(context: Context, ListaMenuLateral: ArrayList<Menulateral>,  atualizaWebView: AtualizaWebView,  nomeRepresetanteText : String, cnpjRepresentanteText : String) {
+    fun dialogMenu(context: Context,  atualizaWebView: AtualizaWebView,  nomeRepresetanteText : String, cnpjRepresentanteText : String,
+                   atualizaFragmentHome: AtualizaFragmentHome) {
         var nomeRepresetanteTextFormat = nomeRepresetanteText
         val dialogMenuLateral = Dialog(context)
-        dialogMenuLateral.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialogMenuLateral.setContentView(R.layout.dialog_menu_lateral)
+        val binding = DialogMenuLateralBinding.inflate(LayoutInflater.from(context))
 
-        dialogMenuLateral.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialogMenuLateral.getWindow()?.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        dialogMenuLateral.window!!.attributes.windowAnimations = R.style.DialoAnimationMenu
-        dialogMenuLateral.window!!.setGravity(Gravity.LEFT)
-        dialogMenuLateral.show()
+        dialogMenuLateral.apply {
+            setContentView(binding.root)
 
-        var recymenuLateral = dialogMenuLateral.findViewById<RecyclerView>(R.id.RecymenuLateral)
-        var nomeRepresentante = dialogMenuLateral.findViewById<TextView>(R.id.nomeRepresentante)
-        val cnpjRepresentante = dialogMenuLateral.findViewById<TextView>(R.id.cnpjRepresentante)
+            window?.let { window ->
+                val layoutParams = window.attributes?.apply {
+                    width = (context.resources.displayMetrics.widthPixels * 0.70).toInt() // Corrigido para largura
+                    height = WindowManager.LayoutParams.MATCH_PARENT
+                }
+                window.attributes = layoutParams
+                window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                window.attributes?.windowAnimations = R.style.DialoAnimationMenu
+                window.setGravity(Gravity.LEFT)
+            }
+
+            show()
+        }
+
         if (nomeRepresetanteTextFormat.length >= 15){
             nomeRepresetanteTextFormat = nomeRepresetanteTextFormat.substring(0,14) + "..."
         }
+        binding.fecharMenu.setOnClickListener {
+            dialogMenuLateral.dismiss()
+        }
+        binding.nomeRepresentante.text = nomeRepresetanteTextFormat
+        binding.cnpjRepresentante.text = FormatarTexto().formatCNPJ(cnpjRepresentanteText)
+        binding.linearMenuMeusDados.setOnClickListener {
+            binding.linearSubsMenusDadosCadastrais.isVisible = !binding.linearSubsMenusDadosCadastrais.isVisible
 
-        nomeRepresentante.text = nomeRepresetanteTextFormat
-        cnpjRepresentante.text = FormatarTexto().formatCNPJ(cnpjRepresentanteText)
-        val sair = dialogMenuLateral.findViewById<TextView>(R.id.sair)
-        val sairIcone = dialogMenuLateral.findViewById<ImageView>(R.id.sairIcone)
-        val adapterMenuLateral = AdapterMenuLateral(ListaMenuLateral, atualizaWebView, dialogMenuLateral)
-        var linearLayout = LinearLayoutManager(context)
+        }
+        binding.linearAreaAruacao.setOnClickListener {
+            atualizaFragmentHome.atualizaWebView(context.getString(R.string.DadosAreaAtuacao), EnumMenu.DADOSAREATUACAO)
+            dialogMenuLateral.dismiss()
+        }
+        binding.linearMenuDadosCadastrais.setOnClickListener {
+            atualizaFragmentHome.atualizaWebView(context.getString(R.string.DadosCadastrais), EnumMenu.DADOSCADASTRAIS)
+            dialogMenuLateral.dismiss()
 
-        sair.setOnClickListener {
+        }
+        binding.linearMenuHome.setOnClickListener {
+            atualizaFragmentHome.atualizaWebView(context.getString(R.string.home), EnumMenu.HOME)
+            dialogMenuLateral.dismiss()
+
+        }
+
+        binding.sair.setOnClickListener {
             val intent = Intent(context, MainActivity::class.java)
             context.startActivity(intent)
         }
 
-        sairIcone.setOnClickListener {
+        binding.sair.setOnClickListener {
             val intent = Intent(context, MainActivity::class.java)
             context.startActivity(intent)
         }
-        recymenuLateral.layoutManager = linearLayout
-        recymenuLateral.adapter = adapterMenuLateral
-        recymenuLateral.setHasFixedSize(true)
 
     }
 }

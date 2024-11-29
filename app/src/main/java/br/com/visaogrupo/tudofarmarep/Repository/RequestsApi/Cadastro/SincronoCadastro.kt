@@ -49,5 +49,10 @@ interface SincronoCadastro {
     fun P_Login
     (@Body responseBody: RequestBody): Call<ResponseBody>
 
+    @POST("lista/area/atuacao")
+    fun P_ListaAreaAtuacao
+    (@Body responseBody: RequestBody): Call<ResponseBody>
+
+
 
 }

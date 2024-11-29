@@ -330,7 +330,7 @@ class ProdutoDetalheDialogFragment (val  produto: Produtos,val atualizaValores: 
         if(produto.quantidadeAdicionada > 0){
             inputQuantidade.setText(produto.quantidadeAdicionada.toString())
             val formatarTexto = FormatarTexto()
-            val (quantidade, valorTotal, comissao) = somarProdutos(produto.quantidadeAdicionada, produto)
+            val (quantidade, valorTotal, comissao) = somarProdutos(produto.quantidadeAdicionada, produto, isOuvinte = true)
             val valorTotalFormatado = formatarTexto.formatarParaMoeda(valorTotal)
             val valorComissaoFormatado = formatarTexto.formatarParaMoeda(comissao)
             valorComiisao!!.text = valorComissaoFormatado

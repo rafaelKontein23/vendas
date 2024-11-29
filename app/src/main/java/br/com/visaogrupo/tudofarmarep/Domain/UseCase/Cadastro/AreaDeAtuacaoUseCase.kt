@@ -1,9 +1,12 @@
 package br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro
 
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.AreaAtuacaoRequest
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequestAreaAtuacal
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.Cidade
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.Mesorregiao
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.MessoRegiaoRequest
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaAreaAtuacaoCadastrais
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaAreaAtuacaoCadastraisDados
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCidades
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaMessoRegiao
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.AreaDeAtuacaoRepository
@@ -33,6 +36,12 @@ class AreaDeAtuacaoUseCase(
         }else{
             return Triple(null, null, null)
         }
+    }
+    suspend fun recuperaDadosCadastraisAreaAtuacao(representanteId:Int):ArrayList<RespostaAreaAtuacaoCadastrais>{
+        val areaAtuacaoRequest = AreaAtuacaoRequest(representanteId)
+        val listaAreaAtuacao = areaDeAtuacaoRepository.recuperaDadosCastraisAreaAtuacao(areaAtuacaoRequest)
+        return listaAreaAtuacao
+
     }
     fun converterParaEstado(
         uf: String,

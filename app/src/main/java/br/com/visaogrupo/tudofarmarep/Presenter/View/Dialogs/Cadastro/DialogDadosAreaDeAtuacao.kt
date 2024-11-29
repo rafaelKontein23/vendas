@@ -78,7 +78,7 @@ class DialogDadosAreaDeAtuacao(private val context: Context,
         }
 
     }
-    fun dialogMessoRegiao(uf:String){
+    fun dialogMessoRegiao(uf:String, isCadastro: Boolean = true){
         val binding = DialogMessorrigiaoBinding.inflate(LayoutInflater.from(context))
         val dialogMesorregiao = Dialog(context).apply {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -94,7 +94,10 @@ class DialogDadosAreaDeAtuacao(private val context: Context,
         binding.btnSelecionar.setOnClickListener {
             dialogMesorregiao.dismiss()
         }
-        viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao(uf, false)
+        if (isCadastro){
+            viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao(uf, false)
+
+        }
         binding.carregandoMessoRegiao.isVisible = true
 
         viewModelFragmentDadosAreaDeAtuacao.listaMessoRegiaoBusca.observe(lifecycleOwner){

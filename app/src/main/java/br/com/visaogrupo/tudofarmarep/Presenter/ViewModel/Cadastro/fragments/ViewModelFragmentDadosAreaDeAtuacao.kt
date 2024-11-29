@@ -6,16 +6,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.AreaDeAtuacaoUseCase
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaAreaAtuacaoCadastrais
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCidades
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaMessoRegiao
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.ListaUtils
+import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ViewModelFragmentDadosAreaDeAtuacao(
     private val areaDeAtuacaoUseCase: AreaDeAtuacaoUseCase,
-    private val cadastroUseCase: CadastroUseCase
+    private val cadastroUseCase: CadastroUseCase,
+    private val preferenciasUtils: PreferenciasUtils
 ) : ViewModel() {
     private val listaGeralMessoRegiao = ArrayList<RespostaMessoRegiao>()
     private val _listaEstados = MutableLiveData<List<String>>()
@@ -41,6 +45,9 @@ class ViewModelFragmentDadosAreaDeAtuacao(
     private val _ufSelecionada = MutableLiveData<String>()
     val ufSelecionada: LiveData<String> = _ufSelecionada
 
+    private val _ufTexto = MutableLiveData<String>()
+    val ufTextoObs: LiveData<String> = _ufTexto
+
     private val _mesorregiaoSelecionada = MutableLiveData<ArrayList<RespostaMessoRegiao>?>()
     val mesorregiaoSelecionada: LiveData<ArrayList<RespostaMessoRegiao>?> = _mesorregiaoSelecionada
 
@@ -51,19 +58,54 @@ class ViewModelFragmentDadosAreaDeAtuacao(
         _listaEstados.value = ListaUtils.EstadosUtils.obterListaEstados().toMutableList()
     }
 
-    fun buscaDadosAreaDeAtuacaoMesorregiao(uf: String, adicionaInicial: Boolean) {
+    fun buscaDadosAreaDeAtuacaoMesorregiao(uf: String, adicionaInicial: Boolean, isEditavel: Boolean = true, listaAreaAtuacaoCadastrais:ArrayList<RespostaAreaAtuacaoCadastrais> = arrayListOf()) {
         viewModelScope.launch(Dispatchers.IO) {
             val (listaRespostaMessoRegiao, listaRespostaCidades, listaGeralMessoRegiaoList) = areaDeAtuacaoUseCase.recuperaDadosMesorregiao(uf)
             if (listaGeralMessoRegiaoList != null) {
                 listaGeralMessoRegiao.clear()
                 listaGeralMessoRegiao.addAll(listaGeralMessoRegiaoList)
             }
-            if (adicionaInicial){
-                _mesorregiaoSelecionada.postValue(listaRespostaMessoRegiao)
-                _cidadeSelecionada.postValue(listaRespostaCidades)
+
+            if(!isEditavel){
+                if (listaAreaAtuacaoCadastrais.isNotEmpty()) {
+                    val mesorregioesIdsSelecionadas = listaAreaAtuacaoCadastrais.map { it.Mesorregiao_id }.toSet()
+                    val cidadesIdsSelecionadas = listaAreaAtuacaoCadastrais.map { it.Cidade }.toSet()
+                    val listaSelecionadosMeso = listaRespostaMessoRegiao
+                        ?.filter { it.Mesorregiao_id in mesorregioesIdsSelecionadas }
+                        ?.distinctBy { it.Mesorregiao_id }
+                        ?.let { ArrayList(it) }
+                        ?: ArrayList()
+                    val listaSelecionadosCidades  = listaRespostaCidades
+                        ?.filter { it.Cidade in cidadesIdsSelecionadas }
+                        ?.distinctBy { it.Cidade }
+                        ?.let { ArrayList(it) }
+                        ?: ArrayList()
+
+                    _mesorregiaoSelecionada.postValue(listaSelecionadosMeso)
+                    _cidadeSelecionada.postValue(listaSelecionadosCidades)
+                }
+            }else{
+                if (adicionaInicial){
+                    _mesorregiaoSelecionada.postValue(listaRespostaMessoRegiao)
+                    _cidadeSelecionada.postValue(listaRespostaCidades)
+                }
             }
             _listaMesorregiao.postValue(listaRespostaMessoRegiao)
             _listaCidades.postValue(listaRespostaCidades)
+
+
+        }
+    }
+
+    fun buscaDadosAreaDeAtuacaoEdicao() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val representanteID  = preferenciasUtils.recuperarInteiro(ProjetoStrings.reprenteID, 0)
+            val listaAreaAtuacaoCadastrais = areaDeAtuacaoUseCase.recuperaDadosCadastraisAreaAtuacao(representanteID)
+            if(listaAreaAtuacaoCadastrais.isNotEmpty()){
+                val uf = listaAreaAtuacaoCadastrais.first().UF
+                _ufSelecionada.postValue(uf)
+                buscaDadosAreaDeAtuacaoMesorregiao(uf, false, isEditavel =  false, listaAreaAtuacaoCadastrais = listaAreaAtuacaoCadastrais)
+            }
         }
     }
 

@@ -26,6 +26,26 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
     private lateinit var viewModelFragmentDadosAreaDeAtuacao: ViewModelFragmentDadosAreaDeAtuacao
     private lateinit  var  listaUF: List<String>
     private lateinit var  viewModelActCabecalho: ViewModelActCabecalho
+    private var isCadastro: Boolean = false
+
+    companion object {
+        private const val ARG_IS_EDITABLE = "ARG_IS_EDITABLE"
+
+        fun newInstance(isEditable: Boolean): DadosAreaDeAtuacaoFragment {
+            val fragment = DadosAreaDeAtuacaoFragment()
+            val args = Bundle().apply {
+                putBoolean(ARG_IS_EDITABLE, isEditable)
+            }
+            fragment.arguments = args
+            return fragment
+        }
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let { args ->
+            isCadastro = args.getBoolean(ARG_IS_EDITABLE, false)
+        }
+    }
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -36,14 +56,19 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
         val factory = ViewModelFragmentDadosAreaDeAtuacaoFactory(requireContext())
         viewModelFragmentDadosAreaDeAtuacao = ViewModelProvider(this, factory)[ViewModelFragmentDadosAreaDeAtuacao::class.java]
         viewModelActCabecalho = ViewModelProvider(requireActivity()).get(ViewModelActCabecalho::class.java)
-        viewModelActCabecalho.mudaProgressoCadastro(4, 1f)
-
-        val ufSelecionada = if(FormularioCadastro.cadastroRequestAreaAtuacal.UF != "") FormularioCadastro.cadastroRequestAreaAtuacal.UF else FormularioCadastro.cadastro.UF
-        viewModelFragmentDadosAreaDeAtuacao.selecionaUF(ufSelecionada)
-        binding.inputEstadoAreaDeAtuacao.text = ufSelecionada.obterNomeCompletoUF(ufSelecionada)
-
         bloqueiaCampo(true)
-        viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao(ufSelecionada, true)
+
+        if(isCadastro){
+            viewModelActCabecalho.mudaProgressoCadastro(4, 1f)
+            val ufSelecionada = if(FormularioCadastro.cadastroRequestAreaAtuacal.UF != "") FormularioCadastro.cadastroRequestAreaAtuacal.UF else FormularioCadastro.cadastro.UF
+            viewModelFragmentDadosAreaDeAtuacao.selecionaUF(ufSelecionada)
+            binding.inputEstadoAreaDeAtuacao.text = ufSelecionada.obterNomeCompletoUF(ufSelecionada)
+            viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao(ufSelecionada, true)
+
+        }else{
+            viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoEdicao()
+        }
+
 
         viewModelFragmentDadosAreaDeAtuacao.cidadeSelecionada.observe(viewLifecycleOwner){cidadeSelecionada ->
             bloqueiaCampo(false)
@@ -95,6 +120,10 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
             }
         }
 
+        viewModelFragmentDadosAreaDeAtuacao.ufTextoObs.observe(viewLifecycleOwner){
+            binding.inputEstadoAreaDeAtuacao.text = it
+        }
+
         viewModelFragmentDadosAreaDeAtuacao.ufSelecionada.observe(viewLifecycleOwner){
             bloqueiaCampo(true)
 
@@ -117,7 +146,7 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
                 viewModelFragmentDadosAreaDeAtuacao,
                 viewLifecycleOwner)
 
-            dialog.dialogMessoRegiao(binding.inputEstadoAreaDeAtuacao.text.toString())
+            dialog.dialogMessoRegiao(binding.inputEstadoAreaDeAtuacao.text.toString(), isCadastro)
 
         }
 
@@ -142,10 +171,13 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
                 binding.inputCidadesAreaDeAtuacao.validaError(false, requireContext())
                 binding.inputMesorregioesAreaDeAtuacao.validaError(false, requireContext())
                 viewModelFragmentDadosAreaDeAtuacao.mandaCadatro()
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainerCadastro, CodigoIndicacaoFragment())
-                    .addToBackStack(null)
-                    .commit()
+                if(isCadastro){
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainerCadastro, CodigoIndicacaoFragment())
+                        .addToBackStack(null)
+                        .commit()
+                }
+
             }
         }
         return binding.root
