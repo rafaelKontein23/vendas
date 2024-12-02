@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro.DadosAreaDeAtuacaoFragment.Companion
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActCabecalho
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Factory.ViewModelFragmentDadosPessoalFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentDadosPessoais
@@ -42,12 +43,23 @@ class DadosPessoaisFragment : Fragment() {
     private lateinit var  viewModelActCabecalho: ViewModelActCabecalho
     private lateinit var viewModelFragmentDadosPessoal: ViewModelFragmentDadosPessoais
 
+    private var isCadastro: Boolean = false
+    companion object {
+        private const val ARG_IS_EDITABLE = "ARG_IS_EDITABLE"
 
+        fun newInstance(isEditable: Boolean): DadosPessoaisFragment {
+            val fragment = DadosPessoaisFragment()
+            val args = Bundle().apply {
+                putBoolean(ARG_IS_EDITABLE, isEditable)
+            }
+            fragment.arguments = args
+            return fragment
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        arguments?.let { args ->
+            isCadastro = args.getBoolean(DadosPessoaisFragment.ARG_IS_EDITABLE, false)
         }
     }
 
@@ -67,14 +79,35 @@ class DadosPessoaisFragment : Fragment() {
         FormataTextos.colocaMascaraInput(binding.inputTelefoneComercial, ProjetoStrings.mascaraCelular)
         FormataTextos.colocaMascaraInput(binding.inputCelular, ProjetoStrings.mascaraCelular)
         viewModelFragmentDadosPessoal.recuperaNumeroCelular()
-        if(FormularioCadastro.cadastro.nome.isNotEmpty()){
-            binding.inputNome.setText(FormularioCadastro.cadastro.nome)
-            binding.inputSobrenome.setText(FormularioCadastro.cadastro.sobrenome)
-            binding.inputCpf.setText(FormularioCadastro.cadastro.cpf)
-            binding.inputDataNacimento.setText(FormularioCadastro.cadastro.dataNascimento)
-            binding.inputEmail.setText(FormularioCadastro.cadastro.email)
-            binding.inputTelefoneComercial.setText(FormularioCadastro.cadastro.telefoneComercial)
+
+        viewModelFragmentDadosPessoal.dadosPessoais.observe(viewLifecycleOwner){
+            binding.constrainCarregando.isVisible = false
+            if(it != null){
+                binding.inputNome.setText(it.Nome)
+                binding.inputSobrenome.setText(it.Sobrenome ?: "")
+                binding.inputCpf.setText(it.CPF ?: "")
+                binding.inputDataNacimento.setText(it.DataNascimento ?: "")
+                binding.inputEmail.setText(it.email ?: "")
+                binding.inputTelefoneComercial.setText(it.TelefoneComercial ?: "")
+            }
         }
+
+        if(!isCadastro){
+            binding.constrainCarregando.isVisible = true
+            viewModelFragmentDadosPessoal.buscaDadosPessoaisCadastrais()
+            binding.btnContinuar.text = getString(R.string.AtualizarDados)
+
+        }else{
+            if(FormularioCadastro.cadastro.nome.isNotEmpty()){
+                binding.inputNome.setText(FormularioCadastro.cadastro.nome)
+                binding.inputSobrenome.setText(FormularioCadastro.cadastro.sobrenome)
+                binding.inputCpf.setText(FormularioCadastro.cadastro.cpf)
+                binding.inputDataNacimento.setText(FormularioCadastro.cadastro.dataNascimento)
+                binding.inputEmail.setText(FormularioCadastro.cadastro.email)
+                binding.inputTelefoneComercial.setText(FormularioCadastro.cadastro.telefoneComercial)
+            }
+        }
+
         viewModelFragmentDadosPessoal.numeroCelular.observe(viewLifecycleOwner){
             binding.inputCelular.setText(it)
             binding.inputCelular.isEnabled = false
@@ -116,6 +149,28 @@ class DadosPessoaisFragment : Fragment() {
 
         binding.inputDataNacimento.setOnClickListener {
             Alertas.showDatePickerDialog(binding.inputDataNacimento, requireContext())
+        }
+
+        viewModelFragmentDadosPessoal.atualziaDados.observe(viewLifecycleOwner){
+            if(!isCadastro){
+                binding.constrainCarregando.isVisible = false
+                if(it ?:false) {
+                    Alertas.alertaErro(
+                        requireContext(),
+                        mensagem = getString(R.string.DadosAtuazlizadoComSucesso),
+                        titulo = getString(R.string.loiuInforma)
+                    ) {
+
+                    }
+                }else{
+                    Alertas.alertaErro(
+                        requireContext(),
+                        mensagem = getString(R.string.erroAtualiza),
+                        titulo = getString(R.string.tituloErro)
+                    ) {}
+                }
+            }
+
         }
 
         binding.btnContinuar.setOnClickListener {
@@ -179,11 +234,16 @@ class DadosPessoaisFragment : Fragment() {
 
             }else{
                 viewModelFragmentDadosPessoal.salvaCamposPessoais(nome, sobrenome, cpf, dataNacimento, email, telefoneComercial)
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainerCadastro, FotoDocumentoFragment())
-                    .addToBackStack(null)
-                    .commit()
-            }
+
+                if(isCadastro){
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainerCadastro, FotoDocumentoFragment())
+                        .addToBackStack(null)
+                        .commit()
+                }else{
+                    binding.constrainCarregando.isVisible = true
+                }
+           }
         }
 
 

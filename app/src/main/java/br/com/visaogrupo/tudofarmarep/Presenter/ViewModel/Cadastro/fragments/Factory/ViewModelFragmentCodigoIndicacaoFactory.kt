@@ -8,6 +8,7 @@ import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CodigoIndicaoUseCa
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentCodigoIndicacao
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CadastroRepository
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CodigoIndicacaoRepository
+import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.DadosPessoaisRepository
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import br.com.visaogrupo.tudofarmarep.Utils.SistemaUtils
@@ -22,7 +23,8 @@ class ViewModelFragmentCodigoIndicacaoFactory ( private val context: Context
             val cadastroRepository = CadastroRepository(context)
             val preferenciasUtils = PreferenciasUtils(context)
             val sistemaUtils = SistemaUtils(context)
-            val cadastroUseCase = CadastroUseCase(cadastroRepository, preferenciasUtils,sistemaUtils)
+            val dadosPessoaisRepository = DadosPessoaisRepository(context)
+            val cadastroUseCase = CadastroUseCase(cadastroRepository, preferenciasUtils,sistemaUtils, dadosPessoaisRepository)
             val suporteTelefoneReposytory = SuporteTelefoneReposytory(context)
             return ViewModelFragmentCodigoIndicacao(codigoIndicaoUseCase, suporteTelefoneReposytory, cadastroUseCase) as T
         }

@@ -130,9 +130,9 @@ class DadosCnpjFragment : Fragment() {
                     binding.textEstado.text.toString()
                 )
                 viewModelFragmentDadosCnpj.enviaCadastro()
-
+                val dadosPessoaisFragment = DadosPessoaisFragment.newInstance(true)
                 requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainerCadastro, DadosPessoaisFragment())
+                    .replace(R.id.fragmentContainerCadastro, dadosPessoaisFragment)
                     .addToBackStack(null)
                     .commit()
             }

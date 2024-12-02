@@ -5,9 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaDadosPessoais
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ViewModelFragmentDadosPessoais(
@@ -16,10 +18,21 @@ class ViewModelFragmentDadosPessoais(
             ):ViewModel(){
     private val _numeroCelular = MutableLiveData<String?>()
     val numeroCelular: LiveData<String?> = _numeroCelular
+    private val _dadosPessoais = MutableLiveData<RespostaDadosPessoais?>()
+    val dadosPessoais: LiveData<RespostaDadosPessoais?> = _dadosPessoais
 
+    private val _atualziaDados = MutableLiveData<Boolean?>()
+    val atualziaDados: LiveData<Boolean?> = _atualziaDados
     fun recuperaNumeroCelular() {
         val numeroCelular = preferenciasUtils.recuperarTexto(ProjetoStrings.celular)
         _numeroCelular.postValue(numeroCelular)
+    }
+
+    fun buscaDadosPessoaisCadastrais(){
+        viewModelScope.launch(Dispatchers.IO) {
+            val dadosPessoaisCadastrais = cadastroUseCase.buscaDadosPessoaisCadastrais()
+            _dadosPessoais.postValue(dadosPessoaisCadastrais)
+        }
     }
 
     fun salvaCamposPessoais(nome: String,
@@ -44,8 +57,9 @@ class ViewModelFragmentDadosPessoais(
 
     }
     fun enviaCadastro(){
-        viewModelScope.launch {
-            cadastroUseCase.enviaCadastro()
+        viewModelScope.launch(Dispatchers.IO) {
+           val atualziaDadosCadastrais  = cadastroUseCase.enviaCadastro()
+           _atualziaDados.postValue(atualziaDadosCadastrais)
         }
     }
 }

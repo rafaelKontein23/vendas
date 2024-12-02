@@ -1,6 +1,9 @@
 package br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro
 
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.DadosPessoaisRequest
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaDadosPessoais
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CadastroRepository
+import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.DadosPessoaisRepository
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.ImagensUltis
@@ -10,10 +13,12 @@ import br.com.visaogrupo.tudofarmarep.Utils.SistemaUtils
 class CadastroUseCase(
       val  cadastroRepository: CadastroRepository,
       val preferenciasUtils: PreferenciasUtils,
-      val sistemaUtils: SistemaUtils
+      val sistemaUtils: SistemaUtils,
+      val dadosPessoaisRepository: DadosPessoaisRepository? = null
 ) {
-     fun enviaCadastro(){
-        cadastroRepository.enviaCadastro()
+     fun enviaCadastro(): Boolean{
+        val editaCadastro =  cadastroRepository.enviaCadastro()
+         return editaCadastro
     }
      fun enviaCadastroFinal():Boolean{
 
@@ -29,6 +34,14 @@ class CadastroUseCase(
         val cadastro = cadastroRepository.enviaCadastroFinal()
         preferenciasUtils.salvarBool(cadastro, ProjetoStrings.casdastro)
         return cadastro
+    }
+    fun buscaDadosPessoaisCadastrais(): RespostaDadosPessoais? {
+
+        val representanteId = preferenciasUtils.recuperarInteiro(ProjetoStrings.reprenteID, 0)
+        val dadosPessoaisRequest = DadosPessoaisRequest(representanteId)
+        val dadosPessoais = dadosPessoaisRepository!!.buscaDadosPessoaisCadastrais(dadosPessoaisRequest)
+        return dadosPessoais
+
     }
      fun mandaFotoCadastro(): Boolean{
         var base64 = ""
@@ -46,6 +59,5 @@ class CadastroUseCase(
         val base64 = FormularioCadastro.base64Assinatura
         val nomeArquivo = "${FormularioCadastro.cadastro.CNPJ}/${FormularioCadastro.cadastro.celular}.jpeg"
         return  cadastroRepository.enviaAssinatura(base64, nomeArquivo)
-
     }
 }

@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.animation.LinearInterpolator
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -27,6 +28,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.home.DialogMenuLate
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.home.DialogSuccesoCarteiraImportada
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro.DadosAreaDeAtuacaoFragment
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro.DadosPessoaisFragment
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.DadosBancariosFragment
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.FragmentHome
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.FragmentsWebView
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Atividades.Factory.ViewModelActHomeFactory
@@ -300,25 +302,37 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, A
 
     override fun atualizaWebView(nome: String, id: EnumMenu) {
         tituloTopo.text = nome
-        when(id){
+        when (id) {
             EnumMenu.HOME -> {
-                supportFragmentManager.beginTransaction().addToBackStack(null)
-                    .replace(R.id.containerfragments, fragmentHome).commit()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.containerfragments, fragmentHome)
+                    .commit()
             }
             EnumMenu.DADOSCADASTRAIS -> {
-                val dadosPessoaisFragment = DadosPessoaisFragment()
-
-                supportFragmentManager.beginTransaction().addToBackStack(null)
-                    .replace(R.id.containerfragments, dadosPessoaisFragment).commit()
+                val dadosPessoaisFragment = DadosPessoaisFragment.newInstance(false)
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.containerfragments, dadosPessoaisFragment)
+                    .addToBackStack(null)
+                    .commit()
             }
-
-            EnumMenu.MINHAEMPRASA -> TODO()
-            EnumMenu.DADOScADASTRAIS -> TODO()
+            EnumMenu.DADOSBANCARIOS -> {
+                val dadosBancariosFragment = DadosBancariosFragment()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.containerfragments, dadosBancariosFragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
             EnumMenu.DADOSAREATUACAO -> {
-                val dadosAreaDeAtuacaoFragment  = DadosAreaDeAtuacaoFragment.newInstance(false)
-                supportFragmentManager.beginTransaction().addToBackStack(null)
-                    .replace(R.id.containerfragments, dadosAreaDeAtuacaoFragment).commit()
+                val dadosAreaDeAtuacaoFragment = DadosAreaDeAtuacaoFragment.newInstance(false)
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.containerfragments, dadosAreaDeAtuacaoFragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
+            else -> {
+                Log.w("Navigation", "Opção de menu desconhecida: $id")
             }
         }
+
     }
 }

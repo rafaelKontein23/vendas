@@ -24,7 +24,7 @@ class CadastroRepository(context: Context) {
 
     val retrofit = RetrofitWs(context).createService(SincronoCadastro::class.java)
 
-    fun enviaCadastro(){
+    fun enviaCadastro(): Boolean{
         try {
             val jsonAreaAtucao = Gson().toJson(FormularioCadastro.cadastroRequestAreaAtuacal).toString()  ?: ""
             val jsonCadastro = Gson().toJson(FormularioCadastro.cadastro).toString()
@@ -41,16 +41,21 @@ class CadastroRepository(context: Context) {
             val reponse = retrofit.P_Cadastro(requestBody).execute()
             if(reponse.isSuccessful){
                 Log.d("Sucesso", "sucesso, no Envio do Cadastro")
+                return true
 
             }else{
                 if(reponse.errorBody() != null){
                     Log.d("error cadastro",    reponse.errorBody()!!.string())
                 }
+                return false
+
             }
         }catch (e: Exception){
             e.printStackTrace()
+            return false
         }catch (e:IOException){
             e.printStackTrace()
+            return false
         }
     }
 

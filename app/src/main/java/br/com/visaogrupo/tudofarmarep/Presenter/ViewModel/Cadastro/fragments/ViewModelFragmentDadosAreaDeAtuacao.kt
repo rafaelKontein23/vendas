@@ -41,6 +41,10 @@ class ViewModelFragmentDadosAreaDeAtuacao(
     val listaMessoRegiaoBusca: LiveData<ArrayList<RespostaMessoRegiao>?> = _listaMessoRegiaoBusca
 
 
+    val _editaDados = MutableLiveData<Boolean>();
+    val editaDadosObs: LiveData<Boolean> = _editaDados
+
+
 
     private val _ufSelecionada = MutableLiveData<String>()
     val ufSelecionada: LiveData<String> = _ufSelecionada
@@ -65,7 +69,8 @@ class ViewModelFragmentDadosAreaDeAtuacao(
                 listaGeralMessoRegiao.clear()
                 listaGeralMessoRegiao.addAll(listaGeralMessoRegiaoList)
             }
-
+            _listaMesorregiao.postValue(listaRespostaMessoRegiao)
+            _listaCidades.postValue(listaRespostaCidades)
             if(!isEditavel){
                 if (listaAreaAtuacaoCadastrais.isNotEmpty()) {
                     val mesorregioesIdsSelecionadas = listaAreaAtuacaoCadastrais.map { it.Mesorregiao_id }.toSet()
@@ -90,8 +95,7 @@ class ViewModelFragmentDadosAreaDeAtuacao(
                     _cidadeSelecionada.postValue(listaRespostaCidades)
                 }
             }
-            _listaMesorregiao.postValue(listaRespostaMessoRegiao)
-            _listaCidades.postValue(listaRespostaCidades)
+
 
 
         }
@@ -103,7 +107,7 @@ class ViewModelFragmentDadosAreaDeAtuacao(
             val listaAreaAtuacaoCadastrais = areaDeAtuacaoUseCase.recuperaDadosCadastraisAreaAtuacao(representanteID)
             if(listaAreaAtuacaoCadastrais.isNotEmpty()){
                 val uf = listaAreaAtuacaoCadastrais.first().UF
-                _ufSelecionada.postValue(uf)
+                _ufTexto.postValue(uf)
                 buscaDadosAreaDeAtuacaoMesorregiao(uf, false, isEditavel =  false, listaAreaAtuacaoCadastrais = listaAreaAtuacaoCadastrais)
             }
         }
@@ -240,13 +244,14 @@ class ViewModelFragmentDadosAreaDeAtuacao(
     fun mandaCadatro(){
         viewModelScope.launch(Dispatchers.IO) {
             val areaDeAtuacao = areaDeAtuacaoUseCase.converterParaEstado(
-                _ufSelecionada.value!!,
+                (_ufSelecionada.value ?: _ufTexto.value).toString(),
                 _mesorregiaoSelecionada.value!!,
                 _cidadeSelecionada.value!!
             )
             FormularioCadastro.cadastroRequestAreaAtuacal = areaDeAtuacao
 
-            cadastroUseCase.enviaCadastro()
+            val edtitaDados = cadastroUseCase.enviaCadastro()
+            _editaDados.postValue(edtitaDados)
         }
     }
 

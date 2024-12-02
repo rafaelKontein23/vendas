@@ -5,118 +5,133 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Presenter.View.Fragments.Cadastro.DadosAreaDeAtuacaoFragment">
+    tools:context=".Presenter.View.Fragments.Home.DadosBancariosFragment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-
             android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_marginBottom="150dp"
-
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView17"
-                    style="@style/textoTituloInput"
+                    android:id="@+id/descricaoDadosBancarios"
+                    style="@style/texto14sp_gray600_normal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="48dp"
                     android:layout_marginEnd="24dp"
-                    android:text="@string/estado"
+                    android:text="@string/dadosBancariosDescricao"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/inputEstadoAreaDeAtuacao"
-                    style="@style/inputPadraoCadastro"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/seta_baixo"
-                    android:paddingTop="14dp"
-                    android:textColor="@color/gray500"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
-
-
-                <TextView
-                    android:id="@+id/textView18"
-                    style="@style/textoTituloInput"
+                    android:id="@+id/textoDados"
+                    style="@style/textoBold14sp_gray600"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:text="@string/mesorregioes"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/inputEstadoAreaDeAtuacao" />
+                    android:text="TextView"
+                    app:layout_constraintEnd_toEndOf="@+id/descricaoDadosBancarios"
+                    app:layout_constraintStart_toStartOf="@+id/descricaoDadosBancarios"
+                    app:layout_constraintTop_toBottomOf="@+id/descricaoDadosBancarios" />
 
                 <TextView
-                    android:id="@+id/inputMesorregioesAreaDeAtuacao"
-                    style="@style/inputPadraoCadastro"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/seta_baixo"
-                    android:paddingTop="14dp"
-                    android:text="@string/todos"
-                    android:textColor="@color/gray500"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
-
-                <TextView
-                    android:id="@+id/textView19"
+                    android:id="@+id/textView34"
                     style="@style/textoTituloInput"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:text="@string/cidades"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/inputMesorregioesAreaDeAtuacao" />
+                    android:text="@string/Instituição"
+                    app:layout_constraintStart_toStartOf="@+id/textoDados"
+                    app:layout_constraintTop_toBottomOf="@+id/textoDados" />
 
                 <TextView
-                    android:id="@+id/inputCidadesAreaDeAtuacao"
+                    android:id="@+id/inputInstituicao"
                     style="@style/inputPadraoCadastro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/seta_baixo"
                     android:paddingTop="14dp"
-                    android:text="@string/todos"
+                    android:text="@string/Selecione"
                     android:textColor="@color/gray500"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView34" />
+
+                <TextView
+                    android:id="@+id/textView35"
+                    style="@style/textoTituloInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/Agencia"
+                    app:layout_constraintStart_toStartOf="@+id/textoDados"
+                    app:layout_constraintTop_toBottomOf="@+id/inputInstituicao" />
+
+                <EditText
+                    android:id="@+id/inputAgencia"
+                    style="@style/inputPadraoCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:autofillHints="family-name"
+                    android:hint="0000"
+                    android:importantForAutofill="no"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView35">
+
+                </EditText>
 
 
+                <TextView
+                    android:id="@+id/textView36"
+                    style="@style/textoTituloInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/conta"
+                    app:layout_constraintStart_toStartOf="@+id/textoDados"
+                    app:layout_constraintTop_toBottomOf="@+id/inputAgencia" />
+
+                <EditText
+                    android:id="@+id/inputConta"
+                    style="@style/inputPadraoCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:autofillHints="family-name"
+                    android:hint="00000-0"
+                    android:importantForAutofill="no"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView36">
+
+                </EditText>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button"
+                    style="@style/buttonPadraoCadastroSelecionar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="62dp"
+                    android:text="@string/salvar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/inputConta"
+                    app:layout_constraintVertical_bias="1.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <TextView
-            android:id="@+id/btnContinuar"
-            style="@style/buttonPadraoCadastro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constrainCarregando"
             android:layout_width="match_parent"
@@ -143,7 +158,4 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 </FrameLayout>

@@ -221,68 +221,33 @@
                     app:layout_constraintStart_toEndOf="@+id/iconeHome"
                     app:layout_constraintTop_toTopOf="@+id/iconeHome" />
             </LinearLayout>
+
+
             <LinearLayout
-                android:id="@+id/linearSubsMenusDadosCadastrais"
+                android:id="@+id/linearDadosBancarios"
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:visibility="gone"
-                android:layout_marginLeft="28dp"
-                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="22dp"
                 android:layout_height="wrap_content">
-                <LinearLayout
-                    android:id="@+id/linearMenuDadosCadastrais"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        style="@style/texto_gray850_14sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="@string/DadosCadastrais"
-                        android:textFontWeight="500"
-                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
-                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
-                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/linearMenuMinhaEmpresa"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="12sp"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        style="@style/texto_gray850_14sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="@string/MinhaEmpresa"
-                        android:textFontWeight="500"
-                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
-                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
-                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/linearMenuDadosBancarios"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="12sp"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        style="@style/texto_gray850_14sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="@string/DadosBancários"
-                        android:textFontWeight="500"
-                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
-                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
-                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
-                </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/pessoa" />
+                <TextView
+                    style="@style/texto_gray850_14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/dadosBancarios"
+                    android:textFontWeight="500"
+                    app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                    app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                    app:layout_constraintTop_toTopOf="@+id/iconeHome" />
             </LinearLayout>
+
 
         </LinearLayout>
 

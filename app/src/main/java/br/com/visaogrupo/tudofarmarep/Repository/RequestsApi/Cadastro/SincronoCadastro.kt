@@ -54,5 +54,10 @@ interface SincronoCadastro {
     (@Body responseBody: RequestBody): Call<ResponseBody>
 
 
+    @POST("lista/dados/pessoais")
+    fun P_ListaRepresentantes
+    (@Body responseBody: RequestBody): Call<ResponseBody>
+
+
 
 }

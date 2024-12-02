@@ -119,7 +119,15 @@
         <item name="android:fontFamily">@font/manrope</item>
         <item name="android:textStyle">normal</item>
     </style>
-    <style name="textoBold14sp">
+    <style name="texto14sp_gray600_normal">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:textColor">@color/gray600</item>
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textStyle">normal</item>
+
+    </style>
+    <style name="textoBold14sp_gray600">
         <item name="android:textSize">14sp</item>
         <item name="android:letterSpacing">0.025</item>
         <item name="android:textColor">@color/gray600</item>

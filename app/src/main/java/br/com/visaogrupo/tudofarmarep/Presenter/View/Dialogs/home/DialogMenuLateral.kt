@@ -62,18 +62,19 @@ class DialogMenuLateral {
         binding.nomeRepresentante.text = nomeRepresetanteTextFormat
         binding.cnpjRepresentante.text = FormatarTexto().formatCNPJ(cnpjRepresentanteText)
         binding.linearMenuMeusDados.setOnClickListener {
-            binding.linearSubsMenusDadosCadastrais.isVisible = !binding.linearSubsMenusDadosCadastrais.isVisible
+            atualizaFragmentHome.atualizaWebView(context.getString(R.string.DadosCadastrais), EnumMenu.DADOSCADASTRAIS)
+            dialogMenuLateral.dismiss()
 
+        }
+        binding.linearDadosBancarios.setOnClickListener {
+            atualizaFragmentHome.atualizaWebView(context.getString(R.string.dadosBancarios), EnumMenu.DADOSBANCARIOS)
+            dialogMenuLateral.dismiss()
         }
         binding.linearAreaAruacao.setOnClickListener {
             atualizaFragmentHome.atualizaWebView(context.getString(R.string.DadosAreaAtuacao), EnumMenu.DADOSAREATUACAO)
             dialogMenuLateral.dismiss()
         }
-        binding.linearMenuDadosCadastrais.setOnClickListener {
-            atualizaFragmentHome.atualizaWebView(context.getString(R.string.DadosCadastrais), EnumMenu.DADOSCADASTRAIS)
-            dialogMenuLateral.dismiss()
 
-        }
         binding.linearMenuHome.setOnClickListener {
             atualizaFragmentHome.atualizaWebView(context.getString(R.string.home), EnumMenu.HOME)
             dialogMenuLateral.dismiss()

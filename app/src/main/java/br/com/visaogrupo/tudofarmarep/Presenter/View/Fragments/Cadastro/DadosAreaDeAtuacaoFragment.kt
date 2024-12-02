@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogDadosAreaDeAtuacao
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActCabecalho
@@ -67,6 +68,8 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
 
         }else{
             viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoEdicao()
+            binding.btnContinuar.text = getString(R.string.AtualizarDados)
+            binding.constrainCarregando.isVisible = true
         }
 
 
@@ -92,6 +95,16 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
                 }
             }else{
                 Alertas.alertaErro(requireContext(), mensagem =   getString(R.string.erroSuporteWhats), titulo =  getString(R.string.tituloErro)){}
+            }
+        }
+        viewModelFragmentDadosAreaDeAtuacao.editaDadosObs.observe(viewLifecycleOwner){
+            binding.constrainCarregando.isVisible = false
+            if(it){
+                Alertas.alertaErro(requireContext(), mensagem =   getString(R.string.DadosAtuazlizadoComSucesso), titulo =  getString(R.string.loiuInforma)){
+
+                }
+            }else{
+                Alertas.alertaErro(requireContext(), mensagem =   getString(R.string.erroAtualiza), titulo =  getString(R.string.tituloErro)){}
             }
         }
 
@@ -128,6 +141,8 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
 
         viewModelFragmentDadosAreaDeAtuacao.ufTextoObs.observe(viewLifecycleOwner){
             binding.inputEstadoAreaDeAtuacao.text = it
+            binding.constrainCarregando.isVisible = false
+
         }
 
         viewModelFragmentDadosAreaDeAtuacao.ufSelecionada.observe(viewLifecycleOwner){
@@ -151,9 +166,7 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
             val dialog = DialogDadosAreaDeAtuacao(requireActivity(),
                 viewModelFragmentDadosAreaDeAtuacao,
                 viewLifecycleOwner)
-
             dialog.dialogMessoRegiao(binding.inputEstadoAreaDeAtuacao.text.toString(), isCadastro)
-
         }
 
         binding.inputCidadesAreaDeAtuacao.setOnClickListener {
@@ -182,6 +195,8 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
                         .replace(R.id.fragmentContainerCadastro, CodigoIndicacaoFragment())
                         .addToBackStack(null)
                         .commit()
+                }else{
+                    binding.constrainCarregando.isVisible = true
                 }
 
             }

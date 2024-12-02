@@ -190,7 +190,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            style="@style/textoBold14sp"
+            style="@style/textoBold14sp_gray600"
             app:layout_constraintStart_toStartOf="@+id/decricaoToken"
             app:layout_constraintTop_toBottomOf="@+id/decricaoToken" />
 

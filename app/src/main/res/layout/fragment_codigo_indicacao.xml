@@ -96,7 +96,7 @@
 
                        <TextView
                            android:id="@+id/nomeRepresentante"
-                           style="@style/textoBold14sp"
+                           style="@style/textoBold14sp_gray600"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_marginTop="8dp"
@@ -121,7 +121,7 @@
 
                        <TextView
                            android:id="@+id/cnpjRepresentante"
-                           style="@style/textoBold14sp"
+                           style="@style/textoBold14sp_gray600"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_marginTop="8dp"
@@ -145,7 +145,7 @@
 
                        <TextView
                            android:id="@+id/celularRepresentante"
-                           style="@style/textoBold14sp"
+                           style="@style/textoBold14sp_gray600"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_marginTop="8dp"

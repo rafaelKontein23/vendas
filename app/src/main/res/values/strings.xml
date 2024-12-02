@@ -12,6 +12,7 @@
     <string name="ContratoAceite">Contrato de Aceitação</string>
     <string name="assinaturaContrato">Assinatura do Contrato</string>
     <string name="home">Home</string>
+    <string name="AtualizarDados">"Atualizar Dados</string>
     <string name="meusDados">Meus Dados</string>
     <string name="DadosCadastrais">Dados cadastrais</string>
     <string name="MinhaEmpresa">Minha empresa</string>
@@ -25,6 +26,8 @@
     <string name="erroCnpj">Não foi possível carregar os dados do CNPJ</string>
     <string name="erroFoto">Adicione uma foto do documento</string>
     <string name="erroCadastro">Algo deu errado no envio de cadastro, tente novamente em instantes</string>
+    <string name="erroAtualiza">Algo deu errado na atualização do cadastro, tente novamente em instantes</string>
+
     <string name="erroiometria"> parece que voce não possui biometria </string>
     <string name="erroPadrao">Algo deu errado, tente novamente</string>
     <string name="erroDeLogin">Algo deu errado, tente fazer login de outra forma</string>
@@ -66,7 +69,17 @@
 
     //frases informativas
     <string name="informe">Informe seu CNPJ para prosseguir\ncom o seu acesso</string>
+    <string name="DadosAtuazlizadoComSucesso">Dados atualizados com sucesso</string>
+    <string name="dadosBancariosDescricao">Os dados bancários para recebimento devem estar associados a conta PJ do CNPJ </string>
+    <string name="Instituição">Instituição</string>
+    <string name="Agencia">Agência</string>
+    <string name="conta">Conta</string>
+    <string name="salvar">Salvar</string>
+    <string name="dadosBancarios">Dados Bancarios</string>
+    <string name="erro_busca_dados_bancarios"> Algo deu errado ao buscar os dados bancários, tente novamente </string>
+
     <string name="informaDivergencia">Informa divergência </string>
+    <string name="descrincaoInstituicao">Selecione abaixo a instituição financeira da sua conta</string>
     <string name="slecioneAmbiente">Informe o ambiente que deseja acessar</string>
     <string name="informeCelularDescricao">Informe seu celular para receber seu\n token de acesso</string>
     <string name="informeToken">Informe abaixo o token enviado para o número</string>
@@ -111,6 +124,7 @@ Dúvidas sobre o seu cadastro ou sobre o Loiu,
     <string name="faleComNossaEquipe">Fale com nossa equipe.</string>
     <string name="buscarMessoregiao"> Buscar mesorregião</string>
     <string name="buscaCidades">Buscar Cidades</string>
+    <string name="buscaInstituicao">Buscar instituição</string>
 
 
     //mascaras
