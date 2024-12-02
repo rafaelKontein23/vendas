@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.home.DialogInstituicao
@@ -13,6 +14,10 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Fragments.ViewMod
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.aplicarMascaraCnpj
+import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEditTextBasico
+import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEditTextBasicoAgencia
+import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEditTextBasicoConta
+import br.com.visaogrupo.tudofarmarep.Utils.Views.validaError
 import br.com.visaogrupo.tudofarmarep.databinding.FragmentDadosBancariosBinding
 import br.com.visaogrupo.tudofarmarep.databinding.FragmentDadosCnpjBinding
 
@@ -49,6 +54,10 @@ class DadosBancariosFragment : Fragment() {
         viewModelDadosBancarios.recuperaCNPJ.observe(viewLifecycleOwner){
             binding.textoDados.setText(it.aplicarMascaraCnpj())
         }
+
+        binding.inputAgencia.isFocusEditTextBasicoAgencia(requireContext())
+        binding.inputConta.isFocusEditTextBasico(requireContext())
+
         viewModelDadosBancarios.dadosBancarios.observe(viewLifecycleOwner){
             binding.constrainCarregando.isVisible = false
             if (it != null){
@@ -62,6 +71,8 @@ class DadosBancariosFragment : Fragment() {
                 }
             }
         }
+
+
         viewModelDadosBancarios.textoInstituicao.observe(viewLifecycleOwner){
             binding.inputInstituicao.setText(it)
         }
@@ -69,16 +80,33 @@ class DadosBancariosFragment : Fragment() {
             binding.constrainCarregando.isVisible = false
             if(it.isNotEmpty()){
                 val dialogInstituicao = DialogInstituicao()
-                dialogInstituicao.dialogInstituicao(requireContext(), it, viewModelDadosBancarios, binding.inputInstituicao.text.toString())
+                dialogInstituicao.dialogInstituicao(requireContext(), it, viewModelDadosBancarios, binding.inputInstituicao.text.toString(), viewLifecycleOwner)
             }else{
                 Alertas.alertaErro(requireActivity(), mensagem =  getString(R.string.erro_busca_dados_bancarios), titulo =  getString(R.string.tituloErro)){
                 }
             }
-
         }
         binding.inputInstituicao.setOnClickListener {
             binding.constrainCarregando.isVisible = true
             viewModelDadosBancarios.buscaDadosInstituicaoBancaria()
+        }
+
+        binding.btnSalvar.setOnClickListener {
+            binding.constrainCarregando.isVisible = true
+            val instituicaoTexto = binding.inputAgencia.text.toString()
+            val agenciaTexto = binding.inputAgencia.text.toString()
+            val contaTexto = binding.inputConta.text.toString()
+            binding.inputInstituicao.validaError(instituicaoTexto == getString(R.string.Selecione), requireContext())
+            binding.inputAgencia.validaError(agenciaTexto.isEmpty(), requireContext())
+            binding.inputConta.validaError(contaTexto.isEmpty(), requireContext())
+
+            if (instituicaoTexto == getString(R.string.Selecione) || agenciaTexto.isEmpty() || contaTexto.isEmpty()){
+                binding.constrainCarregando.isVisible = false
+                Toast.makeText(requireContext(), getString(R.string.preencha_todos_os_campos), Toast.LENGTH_SHORT).show()
+            }else{
+                // mandar rquest de cadastro aquiiii
+
+            }
         }
 
 

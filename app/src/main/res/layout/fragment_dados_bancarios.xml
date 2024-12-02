@@ -83,6 +83,8 @@
                     style="@style/inputPadraoCadastro"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
+                    android:maxLength="4"
+                    android:inputType="number"
                     android:autofillHints="family-name"
                     android:hint="0000"
                     android:importantForAutofill="no"
@@ -118,7 +120,7 @@
                 </EditText>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/button"
+                    android:id="@+id/btnSalvar"
                     style="@style/buttonPadraoCadastroSelecionar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

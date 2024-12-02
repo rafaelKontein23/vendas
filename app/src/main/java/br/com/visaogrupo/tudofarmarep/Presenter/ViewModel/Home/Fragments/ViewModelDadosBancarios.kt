@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Home.DadosBancariosUseCase
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCidades
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaMessoRegiao
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Home.Respostas.RespostaDadosBancarios
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Home.Respostas.RespostaInstituicaoBancaria
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Home.Respostas.RespostaInstituicaoBancariaDados
@@ -22,6 +24,10 @@ class ViewModelDadosBancarios(
 
     val _listaBanco = MutableLiveData<ArrayList< RespostaInstituicaoBancaria?>>()
     val listabanco :LiveData<ArrayList< RespostaInstituicaoBancaria?>> = _listaBanco
+
+    val _listaBancoPesquisa = MutableLiveData<ArrayList<RespostaInstituicaoBancaria?>>()
+    val listaBancoPesquisa :LiveData<ArrayList<RespostaInstituicaoBancaria?>> = _listaBancoPesquisa
+
     val _recuperaCNPJ = MutableLiveData<String>()
     val recuperaCNPJ :LiveData<String> = _recuperaCNPJ
 
@@ -47,5 +53,15 @@ class ViewModelDadosBancarios(
     }
     fun alterarTextoInstituicao(texto:String){
         _textoInstituicao.postValue(texto)
+    }
+
+    fun pesquisaInstituicao(texto: String) {
+        viewModelScope.launch {
+            val listaOriginal = _listaBanco.value ?: emptyList()
+            val listaFiltrada = listaOriginal.filter {
+                it?.Descricao?.lowercase()?.contains(texto.lowercase()) == true
+            }
+            _listaBancoPesquisa.postValue(ArrayList(listaFiltrada))
+        }
     }
 }

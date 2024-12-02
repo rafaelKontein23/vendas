@@ -15,13 +15,13 @@ import br.com.visaogrupo.tudofarmarep.databinding.ItemCidadeBinding
 import br.com.visaogrupo.tudofarmarep.databinding.ItemInstituicaoBinding
 
 class AdapterInstituicaoBancaria(
-    private val listaInstituicoes:ArrayList< RespostaInstituicaoBancaria?>,
+     listaInstituicoes:ArrayList< RespostaInstituicaoBancaria?>,
     private val context: Context,
     private val viewModel: ViewModelDadosBancarios ,
     private val instituicaoSelecionada :String,
     private val dialoag: Dialog
 ) : RecyclerView.Adapter<AdapterInstituicaoBancaria.ViewHolderInstituicaoBancaria>() {
-
+    var listaInstituicoes = listaInstituicoes
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderInstituicaoBancaria {
         val binding = ItemInstituicaoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolderInstituicaoBancaria(binding)

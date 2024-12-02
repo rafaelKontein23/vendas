@@ -117,14 +117,36 @@ fun TextView.validaError(isError: Boolean, context: Context) {
     }
 }
 
+fun EditText.isFocusEditTextBasicoAgencia(context: Context ) {
+
+    this.setOnFocusChangeListener { _, hasFocus ->
+        if (!hasFocus) {
+            if (this.text.toString().length <4 ) {
+                this.setBackgroundResource(R.drawable.bordas_radius_8_stroke_1_red500)
+                this.setTextColor(context.getColor(R.color.danger500))
+                mudaCorIconeRed(this, context)
+            } else {
+                this.setBackgroundResource(R.drawable.bordas_8_stroke_1_gray300)
+                this.setTextColor(context.getColor(R.color.black))
+                mudaCorIconeBlack(this, context)
+            }
+        } else {
+
+            this.setBackgroundResource(R.drawable.bordas_radius_8_stroke_1_black)
+            this.setTextColor(context.getColor(R.color.black))
+            mudaCorIconeBlack(this, context)
 
 
-fun EditText.isFocusEditTextBasico(context: Context) {
+        }
+    }
+}
+
+fun EditText.isFocusEditTextBasico(context: Context ) {
 
     this.setOnFocusChangeListener { _, hasFocus ->
 
         if (!hasFocus) {
-            if (this.text.toString().isEmpty()) {
+            if (this.text.toString().isEmpty()  ) {
                 this.setBackgroundResource(R.drawable.bordas_radius_8_stroke_1_red500)
                 this.setTextColor(context.getColor(R.color.danger500))
                 mudaCorIconeRed(this, context)

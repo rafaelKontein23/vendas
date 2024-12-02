@@ -145,6 +145,7 @@ Dúvidas sobre o seu cadastro ou sobre o Loiu,
     <string name="completeToken">Complete o token de acesso</string>
     <string name="erroInternet">Erro ao buscar dados</string>
     <string name="erroMessoRegiao">Seleicone uma mesorregião</string>
+    <string name="preencha_todos_os_campos">preencha todos os campos para prosseguir</string>
 
     //descrição
     <string name="descricaoVisaulizaSenha">clique aqui para visualizar senha</string>
