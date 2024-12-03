@@ -44,7 +44,8 @@ class AdapterUF(private val estados: List<String>,
                  viewModelFragmentDadosAreaDeAtuacao.selecionaUF(estado)
              }
             val siglas = estado.split(" - ").last()
-            val siglasUFSelecionada = viewModelFragmentDadosAreaDeAtuacao.ufSelecionada.value!!.split(" - ").last()
+            val ufItem = viewModelFragmentDadosAreaDeAtuacao.ufSelecionada.value ?: viewModelFragmentDadosAreaDeAtuacao.ufTextoObs.value
+            val siglasUFSelecionada = ufItem?.split(" - ")?.last()
             if(siglas == siglasUFSelecionada){
                 binding.imgCheck.isVisible = true
                 binding.textoSelecionarUF.setTextColor(context.getColor(R.color.blue500))

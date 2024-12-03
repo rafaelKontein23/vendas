@@ -54,10 +54,10 @@ class DialogMenuLateral {
 
             show()
         }
-        binding.linearCadastroDeProposto.isVisible = FormularioCadastro.FeatureFlagMeuTime
-        binding.linearGestaoComiisao.isVisible = FormularioCadastro.FeatureFlagMeuTime
-        binding.linearExtratoComissao.isVisible = FormularioCadastro.FeatureFlagMeuTime
-        binding.linearMerchan.isVisible = FormularioCadastro.FeatureFlagMerchan
+        binding.linearCadastroDeProposto.isVisible = FormularioCadastro.featureFlagMeuTime
+        binding.linearGestaoComiisao.isVisible = FormularioCadastro.featureFlagMeuTime
+        binding.linearExtratoComissao.isVisible = FormularioCadastro.featureFlagMeuTime
+        binding.linearMerchan.isVisible = FormularioCadastro.featureFlagMerchan
 
         binding.linearMerchan.setOnClickListener {
             atualizaWebView.atualizaWebView(context.getString(R.string.Merchandising), " /dashboard/minhasacoes")

@@ -4,36 +4,49 @@ import android.graphics.Bitmap
 import android.net.Uri
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequest
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequestAreaAtuacal
-import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaLogin
-import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaLoginDados
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Home.Request.DadosBancariosRequests
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Home.Respostas.RespostaFlags
 
 class FormularioCadastro {
 
-    companion object{
-       var cadastro = CadastroRequest()
-       var cadastroRequestAreaAtuacal = CadastroRequestAreaAtuacal()
-       var dadosBancarios = DadosBancariosRequests()
-       var fotoDocumeto:Uri = Uri.EMPTY
-       var base64Galeria = ""
-       var base64Assinatura = ""
-       var savedBitmap: Bitmap? = null
-        var  FeatureFlagMeuTime:Boolean = false
-        var  FeatureFlagMerchan:Boolean = false
+    companion object {
+        var cadastro = CadastroRequest()
+        var cadastroRequestAreaAtuacal = CadastroRequestAreaAtuacal()
+        var dadosBancarios = DadosBancariosRequests()
+        var fotoDocumeto: Uri = Uri.EMPTY
+        var base64Galeria = ""
+        var base64Assinatura = ""
+        var savedBitmap: Bitmap? = null
 
+        private var _featureFlagMeuTime: Boolean = false
+        private var _featureFlagMerchan: Boolean = false
 
-        fun limpaCadastro(){
+        // Getters públicos para as flags
+        val featureFlagMeuTime: Boolean
+            get() = _featureFlagMeuTime
+
+        val featureFlagMerchan: Boolean
+            get() = _featureFlagMerchan
+
+        fun atualizarFlags(flags: RespostaFlags) {
+            _featureFlagMeuTime = flags.FeatureFlag_ID == 1 && flags.Status_Cod == 1
+            _featureFlagMerchan = flags.FeatureFlag_ID == 2 && flags.Status_Cod == 1
+        }
+
+        fun limpaCadastro() {
             cadastro = CadastroRequest()
-            dadosBancarios = DadosBancariosRequests()
-
             cadastroRequestAreaAtuacal = CadastroRequestAreaAtuacal()
+            dadosBancarios = DadosBancariosRequests()
             fotoDocumeto = Uri.EMPTY
             base64Galeria = ""
             base64Assinatura = ""
             savedBitmap = null
-            FeatureFlagMeuTime = false
-            FeatureFlagMerchan = false
+            resetarFlags()
+        }
 
+        private fun resetarFlags() {
+            _featureFlagMeuTime = false
+            _featureFlagMerchan = false
         }
     }
 }

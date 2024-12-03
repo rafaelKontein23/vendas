@@ -58,6 +58,7 @@ class DialogContrato(val context: Context) {
 
         }
         FormularioCadastro.savedBitmap?.let { bitmap ->
+            binding.drawingView.hasDrawing = true
             binding.drawingView .setDrawingBitmap(bitmap)
         }
         binding.fecharModal.setOnClickListener {

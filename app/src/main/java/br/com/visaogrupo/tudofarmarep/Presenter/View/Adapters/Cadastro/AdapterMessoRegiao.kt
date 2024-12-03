@@ -43,6 +43,12 @@ class AdapterMessoRegiao( respostaMessoRegiao: List<RespostaMessoRegiao>,
                 binding.textoSelecionarMessoRegiao.setTextColor(context.getColor(R.color.gray600))
             }
 
+            if(!viewModelFragmentDadosAreaDeAtuacao.confereTamanhoListaMesorregiao() && respostaMessoRegiao.Mesorregiao_Nome == "Todas"){
+                binding.textoSelecionarMessoRegiao.tag = 0
+                binding.imgCheck.isVisible = false
+                binding.textoSelecionarMessoRegiao.setTextColor(context.getColor(R.color.gray600))
+            }
+
             binding.constrainMesso.setOnClickListener {
                 if (respostaMessoRegiao.Mesorregiao_Nome == "Todas"){
                     viewModelFragmentDadosAreaDeAtuacao.alternaSelecaoMessoRegiao()
@@ -69,6 +75,8 @@ class AdapterMessoRegiao( respostaMessoRegiao: List<RespostaMessoRegiao>,
                         viewModelFragmentDadosAreaDeAtuacao.removeDaListaMesorregiao(respostaMessoRegiao)
                         binding.imgCheck.isVisible = false
                         binding.textoSelecionarMessoRegiao.setTextColor(context.getColor(R.color.gray600))
+                        adapterMessoRegiao.notifyDataSetChanged()
+
                     }
                 }
 

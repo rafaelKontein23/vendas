@@ -39,6 +39,7 @@ import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Home.TaskConstroiHa
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
 import br.com.visaogrupo.tudofarmarep.Utils.Enuns.EnumMenu
+import br.com.visaogrupo.tudofarmarep.Utils.IntentUtils
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.Requests
 
@@ -119,10 +120,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, A
                 MainScope().launch {
                     if (resposta != null) {
                         try {
-                            val intent = Intent(Intent.ACTION_VIEW)
-                            val url = "https://api.whatsapp.com/send?phone=${resposta.ContatoWhatsApp}"
-                            intent.data = android.net.Uri.parse(url)
-                            startActivity(intent)
+                            IntentUtils.mandaParaWhatsApp(this@ActHome, resposta.LinkZap)
                         } catch (e: Exception) {
                             e.printStackTrace()
 

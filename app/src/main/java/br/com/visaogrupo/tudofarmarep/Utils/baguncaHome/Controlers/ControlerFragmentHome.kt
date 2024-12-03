@@ -18,6 +18,7 @@ import br.com.visaogrupo.tudofarmarep.Carga.ultis.RecuperasDatas
 import br.com.visaogrupo.tudofarmarep.Carga.ultis.Requests
 import br.com.visaogrupo.tudofarmarep.DAO.DAOCarrinho
 import br.com.visaogrupo.tudofarmarep.Objetos.ListasHome
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -101,7 +102,7 @@ class ControlerFragmentHome {
   suspend fun  buscaResumoMes(datSelecionada:String,context: Context):ArrayList<ResumoMes>{
       val listaResumoMes = ArrayList<ResumoMes>()
       val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-      val reprsentanteID = prefs.getString("reprsentante_id", "0")!!.toInt()
+      val reprsentanteID = prefs.getInt(ProjetoStrings.reprenteID, 0)
       withContext(Dispatchers.IO){
           val tarefaBuscaMes = async {
               val taskResumoMes = TaskResumoMes()

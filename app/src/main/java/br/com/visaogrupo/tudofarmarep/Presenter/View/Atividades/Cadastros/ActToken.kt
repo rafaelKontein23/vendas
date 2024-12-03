@@ -117,8 +117,9 @@ class ActToken : AppCompatActivity() {
 
             binding.constrainCarregando.isVisible = false
             if(it != null){
-                  if(it.Representante_ID != 0){
-                      viewModelActToken.salvarDadosUsuario(it.Representante_ID,it.Nome?: "",it.Hash ?: "",it.FotoPerfil ?: "", it.UF ?:"" )
+                viewModelActToken.salvarDadosUsuario(it.Representante_ID,it.Nome?: "",it.Hash ?: "",it.FotoPerfil ?: "", it.UF ?:"" )
+
+                if(it.Representante_ID != 0){
                       startActivity(Intent(this,ActHome::class.java))
 
                   }else{

@@ -86,11 +86,13 @@ class MainActivity : AppCompatActivity() {
             binding.constrainCarregando.isVisible = false
             if(it != null){
                 MainScope().launch {
+                    viewModelMainActivity.salvarDadosUsuario(it.Representante_ID,it.Nome ?: "",it.Hash ?: "",it.FotoPerfil ?: "", it.UF ?: "")
+
                     if(it.Representante_ID != 0){
-                        viewModelMainActivity.salvarDadosUsuario(it.Representante_ID,it.Nome ?: "",it.Hash ?: "",it.FotoPerfil ?: "", it.UF ?: "")
                         val intent = Intent(context, ActHome::class.java)
                         startActivity(intent)
                     }else{
+
                         Alertas.alertaErro(context!!,it.Mensagem,getString(R.string.tituloErro)){
                             if(it.Status_Cod == 99){
                                 startActivity(Intent(context,ActToken::class.java))

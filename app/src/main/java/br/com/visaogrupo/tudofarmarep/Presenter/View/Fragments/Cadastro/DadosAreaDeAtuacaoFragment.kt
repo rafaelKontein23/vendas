@@ -86,7 +86,7 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
                 }else{
                     var cidadesNomes = ""
                     for (cidades in cidadeSelecionada){
-                        if (cidades.Cidade == "Todos") continue
+                        if (cidades.Cidade == "Todas") continue
                         cidadesNomes += if (cidades == cidadeSelecionada.last()) "${cidades.Cidade} " else "${cidades.Cidade}, "
                         if(cidadesNomes.length > 35) break
                     }
@@ -125,7 +125,7 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
                         binding.inputMesorregioesAreaDeAtuacao.text = getText(R.string.todos)
                     }else{
                         for (mesoRegiao in mesorregiaoSelecionadas){
-                            if (mesoRegiao.Mesorregiao_Nome == "Todos") continue
+                            if (mesoRegiao.Mesorregiao_Nome == "Todas") continue
                             mesorregioesNomes += if (mesoRegiao == mesorregiaoSelecionadas.last()) "${mesoRegiao.Mesorregiao_Nome} " else "${mesoRegiao.Mesorregiao_Nome}, "
                             if(mesorregioesNomes.length > 35) break
                         }
@@ -147,8 +147,6 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
 
         viewModelFragmentDadosAreaDeAtuacao.ufSelecionada.observe(viewLifecycleOwner){
             bloqueiaCampo(true)
-
-
             binding.inputEstadoAreaDeAtuacao.text = it
             binding.inputCidadesAreaDeAtuacao.text = getText(R.string.todos)
             binding.inputMesorregioesAreaDeAtuacao.text = getText(R.string.todos)

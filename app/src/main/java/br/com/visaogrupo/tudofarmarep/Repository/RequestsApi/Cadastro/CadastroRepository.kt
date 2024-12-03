@@ -25,19 +25,28 @@ class CadastroRepository(context: Context) {
 
     val retrofit = RetrofitWs(context).createService(SincronoCadastro::class.java)
 
-    fun enviaCadastro(isDadosBancarios: Boolean = false): Boolean{
+    fun enviaCadastro(reprsentanteID:Int = 0): Boolean{
         try {
-            val jsonAreaAtucao = Gson().toJson(FormularioCadastro.cadastroRequestAreaAtuacal).toString()  ?: ""
-            val jsonCadastro = Gson().toJson(FormularioCadastro.cadastro).toString()
+            var jsonAreaAtucao =""
+            var jsonCadastro =""
+            var jsonDadosBancarios =""
+            if (!FormularioCadastro.cadastro.CNPJ.isEmpty()){
+                jsonCadastro =  Gson().toJson(FormularioCadastro.cadastro).toString()
+            }
+            if (FormularioCadastro.cadastroRequestAreaAtuacal.UF != ""){
+                jsonAreaAtucao = Gson().toJson(FormularioCadastro.cadastroRequestAreaAtuacal).toString()
+            }
+            if (FormularioCadastro.dadosBancarios.CNPJ != ""){
+                jsonDadosBancarios = Gson().toJson(FormularioCadastro.dadosBancarios).toString()
+            }
+
 
             val jsonChave = JSONObject().apply {
                 put("JsonCadastro", jsonCadastro)
                 put("JsonAreaAtuacao", jsonAreaAtucao)
+                put("JsonDadosBancarios",jsonDadosBancarios)
+                put("Representante_ID", reprsentanteID)
             }
-            if (isDadosBancarios){
-               jsonChave.put("JsonDadosBancarios", JSONObject(Gson().toJson(FormularioCadastro.dadosBancarios)))
-            }
-
 
             val jsonChaveIncript = jsonChave.toString().incriptar()
             val mediaType = "application/json; charset=utf-8".toMediaType()
@@ -46,6 +55,7 @@ class CadastroRepository(context: Context) {
             if(reponse.isSuccessful){
                 Log.d("Sucesso", "sucesso, no Envio do Cadastro")
                 val responsestr  = reponse.body()!!.string().descritar()
+                FormularioCadastro.limpaCadastro()
                 return true
 
             }else{
@@ -97,9 +107,12 @@ class CadastroRepository(context: Context) {
             val jsonCadastro = Gson().toJson(FormularioCadastro.cadastro)
 
             val jsonChave = JSONObject().apply {
-                put("JsonCadastro", JSONObject(jsonCadastro))  // Aqui você converte a string para um objeto JSON
-                put("JsonAreaAtuacao", JSONObject(jsonAreaAtucao))  // Aqui você faz o mesmo
+                put("JsonCadastro", JSONObject(jsonCadastro))
+                put("JsonAreaAtuacao", JSONObject(jsonAreaAtucao))
+                put("JsonDadosBancarios", JSONObject(Gson().toJson(FormularioCadastro.dadosBancarios)))
+                put("Representante_ID", 0)
             }
+
 
 
             val jsonChaveIncript = jsonChave.toString().incriptar()

@@ -45,7 +45,11 @@ class AdapterCidades (
                 binding.imgCheck.isVisible = false
                 binding.textoSelecionarCidade.setTextColor(context.getColor(R.color.gray600))
             }
-
+            if(!viewModelFragmentDadosAreaDeAtuacao.confereTamanhoListaCidades() && respostaCidades.Cidade == "Todas"){
+                binding.textoSelecionarCidade.tag = 0
+                binding.imgCheck.isVisible = false
+                binding.textoSelecionarCidade.setTextColor(context.getColor(R.color.gray600))
+            }
             binding.constrainCidade.setOnClickListener {
                 if (respostaCidades.Cidade == "Todas"){
                     viewModelFragmentDadosAreaDeAtuacao.alternaSelecaoCidade()
@@ -59,8 +63,8 @@ class AdapterCidades (
                         binding.textoSelecionarCidade.setTextColor(context.getColor(R.color.gray600))
                         viewModelFragmentDadosAreaDeAtuacao.removeDaListaTodasCidades()
                     }
-
                     adapterCidades.notifyDataSetChanged()
+
                 }else{
                     if(!viewModelFragmentDadosAreaDeAtuacao.confereCidades(respostaCidades)){
                         viewModelFragmentDadosAreaDeAtuacao.adicionaNaListaCidades(respostaCidades)
@@ -71,6 +75,8 @@ class AdapterCidades (
                         binding.imgCheck.isVisible = false
                         binding.textoSelecionarCidade.setTextColor(context.getColor(R.color.gray600))
                     }
+                    adapterCidades.notifyDataSetChanged()
+
                 }
 
             }

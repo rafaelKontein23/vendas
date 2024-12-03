@@ -59,6 +59,8 @@ class ViewModelContratoAceite(
                     _fazCadastro.value = true
                     preferenciasUtils.salvarTexto(FormularioCadastro.cadastro.CNPJ, ProjetoStrings.cnpjLogin)
 
+                }else{
+                    _fazCadastro.value = false
                 }
             }
         }

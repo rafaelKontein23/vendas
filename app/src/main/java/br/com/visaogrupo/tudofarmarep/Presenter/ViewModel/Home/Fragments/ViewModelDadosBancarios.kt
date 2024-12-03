@@ -73,7 +73,7 @@ class ViewModelDadosBancarios(
             FormularioCadastro.dadosBancarios.CNPJ =
                 preferenciasUtils.recuperarTexto(ProjetoStrings.cnpjLogin, "").toString()
 
-            val cadastroUseCase = cadastroUseCase.enviaCadastro(true)
+            val cadastroUseCase = cadastroUseCase.enviaCadastro()
 
             _atualizaDadosBancarios.postValue(cadastroUseCase)
 

@@ -32,8 +32,8 @@ class LoginUseCase (
                 val listaFlags = buscaFlags(respostaLogin.Representante_ID)
                 if (listaFlags.isNotEmpty()){
                     for (flags in listaFlags){
-                        FormularioCadastro.FeatureFlagMeuTime = flags.FeatureFlag_ID == 1 && flags.Status_Cod == 1
-                        FormularioCadastro.FeatureFlagMerchan = flags.FeatureFlag_ID == 2 && flags.Status_Cod == 1
+                        val flags = RespostaFlags(FeatureFlag_ID = 1, Status_Cod = 1, FeatureFlag_Nome = "")
+                        FormularioCadastro.atualizarFlags(flags)
                     }
                 }
                 preferenciasUtils.salvarTexto(ProjetoStrings.cnpjLogin, respostaLogin.CNPJ)

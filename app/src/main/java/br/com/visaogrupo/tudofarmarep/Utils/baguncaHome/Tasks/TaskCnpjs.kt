@@ -51,7 +51,11 @@ class TaskCnpjs {
                     val cidade = jsonCnpj.getString("Cidade")
                     val estado = jsonCnpj.getString("UF")
                     val bairro = jsonCnpj.getString("Bairro")
-                    val distancia = jsonCnpj.getString("Distancia")
+                    var distancia = jsonCnpj.getString("Distancia")
+                    if(distancia == "null"){
+                        distancia = "0"
+                    }
+
                     val jsonAtribudos = jsonCnpj.getJSONArray("Atributos")
                     val listaAtribudo = ArrayList<Atributo>()
                     for (j in 0 until jsonAtribudos.length()){

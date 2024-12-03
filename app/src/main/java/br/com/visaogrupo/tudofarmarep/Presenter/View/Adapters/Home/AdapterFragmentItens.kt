@@ -1,9 +1,10 @@
 package br.com.visaogrupo.tudofarmarep.Adapter
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class AdapterFragmentItens (fragment: Fragment) : FragmentStateAdapter(fragment) {
+class AdapterFragmentItens (    fragmentManager: FragmentManager) : FragmentStateAdapter(fragmentManager) {
 
     private val fragmentList: MutableList<Fragment> = ArrayList()
 

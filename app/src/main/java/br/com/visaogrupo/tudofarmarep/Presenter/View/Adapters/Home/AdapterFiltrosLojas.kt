@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import br.com.visaogrupo.tudofarmarep.Carga.interfaces.InterfaceScrolaLista
 import br.com.visaogrupo.tudofarmarep.Objetos.Lojas
@@ -27,6 +28,9 @@ class AdapterFiltrosLojas(listaLojasFiltros : ArrayList<Lojas>, interfaceScrolaL
             .placeholder(R.drawable.padrao)
             .error(R.drawable.padrao)
             .into(holder.imgLab)
+        if (itemFiltro.urlLogin.isNotEmpty()){
+            holder.constraintLoja.isVisible = false
+        }
         if (itemFiltro.lojaFiltroSelecionado) {
             holder.constraintLoja.setBackgroundResource(R.drawable.borda_stroke_1_solid_white)
             holder.textoDescricaoFiltro.setTextColor(Color.parseColor("#828282"))
@@ -38,6 +42,7 @@ class AdapterFiltrosLojas(listaLojasFiltros : ArrayList<Lojas>, interfaceScrolaL
         }
         holder.constraintLoja.setOnClickListener {
             // Desmarca todos os itens primeiro
+
             for (loja in listaLojasFiltros) {
                 loja.lojaFiltroSelecionado = false
             }

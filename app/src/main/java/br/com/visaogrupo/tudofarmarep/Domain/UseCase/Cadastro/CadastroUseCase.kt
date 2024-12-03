@@ -16,9 +16,9 @@ class CadastroUseCase(
       val sistemaUtils: SistemaUtils,
       val dadosPessoaisRepository: DadosPessoaisRepository? = null
 ) {
-     fun enviaCadastro(isDadosBancarios: Boolean = false): Boolean{
-
-         val editaCadastro =  cadastroRepository.enviaCadastro(isDadosBancarios)
+     fun enviaCadastro(): Boolean{
+         val representanteId = preferenciasUtils.recuperarInteiro(ProjetoStrings.reprenteID, 0)
+         val editaCadastro =  cadastroRepository.enviaCadastro(representanteId)
          return editaCadastro
     }
      fun enviaCadastroFinal():Boolean{

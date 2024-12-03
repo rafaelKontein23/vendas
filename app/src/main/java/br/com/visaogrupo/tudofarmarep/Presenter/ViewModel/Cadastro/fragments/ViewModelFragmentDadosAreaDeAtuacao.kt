@@ -223,7 +223,7 @@ class ViewModelFragmentDadosAreaDeAtuacao(
         for (messoRegiaoItem in listaGeralMessoRegiao){
             for (messoRegiaoItemSecundo in lista){
                 if(messoRegiaoItem.Mesorregiao_id == messoRegiaoItemSecundo.Mesorregiao_id  ){
-                    val cidade = RespostaCidades(0,messoRegiaoItem.Municipio)
+                    val cidade = RespostaCidades(messoRegiaoItem.Mesorregiao_id,messoRegiaoItem.Municipio)
                     listaCidades.add(cidade)
                 }
             }

@@ -20,16 +20,19 @@ class URLs {
                 if (ambiente == "stage") {
                     urlWsBase = "https://www.visaogrupo.com.br/ws/"
                     urlWs = "https://www.visaogrupo.com.br/"
+                    urlVendaRometa = "https://vendaremota.loiu.com.br/meu-hash/"
+
                 } else {
                     urlWsBase = "https://${ambiente}.visaogrupo.com.br/ws/"
                     urlWs = "https://${ambiente}.visaogrupo.com.br/"
+                    urlVendaRometa = "https://${ambiente}.vendaremota.loiu.com.br/meu-hash/"
+
                 }
 
                 urlImagensLoja = "https://${ambiente}.loiu.com.br/Cargas/images/lojas/icones"
                 urlImagensCnpjs = "https://${ambiente}.loiu.com.br/Cargas/images/icones/"
                 urlImagensOpls = "https://${ambiente}.loiu.com.br/img/logos/distribuidoras/"
                 urlMarcas = "https://${ambiente}.loiu.com.br/"
-                urlVendaRometa = "https://${ambiente}.vendaremota.loiu.com.br/meu-hash/"
                 Url_pdf = "https://${ambiente}.loiu.com.br/Docs/Extract/Usuarios/"
                 URL_Webviewmob = "https://${ambiente}.loiu.com.br/Autenticacao/LoginMobile?login="
                 URL_convite = "https://${ambiente}.loiu.com.br/"
