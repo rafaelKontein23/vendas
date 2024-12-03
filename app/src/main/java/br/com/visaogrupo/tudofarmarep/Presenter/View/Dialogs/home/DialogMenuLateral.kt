@@ -23,7 +23,9 @@ import br.com.visaogrupo.tudofarmarep.Carga.ultis.FormatarTexto
 import br.com.visaogrupo.tudofarmarep.Objetos.Menulateral
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.MainActivity
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Home.interfaces.AtualizaFragmentHome
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogContrato
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Enuns.EnumMenu
 import br.com.visaogrupo.tudofarmarep.databinding.DialogCidadesBinding
 import br.com.visaogrupo.tudofarmarep.databinding.DialogMenuLateralBinding
@@ -52,6 +54,28 @@ class DialogMenuLateral {
 
             show()
         }
+        binding.linearCadastroDeProposto.isVisible = FormularioCadastro.FeatureFlagMeuTime
+        binding.linearGestaoComiisao.isVisible = FormularioCadastro.FeatureFlagMeuTime
+        binding.linearExtratoComissao.isVisible = FormularioCadastro.FeatureFlagMeuTime
+        binding.linearMerchan.isVisible = FormularioCadastro.FeatureFlagMerchan
+
+        binding.linearMerchan.setOnClickListener {
+            atualizaWebView.atualizaWebView(context.getString(R.string.Merchandising), " /dashboard/minhasacoes")
+            dialogMenuLateral.dismiss()
+        }
+        binding.linearCadastroDeProposto.setOnClickListener {
+            atualizaWebView.atualizaWebView(context.getString(R.string.CadastroPreposto), "/Equipe/Gerenciar")
+            dialogMenuLateral.dismiss()
+
+        }
+        binding.linearGestaoComiisao.setOnClickListener {
+            atualizaWebView.atualizaWebView(context.getString(R.string.GestaoDeComisso), "/dashboard/comissao")
+            dialogMenuLateral.dismiss()
+        }
+        binding.linearExtratoComissao.setOnClickListener {
+            atualizaWebView.atualizaWebView(context.getString(R.string.ExtratoDeComissões), "/dashboard/extrato")
+            dialogMenuLateral.dismiss()
+        }
 
         if (nomeRepresetanteTextFormat.length >= 15){
             nomeRepresetanteTextFormat = nomeRepresetanteTextFormat.substring(0,14) + "..."
@@ -62,21 +86,50 @@ class DialogMenuLateral {
         binding.nomeRepresentante.text = nomeRepresetanteTextFormat
         binding.cnpjRepresentante.text = FormatarTexto().formatCNPJ(cnpjRepresentanteText)
         binding.linearMenuMeusDados.setOnClickListener {
-            atualizaFragmentHome.atualizaWebView(context.getString(R.string.DadosCadastrais), EnumMenu.DADOSCADASTRAIS)
+            atualizaFragmentHome.atualizaFragmentHome(context.getString(R.string.DadosCadastrais), EnumMenu.DADOSCADASTRAIS)
             dialogMenuLateral.dismiss()
+        }
 
+        binding.linearCargas.setOnClickListener {
+            atualizaFragmentHome.atualizaFragmentHome("", EnumMenu.CARGAS)
+            dialogMenuLateral.dismiss()
+        }
+
+        binding.linearVendas.setOnClickListener {
+            atualizaWebView.atualizaWebView(context.getString(R.string.vendas), "/dashboard/vendas")
+            dialogMenuLateral.dismiss()
+        }
+        binding.linearRelatorios.setOnClickListener {
+            atualizaWebView.atualizaWebView(context.getString(R.string.relatorios), "/Dashboard/Comissao")
+            dialogMenuLateral.dismiss()
+        }
+
+        binding.linearPoliticaPrivacidade.setOnClickListener {
+            dialogMenuLateral.dismiss()
+            val dialogAssinarContratoBinding = DialogContrato(
+                context
+            )
+            dialogAssinarContratoBinding.dialogContratoPolitica(context.getString(R.string.politicaPrivacidade), context.getString(R.string.politica))
+        }
+
+        binding.linearTermosdeUso.setOnClickListener {
+            dialogMenuLateral.dismiss()
+            val dialogAssinarContratoBinding = DialogContrato(
+                context
+            )
+            dialogAssinarContratoBinding.dialogContratoPolitica(context.getString(R.string.termosDeUso), "${context.getString(R.string.temoDeuso)}  ${context.getString(R.string.segundaParteTermos)}")
         }
         binding.linearDadosBancarios.setOnClickListener {
-            atualizaFragmentHome.atualizaWebView(context.getString(R.string.dadosBancarios), EnumMenu.DADOSBANCARIOS)
+            atualizaFragmentHome.atualizaFragmentHome(context.getString(R.string.dadosBancarios), EnumMenu.DADOSBANCARIOS)
             dialogMenuLateral.dismiss()
         }
         binding.linearAreaAruacao.setOnClickListener {
-            atualizaFragmentHome.atualizaWebView(context.getString(R.string.DadosAreaAtuacao), EnumMenu.DADOSAREATUACAO)
+            atualizaFragmentHome.atualizaFragmentHome(context.getString(R.string.DadosAreaAtuacao), EnumMenu.DADOSAREATUACAO)
             dialogMenuLateral.dismiss()
         }
 
         binding.linearMenuHome.setOnClickListener {
-            atualizaFragmentHome.atualizaWebView(context.getString(R.string.home), EnumMenu.HOME)
+            atualizaFragmentHome.atualizaFragmentHome(context.getString(R.string.home), EnumMenu.HOME)
             dialogMenuLateral.dismiss()
 
         }

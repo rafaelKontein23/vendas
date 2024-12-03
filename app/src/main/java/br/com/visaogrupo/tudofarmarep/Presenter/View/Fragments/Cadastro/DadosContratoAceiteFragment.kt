@@ -67,12 +67,12 @@ class DadosContratoAceiteFragment : Fragment() {
         }
 
         binding.textoPolitica.setOnClickListener {
-            val  dialog = DialogContrato(requireContext(), viewModelContratoAceite)
+            val  dialog = DialogContrato(requireContext())
             dialog.dialogContratoPolitica(getString(R.string.politicaPrivacidade), getString(R.string.politica))
 
         }
         binding.textoTermosDeUso.setOnClickListener {
-            val  dialog = DialogContrato(requireContext(), viewModelContratoAceite)
+            val  dialog = DialogContrato(requireContext())
             dialog.dialogContratoPolitica(getString(R.string.termosDeUso), "${getString(R.string.temoDeuso)}  ${getString(R.string.segundaParteTermos)}")
         }
         binding.aceiteBoxPoliticaPrivacidade.setOnClickListener {
@@ -88,15 +88,15 @@ class DadosContratoAceiteFragment : Fragment() {
             (activity as Activity).requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
 
             activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-            val dialog = DialogContrato(requireContext(), viewModelContratoAceite)
-            dialog.dialogAssina()
+            val dialog = DialogContrato(requireContext())
+            dialog.dialogAssina(viewModelContratoAceite)
         }
         binding.textoAssinar.setOnClickListener {
             (activity as Activity).requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
 
             activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-            val dialog = DialogContrato(requireContext(), viewModelContratoAceite)
-            dialog.dialogAssina()
+            val dialog = DialogContrato(requireContext())
+            dialog.dialogAssina(viewModelContratoAceite)
 
         }
         viewModelContratoAceite.fazCadastro.observe(viewLifecycleOwner){

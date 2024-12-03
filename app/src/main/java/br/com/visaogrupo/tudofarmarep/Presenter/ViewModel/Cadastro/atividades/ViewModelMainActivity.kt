@@ -43,6 +43,9 @@ class ViewModelMainActivity(
     private val _senhaVisualizar = MutableLiveData<Boolean>()
     val senhaVisualizar: LiveData<Boolean> = _senhaVisualizar
 
+    private val _biometria = MutableLiveData<Boolean>()
+    val biometria: LiveData<Boolean> = _biometria
+
     private val _confereSenha = MutableLiveData<Boolean>()
     val confereSenha: LiveData<Boolean> = _confereSenha
 
@@ -171,6 +174,8 @@ class ViewModelMainActivity(
     }
 
     fun buscaInformacoesLogin(){
+        _biometria.postValue(true)
+
         viewModelScope.launch(Dispatchers.IO) {
             val login= loginUseCase.logaUsuario()
             _login.postValue(login)

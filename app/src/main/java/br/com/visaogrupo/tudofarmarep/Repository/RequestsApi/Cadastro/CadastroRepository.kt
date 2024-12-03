@@ -3,6 +3,7 @@ package br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro
 import android.content.Context
 import android.util.Base64
 import android.util.Log
+import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Fragments.ViewModelDadosBancarios
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequest
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequestAreaAtuacal
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCadastro
@@ -24,7 +25,7 @@ class CadastroRepository(context: Context) {
 
     val retrofit = RetrofitWs(context).createService(SincronoCadastro::class.java)
 
-    fun enviaCadastro(): Boolean{
+    fun enviaCadastro(isDadosBancarios: Boolean = false): Boolean{
         try {
             val jsonAreaAtucao = Gson().toJson(FormularioCadastro.cadastroRequestAreaAtuacal).toString()  ?: ""
             val jsonCadastro = Gson().toJson(FormularioCadastro.cadastro).toString()
@@ -32,6 +33,9 @@ class CadastroRepository(context: Context) {
             val jsonChave = JSONObject().apply {
                 put("JsonCadastro", jsonCadastro)
                 put("JsonAreaAtuacao", jsonAreaAtucao)
+            }
+            if (isDadosBancarios){
+               jsonChave.put("JsonDadosBancarios", JSONObject(Gson().toJson(FormularioCadastro.dadosBancarios)))
             }
 
 
@@ -41,6 +45,7 @@ class CadastroRepository(context: Context) {
             val reponse = retrofit.P_Cadastro(requestBody).execute()
             if(reponse.isSuccessful){
                 Log.d("Sucesso", "sucesso, no Envio do Cadastro")
+                val responsestr  = reponse.body()!!.string().descritar()
                 return true
 
             }else{

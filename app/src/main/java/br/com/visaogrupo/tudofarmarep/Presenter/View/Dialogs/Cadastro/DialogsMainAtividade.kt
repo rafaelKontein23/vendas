@@ -154,6 +154,7 @@ class DialogsMainAtividade (private val activity: AppCompatActivity,
           dialogBiometria.setCancelable(false)
           binding.btnEntrar.setOnClickListener {
                if (viewModel.checkBiometricSupport(context)){
+                    dialogBiometria.dismiss()
                     viewModel.showBiometricPrompt(context = context)
 
                }else{

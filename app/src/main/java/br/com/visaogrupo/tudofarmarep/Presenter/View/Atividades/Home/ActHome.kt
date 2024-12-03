@@ -300,7 +300,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, A
 
     }
 
-    override fun atualizaWebView(nome: String, id: EnumMenu) {
+    override fun atualizaFragmentHome(nome: String, id: EnumMenu) {
         tituloTopo.text = nome
         when (id) {
             EnumMenu.HOME -> {
@@ -328,6 +328,16 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, A
                     .replace(R.id.containerfragments, dadosAreaDeAtuacaoFragment)
                     .addToBackStack(null)
                     .commit()
+            }
+            EnumMenu.CARGAS -> {
+                atualizaCargaProgresso(1)
+                val prefs = PreferenceManager.getDefaultSharedPreferences(this@ActHome)
+                val editor = prefs.edit()
+                editor.putBoolean("fazendoCarga", true)
+                editor.putString("DataCarga", "")
+                editor.apply()
+                val request = Requests()
+                request.corrotinasMarcas(this@ActHome, this@ActHome)
             }
             else -> {
                 Log.w("Navigation", "Opção de menu desconhecida: $id")

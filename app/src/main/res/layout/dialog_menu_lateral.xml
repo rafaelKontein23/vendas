@@ -138,118 +138,338 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView93"
         app:layout_constraintVertical_bias="0.0">
-
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent">
             <LinearLayout
-                android:id="@+id/linearMenuHome"
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="22dp"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/iconeHome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/home" />
-                <TextView
-                    android:id="@+id/menuTexto"
-                    style="@style/texto_gray850_14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="@string/home"
-                    android:textFontWeight="500"
-                    app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
-                    app:layout_constraintStart_toEndOf="@+id/iconeHome"
-                    app:layout_constraintTop_toTopOf="@+id/iconeHome" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/linearMenuMeusDados"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="22dp"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/pessoa" />
-                <TextView
-                    style="@style/texto_gray850_14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="@string/meusDados"
-                    android:textFontWeight="500"
-                    app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
-                    app:layout_constraintStart_toEndOf="@+id/iconeHome"
-                    app:layout_constraintTop_toTopOf="@+id/iconeHome" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/linearAreaAruacao"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="22dp"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/pessoa" />
-                <TextView
-                    style="@style/texto_gray850_14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="@string/DadosAreaAtuacao"
-                    android:textFontWeight="500"
-                    app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
-                    app:layout_constraintStart_toEndOf="@+id/iconeHome"
-                    app:layout_constraintTop_toTopOf="@+id/iconeHome" />
-            </LinearLayout>
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <LinearLayout
+                    android:id="@+id/linearMenuHome"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="22dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/iconeHome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/home" />
+                    <TextView
+                        android:id="@+id/menuTexto"
+                        style="@style/texto_gray850_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/home"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearMenuMeusDados"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="22dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pessoa" />
+                    <TextView
+                        style="@style/texto_gray850_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/meusDados"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearAreaAruacao"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="22dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pessoa" />
+                    <TextView
+                        style="@style/texto_gray850_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/DadosAreaAtuacao"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
 
 
-            <LinearLayout
-                android:id="@+id/linearDadosBancarios"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="22dp"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/pessoa" />
-                <TextView
-                    style="@style/texto_gray850_14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="@string/dadosBancarios"
-                    android:textFontWeight="500"
-                    app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
-                    app:layout_constraintStart_toEndOf="@+id/iconeHome"
-                    app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                <LinearLayout
+                    android:id="@+id/linearDadosBancarios"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="22dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pessoa" />
+                    <TextView
+                        style="@style/texto_gray850_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/dadosBancarios"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearTermosdeUso"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="22dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pessoa" />
+                    <TextView
+                        style="@style/texto_gray850_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/termosDeUso"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearPoliticaPrivacidade"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="22dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pessoa" />
+                    <TextView
+                        style="@style/texto_gray850_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/politicaPrivacidade"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearVendas"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="22dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pessoa" />
+                    <TextView
+                        style="@style/texto_gray850_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/vendas"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearRelatorios"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="22dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pessoa" />
+                    <TextView
+                        style="@style/texto_gray850_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/relatorios"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearCargas"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="22dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pessoa" />
+                    <TextView
+                        style="@style/texto_gray850_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/cargasDeDados"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearCadastroDeProposto"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="22dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pessoa" />
+                    <TextView
+                        style="@style/texto_gray850_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/CadastroPreposto"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearGestaoComiisao"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="22dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pessoa" />
+                    <TextView
+                        style="@style/texto_gray850_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/GestaoDeComisso"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearExtratoComissao"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="22dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pessoa" />
+                    <TextView
+                        style="@style/texto_gray850_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/ExtratoDeComissões"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearMerchan"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="22dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pessoa" />
+                    <TextView
+                        style="@style/texto_gray850_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/Merchandising"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
             </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
-
-        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

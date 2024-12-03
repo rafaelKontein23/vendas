@@ -15,4 +15,8 @@ interface SincronoHome {
     @POST("lista/instituicao/bancaria")
     fun P_ListaInstituicoesBancarias
     (@Body responseBody: RequestBody): Call<ResponseBody>
+
+    @POST("flags")
+    fun P_FeatureFlag
+    (@Body responseBody: RequestBody): Call<ResponseBody>
 }

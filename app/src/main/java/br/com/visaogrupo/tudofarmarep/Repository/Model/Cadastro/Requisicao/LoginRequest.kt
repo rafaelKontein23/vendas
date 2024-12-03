@@ -8,4 +8,5 @@ data class LoginRequest(
     val UDID:String,
     val VersaoApp:String,
     val  Dispositivo:String
-)
+
+    )

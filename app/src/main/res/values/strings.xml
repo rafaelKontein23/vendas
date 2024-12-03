@@ -62,6 +62,16 @@
     <string name="TituloErro">Erro</string>
     <string name="finalizar">Finalizar</string>
     <string name="entrar">Entrar</string>
+    <string name="vendas">Vendas</string>
+    <string name="relatorios">
+        Relatórios
+    </string>
+    <string name="cargasDeDados"> Cargas de Dados</string>
+    <string name="CadastroPreposto">Cadastro de prepostos</string>
+    <string name="GestaoDeComisso">Gestão de comissões</string>
+    <string name="ExtratoDeComissões">Extrato de comissões</string>
+    <string name="Merchandising">Merchandising</string>
+
 
 
     <string name="loiuInforma">Loiu informa</string>
@@ -146,6 +156,7 @@ Dúvidas sobre o seu cadastro ou sobre o Loiu,
     <string name="erroInternet">Erro ao buscar dados</string>
     <string name="erroMessoRegiao">Seleicone uma mesorregião</string>
     <string name="preencha_todos_os_campos">preencha todos os campos para prosseguir</string>
+    <string name="erro_atualiza_dados_bancarios"> Algo deu errado ao atualizar os dados bancários, tente novamente</string>
 
     //descrição
     <string name="descricaoVisaulizaSenha">clique aqui para visualizar senha</string>

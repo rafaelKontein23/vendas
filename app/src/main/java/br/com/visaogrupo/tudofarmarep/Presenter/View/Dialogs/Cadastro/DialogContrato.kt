@@ -19,7 +19,7 @@ import br.com.visaogrupo.tudofarmarep.databinding.DialogAssinarContratoBinding
 import br.com.visaogrupo.tudofarmarep.databinding.DialogCidadesBinding
 import br.com.visaogrupo.tudofarmarep.databinding.DialogPoliticaPrivacidadeBinding
 
-class DialogContrato(val context: Context, val viewModelContratoAceite: ViewModelContratoAceite) {
+class DialogContrato(val context: Context) {
 
     fun dialogContratoPolitica(titulo: String, texto: String) {
         val binding = DialogPoliticaPrivacidadeBinding.inflate(LayoutInflater.from(context))
@@ -37,7 +37,7 @@ class DialogContrato(val context: Context, val viewModelContratoAceite: ViewMode
         }
     }
 
-    fun dialogAssina() {
+    fun dialogAssina(viewModelContratoAceite: ViewModelContratoAceite) {
         val binding = DialogAssinarContratoBinding.inflate(LayoutInflater.from(context))
 
         val dialogAssina = Dialog(context).apply {

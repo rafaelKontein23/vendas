@@ -16,7 +16,6 @@ import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.aplicarMascaraCnpj
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEditTextBasico
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEditTextBasicoAgencia
-import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEditTextBasicoConta
 import br.com.visaogrupo.tudofarmarep.Utils.Views.validaError
 import br.com.visaogrupo.tudofarmarep.databinding.FragmentDadosBancariosBinding
 import br.com.visaogrupo.tudofarmarep.databinding.FragmentDadosCnpjBinding
@@ -72,7 +71,17 @@ class DadosBancariosFragment : Fragment() {
             }
         }
 
+        viewModelDadosBancarios.atualizaDadosBancarios.observe(viewLifecycleOwner){
+            binding.constrainCarregando.isVisible = false
+            if(it){
+                Alertas.alertaErro(requireActivity(), mensagem =  getString(R.string.DadosAtuazlizadoComSucesso), titulo =  getString(R.string.loiuInforma)){
+                }
 
+            }else{
+                Alertas.alertaErro(requireActivity(), mensagem =  getString(R.string.erro_atualiza_dados_bancarios), titulo =  getString(R.string.tituloErro)){
+                }
+            }
+        }
         viewModelDadosBancarios.textoInstituicao.observe(viewLifecycleOwner){
             binding.inputInstituicao.setText(it)
         }
@@ -104,8 +113,7 @@ class DadosBancariosFragment : Fragment() {
                 binding.constrainCarregando.isVisible = false
                 Toast.makeText(requireContext(), getString(R.string.preencha_todos_os_campos), Toast.LENGTH_SHORT).show()
             }else{
-                // mandar rquest de cadastro aquiiii
-
+                viewModelDadosBancarios.mandaDadosBancarios(contaTexto, agenciaTexto, instituicaoTexto)
             }
         }
 

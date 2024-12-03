@@ -79,7 +79,9 @@ class MainActivity : AppCompatActivity() {
 
         val pushFirebase = PushFirebase()
         pushFirebase.recuperaDeviceToken()
-
+        viewModelMainActivity.biometria.observe(this){
+            binding.constrainCarregando.isVisible = true
+        }
         viewModelMainActivity.login.observe(this){
             binding.constrainCarregando.isVisible = false
             if(it != null){

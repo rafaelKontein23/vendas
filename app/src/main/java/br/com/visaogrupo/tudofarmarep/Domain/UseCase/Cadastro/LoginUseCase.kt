@@ -1,8 +1,11 @@
 package br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro
 
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.FlagsRequest
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.LoginRequest
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaLogin
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Home.Respostas.RespostaFlags
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.LoginRepository
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import br.com.visaogrupo.tudofarmarep.Utils.PushFirebase
@@ -26,13 +29,25 @@ class LoginUseCase (
         if(respostaLogin != null){
             preferenciasUtils.salvarBool(respostaLogin.Teste, ProjetoStrings.isUsuarioTeste)
             if (respostaLogin.Representante_ID != 0){
+                val listaFlags = buscaFlags(respostaLogin.Representante_ID)
+                if (listaFlags.isNotEmpty()){
+                    for (flags in listaFlags){
+                        FormularioCadastro.FeatureFlagMeuTime = flags.FeatureFlag_ID == 1 && flags.Status_Cod == 1
+                        FormularioCadastro.FeatureFlagMerchan = flags.FeatureFlag_ID == 2 && flags.Status_Cod == 1
+                    }
+                }
                 preferenciasUtils.salvarTexto(ProjetoStrings.cnpjLogin, respostaLogin.CNPJ)
                 preferenciasUtils.salvarTexto(ProjetoStrings.celular, respostaLogin.Celular)
             }
         }
 
-
         return respostaLogin
+    }
+
+
+    fun buscaFlags(representanteID:Int):ArrayList<RespostaFlags> {
+        val  featFlags = loginRepository.buscaFeatFlags(FlagsRequest(Representante_ID = representanteID))
+        return featFlags
     }
 
 }

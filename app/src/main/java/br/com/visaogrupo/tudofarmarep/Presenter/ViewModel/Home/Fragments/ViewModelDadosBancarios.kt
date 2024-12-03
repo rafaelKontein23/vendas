@@ -4,12 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Home.DadosBancariosUseCase
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCidades
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaMessoRegiao
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Home.Respostas.RespostaDadosBancarios
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Home.Respostas.RespostaInstituicaoBancaria
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Home.Respostas.RespostaInstituicaoBancariaDados
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +19,8 @@ import kotlinx.coroutines.launch
 
 class ViewModelDadosBancarios(
     private val dadosBancariosUseCase: DadosBancariosUseCase,
-    private val preferenciasUtils: PreferenciasUtils
+    private val preferenciasUtils: PreferenciasUtils,
+    private val cadastroUseCase: CadastroUseCase
 ):ViewModel() {
     val _dadosBancarios = MutableLiveData<RespostaDadosBancarios?>()
     val dadosBancarios :LiveData<RespostaDadosBancarios?> = _dadosBancarios
@@ -33,6 +36,10 @@ class ViewModelDadosBancarios(
 
     val _textoInstituicao = MutableLiveData<String>()
     val textoInstituicao :LiveData<String> = _textoInstituicao
+
+    val _atualizaDadosBancarios = MutableLiveData<Boolean>()
+    val atualizaDadosBancarios :LiveData<Boolean> = _atualizaDadosBancarios
+
 
     fun buscaDadosBancarios(){
         viewModelScope.launch (Dispatchers.IO){
@@ -53,6 +60,25 @@ class ViewModelDadosBancarios(
     }
     fun alterarTextoInstituicao(texto:String){
         _textoInstituicao.postValue(texto)
+    }
+    fun mandaDadosBancarios(
+        conta:String,
+        agencia:String,
+        banco:String
+    ){
+        viewModelScope.launch (Dispatchers.IO){
+            FormularioCadastro.dadosBancarios.Banco = banco
+            FormularioCadastro.dadosBancarios.Agencia = agencia
+            FormularioCadastro.dadosBancarios.Conta = conta
+            FormularioCadastro.dadosBancarios.CNPJ =
+                preferenciasUtils.recuperarTexto(ProjetoStrings.cnpjLogin, "").toString()
+
+            val cadastroUseCase = cadastroUseCase.enviaCadastro(true)
+
+            _atualizaDadosBancarios.postValue(cadastroUseCase)
+
+
+        }
     }
 
     fun pesquisaInstituicao(texto: String) {
