@@ -28,9 +28,9 @@ class AdapterFiltrosLojas(listaLojasFiltros : ArrayList<Lojas>, interfaceScrolaL
             .placeholder(R.drawable.padrao)
             .error(R.drawable.padrao)
             .into(holder.imgLab)
-        if (itemFiltro.urlLogin.isNotEmpty()){
-            holder.constraintLoja.isVisible = false
-        }
+
+        holder.constraintLoja.isVisible = !itemFiltro.urlLogin.isNotEmpty()
+
         if (itemFiltro.lojaFiltroSelecionado) {
             holder.constraintLoja.setBackgroundResource(R.drawable.borda_stroke_1_solid_white)
             holder.textoDescricaoFiltro.setTextColor(Color.parseColor("#828282"))
@@ -50,8 +50,6 @@ class AdapterFiltrosLojas(listaLojasFiltros : ArrayList<Lojas>, interfaceScrolaL
 
             interfaceScrolaLista.scrollToLoja(itemFiltro)
             notifyDataSetChanged()
-
-
         }
     }
     override fun getItemCount(): Int {
@@ -67,6 +65,4 @@ class AdapterFiltrosLojas(listaLojasFiltros : ArrayList<Lojas>, interfaceScrolaL
         val imgLab = itemView.findViewById<ImageView>(R.id.imgLab)
         val constraintLoja = itemView.findViewById<ConstraintLayout>(R.id.constraintLoja)
     }
-
-
 }

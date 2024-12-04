@@ -90,6 +90,7 @@ class DAOLojas (context: Context) {
                         GROUP BY Progressiva.loja_id
             ) AS OperadorProgressiva ON OperadorProgressiva.loja_id = loja.Loja_ID
             WHERE loja.LojaTipo_ID IN (8,6,4,17)
+            order by loja.Nome DESC
     """
 
         val listLojas = ArrayList<Pair<Int, Any>>()

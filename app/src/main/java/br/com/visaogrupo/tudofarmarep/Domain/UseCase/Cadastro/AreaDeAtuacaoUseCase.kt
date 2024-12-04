@@ -63,6 +63,14 @@ class AreaDeAtuacaoUseCase(
                 Cidades = cidadees
             )
         }
+        if(uf.length >2){
+            val ufFormat = uf.split(" - ").last()
+
+            return CadastroRequestAreaAtuacal(
+                UF = ufFormat,
+                Mesorregioes = mesorregioesMapeadas
+            )
+        }
 
         return CadastroRequestAreaAtuacal(
             UF = uf,

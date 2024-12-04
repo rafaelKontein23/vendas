@@ -521,6 +521,7 @@ class AdapterRecyclerLojas(
                 val blueColor = ContextCompat.getColor(itemView.context, R.color.blue500)
 
 
+
                 inputAdicionar.setOnEditorActionListener { v, actionId, event ->
                     if (actionId == EditorInfo.IME_ACTION_DONE || event?.keyCode == KeyEvent.KEYCODE_ENTER) {
                         true

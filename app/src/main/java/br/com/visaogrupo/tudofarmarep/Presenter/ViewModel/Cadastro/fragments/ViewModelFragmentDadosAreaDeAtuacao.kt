@@ -247,8 +247,7 @@ class ViewModelFragmentDadosAreaDeAtuacao(
                 _mesorregiaoSelecionada.value!!,
                 _cidadeSelecionada.value!!
             )
-            FormularioCadastro.cadastroRequestAreaAtuacal.UF = areaDeAtuacao.UF
-            FormularioCadastro.cadastroRequestAreaAtuacal.Mesorregioes = areaDeAtuacao.Mesorregioes
+            FormularioCadastro.cadastroRequestAreaAtuacal = areaDeAtuacao
 
             val edtitaDados = cadastroUseCase.enviaCadastro(islimpaCadastroUseCase)
             _editaDados.postValue(edtitaDados)

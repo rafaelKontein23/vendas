@@ -122,9 +122,12 @@ class ControlerCarrinho {
         }
 
         val ip = CapturaIP.pegaIP()
-       val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-       val reprsentanteID = prefs.getInt("reprsentante_id", 0)
-        val jsonPedido = "[{\n" +
+        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+        val reprsentanteID = prefs.getInt("reprsentante_id", 0)
+
+       val ambiente = prefs.getBoolean(ProjetoStrings.isUsuarioTeste, false)
+
+       val jsonPedido = "[{\n" +
                 "\"Pedido_id\": $pedidoId,\n" +
                 "\"Representante_id\": $reprsentanteID,\n" +
                 "\"LojaId\": ${loja.Loja_ID},\n" +
@@ -138,7 +141,7 @@ class ControlerCarrinho {
                 "\"IP\": \"$ip\",\n" +
                 "\"Observacao\": \"$observacao\",\n" +
                 "\"NumeroPedido\": \"$numeroPedido\",\n" +
-                "\"Teste\": true,\n" +
+                "\"Teste\": ${ambiente},\n" +
                 "\"UF\": \"${empresa.uf}\",\n" +
                 "\"Dispositivo\": \"Android\",\n" +
                 "\"VersaoApp\": \"${ProjetoStrings.versapApp}\",\n" +

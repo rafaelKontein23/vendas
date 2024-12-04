@@ -3,7 +3,7 @@ package br.com.visaogrupo.tudofarmarep.Utils.Constantes
 class ProjetoStrings {
 
     companion object{
-        val versapApp = "3.0.12"
+        val versapApp = "3.0.18"
         //chaves preferencias
         const val ambiente = "ambiente"
         const val cnpjCadastro = "cnpj"
