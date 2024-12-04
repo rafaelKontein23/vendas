@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import kotlinx.coroutines.Dispatchers

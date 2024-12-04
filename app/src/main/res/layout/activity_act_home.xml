@@ -81,7 +81,7 @@
         android:id="@+id/constraintLayout16"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorSurface"
+        android:background="@color/white"
 
         android:elevation="20dp"
         app:layout_constraintBottom_toBottomOf="parent"

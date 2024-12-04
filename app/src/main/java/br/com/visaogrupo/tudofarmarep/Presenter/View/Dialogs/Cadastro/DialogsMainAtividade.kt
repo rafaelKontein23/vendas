@@ -44,6 +44,9 @@ class DialogsMainAtividade (private val activity: AppCompatActivity,
           dialogSenha.window?.attributes?.windowAnimations = R.style.animacaoDialog
           dialogSenha.window?.setGravity(Gravity.BOTTOM)
           dialogSenha.show()
+          binding.fecharModal.setOnClickListener {
+               dialogSenha.dismiss()
+          }
 
           viewModel.senhaVisualizar.observe(activity){ senhaVisualizar ->
                if (senhaVisualizar) {
@@ -110,6 +113,9 @@ class DialogsMainAtividade (private val activity: AppCompatActivity,
           dialogEscolhaAmbiente.window?.attributes?.windowAnimations = R.style.animacaoDialog
           dialogEscolhaAmbiente.window?.setGravity(Gravity.BOTTOM)
           dialogEscolhaAmbiente.show()
+          binding.fecharModal.setOnClickListener {
+               dialogEscolhaAmbiente.dismiss()
+          }
           binding.btnAr.setOnClickListener {
                viewModel.trocaAmbienteModal(1)
                dialogEscolhaAmbiente.dismiss()

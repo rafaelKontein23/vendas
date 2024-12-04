@@ -9,7 +9,6 @@ import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaAreaAtuacaoCadastrais
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCidades
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaMessoRegiao
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.ListaUtils
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
@@ -241,16 +240,17 @@ class ViewModelFragmentDadosAreaDeAtuacao(
     fun confereCidadesList(): Boolean {
         return _cidadeSelecionada.value!!.isEmpty()
     }
-    fun mandaCadatro(){
+    fun mandaCadatro(islimpaCadastroUseCase: Boolean ){
         viewModelScope.launch(Dispatchers.IO) {
             val areaDeAtuacao = areaDeAtuacaoUseCase.converterParaEstado(
                 (_ufSelecionada.value ?: _ufTexto.value).toString(),
                 _mesorregiaoSelecionada.value!!,
                 _cidadeSelecionada.value!!
             )
-            FormularioCadastro.cadastroRequestAreaAtuacal = areaDeAtuacao
+            FormularioCadastro.cadastroRequestAreaAtuacal.UF = areaDeAtuacao.UF
+            FormularioCadastro.cadastroRequestAreaAtuacal.Mesorregioes = areaDeAtuacao.Mesorregioes
 
-            val edtitaDados = cadastroUseCase.enviaCadastro()
+            val edtitaDados = cadastroUseCase.enviaCadastro(islimpaCadastroUseCase)
             _editaDados.postValue(edtitaDados)
         }
     }

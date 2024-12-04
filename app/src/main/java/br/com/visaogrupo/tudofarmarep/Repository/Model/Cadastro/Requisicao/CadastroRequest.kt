@@ -31,8 +31,8 @@ data class CadastroRequest(
 
 
 data class CadastroRequestAreaAtuacal(
-    val UF: String = "",
-    val Mesorregioes: List<Mesorregiao> = emptyList()
+    var UF: String = "",
+    var Mesorregioes: List<Mesorregiao> = emptyList()
 )
 
 data class Mesorregiao(

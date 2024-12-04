@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaDadosPessoais
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,7 +39,8 @@ class ViewModelFragmentDadosPessoais(
                             cpf: String,
                             dataNacimento: String,
                             email: String,
-                            telefoneComercial: String) {
+                            telefoneComercial: String,
+                            islimpaCadastroUseCase: Boolean) {
 
         val cpfFormat = cpf.filter { it.isDigit() }
         val telefoneFormat = telefoneComercial.filter { it.isDigit() }
@@ -53,12 +53,12 @@ class ViewModelFragmentDadosPessoais(
         FormularioCadastro.cadastro.email = email
         FormularioCadastro.cadastro.telefoneComercial = telefoneFormat
 
-        enviaCadastro()
+        enviaCadastro(islimpaCadastroUseCase)
 
     }
-    fun enviaCadastro(){
+    fun enviaCadastro(islimpaCadastroUseCase:Boolean){
         viewModelScope.launch(Dispatchers.IO) {
-           val atualziaDadosCadastrais  = cadastroUseCase.enviaCadastro()
+           val atualziaDadosCadastrais  = cadastroUseCase.enviaCadastro(islimpaCadastroUseCase)
            _atualziaDados.postValue(atualziaDadosCadastrais)
         }
     }

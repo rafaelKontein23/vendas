@@ -228,7 +228,7 @@ o direito de suspender temporariamente, bloquear ou descadastrar"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:layout_marginStart="12dp"
-                 android:text="@string/euliEAceito"
+                 android:text="Eu li e aceito os"
                  android:textSize="13sp"
 
                  app:layout_constraintBottom_toBottomOf="@+id/aceiteBoxTermosDeUso"

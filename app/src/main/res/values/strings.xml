@@ -45,7 +45,7 @@
     <string name="estados">Estados</string>
     <string name="mesorregioes">Mesorregiões</string>
 
-    <string name="erroAceites">Aceites os termos de uso e a política de privacidade</string>
+    <string name="erroAceites">Erro no checks dos aceites no cadastro, politica, termos e contrato</string>
     //palavras
     <string name="cnpj">CNPJ</string>
     <string name="celular">Celular</string>
@@ -55,7 +55,7 @@
     <string name="sobrenome">Sobrenome</string>
     <string name="todos">Todas</string>>
     <string name="cpf">CPF</string>
-    <string name="dataNacimento">Data de Nacimento</string>
+    <string name="dataNacimento">Data de Nascimento</string>
     <string name="codigoIndicao">Código de indicação</string>
     <string name="telefoneComercial">Telefone Comercial</string>
     <string name="email">E-mail</string>
@@ -95,6 +95,8 @@
     <string name="informeToken">Informe abaixo o token enviado para o número</string>
     <string name="naoRecebiToken">não recebi o token</string>
     <string name="inormacaoCelular">Número informado no \nacesso para recebimento \nde token</string>
+    <string name="inormacaoCore">CORE é a sigla para \n Conselho Regional \n dos Representantes Comerciais</string>
+
     <string name="infoTireUmaFoto">Tire uma foto do seu documento pessoal de identificação (RG ou CNH)</string>
     <string name="infosFotos">• O documento deve estar aberto e aparecendo  ............. por completo;\n
         •  Certifique-se que todos os dados estejam legíveis;\n

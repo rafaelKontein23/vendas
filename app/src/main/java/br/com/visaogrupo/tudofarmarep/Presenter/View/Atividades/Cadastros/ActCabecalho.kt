@@ -22,6 +22,8 @@ class ActCabecalho : AppCompatActivity() {
         ActivityActCabecalhoBinding.inflate(layoutInflater)
     }
     private var  infoFragmentDadosPessoais : DadosPessoaisFragment? = null
+    private var  infoFragmentDadosCnpjFragment : DadosCnpjFragment? = null
+
     private lateinit var viewModelActCabecalho: ViewModelActCabecalho
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,6 +73,11 @@ class ActCabecalho : AppCompatActivity() {
              infoFragmentDadosPessoais = it
 
         }
+        viewModelActCabecalho.infoVisvelFragementCnpj.observe(this){
+            infoFragmentDadosCnpjFragment = it
+
+        }
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -117,12 +124,22 @@ class ActCabecalho : AppCompatActivity() {
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        if (ev != null && infoFragmentDadosPessoais != null  ) {
-            if(infoFragmentDadosPessoais!!.isInfoVisible()){
-                infoFragmentDadosPessoais?.hideMenu()
-                infoFragmentDadosPessoais = null
-                return true
+        if (ev != null && infoFragmentDadosPessoais != null  || infoFragmentDadosCnpjFragment != null ) {
+            if(infoFragmentDadosPessoais != null){
+                if(infoFragmentDadosPessoais!!.isInfoVisible()){
+                    infoFragmentDadosPessoais?.hideMenu()
+                    infoFragmentDadosPessoais = null
+                    return true
+                }
             }
+            if(infoFragmentDadosCnpjFragment != null){
+                if(infoFragmentDadosCnpjFragment!!.isInfoVisible()){
+                    infoFragmentDadosCnpjFragment?.hideMenu()
+                    infoFragmentDadosCnpjFragment = null
+                    return true
+                }
+            }
+
             return true
         }
         return super.dispatchTouchEvent(ev)

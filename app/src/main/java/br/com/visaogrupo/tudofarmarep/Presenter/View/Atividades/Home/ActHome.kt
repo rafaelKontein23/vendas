@@ -302,9 +302,13 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress, A
         tituloTopo.text = nome
         when (id) {
             EnumMenu.HOME -> {
+                homeLinear.isEnabled = false
+                val fragmentHomeItem = FragmentHome.newInstance(this, this)
+                tituloTopo.text = "Home"
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.containerfragments, fragmentHome)
+                    .replace(R.id.containerfragments, fragmentHomeItem)
                     .commit()
+                homeLinear.isEnabled = true
             }
             EnumMenu.DADOSCADASTRAIS -> {
                 val dadosPessoaisFragment = DadosPessoaisFragment.newInstance(false)

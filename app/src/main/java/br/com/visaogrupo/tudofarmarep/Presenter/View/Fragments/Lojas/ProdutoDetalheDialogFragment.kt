@@ -497,11 +497,8 @@ fun clickLink(textView: TextView, link:String, context: Context){
         }
         if (linkFormat.isNotEmpty()) {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(linkFormat))
-            if (intent.resolveActivity(context.packageManager) != null) {
-                context. startActivity(intent)
-            } else {
-                Toast.makeText(context, "Nenhum aplicativo pode abrir essa URL", Toast.LENGTH_SHORT).show()
-            }
+            context. startActivity(intent)
+
         } else {
             Toast.makeText(context, "URL está vazia!", Toast.LENGTH_SHORT).show()
         }
@@ -517,11 +514,8 @@ fun clickLinkImge(imge: ImageView, link:String, context: Context){
         }
         if (linkFormat.isNotEmpty()) {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(linkFormat))
-            if (intent.resolveActivity(context.packageManager) != null) {
-                context. startActivity(intent)
-            } else {
-                Toast.makeText(context, "Nenhum aplicativo pode abrir essa URL", Toast.LENGTH_SHORT).show()
-            }
+            context. startActivity(intent)
+
         } else {
             Toast.makeText(context, "URL está vazia!", Toast.LENGTH_SHORT).show()
         }

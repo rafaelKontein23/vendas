@@ -9,7 +9,6 @@ import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CodigoIndicaoUseCa
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.ISuporteTelefone
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCodigoIndicacao
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

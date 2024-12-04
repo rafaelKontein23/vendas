@@ -11,7 +11,6 @@ import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.Respos
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Home.Respostas.RespostaDadosBancarios
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Home.Respostas.RespostaInstituicaoBancaria
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Home.Respostas.RespostaInstituicaoBancariaDados
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 import kotlinx.coroutines.Dispatchers
@@ -73,7 +72,7 @@ class ViewModelDadosBancarios(
             FormularioCadastro.dadosBancarios.CNPJ =
                 preferenciasUtils.recuperarTexto(ProjetoStrings.cnpjLogin, "").toString()
 
-            val cadastroUseCase = cadastroUseCase.enviaCadastro()
+            val cadastroUseCase = cadastroUseCase.enviaCadastro(islimpaCadastroUseCase = true)
 
             _atualizaDadosBancarios.postValue(cadastroUseCase)
 

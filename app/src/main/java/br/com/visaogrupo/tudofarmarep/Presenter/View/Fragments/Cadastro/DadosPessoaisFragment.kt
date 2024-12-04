@@ -17,7 +17,6 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Fac
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentDadosPessoais
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
@@ -233,7 +232,8 @@ class DadosPessoaisFragment : Fragment() {
 
 
             }else{
-                viewModelFragmentDadosPessoal.salvaCamposPessoais(nome, sobrenome, cpf, dataNacimento, email, telefoneComercial)
+
+                viewModelFragmentDadosPessoal.salvaCamposPessoais(nome, sobrenome, cpf, dataNacimento, email, telefoneComercial, !isCadastro)
 
                 if(isCadastro){
                     requireActivity().supportFragmentManager.beginTransaction()

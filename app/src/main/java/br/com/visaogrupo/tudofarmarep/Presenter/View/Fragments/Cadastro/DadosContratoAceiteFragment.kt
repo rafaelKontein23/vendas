@@ -18,7 +18,6 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Vi
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Factory.ViewModelFragmentContratoAceiteFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelContratoAceite
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.databinding.FragmentDadosContratoAceiteBinding
 
@@ -57,7 +56,8 @@ class DadosContratoAceiteFragment : Fragment() {
                 (activity as Activity).requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
                 FormularioCadastro.cadastro.isAssinaContrato = true
-                mudarcheck(binding.assinaContratoBox)
+                binding.assinaContratoBox.tag = "1"
+                binding.assinaContratoBox.setBackgroundResource(R.drawable.bordas_radius_4_solid_blue600)
 
             }
             binding.scroolcontrato.post {
@@ -125,11 +125,11 @@ class DadosContratoAceiteFragment : Fragment() {
     }
 
     fun mudarcheck( constraintLayout: ConstraintLayout){
-        if (constraintLayout.tag == "0"){
-            constraintLayout.tag = "1"
-            constraintLayout.setBackgroundResource(R.drawable.bordas_8_blue600)
-        }else{
+        if (constraintLayout.tag == "1"){
             constraintLayout.tag = "0"
+            constraintLayout.setBackgroundResource(R.drawable.bordas_radius_4dp_strokecolor_gray400_solid_gray100)
+        }else{
+            constraintLayout.tag = "1"
             constraintLayout.setBackgroundResource(R.drawable.bordas_radius_4_solid_blue600)
         }
     }

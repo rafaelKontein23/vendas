@@ -25,7 +25,6 @@ import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.MainAc
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Home.interfaces.AtualizaFragmentHome
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogContrato
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Enuns.EnumMenu
 import br.com.visaogrupo.tudofarmarep.databinding.DialogCidadesBinding
 import br.com.visaogrupo.tudofarmarep.databinding.DialogMenuLateralBinding

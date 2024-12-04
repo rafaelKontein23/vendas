@@ -1,5 +1,3 @@
-package br.com.visaogrupo.tudofarmarep.Utils.Constantes
-
 import android.graphics.Bitmap
 import android.net.Uri
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequest
@@ -8,11 +6,10 @@ import br.com.visaogrupo.tudofarmarep.Repository.Model.Home.Request.DadosBancari
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Home.Respostas.RespostaFlags
 
 class FormularioCadastro {
-
     companion object {
-        var cadastro = CadastroRequest()
-        var cadastroRequestAreaAtuacal = CadastroRequestAreaAtuacal()
-        var dadosBancarios = DadosBancariosRequests()
+        var cadastro: CadastroRequest = CadastroRequest()
+        var cadastroRequestAreaAtuacal: CadastroRequestAreaAtuacal = CadastroRequestAreaAtuacal()
+        var dadosBancarios: DadosBancariosRequests = DadosBancariosRequests()
         var fotoDocumeto: Uri = Uri.EMPTY
         var base64Galeria = ""
         var base64Assinatura = ""
@@ -35,8 +32,10 @@ class FormularioCadastro {
 
         fun limpaCadastro() {
             cadastro = CadastroRequest()
-            cadastroRequestAreaAtuacal = CadastroRequestAreaAtuacal()
             dadosBancarios = DadosBancariosRequests()
+
+            cadastroRequestAreaAtuacal = CadastroRequestAreaAtuacal()
+
             fotoDocumeto = Uri.EMPTY
             base64Galeria = ""
             base64Assinatura = ""

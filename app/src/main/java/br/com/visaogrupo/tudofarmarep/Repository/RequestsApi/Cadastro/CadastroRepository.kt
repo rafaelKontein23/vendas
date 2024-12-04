@@ -3,6 +3,7 @@ package br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro
 import android.content.Context
 import android.util.Base64
 import android.util.Log
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Fragments.ViewModelDadosBancarios
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequest
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequestAreaAtuacal
@@ -12,7 +13,6 @@ import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.Respos
 import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.RetrofitWs
 import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.descritar
 import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.incriptar
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import okhttp3.MediaType.Companion.toMediaType
@@ -25,7 +25,7 @@ class CadastroRepository(context: Context) {
 
     val retrofit = RetrofitWs(context).createService(SincronoCadastro::class.java)
 
-    fun enviaCadastro(reprsentanteID:Int = 0): Boolean{
+    fun enviaCadastro(reprsentanteID:Int = 0, islimpaCadastroUseCase : Boolean = false): Boolean{
         try {
             var jsonAreaAtucao =""
             var jsonCadastro =""
@@ -55,7 +55,9 @@ class CadastroRepository(context: Context) {
             if(reponse.isSuccessful){
                 Log.d("Sucesso", "sucesso, no Envio do Cadastro")
                 val responsestr  = reponse.body()!!.string().descritar()
-                FormularioCadastro.limpaCadastro()
+                if (islimpaCadastroUseCase){
+                    FormularioCadastro.limpaCadastro()
+                }
                 return true
 
             }else{
@@ -86,6 +88,8 @@ class CadastroRepository(context: Context) {
             val reponse = retrofit.enviaFotoDocumento(requestBody).execute()
             if(reponse.isSuccessful){
                 Log.d("Sucesso", "sucesso, no Envio da Foto")
+                FormularioCadastro.limpaCadastro()
+
                 return true
             }else{
                 return false
@@ -121,15 +125,10 @@ class CadastroRepository(context: Context) {
             val reponse = retrofit.P_Cadastro(requestBody).execute()
             if(reponse.isSuccessful){
                 val responsestr  = reponse.body()!!.string().descritar()
-                val gson = Gson().fromJson(responsestr, RespostaCadastroDados::class.java)
-                val dados = gson.Dados
-                if(dados.first().Sucesso == 0){
-                    return false
+               // val gson = Gson().fromJson(responsestr, RespostaCadastroDados::class.java)
+                return true
 
-                }else{
-                    return true
 
-                }
 
 
             }else{

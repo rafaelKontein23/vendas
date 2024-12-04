@@ -34,7 +34,7 @@
             android:id="@+id/btnConfirma"
             style="@style/buttonPadraoCadastro"
             android:layout_width="wrap_content"
-            android:text="Confirma Assinatura"
+            android:text="Confirmar Assinatura"
 
             android:drawableEnd="@color/blue300"
             android:layout_height="wrap_content"

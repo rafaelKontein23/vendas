@@ -11,7 +11,6 @@ import android.util.AttributeSet
 import android.util.Base64
 import android.view.MotionEvent
 import android.view.View
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import java.io.ByteArrayOutputStream
 
 class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) {

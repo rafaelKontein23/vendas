@@ -13,7 +13,6 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Vi
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Factory.ViewModelFragmentDadosAreaDeAtuacaoFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentDadosAreaDeAtuacao
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.formataTextoGrandes
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.obterNomeCompletoUF
@@ -187,7 +186,7 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
             }else{
                 binding.inputCidadesAreaDeAtuacao.validaError(false, requireContext())
                 binding.inputMesorregioesAreaDeAtuacao.validaError(false, requireContext())
-                viewModelFragmentDadosAreaDeAtuacao.mandaCadatro()
+                viewModelFragmentDadosAreaDeAtuacao.mandaCadatro(!isCadastro)
                 if(isCadastro){
                     requireActivity().supportFragmentManager.beginTransaction()
                         .replace(R.id.fragmentContainerCadastro, CodigoIndicacaoFragment())

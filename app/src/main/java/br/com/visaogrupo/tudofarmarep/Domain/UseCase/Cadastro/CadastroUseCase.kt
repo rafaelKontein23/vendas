@@ -4,7 +4,6 @@ import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.Dados
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaDadosPessoais
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CadastroRepository
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.DadosPessoaisRepository
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.ImagensUltis
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
@@ -16,9 +15,9 @@ class CadastroUseCase(
       val sistemaUtils: SistemaUtils,
       val dadosPessoaisRepository: DadosPessoaisRepository? = null
 ) {
-     fun enviaCadastro(): Boolean{
+     fun enviaCadastro( islimpaCadastroUseCase : Boolean = false): Boolean{
          val representanteId = preferenciasUtils.recuperarInteiro(ProjetoStrings.reprenteID, 0)
-         val editaCadastro =  cadastroRepository.enviaCadastro(representanteId)
+         val editaCadastro =  cadastroRepository.enviaCadastro(representanteId,islimpaCadastroUseCase)
          return editaCadastro
     }
      fun enviaCadastroFinal():Boolean{

@@ -276,16 +276,18 @@ class FragmentHome : Fragment(), AtualizaMesResumo{
                         recyCotacao.layoutManager = LinearLayoutManager(contextHome!!)
                     }
                     if (isAdded && !isDetached && view != null && activity != null) {
-                        val adaptererFragmentItens = AdapterFragmentItens(requireContext())
+                        val adapterFragmentItens = AdapterFragmentItens(childFragmentManager, viewLifecycleOwner.lifecycle)
+
                         fragmentResumoPedidosAtendidos = FragmentResumoPedidosAtendidos.newInstance(listaHome.resumoMes)
                         fragmentResumoComissao = FragmentResumoComissao.newInstance(listaHome.resumoMes)
 
-                        adaptererFragmentItens.addFragment(fragmentResumoPedidosAtendidos)
-                        adaptererFragmentItens.addFragment(fragmentResumoComissao)
-                        carrosselResumoGanhos.adapter = adaptererFragmentItens
+                        adapterFragmentItens.addFragment(fragmentResumoPedidosAtendidos)
+                        adapterFragmentItens.addFragment(fragmentResumoComissao)
+
+                        carrosselResumoGanhos.adapter = adapterFragmentItens
 
 
-                        val adapterGraficos = AdapterFragmentItens(context)
+                        val adapterGraficos = AdapterFragmentItens(childFragmentManager, viewLifecycleOwner.lifecycle)
                         fragmentGraficosHome= FragmentGraficosHome.newInstance(listaHome.graficosHome)
                         fragmentGraficosHome.listaGraficos = listaHome.graficosHome
                         adapterGraficos.addFragment(fragmentGraficosHome)

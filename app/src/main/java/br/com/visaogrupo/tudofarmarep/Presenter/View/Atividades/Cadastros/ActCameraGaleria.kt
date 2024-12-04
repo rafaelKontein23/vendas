@@ -24,7 +24,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.ImagensUltis
 import br.com.visaogrupo.tudofarmarep.databinding.ActivityActCameraGaleriaBinding
 import java.io.File

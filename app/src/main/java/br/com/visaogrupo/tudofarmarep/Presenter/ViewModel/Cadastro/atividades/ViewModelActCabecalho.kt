@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro.DadosCnpjFragment
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro.DadosPessoaisFragment
 
 class ViewModelActCabecalho :ViewModel(){
@@ -15,7 +16,8 @@ class ViewModelActCabecalho :ViewModel(){
     val passoAtual: LiveData<Pair<Int, Float>> get() = _passoAtual
     private val _infoVisvelFragement = MutableLiveData<DadosPessoaisFragment>()
     val infoVisvelFragement : LiveData<DadosPessoaisFragment> get() = _infoVisvelFragement
-
+    private val _infoVisvelFragementCnpj = MutableLiveData<DadosCnpjFragment>()
+    val infoVisvelFragementCnpj : LiveData<DadosCnpjFragment> get() = _infoVisvelFragementCnpj
     fun mostraCarregando(mostra: Boolean){
         _mostraCareegando.postValue(mostra)
     }
@@ -26,6 +28,9 @@ class ViewModelActCabecalho :ViewModel(){
 
     fun mudaInfoVisivel( dadosPessoaisFragment :DadosPessoaisFragment){
         _infoVisvelFragement.postValue( dadosPessoaisFragment)
+    }
+    fun mudainfoVisivelCnpj(fragment: DadosCnpjFragment){
+        _infoVisvelFragementCnpj.postValue(fragment)
     }
 
     fun mudaProgressoCadastro(passo:Int, progress:Float){

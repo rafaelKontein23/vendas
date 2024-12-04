@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Adapters.Cadastro.SpinnerAdapter
@@ -12,7 +13,6 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Vi
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.Factory.ViewModelFragmentDadosCnpjFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelFragmentDadosCnpj
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.aplicarMascaraCep
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.aplicarMascaraCnpj
@@ -53,14 +53,16 @@ class DadosCnpjFragment : Fragment() {
 
         viewModelActCabecalho.mostraCarregando(true)
 
+        binding.tituloCore.setOnClickListener {
+            binding.informativoCore.isVisible = !binding.informativoCore.isVisible
+            viewModelActCabecalho.mudainfoVisivelCnpj(this)
+        }
+
         viewModelFragmentDadosCnpj.buscaDadosCnpj()
         viewModelFragmentDadosCnpj.listaSpinner.observe(viewLifecycleOwner){
             val adapter = SpinnerAdapter(requireContext(), it)
             binding.possuiCoreSpinner.adapter = adapter
         }
-
-
-
 
        binding.possuiCoreSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -139,6 +141,13 @@ class DadosCnpjFragment : Fragment() {
         }
 
         return binding.root
+    }
+    fun isInfoVisible(): Boolean {
+        return binding.informativoCore.isVisible
+    }
+
+    fun hideMenu() {
+        binding.informativoCore.isVisible = false
     }
 
 

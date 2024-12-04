@@ -13,7 +13,6 @@ import android.view.WindowManager
 import android.widget.Toast
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments.ViewModelContratoAceite
 import br.com.visaogrupo.tudofarmarep.R
-import br.com.visaogrupo.tudofarmarep.Utils.Constantes.FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Utils.Views.DialogConfig
 import br.com.visaogrupo.tudofarmarep.databinding.DialogAssinarContratoBinding
 import br.com.visaogrupo.tudofarmarep.databinding.DialogCidadesBinding
