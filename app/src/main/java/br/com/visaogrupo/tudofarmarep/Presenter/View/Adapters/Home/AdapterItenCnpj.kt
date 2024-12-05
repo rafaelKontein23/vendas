@@ -19,7 +19,6 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.visaogrupo.tudofarmarep.ActLojaPadrao
-import br.com.visaogrupo.tudofarmarep.Carga.Tasks.TaskConstroiHash
 import br.com.visaogrupo.tudofarmarep.Carga.ultis.Alertas
 import br.com.visaogrupo.tudofarmarep.Carga.ultis.FormatarTexto
 import br.com.visaogrupo.tudofarmarep.Objetos.CarrinhoItemCotacao

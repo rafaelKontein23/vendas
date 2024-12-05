@@ -16,7 +16,7 @@ class ViewModelActHomeFactory  (private val context: Context
         if (modelClass.isAssignableFrom(ViewModelActHome::class.java)) {
             val repository = SuporteTelefoneReposytory(context)
             val salavarTexto = PreferenciasUtils(context)
-            val vendaRemotaRepository = VendaRemotaRepository()
+            val vendaRemotaRepository = VendaRemotaRepository(context)
             val vendaRemotaUseCase = VendaRemotaUseCase(vendaRemotaRepository)
             return ViewModelActHome(repository, salavarTexto, vendaRemotaUseCase) as T
         }

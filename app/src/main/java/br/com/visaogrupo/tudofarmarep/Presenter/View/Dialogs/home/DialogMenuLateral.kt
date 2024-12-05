@@ -1,5 +1,6 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.home
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -38,7 +39,6 @@ class DialogMenuLateral {
                 window.attributes?.windowAnimations = R.style.DialoAnimationMenu
                 window.setGravity(Gravity.LEFT)
             }
-
             show()
         }
         binding.linearCadastroDeProposto.isVisible = FormularioCadastro.featureFlagMeuTime
@@ -78,8 +78,17 @@ class DialogMenuLateral {
         }
 
         binding.linearCargas.setOnClickListener {
-            viewModelActHome.atualizaFragmentHome("", EnumMenu.CARGAS)
-            dialogMenuLateral.dismiss()
+
+
+            val status = viewModelActHome.recuperaStatusCarga()
+            if (status){
+                dialogMenuLateral.dismiss()
+            }else{
+                viewModelActHome.atualizaFragmentHome("", EnumMenu.CARGAS)
+                dialogMenuLateral.dismiss()
+            }
+
+
         }
 
         binding.linearVendas.setOnClickListener {

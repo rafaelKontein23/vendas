@@ -261,6 +261,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
     }
 
     override fun atualizaCargaProgresso(carga: Int) {
+        atualizaStatusCarga(carga)
     }
 
     override fun escondeProgress(mostraCarregando: Boolean) {

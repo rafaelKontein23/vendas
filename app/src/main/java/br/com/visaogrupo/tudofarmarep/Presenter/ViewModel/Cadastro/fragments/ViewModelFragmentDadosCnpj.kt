@@ -31,6 +31,11 @@ class ViewModelFragmentDadosCnpj(
           }
      }
     fun salvarInformacoesCnpj(cnpj: String,
+                              razaoSocial: String,
+                              fantasia: String,
+                              cep: String,
+                              endereco: String,
+                              cidade: String,
                               possuiCore: String,
                               uf: String ){
         val cnpjFormat = cnpj.filter { it.isDigit() }
@@ -41,6 +46,13 @@ class ViewModelFragmentDadosCnpj(
         }else{
             FormularioCadastro.cadastro.possuiCore = false
         }
+        val cepFormat = cep.filter { it.isDigit() }
+        FormularioCadastro.cadastro.CNPJ = cnpjFormat
+        FormularioCadastro.cadastro.RazaoSocial = razaoSocial
+        FormularioCadastro.cadastro.Fantasia = fantasia
+        FormularioCadastro.cadastro.CEP = cepFormat
+        FormularioCadastro.cadastro.Endereco = endereco
+        FormularioCadastro.cadastro.Cidade = cidade
         FormularioCadastro.cadastro.UF = uf
         FormularioCadastro.cadastro.DeviceToken = SistemaUtils.deviceToken
         FormularioCadastro.cadastro.UDID = sistemaUtils.recuperaUdid()

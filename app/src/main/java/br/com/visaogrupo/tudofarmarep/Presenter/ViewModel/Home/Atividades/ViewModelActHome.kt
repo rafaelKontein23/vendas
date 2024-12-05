@@ -43,6 +43,10 @@ class ViewModelActHome (
         preferenciasUtils.salvarBool(status, ProjetoStrings.fazendoCarga)
         preferenciasUtils.salvarTexto(ProjetoStrings.dataCarga, data)
     }
+    fun recuperaStatusCarga() : Boolean{
+        val status = preferenciasUtils.recuperarBool(ProjetoStrings.fazendoCarga, false)
+        return status
+    }
     fun mudaCadastroProgresso(progresso: Int) {
         _cadastroProgresso.postValue(progresso)
     }
