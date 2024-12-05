@@ -16,6 +16,8 @@ class ProjetoStrings {
         const val hash = "hash"
         const val uf= "UF"
         const val caminhoFotoPerfil = "caminhoFotoPerfil"
+        const val fazendoCarga = "fazendoCarga"
+        const val dataCarga = "DataCarga"
 
         // mascaras
         const val mascaraCNPJ = "##.###.###/####-##"
@@ -25,6 +27,18 @@ class ProjetoStrings {
         const val reenviarToken = "Reenviar token em "
 
         val strDocumeto = "Identificacao_"
+
+        //bludles
+        const  val urlweb = "/Dashboard/Comissao"
+
+
+        //links web view
+        val dashComissao = "/Dashboard/Comissao"
+        val dashVendas = "/Dashboard/Vendas"
+        val dashMinhasAcoes = "/Dashboard/MinhasAcoes"
+        val equipeGerenciar = "/Equipe/Gerenciar"
+        val dashExtrato = "/Dashboard/Extrato"
+
 
     }
 }

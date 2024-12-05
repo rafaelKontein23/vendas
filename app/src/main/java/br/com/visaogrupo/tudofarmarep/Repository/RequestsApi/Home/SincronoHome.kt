@@ -19,4 +19,7 @@ interface SincronoHome {
     @POST("flags")
     fun P_FeatureFlag
     (@Body responseBody: RequestBody): Call<ResponseBody>
+
+    @POST("ws/loiu/venda/remota/hashlink")
+    fun P_VendaRemota_GerarMeuHaskLink (@Body request: RequestBody) : Call<ResponseBody>
 }

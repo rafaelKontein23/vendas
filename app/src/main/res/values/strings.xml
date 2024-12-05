@@ -17,6 +17,8 @@
     <string name="DadosCadastrais">Dados cadastrais</string>
     <string name="MinhaEmpresa">Minha empresa</string>
     <string name="DadosBancários">Dados Bancários</string>
+    <string name="Home">Home</string>
+    <string name="financeiro">Financeiro</string>
 
     // Erros
     <string name="tituloErro">Ops!</string>
@@ -113,6 +115,11 @@
     <string name="acessarOutraConta">Acessar outra conta</string>
     <string name="tokenSolicitadoComSucesso">Token solicitado com sucesso</string>
     <string name="entrarComToken">Entrar com token</string>
+    <string name="fraseWhatsVendaRemota">Olá, o link para sua venda remota está disponivel! </string>
+
+    <string name="CargaAtualizada">Cargas Atualizadas</string>
+    <string name="AtualizandoCargas">Atualizando Cargas...</string>
+    <string name="ErroCarga">Erro ao Gerar Cargas, tente atualziar novamente</string>
 
 
     <string name="euliEAceito">Eu li e aceito as</string>

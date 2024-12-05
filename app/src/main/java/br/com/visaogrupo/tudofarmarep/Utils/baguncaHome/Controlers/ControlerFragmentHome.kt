@@ -88,8 +88,6 @@ class ControlerFragmentHome {
            editor.putBoolean("fazendoCarga", true)
            editor.apply()
            atualizaCargaProgresso.atualizaCargaProgresso(1)
-
-
            val request = Requests()
            request.corrotinasMarcas(context, atualizaCargaProgresso)
            MainScope().launch {

@@ -43,8 +43,7 @@ interface Isync {
     @POST("ws/Pedidos/Pendentes")
     fun P_AppHomePedidosPendentesAprovacao(@Body request: RequestBody) : Call<ResponseBody>
 
-    @POST("ws/loiu/venda/remota/hashlink")
-    fun P_VendaRemota_GerarMeuHaskLink (@Body request: RequestBody) : Call<ResponseBody>
+
 
     @POST("ws/resumo/ganhos")
     fun P_AppHomeResumoMes(@Body request: RequestBody) : Call<ResponseBody>

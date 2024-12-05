@@ -7,32 +7,20 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.ViewGroup
-import android.view.Window
 import android.view.WindowManager
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.view.isVisible
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import br.com.visaogrupo.tudofarmarep.Adapter.AdapterItenCnpj
-import br.com.visaogrupo.tudofarmarep.Adapter.AdapterMenuLateral
-import br.com.visaogrupo.tudofarmarep.Carga.interfaces.AtualizaWebView
 import br.com.visaogrupo.tudofarmarep.Carga.ultis.FormatarTexto
-import br.com.visaogrupo.tudofarmarep.Objetos.Menulateral
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.MainActivity
-import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Home.interfaces.AtualizaFragmentHome
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogContrato
+import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Atividades.ViewModelActHome
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Enuns.EnumMenu
-import br.com.visaogrupo.tudofarmarep.databinding.DialogCidadesBinding
 import br.com.visaogrupo.tudofarmarep.databinding.DialogMenuLateralBinding
 
 class DialogMenuLateral {
 
-    fun dialogMenu(context: Context,  atualizaWebView: AtualizaWebView,  nomeRepresetanteText : String, cnpjRepresentanteText : String,
-                   atualizaFragmentHome: AtualizaFragmentHome) {
+    fun dialogMenu(context: Context,  nomeRepresetanteText : String, cnpjRepresentanteText : String, viewModelActHome: ViewModelActHome) {
         var nomeRepresetanteTextFormat = nomeRepresetanteText
         val dialogMenuLateral = Dialog(context)
         val binding = DialogMenuLateralBinding.inflate(LayoutInflater.from(context))
@@ -59,20 +47,20 @@ class DialogMenuLateral {
         binding.linearMerchan.isVisible = FormularioCadastro.featureFlagMerchan
 
         binding.linearMerchan.setOnClickListener {
-            atualizaWebView.atualizaWebView(context.getString(R.string.Merchandising), " /dashboard/minhasacoes")
+            viewModelActHome.atualizaWebView(context.getString(R.string.Merchandising), ProjetoStrings.dashMinhasAcoes)
             dialogMenuLateral.dismiss()
         }
         binding.linearCadastroDeProposto.setOnClickListener {
-            atualizaWebView.atualizaWebView(context.getString(R.string.CadastroPreposto), "/Equipe/Gerenciar")
+            viewModelActHome.atualizaWebView(context.getString(R.string.CadastroPreposto), ProjetoStrings.equipeGerenciar)
             dialogMenuLateral.dismiss()
 
         }
         binding.linearGestaoComiisao.setOnClickListener {
-            atualizaWebView.atualizaWebView(context.getString(R.string.GestaoDeComisso), "/dashboard/comissao")
+            viewModelActHome.atualizaWebView(context.getString(R.string.GestaoDeComisso), ProjetoStrings.dashComissao)
             dialogMenuLateral.dismiss()
         }
         binding.linearExtratoComissao.setOnClickListener {
-            atualizaWebView.atualizaWebView(context.getString(R.string.ExtratoDeComissões), "/dashboard/extrato")
+            viewModelActHome.atualizaWebView(context.getString(R.string.ExtratoDeComissões), ProjetoStrings.dashExtrato)
             dialogMenuLateral.dismiss()
         }
 
@@ -85,21 +73,21 @@ class DialogMenuLateral {
         binding.nomeRepresentante.text = nomeRepresetanteTextFormat
         binding.cnpjRepresentante.text = FormatarTexto().formatCNPJ(cnpjRepresentanteText)
         binding.linearMenuMeusDados.setOnClickListener {
-            atualizaFragmentHome.atualizaFragmentHome(context.getString(R.string.DadosCadastrais), EnumMenu.DADOSCADASTRAIS)
+            viewModelActHome.atualizaFragmentHome(context.getString(R.string.DadosCadastrais), EnumMenu.DADOSCADASTRAIS)
             dialogMenuLateral.dismiss()
         }
 
         binding.linearCargas.setOnClickListener {
-            atualizaFragmentHome.atualizaFragmentHome("", EnumMenu.CARGAS)
+            viewModelActHome.atualizaFragmentHome("", EnumMenu.CARGAS)
             dialogMenuLateral.dismiss()
         }
 
         binding.linearVendas.setOnClickListener {
-            atualizaWebView.atualizaWebView(context.getString(R.string.vendas), "/dashboard/vendas")
+            viewModelActHome.atualizaWebView(context.getString(R.string.vendas), ProjetoStrings.dashVendas)
             dialogMenuLateral.dismiss()
         }
         binding.linearRelatorios.setOnClickListener {
-            atualizaWebView.atualizaWebView(context.getString(R.string.relatorios), "/Dashboard/Comissao")
+            viewModelActHome.atualizaWebView(context.getString(R.string.relatorios), ProjetoStrings.dashComissao)
             dialogMenuLateral.dismiss()
         }
 
@@ -119,18 +107,17 @@ class DialogMenuLateral {
             dialogAssinarContratoBinding.dialogContratoPolitica(context.getString(R.string.termosDeUso), "${context.getString(R.string.temoDeuso)}  ${context.getString(R.string.segundaParteTermos)}")
         }
         binding.linearDadosBancarios.setOnClickListener {
-            atualizaFragmentHome.atualizaFragmentHome(context.getString(R.string.dadosBancarios), EnumMenu.DADOSBANCARIOS)
+            viewModelActHome.atualizaFragmentHome(context.getString(R.string.dadosBancarios), EnumMenu.DADOSBANCARIOS)
             dialogMenuLateral.dismiss()
         }
         binding.linearAreaAruacao.setOnClickListener {
-            atualizaFragmentHome.atualizaFragmentHome(context.getString(R.string.DadosAreaAtuacao), EnumMenu.DADOSAREATUACAO)
+            viewModelActHome.atualizaFragmentHome(context.getString(R.string.DadosAreaAtuacao), EnumMenu.DADOSAREATUACAO)
             dialogMenuLateral.dismiss()
         }
 
         binding.linearMenuHome.setOnClickListener {
-            atualizaFragmentHome.atualizaFragmentHome(context.getString(R.string.home), EnumMenu.HOME)
+            viewModelActHome.atualizaFragmentHome(context.getString(R.string.home), EnumMenu.HOME)
             dialogMenuLateral.dismiss()
-
         }
 
         binding.sair.setOnClickListener {
@@ -142,6 +129,5 @@ class DialogMenuLateral {
             val intent = Intent(context, MainActivity::class.java)
             context.startActivity(intent)
         }
-
     }
 }

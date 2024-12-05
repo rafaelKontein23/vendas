@@ -1,27 +1,30 @@
 package br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Home
 
+import android.content.Context
 import br.com.visaogrupo.tudofarmarep.Carga.interfaces.Isync
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Home.Request.HashVendaRemotaRequest
+import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.RetrofitWs
+import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.incriptar
 
 import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.Criptho
 import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.RetrofitWS
 import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.Support
+import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import okio.IOException
 import org.json.JSONObject
 
-class TaskConstroiHash  (){
+class VendaRemotaRepository  (context: Context){
+    val retrofitWS = RetrofitWs(context).createService(SincronoHome::class.java)
 
-    fun constroiHash( representante_id: Int): String {
+    fun constroiHash( representante_id: HashVendaRemotaRequest): String {
         try {
-            val isync = RetrofitWS().createService(Isync::class.java)
-            val json = JSONObject()
-            json.put("Representante_id", representante_id)
-            val body = Support.CRIPTHO.encode(json.toString(), Criptho.BASE64_MODE)
+            val json = Gson().toJson(representante_id).toString().incriptar()
             val mediaType =  "application/json".toMediaTypeOrNull()
-            val requestBody = RequestBody.create(mediaType, body)
-            val request = isync.P_VendaRemota_GerarMeuHaskLink(requestBody)
-            val response = request.execute()
+            val requestBody = json.toRequestBody(mediaType)
+            val response = retrofitWS.P_VendaRemota_GerarMeuHaskLink(requestBody).execute()
             if (response.isSuccessful){
                 val responseBody = response.body()!!.string()
                 val jsonResponse = JSONObject(Support.CRIPTHO.decode(responseBody, Criptho.BASE64_MODE))
@@ -35,8 +38,6 @@ class TaskConstroiHash  (){
         }catch (e:IOException){
             return ""
         }
-
-
     }
 }
 
