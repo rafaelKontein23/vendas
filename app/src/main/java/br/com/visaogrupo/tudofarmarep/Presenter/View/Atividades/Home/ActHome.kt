@@ -73,6 +73,8 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
         }
 
         viewModelActHome.numeroTelefoneSuporte.observe(this){
+            binding.constrainCarregando.isVisible = false
+
             if (it != null) {
                 try {
                     IntentUtils.mandaParaWhatsApp(this@ActHome, it)
@@ -84,6 +86,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
         }
 
         binding.duvidas.setOnClickListener {
+            binding.constrainCarregando.isVisible = true
             viewModelActHome.buscarNumeroTelefoneSuporte()
         }
 
@@ -94,7 +97,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
             bundle.putString(ProjetoStrings.urlweb, ProjetoStrings.dashVendas)
             fragmentWebView.arguments = bundle
             supportFragmentManager.beginTransaction()
-                .replace(R.id.containerfragments, fragmentWebView)
+                .replace(R.id.containerfragments, fragmentWebView).addToBackStack(null)
                 .commit()
         }
 
@@ -102,10 +105,10 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
             binding.tituloTopo.text= getString(R.string.financeiro)
             val fragmentWebView = FragmentsWebView()
             val bundle = Bundle()
-            bundle.putString(ProjetoStrings.urlweb, ProjetoStrings.urlweb)
+            bundle.putString(ProjetoStrings.urlweb, ProjetoStrings.dashComissao)
             fragmentWebView.arguments = bundle
             supportFragmentManager.beginTransaction()
-                .replace(R.id.containerfragments, fragmentWebView)
+                .replace(R.id.containerfragments, fragmentWebView).addToBackStack(null)
                 .commit()
         }
 
@@ -170,6 +173,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
         } // aqui faço depois
 
         viewModelActHome.hashVendaRemota.observe(this){hash ->
+            binding.constrainCarregando.isVisible = false
             val intent = Intent(Intent.ACTION_SEND)
             intent.setType("text/plain")
             val link = "${URLs.urlVendaRometa}${hash}"
@@ -193,7 +197,9 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
         }
 
         binding.remotoLinear.setOnClickListener {
-           viewModelActHome.buscaLinkVendaremotas()
+            binding.constrainCarregando.isVisible = true
+
+            viewModelActHome.buscaLinkVendaremotas()
         }
 
         viewModelActHome.cadastroProgresso.observe(this){
@@ -207,6 +213,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
             fragmentWebView.arguments = bundle
             supportFragmentManager.beginTransaction()
                 .replace(R.id.containerfragments, fragmentWebView)
+                .addToBackStack(null)
                 .commit()
         }
 
@@ -279,6 +286,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
         binding.tituloTopo.text = getString(R.string.Home)
         supportFragmentManager.beginTransaction()
             .replace(R.id.containerfragments, fragmentHomeItem)
+            .addToBackStack(null)
             .commit()
         binding.homeLinear.isEnabled = true
 

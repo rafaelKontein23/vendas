@@ -39,7 +39,7 @@ class FragmentsWebView : Fragment() {
         cel = cel.replace("(", "").replace(")", "").replace(" ", "")
         val urlmob = URLs.URL_Webviewmob
 
-        val bundle = arguments?.getString("urlweb")
+        val bundle = arguments?.getString(ProjetoStrings.urlweb)
         val urlweb = "$urlmob$cnpj&celular=$cel&origemMobile=true&ReturnUrl=$bundle"
 
         webview.webViewClient = object : WebViewClient() {

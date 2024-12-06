@@ -124,27 +124,31 @@
         android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="28dp"
         android:background="@color/gray200"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/valorComDesconto" />
 
     <TextView
         android:id="@+id/stTextUnitario"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/roboto_medium"
-        android:text=""
+        android:text="R$2712"
         android:textColor="@color/danger500"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/valorComDesconto"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout13"
         app:layout_constraintStart_toEndOf="@+id/valorComDesconto" />
 
     <TextView
         android:id="@+id/stTextTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="12dp"
         android:fontFamily="@font/roboto_medium"
         android:text="R$ 19,64"

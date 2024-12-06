@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/roboto_medium"
         android:letterSpacing="0.015"
         android:text="Colgate"
@@ -59,13 +60,14 @@
 
     <TextView
         android:id="@+id/razaoSocial"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:fontFamily="@font/roboto"
         android:letterSpacing="0.015"
+
         android:text="-"
         android:textColor="@color/gray500"
-
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/nomeText"
         app:layout_constraintTop_toBottomOf="@+id/nomeText" />
@@ -74,14 +76,13 @@
         android:id="@+id/cnpjText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="2dp"
         android:fontFamily="@font/roboto"
+
         android:letterSpacing="0.015"
         android:text="26.002.955/0001-01"
         android:textColor="@color/gray500"
-
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/nomeText"
         app:layout_constraintTop_toBottomOf="@+id/razaoSocial" />
 
@@ -100,16 +101,19 @@
 
     <TextView
         android:id="@+id/nomeLoja"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/roboto"
         android:letterSpacing="0.015"
         android:text="...."
         android:textColor="@color/gray500"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/valorTotal"
-        app:layout_constraintTop_toBottomOf="@+id/valorTotal" />
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/razaoSocial"
+        app:layout_constraintTop_toBottomOf="@+id/cnpjText"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

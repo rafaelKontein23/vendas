@@ -38,9 +38,10 @@ class AdapterPedidoPendentes(listaPedidoPendentes:ArrayList<CarrinhoAbertos>, va
          holder.nomeText.text = pedidosPendentesItem.nomeMarca
          holder.cnpjText.text = FormatarTexto().formatCNPJ(pedidosPendentesItem.cnpj)
          holder.valorTotal.text = FormatarTexto().formatarParaMoeda(pedidosPendentesItem.totalCarrinho)
+
          holder.nomeLoja.text = pedidosPendentesItem.nomeLoja
-         if(pedidosPendentesItem.razoSocial.length > 25){
-             holder.razaoSocial.text = pedidosPendentesItem.razoSocial.substring(0, 25) + "..."
+         if(pedidosPendentesItem.razoSocial.length > 20){
+             holder.razaoSocial.text = pedidosPendentesItem.razoSocial.substring(0, 20) + "..."
 
          }else{
              holder.razaoSocial.text = pedidosPendentesItem.razoSocial

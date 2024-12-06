@@ -29,7 +29,7 @@ class ProjetoStrings {
         val strDocumeto = "Identificacao_"
 
         //bludles
-        const  val urlweb = "/Dashboard/Comissao"
+        const  val urlweb = "urlweb"
 
 
         //links web view
@@ -38,6 +38,7 @@ class ProjetoStrings {
         val dashMinhasAcoes = "/Dashboard/MinhasAcoes"
         val equipeGerenciar = "/Equipe/Gerenciar"
         val dashExtrato = "/Dashboard/Extrato"
+        val dashFinanceiro = "/Dashboard/Financeiro"
 
 
     }

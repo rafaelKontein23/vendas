@@ -963,6 +963,8 @@ class ActLojaPadrao : AppCompatActivity(), InterfaceRemoverProtudosView, TrocaIn
         }
     }
      fun mudaInfosLojaTopo(){
+         constrainsTopFixo.isVisible = lojaSelecionada.ProdutosAbertos
+
          if (!isFinishing && !isDestroyed && lojaSelecionada != null) {
              if (lojaSelecionada.Nome.length >= 25){
                  val nomeLojaFormatado = lojaSelecionada.Nome.substring(0, 23) + "..."

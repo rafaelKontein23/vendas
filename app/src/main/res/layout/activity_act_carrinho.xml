@@ -66,6 +66,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/contrainInfos"
                 android:layout_width="match_parent"
+                android:paddingBottom="3dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bordas_menu_cima"
                 android:clipToPadding="false"
@@ -500,7 +501,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="Pedido Mínimo R$ 0,00 "
-                android:textColor="@color/blue400"
+                android:textColor="@color/blue700"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -516,7 +517,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/bordas_botao_4"
-                android:backgroundTint="@color/danger300_20"
+                android:backgroundTint="@color/danger700"
                 android:paddingStart="8dp"
                 android:paddingTop="4dp"
                 android:paddingEnd="8dp"
@@ -531,7 +532,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"
                     android:text="faltam "
-                    android:textColor="@color/danger700"
+                    android:textColor="@color/danger100"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -542,7 +543,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
                     android:text="R$ 0,00"
-                    android:textColor="@color/danger700"
+                    android:textColor="@color/danger100"
                     app:layout_constraintBottom_toBottomOf="@+id/textView58"
                     app:layout_constraintStart_toEndOf="@+id/textView58"
                     app:layout_constraintTop_toTopOf="@+id/textView58">
@@ -595,9 +596,8 @@
                 android:layout_marginStart="12dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="R$ 19,64"
-                android:textColor="@color/danger500"
+                android:textColor="@color/blue200"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textvalorTotalCarrinho"
                 app:layout_constraintStart_toEndOf="@+id/textvalorTotalCarrinho"
                 app:layout_constraintTop_toTopOf="@+id/textvalorTotalCarrinho" />
 

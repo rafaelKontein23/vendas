@@ -209,8 +209,7 @@
             android:paddingStart="40dp"
             android:paddingEnd="40dp"
             android:visibility="gone"
-
-            android:background="@color/blue300"
+            android:background="@color/blue400"
             android:layout_height="43dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
