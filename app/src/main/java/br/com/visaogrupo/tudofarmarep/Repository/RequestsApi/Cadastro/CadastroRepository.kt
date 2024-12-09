@@ -48,6 +48,7 @@ class CadastroRepository(context: Context) {
                 put("Representante_ID", reprsentanteID)
             }
 
+
             val jsonChaveIncript = jsonChave.toString().incriptar()
             val mediaType = "application/json; charset=utf-8".toMediaType()
             val requestBody = jsonChaveIncript.toRequestBody(mediaType)
@@ -105,6 +106,7 @@ class CadastroRepository(context: Context) {
         }
     }
 
+
     fun enviaCadastroFinal() : Boolean {
         try {
             val jsonAreaAtucao = Gson().toJson(FormularioCadastro.cadastroRequestAreaAtuacal) ?: ""
@@ -125,12 +127,7 @@ class CadastroRepository(context: Context) {
             val reponse = retrofit.P_Cadastro(requestBody).execute()
             if(reponse.isSuccessful){
                 val responsestr  = reponse.body()!!.string().descritar()
-               // val gson = Gson().fromJson(responsestr, RespostaCadastroDados::class.java)
                 return true
-
-
-
-
             }else{
                 if(reponse.errorBody() != null){
                     Log.d("error cadastro",    reponse.errorBody()!!.string())

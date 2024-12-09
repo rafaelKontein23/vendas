@@ -1,16 +1,24 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.home
 
+import FormularioCadastro
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Outline
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewOutlineProvider
 import android.view.WindowManager
+import android.widget.ImageView
 import androidx.core.view.isVisible
 import br.com.visaogrupo.tudofarmarep.Carga.ultis.FormatarTexto
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.ActCameraGaleria
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.MainActivity
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogContrato
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Atividades.ViewModelActHome
@@ -18,6 +26,10 @@ import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Enuns.EnumMenu
 import br.com.visaogrupo.tudofarmarep.databinding.DialogMenuLateralBinding
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.github.chrisbanes.photoview.PhotoView
+import jp.wasabeef.blurry.Blurry
 
 class DialogMenuLateral {
 
@@ -76,10 +88,32 @@ class DialogMenuLateral {
             viewModelActHome.atualizaFragmentHome(context.getString(R.string.DadosCadastrais), EnumMenu.DADOSCADASTRAIS)
             dialogMenuLateral.dismiss()
         }
+        if (FormularioCadastro.fotoPerfilUrl.isNotEmpty()){
+            Glide.with(context)
+                .load(FormularioCadastro.fotoPerfilUrl)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(binding.fotoPerfil)
 
+        }
+        binding.constraintLayout21.setOnClickListener {
+            val intent = Intent(context, ActCameraGaleria::class.java)
+            (context as Activity).startActivityForResult(intent, 1)
+            dialogMenuLateral.dismiss()
+        }
+        binding.fotoPerfil.setOnLongClickListener {
+            val drawable = binding.fotoPerfil.drawable
+            if (drawable is BitmapDrawable) {
+                showImagePreview(binding.fotoPerfil, drawable.bitmap, context)
+            }
+            true
+        }
+        binding.fotoPerfil.setOnClickListener {
+            val intent = Intent(context, ActCameraGaleria::class.java)
+            (context as Activity).startActivityForResult(intent, 1)
+            dialogMenuLateral.dismiss()
+        }
         binding.linearCargas.setOnClickListener {
-
-
             val status = viewModelActHome.recuperaStatusCarga()
             if (status){
                 dialogMenuLateral.dismiss()
@@ -137,6 +171,31 @@ class DialogMenuLateral {
         binding.sair.setOnClickListener {
             val intent = Intent(context, MainActivity::class.java)
             context.startActivity(intent)
+        }
+    }
+    fun showImagePreview(imageView: ImageView, bitmap: Bitmap, context: Context) {
+        val dialog = Dialog(context, android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+        dialog.setContentView(R.layout.dialog_imagem)
+
+        val blurryBackground = dialog.findViewById<ImageView>(R.id.blurry_background)
+        val photoView = dialog.findViewById<PhotoView>(R.id.photo_view)
+
+        // Aplica o blur no fundo
+        Blurry.with(context)
+            .radius(25) // Ajusta o nível de desfoque
+            .sampling(2) // Ajusta o desempenho
+            .capture(imageView)
+            .into(blurryBackground)
+
+        // Define a imagem na PhotoView
+        photoView.setImageBitmap(bitmap)
+
+        // Exibe o diálogo
+        dialog.show()
+
+        // Fecha ao tocar fora
+        photoView.setOnClickListener {
+            dialog.dismiss()
         }
     }
 }

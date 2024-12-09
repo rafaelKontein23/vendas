@@ -66,12 +66,14 @@
         android:text="Sair"
         android:textColor="@color/gray500"
         android:textFontWeight="500"
+        android:elevation="12dp"
 
         android:textSize="14sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/sairIcone" />
+        app:layout_constraintStart_toEndOf="@+id/sairIcone"
+        app:layout_constraintTop_toTopOf="@+id/sairIcone" />
 
     <ImageView
         android:id="@+id/sairIcone"
@@ -92,18 +94,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/fotoPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="4dp"
+            android:scaleType="fitXY"
+            app:shapeAppearanceOverlay="@style/RoundedImage"
             android:src="@drawable/perfil"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-        </ImageView>
+        </com.google.android.material.imageview.ShapeableImageView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="13dp"
@@ -138,9 +142,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView93"
         app:layout_constraintVertical_bias="0.0">
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -149,12 +156,14 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
                 <LinearLayout
                     android:id="@+id/linearMenuHome"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:id="@+id/iconeHome"
                         android:layout_width="wrap_content"
@@ -163,6 +172,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/home" />
+
                     <TextView
                         android:id="@+id/menuTexto"
                         style="@style/texto_gray850_14sp"
@@ -175,12 +185,14 @@
                         app:layout_constraintStart_toEndOf="@+id/iconeHome"
                         app:layout_constraintTop_toTopOf="@+id/iconeHome" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linearMenuMeusDados"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -188,6 +200,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/pessoa" />
+
                     <TextView
                         style="@style/texto_gray850_14sp"
                         android:layout_width="wrap_content"
@@ -199,12 +212,14 @@
                         app:layout_constraintStart_toEndOf="@+id/iconeHome"
                         app:layout_constraintTop_toTopOf="@+id/iconeHome" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linearAreaAruacao"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -212,6 +227,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/pessoa" />
+
                     <TextView
                         style="@style/texto_gray850_14sp"
                         android:layout_width="wrap_content"
@@ -228,9 +244,10 @@
                 <LinearLayout
                     android:id="@+id/linearDadosBancarios"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -238,6 +255,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/pessoa" />
+
                     <TextView
                         style="@style/texto_gray850_14sp"
                         android:layout_width="wrap_content"
@@ -249,12 +267,14 @@
                         app:layout_constraintStart_toEndOf="@+id/iconeHome"
                         app:layout_constraintTop_toTopOf="@+id/iconeHome" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linearTermosdeUso"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -262,6 +282,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/pessoa" />
+
                     <TextView
                         style="@style/texto_gray850_14sp"
                         android:layout_width="wrap_content"
@@ -277,9 +298,10 @@
                 <LinearLayout
                     android:id="@+id/linearPoliticaPrivacidade"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -287,6 +309,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/pessoa" />
+
                     <TextView
                         style="@style/texto_gray850_14sp"
                         android:layout_width="wrap_content"
@@ -298,12 +321,14 @@
                         app:layout_constraintStart_toEndOf="@+id/iconeHome"
                         app:layout_constraintTop_toTopOf="@+id/iconeHome" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linearVendas"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -311,6 +336,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/pessoa" />
+
                     <TextView
                         style="@style/texto_gray850_14sp"
                         android:layout_width="wrap_content"
@@ -326,9 +352,10 @@
                 <LinearLayout
                     android:id="@+id/linearRelatorios"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -336,6 +363,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/pessoa" />
+
                     <TextView
                         style="@style/texto_gray850_14sp"
                         android:layout_width="wrap_content"
@@ -347,12 +375,14 @@
                         app:layout_constraintStart_toEndOf="@+id/iconeHome"
                         app:layout_constraintTop_toTopOf="@+id/iconeHome" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linearCargas"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -360,6 +390,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/pessoa" />
+
                     <TextView
                         style="@style/texto_gray850_14sp"
                         android:layout_width="wrap_content"
@@ -371,12 +402,14 @@
                         app:layout_constraintStart_toEndOf="@+id/iconeHome"
                         app:layout_constraintTop_toTopOf="@+id/iconeHome" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linearCadastroDeProposto"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -384,6 +417,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/pessoa" />
+
                     <TextView
                         style="@style/texto_gray850_14sp"
                         android:layout_width="wrap_content"
@@ -395,12 +429,14 @@
                         app:layout_constraintStart_toEndOf="@+id/iconeHome"
                         app:layout_constraintTop_toTopOf="@+id/iconeHome" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linearGestaoComiisao"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -408,6 +444,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/pessoa" />
+
                     <TextView
                         style="@style/texto_gray850_14sp"
                         android:layout_width="wrap_content"
@@ -419,12 +456,14 @@
                         app:layout_constraintStart_toEndOf="@+id/iconeHome"
                         app:layout_constraintTop_toTopOf="@+id/iconeHome" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linearExtratoComissao"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -432,6 +471,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/pessoa" />
+
                     <TextView
                         style="@style/texto_gray850_14sp"
                         android:layout_width="wrap_content"
@@ -443,12 +483,14 @@
                         app:layout_constraintStart_toEndOf="@+id/iconeHome"
                         app:layout_constraintTop_toTopOf="@+id/iconeHome" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linearMerchan"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -456,6 +498,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/pessoa" />
+
                     <TextView
                         style="@style/texto_gray850_14sp"
                         android:layout_width="wrap_content"

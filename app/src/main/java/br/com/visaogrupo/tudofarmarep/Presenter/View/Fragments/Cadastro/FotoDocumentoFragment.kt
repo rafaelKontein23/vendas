@@ -103,6 +103,10 @@ class FotoDocumentoFragment : Fragment() {
 
         if (requestCode == REQUEST_IMAGE_CODE && resultCode == AppCompatActivity.RESULT_OK) {
             val imageUri: Uri? = data?.getParcelableExtra("image_uri")
+            if (imageUri != null) {
+                FormularioCadastro.fotoDocumeto = imageUri
+            }
+
             binding.fotoDocumento.isVisible = true
             binding.fundo.isVisible = false
             imageUri?.let {

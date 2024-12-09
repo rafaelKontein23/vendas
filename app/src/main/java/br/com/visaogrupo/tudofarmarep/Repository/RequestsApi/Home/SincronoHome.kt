@@ -22,4 +22,7 @@ interface SincronoHome {
 
     @POST("loiu/venda/remota/hashlink")
     fun P_VendaRemota_GerarMeuHaskLink (@Body request: RequestBody) : Call<ResponseBody>
+
+    @POST("foto/perfil")
+    fun enviaFotoPerfil(@Body request: RequestBody) : Call<ResponseBody>
 }

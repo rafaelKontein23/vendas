@@ -14,6 +14,7 @@ class URLs {
         var Url_pdf: String = "https://www.loiu.com.br/Docs/Extract/Usuarios/"
         var URL_Webviewmob: String = "https://stage.loiu.com.br/Autenticacao/LoginMobile?login="
         var URL_convite: String = "https://www.loiu.com.br/"
+        var urlFotoPErfil = "https://www.loiu.com.br/usuarios/"
 
         // Função para trocar o ambiente apenas se não tiver sido configurado
         fun trocaAmbiente(ambiente: String) {
@@ -21,16 +22,18 @@ class URLs {
                 urlWsBase = "https://www.visaogrupo.com.br/ws/"
                 urlWs = "https://www.visaogrupo.com.br/"
                 urlVendaRometa = "https://vendaremota.loiu.com.br/meu-hash/"
+                urlFotoPErfil = "https://www.loiu.com.br/usuarios/"
 
             } else {
                 urlWsBase = "https://${ambiente}.visaogrupo.com.br/ws/"
                 urlWs = "https://${ambiente}.visaogrupo.com.br/"
+                urlFotoPErfil = "https://${ambiente}.loiu.com.br/usuarios/"
+
             }
             if (ambiente == "wwwe" || ambiente == "wwwi"){
                 urlVendaRometa = "https://vendaremotae.loiu.com.br/meu-hash/"
 
             }
-
             urlImagensLoja = "https://${ambiente}.loiu.com.br/Cargas/images/lojas/icones"
             urlImagensCnpjs = "https://${ambiente}.loiu.com.br/Cargas/images/icones/"
             urlImagensOpls = "https://${ambiente}.loiu.com.br/img/logos/distribuidoras/"

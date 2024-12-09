@@ -24,6 +24,7 @@ data class CadastroRequest(
     var isTermoPolitica :Boolean = false,
     var isAssinaContrato:Boolean = false,
     var DeviceToken: String = "",
+    var FotoPerfil:String = "",
     var UDID:String = "",
     var VersaoaAPP:String = "",
     var Dispositivo :String = "",

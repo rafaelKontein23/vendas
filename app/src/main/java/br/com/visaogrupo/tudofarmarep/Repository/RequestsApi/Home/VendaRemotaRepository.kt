@@ -21,9 +21,10 @@ class VendaRemotaRepository  (context: Context){
 
     fun constroiHash( representante_id: HashVendaRemotaRequest): String {
         try {
-            val json = Gson().toJson(representante_id).toString().incriptar()
+            val json = Gson().toJson(representante_id).toString()
+            val body = json.incriptar()
             val mediaType =  "application/json".toMediaTypeOrNull()
-            val requestBody = json.toRequestBody(mediaType)
+            val requestBody = body.toRequestBody(mediaType)
             val response = retrofitWS.P_VendaRemota_GerarMeuHaskLink(requestBody).execute()
             if (response.isSuccessful){
                 val responseBody = response.body()!!.string()

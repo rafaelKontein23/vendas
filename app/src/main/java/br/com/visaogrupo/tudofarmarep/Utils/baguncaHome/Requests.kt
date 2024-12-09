@@ -124,6 +124,10 @@ class Requests {
 
                     for (i in listaMarcas){
                         var json = LerJson().readTextFileFromZip(path,"Produtos_"+i.Marca_ID+".json","")
+                        if (json == null){
+                            error = true
+                            return@launch
+                        }
                         if (json != null){
                             var jsonArray = JSONArray(JSONObject(json).getString("Produtos"))
 
@@ -166,9 +170,18 @@ class Requests {
                     }
 
                 }
+                if (error){
+                    atualizaCargaProgresso.atualizaCargaProgresso(3)
+                    return@launch
+                }
                 val tarefaGravaProgresiva = launch {
                     val lerJson = LerJson()
                     val progressivasJson = lerJson.readAllJsonFilesFromZip(pathProgressiva)
+                    if (progressivasJson.isEmpty()){
+                        error = true
+                        atualizaCargaProgresso.atualizaCargaProgresso(3)
+                        return@launch
+                    }
                     Log.d("listafIM", listaMarcas.toString())
 
                     for ( itens in progressivasJson){
@@ -213,7 +226,10 @@ class Requests {
 
                 }
                 tarefaGravaBanco.join()
-
+                if (error){
+                    atualizaCargaProgresso.atualizaCargaProgresso(3)
+                    return@launch
+                }
 
 
                 runBlocking {

@@ -13,6 +13,8 @@ class FormularioCadastro {
         var fotoDocumeto: Uri = Uri.EMPTY
         var base64Galeria = ""
         var base64Assinatura = ""
+        var fotoPerfil: Uri = Uri.EMPTY
+        var fotoPerfilUrl = ""
         var savedBitmap: Bitmap? = null
 
         private var _featureFlagMeuTime: Boolean = false

@@ -340,7 +340,10 @@
         <item name="backgroundTint">@color/white</item>
         <item name="android:background">@drawable/bordas_radius_8_solid_blue300</item>
     </style>
-
+    <style name="RoundedImage" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
     <style name="roundedImageView" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>

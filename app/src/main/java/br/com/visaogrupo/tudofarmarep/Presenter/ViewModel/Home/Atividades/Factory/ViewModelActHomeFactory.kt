@@ -3,11 +3,16 @@ package br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Atividades.Facto
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
+import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Home.FotoDePerfilUseCase
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Home.VendaRemotaUseCase
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Atividades.ViewModelActHome
+import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CadastroRepository
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.SuporteTelefoneReposytory
+import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Home.FotoPerfilRepository
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Home.VendaRemotaRepository
 import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
+import br.com.visaogrupo.tudofarmarep.Utils.SistemaUtils
 
 class ViewModelActHomeFactory  (private val context: Context
 ) : ViewModelProvider.Factory {
@@ -18,7 +23,16 @@ class ViewModelActHomeFactory  (private val context: Context
             val salavarTexto = PreferenciasUtils(context)
             val vendaRemotaRepository = VendaRemotaRepository(context)
             val vendaRemotaUseCase = VendaRemotaUseCase(vendaRemotaRepository)
-            return ViewModelActHome(repository, salavarTexto, vendaRemotaUseCase) as T
+            val fotoPerfilRepository = FotoPerfilRepository(context)
+            val fotoDePerfilUseCase = FotoDePerfilUseCase(context, fotoPerfilRepository)
+            val cadastroRepository = CadastroRepository(context)
+            val sistemaUtils = SistemaUtils(context)
+            val cadastroUseCase = CadastroUseCase( cadastroRepository, salavarTexto, sistemaUtils)
+            return ViewModelActHome(repository,
+                salavarTexto,
+                vendaRemotaUseCase,
+                fotoDePerfilUseCase,
+                cadastroUseCase) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

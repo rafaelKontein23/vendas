@@ -1,7 +1,11 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Home
 
+import FormularioCadastro
 import android.animation.ObjectAnimator
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.animation.LinearInterpolator
 import android.widget.Toast
@@ -31,6 +35,8 @@ import br.com.visaogrupo.tudofarmarep.Utils.IntentUtils
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.Requests
 import br.com.visaogrupo.tudofarmarep.databinding.ActivityActHomeBinding
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.transition.Transition
 
 
 import kotlinx.coroutines.MainScope
@@ -156,7 +162,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
                     viewModelActHome.mudaStatusCarga(true, "")
 
 
-                    val request = Requests() // paramos aquiiiiii
+                    val request = Requests()
                     request.corrotinasMarcas(this@ActHome, this@ActHome)
                 }
             }
@@ -181,10 +187,11 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
                 Intent.EXTRA_TEXT,
                 "${getString(R.string.fraseWhatsVendaRemota)}\n $link"
             )
+
             if (intent.resolveActivity(getPackageManager()) != null) {
                 val chooser = Intent.createChooser(
                     intent,
-                    "Compartilhar"
+                    "CompartilharR"
                 )
                 startActivity(chooser)
             }else {
@@ -193,6 +200,14 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
                     "Nenhum aplicativo de compartilhamento encontrado",
                     Toast.LENGTH_SHORT
                 ).show()
+            }
+        }
+        viewModelActHome.mostraCarregando.observe(this){
+            binding.constrainCarregando.isVisible = it
+        }
+        viewModelActHome.mostraMenssagem.observe(this){
+            Alertas.alertaErro(this, it.second, getString(R.string.loiuInforma)){
+
             }
         }
 
@@ -254,6 +269,9 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
                     binding.textoCarga.text = getString(R.string.ErroCarga)
                     binding.textoCarga.setTextColor(getColor(R.color.danger600))
                     binding. contrainsCargaInfo.setBackgroundResource(R.drawable.carga_finalizada_erro)
+                    delay(3000)
+                    binding.contrainsCargaInfo.isVisible = false
+                    viewModelActHome.mudaStatusCarga(false, "")
 
                 }
             }
@@ -277,7 +295,14 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-         inciaHome()
+        if (requestCode == 1 && resultCode == AppCompatActivity.RESULT_OK) {
+            val imageUri: Uri? = data?.getParcelableExtra("image_uri")
+            if (imageUri != null){
+                FormularioCadastro.fotoPerfil = imageUri
+                viewModelActHome.mudaFotoPerfil()
+
+            }
+        }
     }
 
     private fun inciaHome(){

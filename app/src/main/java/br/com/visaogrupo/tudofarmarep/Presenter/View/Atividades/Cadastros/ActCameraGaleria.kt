@@ -181,7 +181,6 @@ class ActCameraGaleria : AppCompatActivity() {
                     val resultIntent = Intent().apply {
                         putExtra("image_uri", savedUri)
                     }
-                    FormularioCadastro.fotoDocumeto = savedUri
                     FormularioCadastro.base64Galeria = ""
                     setResult(RESULT_OK, resultIntent)
                     finish()

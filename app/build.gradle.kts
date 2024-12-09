@@ -100,7 +100,8 @@ dependencies {
 
     //imagens
     implementation(libs.picasso)
-
+    implementation(libs.photoview)
+    implementation(libs.blurry)
 
 
     testImplementation(libs.junit)
