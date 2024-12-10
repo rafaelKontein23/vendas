@@ -51,17 +51,20 @@ class FragmentResumoPedidosAtendidos : Fragment(), AtualizaVisualizacaoDeGanhos 
     }
 
     override fun atualizaVisualizacaoDeGanhos(verGanhos: Boolean) {
-        if (verGanhos) {
-            if (listaResumoPedidosAtendidos.isEmpty()) {
-                cnpjsAtendidos.text = "0"
-                pedidosRealizados.text = "0"
+        if (::cnpjsAtendidos.isInitialized) {
+            if (verGanhos) {
+                if (listaResumoPedidosAtendidos.isEmpty()) {
+                    cnpjsAtendidos.text = "0"
+                    pedidosRealizados.text = "0"
+                } else {
+                    cnpjsAtendidos.text = listaResumoPedidosAtendidos[0].QtdeCNPJ.toString()
+                    pedidosRealizados.text = listaResumoPedidosAtendidos[0].PedidosRealizados.toString()
+                }
             } else {
-                cnpjsAtendidos.text = listaResumoPedidosAtendidos[0].QtdeCNPJ.toString()
-                pedidosRealizados.text = listaResumoPedidosAtendidos[0].PedidosRealizados.toString()
+                cnpjsAtendidos.text = "-"
+                pedidosRealizados.text = "-"
             }
-        } else {
-            cnpjsAtendidos.text = "-"
-            pedidosRealizados.text = "-"
         }
+
     }
 }

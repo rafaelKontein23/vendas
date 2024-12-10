@@ -167,7 +167,7 @@ class ViewModelMainActivity(
                 trocaAmbiente("stage")
             }
             else -> {
-                trocaAmbiente("wwwe")
+                trocaAmbiente("stage")
             }
         }
     }

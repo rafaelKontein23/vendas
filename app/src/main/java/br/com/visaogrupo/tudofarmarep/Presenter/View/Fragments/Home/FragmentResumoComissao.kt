@@ -54,17 +54,17 @@ class FragmentResumoComissao : Fragment(), AtualizaVisualizacaoDeGanhos {
     }
 
     private fun atualizaValores(verGanhos: Boolean) {
-        if (verGanhos) {
-            if (listaResumoPedidosAtendidos.isEmpty()) {
-                comissaoDisponivel?.text = "R$ 0,00"
-                taxaFaturamento?.text = "0 %"
+            if (verGanhos) {
+                if (listaResumoPedidosAtendidos.isEmpty()) {
+                    comissaoDisponivel?.text = "R$ 0,00"
+                    taxaFaturamento?.text = "0 %"
+                } else {
+                    comissaoDisponivel?.text = FormatarTexto().formatarParaMoeda(listaResumoPedidosAtendidos[0].ComissaoDisponivel)
+                    taxaFaturamento?.text = "${listaResumoPedidosAtendidos[0].TaxaFaturamento}%"
+                }
             } else {
-                comissaoDisponivel?.text = FormatarTexto().formatarParaMoeda(listaResumoPedidosAtendidos[0].ComissaoDisponivel)
-                taxaFaturamento?.text = "${listaResumoPedidosAtendidos[0].TaxaFaturamento}%"
+                comissaoDisponivel?.text = "R$-"
+                taxaFaturamento?.text = "-%"
             }
-        } else {
-            comissaoDisponivel?.text = "R$-"
-            taxaFaturamento?.text = "-%"
         }
-    }
 }

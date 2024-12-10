@@ -376,18 +376,21 @@ class FragmentHome : Fragment(), AtualizaMesResumo{
                     })
 
                     imgVisualizarResulmo.setOnClickListener {
-                        if (visualizarRsulmo) {
-                            visualizarRsulmo = false
-                            fragmentResumoComissao.atualizaVisualizacaoDeGanhos(visualizarRsulmo)
-                            fragmentResumoPedidosAtendidos.atualizaVisualizacaoDeGanhos(visualizarRsulmo)
-                            imgVisualizarResulmo.setImageResource(R.drawable.sem_visu)
+                        if (isAdded){
+                            if (visualizarRsulmo) {
+                                visualizarRsulmo = false
+                                fragmentResumoComissao.atualizaVisualizacaoDeGanhos(visualizarRsulmo)
+                                fragmentResumoPedidosAtendidos.atualizaVisualizacaoDeGanhos(visualizarRsulmo)
+                                imgVisualizarResulmo.setImageResource(R.drawable.sem_visu)
 
-                        }else{
-                            visualizarRsulmo = true
-                            fragmentResumoComissao.atualizaVisualizacaoDeGanhos(true)
-                            fragmentResumoPedidosAtendidos.atualizaVisualizacaoDeGanhos(true)
-                            imgVisualizarResulmo.setImageResource(R.drawable.visualiza)
+                            }else{
+                                visualizarRsulmo = true
+                                fragmentResumoComissao.atualizaVisualizacaoDeGanhos(true)
+                                fragmentResumoPedidosAtendidos.atualizaVisualizacaoDeGanhos(true)
+                                imgVisualizarResulmo.setImageResource(R.drawable.visualiza)
+                            }
                         }
+
                     }
                 }
             }
