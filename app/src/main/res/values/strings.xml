@@ -14,6 +14,7 @@
     <string name="home">Home</string>
     <string name="AtualizarDados">"Atualizar Dados</string>
     <string name="meusDados">Meus Dados</string>
+    <string name="meuTime">Meu Time</string>
     <string name="DadosCadastrais">Dados cadastrais</string>
     <string name="MinhaEmpresa">Minha empresa</string>
     <string name="DadosBancários">Dados Bancários</string>
@@ -68,7 +69,7 @@
     <string name="relatorios">
         Relatórios
     </string>
-    <string name="cargasDeDados"> Cargas de Dados</string>
+    <string name="cargasDeDados"> atualizar Carga</string>
     <string name="CadastroPreposto">Cadastro de prepostos</string>
     <string name="GestaoDeComisso">Gestão de comissões</string>
     <string name="ExtratoDeComissões">Extrato de comissões</string>
@@ -505,8 +506,6 @@ CLÁUSULA 14ª – DISPOSIÇÕES FINAIS
 
 14.8. Ao realizar o cadastro e utilizar a PLATAFORMA LOIU, os AGENTES, FABRICANTEES e CLIENTES declaram ter lido, compreendido e concordado integralmente com os termos e condições deste Instrumento.
 
- Rodolfo Amorim, 682.823.650-50
-26.002.955/0001-71, FABRICIA NEVES DA SILVA
 Logo TudoFarma
 O Loiu possui parceria com as maiores e melhores Indústrias de medicamentos, OTC, HPC e Guloseimas do mercado
 

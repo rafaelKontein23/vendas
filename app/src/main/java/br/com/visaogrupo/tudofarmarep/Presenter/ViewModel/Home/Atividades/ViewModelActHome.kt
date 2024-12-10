@@ -82,8 +82,8 @@ class ViewModelActHome (
     }
 
     fun buscaNomeCnpj(){
-        val cnpj =         preferenciasUtils.recuperarTexto(ProjetoStrings.nomeCompleto, "-") ?: "-"
-        val nomeCompleto = preferenciasUtils.recuperarTexto(ProjetoStrings.cnpjLogin, "-")?: "-"
+        val cnpj =         preferenciasUtils.recuperarTexto(ProjetoStrings.cnpjLogin, "-") ?: "-"
+        val nomeCompleto = preferenciasUtils.recuperarTexto(ProjetoStrings.nomeCompleto, "-")?: "-"
         _informacaoCnpjNome.postValue(Pair(cnpj, nomeCompleto))
     }
 

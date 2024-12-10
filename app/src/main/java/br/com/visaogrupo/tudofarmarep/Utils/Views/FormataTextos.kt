@@ -35,6 +35,17 @@ class FormataTextos {
                 append(this@aplicarMascaraTelefone.substring(7))
             }
         }
+        fun String.formatarParaBrasileiro(): String {
+            if (this.isEmpty() || !this.contains("T")) return this
+
+            return try {
+                val (ano, mes, dia) = this.split("T")[0].split("-")
+                "$dia/$mes/$ano"
+            } catch (e: Exception) {
+                e.printStackTrace()
+                this // Retorna a string original se der erro
+            }
+        }
         fun String.iniciaisNome(): String {
             try {
                 val nomes = this.split(" ")

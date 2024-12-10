@@ -82,6 +82,26 @@
         <item name="android:textStyle">normal</item>
 
     </style>
+    <style name="texto_gray900_14sp">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:textColor">@color/gray900</item>
+        <item name="android:gravity">start</item>
+        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textStyle">normal</item>
+
+    </style>
+    <style name="texto_gray100_12sp">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:textColor">@color/gray100</item>
+        <item name="android:gravity">start</item>
+        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textStyle">normal</item>
+
+    </style>
     <style name="textoblue60012sp">
         <item name="android:textSize">14sp</item>
         <item name="android:letterSpacing">0.025</item>

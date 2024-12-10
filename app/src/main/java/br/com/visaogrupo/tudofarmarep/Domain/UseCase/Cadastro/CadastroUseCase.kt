@@ -1,5 +1,6 @@
 package br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro
 
+import FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.DadosPessoaisRequest
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaDadosPessoais
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro.CadastroRepository
@@ -17,6 +18,16 @@ class CadastroUseCase(
 ) {
      fun enviaCadastro( islimpaCadastroUseCase : Boolean = false): Boolean{
          val representanteId = preferenciasUtils.recuperarInteiro(ProjetoStrings.reprenteID, 0)
+         if (representanteId >0 ){
+             val cnpj = preferenciasUtils.recuperarTexto(ProjetoStrings.cnpjLogin, "") ?: ""
+             val celular = preferenciasUtils.recuperarTexto(ProjetoStrings.celular, "") ?: ""
+             FormularioCadastro.cadastro.isAssinaContrato = true
+             FormularioCadastro.cadastro.isTermoPolitica = true
+             FormularioCadastro.cadastro.isPoliticaPrivacidade = true
+             FormularioCadastro.cadastro.CNPJ = cnpj
+             FormularioCadastro.cadastro.celular = celular
+
+         }
          val editaCadastro =  cadastroRepository.enviaCadastro(representanteId,islimpaCadastroUseCase)
          return editaCadastro
     }

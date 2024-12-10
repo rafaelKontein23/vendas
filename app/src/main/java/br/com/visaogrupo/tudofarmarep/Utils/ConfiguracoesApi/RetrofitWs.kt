@@ -20,7 +20,7 @@ class RetrofitWs(context: Context) {
             val preferenciasUtils = PreferenciasUtils(context)
             val ambiente = preferenciasUtils.recuperarBool(ProjetoStrings.isUsuarioTeste, false)
             if (ambiente) {
-                addInterceptor(ChuckerInterceptor.Builder(context).build())
+             //   addInterceptor(ChuckerInterceptor.Builder(context).build())
             }
         }
         .build()

@@ -63,10 +63,12 @@ class ViewModelDadosBancarios(
     fun mandaDadosBancarios(
         conta:String,
         agencia:String,
-        banco:String
+        banco:String,
+        codigoBanco:String
     ){
         viewModelScope.launch (Dispatchers.IO){
-            FormularioCadastro.dadosBancarios.Banco = banco
+            FormularioCadastro.dadosBancarios.NomeBanco = banco
+            FormularioCadastro.dadosBancarios.Banco = codigoBanco
             FormularioCadastro.dadosBancarios.Agencia = agencia
             FormularioCadastro.dadosBancarios.Conta = conta
             FormularioCadastro.dadosBancarios.CNPJ =

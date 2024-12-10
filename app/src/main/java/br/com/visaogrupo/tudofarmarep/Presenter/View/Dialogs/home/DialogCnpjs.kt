@@ -36,6 +36,7 @@ import br.com.visaogrupo.tudofarmarep.Carga.ultis.CapturaLongeLat
 import br.com.visaogrupo.tudofarmarep.Objetos.Atributo
 import br.com.visaogrupo.tudofarmarep.Objetos.Cnpj
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Views.Activitys.ActImportaCarteira
 import br.com.visaogrupo.tudofarmarep.Views.dialogs.DialogIconesCnpjs
 import kotlinx.coroutines.CoroutineScope
@@ -53,7 +54,7 @@ class DialogCnpjs {
 
         val listaCnpjAux = ArrayList<Cnpj>()
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        val reprsentanteID = prefs.getInt("reprsentante_id", 0)
+        val reprsentanteID = prefs.getInt(ProjetoStrings.reprenteID, 0)
 
 
         val dialogSelecioneCnpj = Dialog(context)

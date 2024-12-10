@@ -119,8 +119,8 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
         }
 
         viewModelActHome.informacaoCnpjNome.observe(this){
-            val nome = it.first
-            val cnpj = it.second
+            val nome = it.second
+            val cnpj = it.first
             val dialogMenuLateral = DialogMenuLateral()
             dialogMenuLateral.dialogMenu(this@ActHome, nome, cnpj, viewModelActHome)
         }

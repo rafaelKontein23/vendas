@@ -42,7 +42,6 @@ class FormularioCadastro {
             base64Galeria = ""
             base64Assinatura = ""
             savedBitmap = null
-            resetarFlags()
         }
 
         private fun resetarFlags() {

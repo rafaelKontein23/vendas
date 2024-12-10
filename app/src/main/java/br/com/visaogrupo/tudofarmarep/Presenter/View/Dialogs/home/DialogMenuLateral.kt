@@ -43,7 +43,7 @@ class DialogMenuLateral {
 
             window?.let { window ->
                 val layoutParams = window.attributes?.apply {
-                    width = (context.resources.displayMetrics.widthPixels * 0.70).toInt() // Corrigido para largura
+                    width = (context.resources.displayMetrics.widthPixels * 0.80).toInt() // Corrigido para largura
                     height = WindowManager.LayoutParams.MATCH_PARENT
                 }
                 window.attributes = layoutParams
@@ -57,6 +57,10 @@ class DialogMenuLateral {
         binding.linearGestaoComiisao.isVisible = FormularioCadastro.featureFlagMeuTime
         binding.linearExtratoComissao.isVisible = FormularioCadastro.featureFlagMeuTime
         binding.linearMerchan.isVisible = FormularioCadastro.featureFlagMerchan
+        binding.titulomarchann.isVisible = FormularioCadastro.featureFlagMerchan
+        binding.tituloTime.isVisible = FormularioCadastro.featureFlagMeuTime
+
+
 
         binding.linearMerchan.setOnClickListener {
             viewModelActHome.atualizaWebView(context.getString(R.string.Merchandising), ProjetoStrings.dashMinhasAcoes)
@@ -79,12 +83,10 @@ class DialogMenuLateral {
         if (nomeRepresetanteTextFormat.length >= 15){
             nomeRepresetanteTextFormat = nomeRepresetanteTextFormat.substring(0,14) + "..."
         }
-        binding.fecharMenu.setOnClickListener {
-            dialogMenuLateral.dismiss()
-        }
+
         binding.nomeRepresentante.text = nomeRepresetanteTextFormat
         binding.cnpjRepresentante.text = FormatarTexto().formatCNPJ(cnpjRepresentanteText)
-        binding.linearMenuMeusDados.setOnClickListener {
+        binding.linearDadosCadastrais.setOnClickListener {
             viewModelActHome.atualizaFragmentHome(context.getString(R.string.DadosCadastrais), EnumMenu.DADOSCADASTRAIS)
             dialogMenuLateral.dismiss()
         }
@@ -158,20 +160,12 @@ class DialogMenuLateral {
             dialogMenuLateral.dismiss()
         }
 
-        binding.linearMenuHome.setOnClickListener {
-            viewModelActHome.atualizaFragmentHome(context.getString(R.string.home), EnumMenu.HOME)
-            dialogMenuLateral.dismiss()
-        }
 
-        binding.sair.setOnClickListener {
+        binding.linearSair.setOnClickListener {
             val intent = Intent(context, MainActivity::class.java)
             context.startActivity(intent)
         }
 
-        binding.sair.setOnClickListener {
-            val intent = Intent(context, MainActivity::class.java)
-            context.startActivity(intent)
-        }
     }
     fun showImagePreview(imageView: ImageView, bitmap: Bitmap, context: Context) {
         val dialog = Dialog(context, android.R.style.Theme_Black_NoTitleBar_Fullscreen)

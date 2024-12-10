@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.visaogrupo.tudofarmarep.Objetos.Banners
 import br.com.visaogrupo.tudofarmarep.R
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 
 class AdapterBanners (val listaBanners: MutableList<Banners>): RecyclerView.Adapter<AdapterBanners.BannersCorrosel>()
@@ -53,8 +54,8 @@ class AdapterBanners (val listaBanners: MutableList<Banners>): RecyclerView.Adap
             }
             Glide.with(holder.banner.context)
                 .load(imagem)
-
-
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
                 .into(holder.banner)
 
 

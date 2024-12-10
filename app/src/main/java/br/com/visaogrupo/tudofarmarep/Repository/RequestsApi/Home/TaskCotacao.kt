@@ -56,7 +56,6 @@ class TaskCotacao {
                     val  OperadorLogistico4 = jsonCotacao.getString("OperadorLogistico4") ?:""
                     val  OperadorLogistico5 = jsonCotacao.getString("OperadorLogistico5") ?: ""
 
-
                     val cotacao = Cotacao(CNPJ,CarrinhoId,Hash,Marca_ID,Nome,RazaoSocial,TotalPedido,nomeLoja,dataPedido,ImagemMarca,lojaId, operedorGrupoId, uf,
                         cidade, bairro, endereco, numero, cep, nomeOperador, formaPagamentoMarcasID =  formaPagamentoMarcasID)
                     cotacao.listaOperadoreslooping.add(OperadorLogistico1)

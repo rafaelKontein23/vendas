@@ -52,7 +52,7 @@ class ActCameraGaleria : AppCompatActivity() {
             }
         }
 
-        binding.camera.setOnClickListener {
+        binding.btnTiraFoto.setOnClickListener {
            capturePhoto()
         }
 

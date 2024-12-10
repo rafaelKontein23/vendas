@@ -64,6 +64,9 @@ class DadosBancariosFragment : Fragment() {
                     bloquiacampos(true)
                 }else{
                     bloquiacampos(false)
+                    binding.inputInstituicao.setText(it.Banco)
+                    binding.inputAgencia.setText(it.Agencia)
+                    binding.inputConta.setText(it.Conta)
                 }
             }else{
                 Alertas.alertaErro(requireActivity(), mensagem =  getString(R.string.erro_busca_dados_bancarios), titulo =  getString(R.string.tituloErro)){
@@ -102,7 +105,7 @@ class DadosBancariosFragment : Fragment() {
 
         binding.btnSalvar.setOnClickListener {
             binding.constrainCarregando.isVisible = true
-            val instituicaoTexto = binding.inputAgencia.text.toString()
+            val instituicaoTexto = binding.inputInstituicao.text.toString()
             val agenciaTexto = binding.inputAgencia.text.toString()
             val contaTexto = binding.inputConta.text.toString()
             binding.inputInstituicao.validaError(instituicaoTexto == getString(R.string.Selecione), requireContext())
@@ -113,7 +116,7 @@ class DadosBancariosFragment : Fragment() {
                 binding.constrainCarregando.isVisible = false
                 Toast.makeText(requireContext(), getString(R.string.preencha_todos_os_campos), Toast.LENGTH_SHORT).show()
             }else{
-                viewModelDadosBancarios.mandaDadosBancarios(contaTexto, agenciaTexto, instituicaoTexto)
+                viewModelDadosBancarios.mandaDadosBancarios(contaTexto, agenciaTexto, instituicaoTexto, "000" )
             }
         }
 

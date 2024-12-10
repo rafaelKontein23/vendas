@@ -341,8 +341,6 @@ class FragmentHome : Fragment(), AtualizaMesResumo{
                         }
                     })
 
-
-
                     carrosselResumoGanhos.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                         override fun onPageSelected(position: Int) {
                             if (isAdded){

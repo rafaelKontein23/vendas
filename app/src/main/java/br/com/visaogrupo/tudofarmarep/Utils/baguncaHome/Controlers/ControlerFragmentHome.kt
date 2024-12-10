@@ -36,7 +36,7 @@ class ControlerFragmentHome {
         val dataFormat =SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val dataAtual = dataFormat.format(Date())
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        val reprsentanteID = prefs.getInt("reprsentante_id", 0)
+        val reprsentanteID = prefs.getInt(ProjetoStrings.reprenteID, 0)
 
         withContext(Dispatchers.IO) {
             try {

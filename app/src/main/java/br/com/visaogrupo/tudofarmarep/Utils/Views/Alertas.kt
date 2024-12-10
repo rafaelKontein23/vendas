@@ -60,23 +60,27 @@ class Alertas {
             }
         }
          fun showDatePickerDialog(textView: TextView, context: Context) {
-            val calendar = Calendar.getInstance()
-            val year = calendar.get(Calendar.YEAR)
-            val month = calendar.get(Calendar.MONTH)
-            val day = calendar.get(Calendar.DAY_OF_MONTH)
+             val calendar = Calendar.getInstance()
+             val year = calendar.get(Calendar.YEAR)
+             val month = calendar.get(Calendar.MONTH)
+             val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-            val datePickerDialog = DatePickerDialog(
-                context,
-                { _, selectedYear, selectedMonth, selectedDay ->
-                    val formattedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
-                    textView.text = formattedDate
-                    textView.validaError(false, context)
-                },
-                year,
-                month,
-                day
-            )
-            datePickerDialog.show()
-        }
+             val datePickerDialog = DatePickerDialog(
+                 context,
+                 { _, selectedYear, selectedMonth, selectedDay ->
+                     val formattedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                     textView.text = formattedDate
+                     textView.validaError(false, context)
+                 },
+                 year,
+                 month,
+                 day
+             )
+
+             datePickerDialog.datePicker.maxDate = calendar.timeInMillis
+
+             datePickerDialog.show()
+
+         }
     }
 }

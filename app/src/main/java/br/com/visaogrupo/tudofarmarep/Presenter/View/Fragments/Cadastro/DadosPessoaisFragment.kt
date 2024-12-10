@@ -20,6 +20,8 @@ import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
+import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.aplicarMascaraTelefone
+import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.formatarParaBrasileiro
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusCPF
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEditTextBasico
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEditTextBasicoSemErro
@@ -85,7 +87,7 @@ class DadosPessoaisFragment : Fragment() {
                 binding.inputNome.setText(it.Nome)
                 binding.inputSobrenome.setText(it.Sobrenome ?: "")
                 binding.inputCpf.setText(it.CPF ?: "")
-                binding.inputDataNacimento.setText(it.DataNascimento ?: "")
+                binding.inputDataNacimento.setText(it.DataNascimento.formatarParaBrasileiro() ?: "")
                 binding.inputEmail.setText(it.email ?: "")
                 binding.inputTelefoneComercial.setText(it.TelefoneComercial ?: "")
             }
@@ -133,7 +135,7 @@ class DadosPessoaisFragment : Fragment() {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val emailCap = s.toString()
-                binding.inputEmail.validaError( emailCap.isEmpty() || !emailCap.contains("@") || !emailCap.contains(".com"), requireContext())
+                binding.inputEmail.validaError( emailCap.isEmpty() || !emailCap.contains("@") || !emailCap.contains("."), requireContext())
             }
             override fun afterTextChanged(s: Editable?) {
             }
@@ -188,9 +190,9 @@ class DadosPessoaisFragment : Fragment() {
                 dataNacimento.isEmpty() ||
                 email.isEmpty() ||
                 !email.contains("@") ||
-                !email.contains(".com") || (telefoneSemFormato.isNotEmpty() && telefoneSemFormato.length < 10 )){
+                !email.contains(".") || (telefoneSemFormato.isNotEmpty() && telefoneSemFormato.length < 10 )){
                 Toast.makeText(requireContext(), "Preencha todos os campos corretamente", Toast.LENGTH_SHORT).show()
-                if(email.isEmpty() || !email.contains("@") || !email.contains(".com")){
+                if(email.isEmpty() || !email.contains("@") || !email.contains(".")){
                     binding.scroolPessoais.smoothScrollTo(0,  binding.inputEmail.top)
                     binding.inputEmail.validaError( true, requireContext())
 
