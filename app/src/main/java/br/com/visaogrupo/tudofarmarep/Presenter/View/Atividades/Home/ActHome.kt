@@ -4,13 +4,18 @@ import FormularioCadastro
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.view.animation.LinearInterpolator
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
@@ -101,6 +106,10 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
             binding.tituloTopo.text= getString(R.string.vendas)
             val bundle = Bundle()
             bundle.putString(ProjetoStrings.urlweb, ProjetoStrings.dashVendas)
+            desMarcaSelecionado(binding.textHome, binding.selecionadoHome, binding.iconeHome)
+            marcaSelecionado(binding.textVendas, binding.selecionadovendas, binding.iconeVenda)
+            desMarcaSelecionado(binding.textFinanceiro, binding.selecionadoFinanceiro, binding.iconefinanceiro)
+            desMarcaSelecionado(binding.textRemoto, binding.selecionadoRemoto, binding.iconeRemoto)
             fragmentWebView.arguments = bundle
             supportFragmentManager.beginTransaction()
                 .replace(R.id.containerfragments, fragmentWebView).addToBackStack(null)
@@ -112,6 +121,10 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
             val fragmentWebView = FragmentsWebView()
             val bundle = Bundle()
             bundle.putString(ProjetoStrings.urlweb, ProjetoStrings.dashComissao)
+            desMarcaSelecionado(binding.textHome, binding.selecionadoHome, binding.iconeHome)
+            desMarcaSelecionado(binding.textVendas, binding.selecionadovendas, binding.iconeVenda)
+            marcaSelecionado(binding.textFinanceiro, binding.selecionadoFinanceiro, binding.iconefinanceiro)
+            desMarcaSelecionado(binding.textRemoto, binding.selecionadoRemoto, binding.iconeRemoto)
             fragmentWebView.arguments = bundle
             supportFragmentManager.beginTransaction()
                 .replace(R.id.containerfragments, fragmentWebView).addToBackStack(null)
@@ -176,7 +189,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
             DialogSuccesoCarteiraImportada.abreDialogCarteira = false
             val dialogcnpj = DialogCnpjs()
             dialogcnpj.dialogCnpjs(this, iniciaLoja = inciaLoja, atividade = this)
-        } // aqui faço depois
+        }
 
         viewModelActHome.hashVendaRemota.observe(this){hash ->
             binding.constrainCarregando.isVisible = false
@@ -191,7 +204,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
             if (intent.resolveActivity(getPackageManager()) != null) {
                 val chooser = Intent.createChooser(
                     intent,
-                    "CompartilharR"
+                    "Compartilhe seu link com seus clientes"
                 )
                 startActivity(chooser)
             }else {
@@ -309,11 +322,25 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
         binding.homeLinear.isEnabled = false
         val fragmentHomeItem = FragmentHome.newInstance(this, this)
         binding.tituloTopo.text = getString(R.string.Home)
+        marcaSelecionado(binding.textHome, binding.selecionadoHome, binding.iconeHome)
+        desMarcaSelecionado(binding.textVendas, binding.selecionadovendas, binding.iconeVenda)
+        desMarcaSelecionado(binding.textFinanceiro, binding.selecionadoFinanceiro, binding.iconefinanceiro)
+        desMarcaSelecionado(binding.textRemoto, binding.selecionadoRemoto, binding.iconeRemoto)
         supportFragmentManager.beginTransaction()
             .replace(R.id.containerfragments, fragmentHomeItem)
             .addToBackStack(null)
             .commit()
         binding.homeLinear.isEnabled = true
 
+    }
+    fun marcaSelecionado(textoSelecionado:TextView, imgSelecionado:ImageView, imagem:ImageView){
+        imgSelecionado.visibility = View.VISIBLE
+        textoSelecionado.setTextColor(getColor(R.color.blue700))
+        imagem.imageTintList = ContextCompat.getColorStateList(this, R.color.blue700)
+    }
+    fun desMarcaSelecionado(textoSelecionado:TextView, imgSelecionado:ImageView, imagem:ImageView){
+        imgSelecionado.visibility = View.INVISIBLE
+        textoSelecionado.setTextColor(getColor(R.color.gray600))
+        imagem.imageTintList = ContextCompat.getColorStateList(this, R.color.gray600)
     }
 }

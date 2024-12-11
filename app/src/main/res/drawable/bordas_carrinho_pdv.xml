@@ -5,5 +5,5 @@
 
    </corners>
     <solid
-        android:color="@color/danger500"></solid>
+        android:color="@color/blue500"></solid>
 </shape>

@@ -88,11 +88,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/homeLinear"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/vendaLinear"
             app:layout_constraintHorizontal_bias="0.5"
@@ -100,8 +101,16 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/selecionadoHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/indicador_selecionado" />
+
+            <ImageView
                 android:id="@+id/iconeHome"
                 android:layout_width="wrap_content"
+                android:layout_marginTop="16dp"
+
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@drawable/casa">
@@ -110,45 +119,63 @@
 
             <TextView
                 android:id="@+id/textHome"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/manrope"
+                android:textFontWeight="600"
+                android:layout_marginTop="4dp"
                 android:text="Home"
-                android:textColor="@color/blue500"
-                android:textSize="10sp">
+                android:textAlignment="center"
+                android:letterSpacing="0.015"
+                android:textColor="@color/blue700"
+                android:textSize="12sp">
 
             </TextView>
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
         <LinearLayout
             android:id="@+id/vendaLinear"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginBottom="16dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/pdv"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/homeLinear"
             app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/selecionadovendas"
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/indicador_selecionado" />
 
             <ImageView
                 android:id="@+id/iconeVenda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/vendas">
+                android:layout_marginTop="16dp"
+
+                android:src="@drawable/vendas_cinza">
 
             </ImageView>
 
             <TextView
                 android:id="@+id/textVendas"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/manrope"
                 android:text="Vendas"
-                android:textColor="@color/gray700"
-                android:textSize="10sp">
+                android:textAlignment="center"
+                android:letterSpacing="0.015"
+                android:textFontWeight="600"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/gray600"
+                android:textSize="12sp">
 
             </TextView>
         </LinearLayout>
@@ -158,82 +185,107 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/bordas_carrinho_pdv"
+            android:elevation="8dp"
+            android:outlineAmbientShadowColor="@color/blue700"
+            android:outlineSpotShadowColor="@color/blue700"
             android:padding="12dp"
-            android:elevation="4dp"
-            android:outlineAmbientShadowColor="@color/danger500"
-            android:outlineSpotShadowColor="@color/danger500"
 
             android:src="@drawable/carrinho_pdv"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/financeiroLinear"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/vendaLinear"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
         </ImageView>
 
         <LinearLayout
             android:id="@+id/financeiroLinear"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginBottom="16dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/remotoLinear"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/pdv"
             app:layout_constraintTop_toTopOf="parent">
-
+            <ImageView
+                android:id="@+id/selecionadoFinanceiro"
+                android:layout_width="match_parent"
+                android:visibility="invisible"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/indicador_selecionado" />
             <ImageView
                 android:id="@+id/iconefinanceiro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
                 android:layout_gravity="center"
-                android:src="@drawable/financeiro">
+                android:layout_marginTop="16dp"
+
+                android:src="@drawable/dash">
 
             </ImageView>
 
             <TextView
                 android:id="@+id/textFinanceiro"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:fontFamily="@font/manrope"
-                android:text="financeiro"
-                android:textColor="@color/gray700"
-                android:textSize="10sp">
+                android:text="@string/relatorios"
+                android:textColor="@color/gray600"
+                android:textFontWeight="600"
+                android:textSize="12sp">
 
             </TextView>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/remotoLinear"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:orientation="vertical"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/financeiroLinear"
             app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/selecionadoRemoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/indicador_selecionado" />
 
             <ImageView
                 android:id="@+id/iconeRemoto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+
                 android:src="@drawable/remoto">
 
             </ImageView>
 
             <TextView
                 android:id="@+id/textRemoto"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:fontFamily="@font/manrope"
-                android:text="remoto"
-                android:textColor="@color/gray700"
-                android:textSize="10sp">
+                android:textAlignment="center"
+                android:text="Remoto"
+                android:textColor="@color/gray600"
+                android:textFontWeight="600"
+                android:textSize="12sp">
 
             </TextView>
         </LinearLayout>
