@@ -10,7 +10,6 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -27,7 +26,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import br.com.visaogrupo.tudofarmarep.ActLojaPadrao
 import br.com.visaogrupo.tudofarmarep.Carga.Tasks.TaskAdicionarCarteira
 import br.com.visaogrupo.tudofarmarep.Carga.interfaces.AtualizaFiltroAtribudos
 import br.com.visaogrupo.tudofarmarep.Carga.interfaces.AtualizaInfoTopo
@@ -44,11 +42,9 @@ import br.com.visaogrupo.tudofarmarep.DAO.DAOHelper
 import br.com.visaogrupo.tudofarmarep.DAO.DAOProgressiva
 import br.com.visaogrupo.tudofarmarep.Objetos.Banners
 import br.com.visaogrupo.tudofarmarep.Objetos.CarrinhoItemCotacao
-import br.com.visaogrupo.tudofarmarep.Objetos.Cnpj
 import br.com.visaogrupo.tudofarmarep.Objetos.Empresa
 import br.com.visaogrupo.tudofarmarep.Objetos.Lojas
 import br.com.visaogrupo.tudofarmarep.Objetos.Produtos
-import br.com.visaogrupo.tudofarmarep.Objetos.Progressiva
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Loja.ActLojaOnlineWebView
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
@@ -60,14 +56,12 @@ import br.com.visaogrupo.tudofarmarep.Views.dialogs.DialogFiltrosLojas
 import br.com.visaogrupo.tudofarmarep.Views.dialogs.DialogOpls
 import br.com.visaogrupo.tudofarmarep.Views.dialogs.DialogProdutoDetalhe
 import com.bumptech.glide.Glide
-import com.google.android.material.transition.Hold
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.json.JSONException
 import java.util.Timer
 import java.util.TimerTask
 
@@ -778,7 +772,7 @@ class AdapterRecyclerLojas(
         for (i in 0 until childCount) {
             val imageView = holder.indicatorLayout.getChildAt(i) as ImageView
             if (i == position) {
-                imageView.setImageResource(R.drawable.indicador_selecionado)
+                imageView.setImageResource(R.drawable.bordas_100_solid_blue400)
             } else {
                 imageView.setImageResource(R.drawable.indicador_deselecionado)
             }

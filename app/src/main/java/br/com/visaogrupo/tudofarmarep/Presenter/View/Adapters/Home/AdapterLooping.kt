@@ -68,7 +68,6 @@ class AdapterLooping (val listaOperadores: ArrayList<OperadorLogistico>, val loj
                     listaOperadoresSelecionados.add(operador)
                 }
             }
-
             for (i in listaOperadores.indices) {
                 listaOperadores[i].itemSelcionado = listaOperadoresSelecionados.contains(listaOperadores[i])
             }

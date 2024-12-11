@@ -31,8 +31,8 @@ import com.bumptech.glide.Glide
          val atributo = listaAtributos[position]
         Glide.with(holder.itemView.context)
             .load(atributo.imagem)
-            .placeholder(R.drawable.indicador_selecionado)
-            .error(R.drawable.indicador_selecionado)
+            .placeholder(R.drawable.bordas_100_solid_blue400)
+            .error(R.drawable.bordas_100_solid_blue400)
             .into(holder.iconesAtributos)
          holder.tituloIcones.text = atributo.Atributo
 

@@ -3,14 +3,11 @@ package br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Rect
-import android.location.Location
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -186,7 +183,7 @@ class FragmentHome : Fragment(), AtualizaMesResumo{
         for (i in 0 until childCount) {
             val imageView = indicatorLayout.getChildAt(i) as ImageView
             if (i == position) {
-                imageView.setImageResource(R.drawable.indicador_selecionado)
+                imageView.setImageResource(R.drawable.bordas_100_solid_blue400)
             } else {
                 imageView.setImageResource(R.drawable.indicador_deselecionado)
             }
