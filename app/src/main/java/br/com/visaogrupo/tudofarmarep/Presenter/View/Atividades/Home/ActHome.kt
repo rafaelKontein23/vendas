@@ -192,28 +192,33 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
         }
 
         viewModelActHome.hashVendaRemota.observe(this){hash ->
-            binding.constrainCarregando.isVisible = false
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.setType("text/plain")
-            val link = "${URLs.urlVendaRometa}${hash}"
-            intent.putExtra(
-                Intent.EXTRA_TEXT,
-                "${getString(R.string.fraseWhatsVendaRemota)}\n $link"
-            )
-
-            if (intent.resolveActivity(getPackageManager()) != null) {
-                val chooser = Intent.createChooser(
-                    intent,
-                    "Compartilhe seu link com seus clientes"
+            if(hash.isEmpty()){
+                Toast.makeText(this, "Erro ao gerar link", Toast.LENGTH_SHORT).show()
+            }else{
+                binding.constrainCarregando.isVisible = false
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.setType("text/plain")
+                val link = "${URLs.urlVendaRometa}${hash}"
+                intent.putExtra(
+                    Intent.EXTRA_TEXT,
+                    "${getString(R.string.fraseWhatsVendaRemota)}\n $link"
                 )
-                startActivity(chooser)
-            }else {
-                Toast.makeText(
-                    applicationContext,
-                    "Nenhum aplicativo de compartilhamento encontrado",
-                    Toast.LENGTH_SHORT
-                ).show()
+
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    val chooser = Intent.createChooser(
+                        intent,
+                        "Compartilhe seu link com seus clientes"
+                    )
+                    startActivity(chooser)
+                }else {
+                    Toast.makeText(
+                        applicationContext,
+                        "Nenhum aplicativo de compartilhamento encontrado",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
+
         }
         viewModelActHome.mostraCarregando.observe(this){
             binding.constrainCarregando.isVisible = it

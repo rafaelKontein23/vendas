@@ -34,6 +34,7 @@ import java.util.Locale
 class ActCameraGaleria : AppCompatActivity() {
     private lateinit var imageCapture: ImageCapture
     private val PICK_IMAGE_REQUEST = 1
+    private var isUsingFrontCamera = false // Controle para alternar câmera
 
     private val binding by lazy {
         ActivityActCameraGaleriaBinding.inflate(layoutInflater)
@@ -43,7 +44,14 @@ class ActCameraGaleria : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
+        val viraCamera = intent.getBooleanExtra("viraCamera", false)
+        isUsingFrontCamera = viraCamera
+
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+
+        binding.viraCamera.setOnClickListener {
+            toggleCamera()
+        }
         binding.imgGaleria.setOnClickListener {
             if (hasStoragePermission()) {
                 openGallery()
@@ -63,7 +71,11 @@ class ActCameraGaleria : AppCompatActivity() {
             }
             imageCapture = ImageCapture.Builder().build()
 
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+            val cameraSelector =  if (isUsingFrontCamera) {
+                CameraSelector.DEFAULT_FRONT_CAMERA
+            } else {
+                CameraSelector.DEFAULT_BACK_CAMERA
+            }
             try {
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture)
@@ -90,7 +102,45 @@ class ActCameraGaleria : AppCompatActivity() {
             ) == PackageManager.PERMISSION_GRANTED
         }
     }
+    private fun toggleCamera() {
+        isUsingFrontCamera = !isUsingFrontCamera
 
+        val cameraSelector = if (isUsingFrontCamera) {
+            CameraSelector.DEFAULT_FRONT_CAMERA
+        } else {
+            CameraSelector.DEFAULT_BACK_CAMERA
+        }
+
+        startCamera(cameraSelector)
+    }
+    private fun startCamera(cameraSelector: CameraSelector) {
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+
+        cameraProviderFuture.addListener({
+            val cameraProvider = cameraProviderFuture.get()
+
+            // Liberar qualquer uso anterior da câmera
+            cameraProvider.unbindAll()
+
+            try {
+                val preview = Preview.Builder().build().apply {
+                    setSurfaceProvider(binding.camera.surfaceProvider)
+                }
+
+                // Configurar o ImageCapture
+                imageCapture = ImageCapture.Builder().build()
+
+                cameraProvider.bindToLifecycle(
+                    this,
+                    cameraSelector,
+                    preview,
+                    imageCapture
+                )
+            } catch (e: Exception) {
+                Log.e("CameraX", "Erro ao iniciar a câmera: ${e.message}")
+            }
+        }, ContextCompat.getMainExecutor(this))
+    }
     private fun requestStoragePermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!hasStoragePermission()) {
@@ -184,7 +234,6 @@ class ActCameraGaleria : AppCompatActivity() {
                     FormularioCadastro.base64Galeria = ""
                     setResult(RESULT_OK, resultIntent)
                     finish()
-
                 }
 
                 override fun onError(exception: ImageCaptureException) {
@@ -193,4 +242,5 @@ class ActCameraGaleria : AppCompatActivity() {
             }
         )
     }
+
 }

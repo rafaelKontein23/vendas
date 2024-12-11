@@ -7,6 +7,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        create("release") {
+            keyAlias = "loiukeynova"
+            keyPassword = "visao1765"
+            storeFile = file("C:/Users/rafael.tein/Documents/chavesDosProjetosDosApps/Chaves de Assinatura Projetos/loiu/Untitled.keystore")
+            storePassword = "visao1765"
+        }
+    }
     namespace = "br.com.visaogrupo.tudofarmarep"
     compileSdk = 34
     packagingOptions {

@@ -100,6 +100,8 @@ class DialogMenuLateral {
         }
         binding.constraintLayout21.setOnClickListener {
             val intent = Intent(context, ActCameraGaleria::class.java)
+            intent.putExtra("viraCamera", true)
+
             (context as Activity).startActivityForResult(intent, 1)
             dialogMenuLateral.dismiss()
         }
@@ -112,6 +114,8 @@ class DialogMenuLateral {
         }
         binding.fotoPerfil.setOnClickListener {
             val intent = Intent(context, ActCameraGaleria::class.java)
+            intent.putExtra("viraCamera", true)
+
             (context as Activity).startActivityForResult(intent, 1)
             dialogMenuLateral.dismiss()
         }

@@ -77,6 +77,7 @@ class FotoDocumentoFragment : Fragment() {
                     arrayOf(Manifest.permission.CAMERA), 4);
             }else{
                 val intent = Intent(requireContext(), ActCameraGaleria::class.java)
+                intent.putExtra("viraCamera", false)
                 startActivityForResult(intent, REQUEST_IMAGE_CODE)
             }
 
