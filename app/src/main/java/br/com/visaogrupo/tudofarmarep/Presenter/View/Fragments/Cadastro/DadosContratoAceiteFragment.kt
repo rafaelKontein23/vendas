@@ -119,7 +119,9 @@ class DadosContratoAceiteFragment : Fragment() {
                   viewModelContratoAceite.enviaCadastroFinal()
 
             }else{
-                Toast.makeText(requireContext(), getString(R.string.erroAceites), Toast.LENGTH_SHORT).show()
+                Alertas.alertaErro(requireContext(), getString(R.string.erroAceites), getString(R.string.tituloErro)){
+
+                }
             }
         }
 

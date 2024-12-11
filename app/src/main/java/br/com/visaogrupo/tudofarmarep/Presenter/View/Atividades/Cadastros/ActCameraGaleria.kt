@@ -46,6 +46,11 @@ class ActCameraGaleria : AppCompatActivity() {
         setContentView(binding.root)
         val viraCamera = intent.getBooleanExtra("viraCamera", false)
         isUsingFrontCamera = viraCamera
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                arrayOf(Manifest.permission.CAMERA), 4);
+        }
+
 
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 

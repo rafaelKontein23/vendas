@@ -138,7 +138,7 @@
             android:id="@+id/stTextTotal"
             android:layout_width="wrap_content"
             android:layout_height="14dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:fontFamily="@font/roboto_medium"
             android:text="R$ 19,64"
             android:textColor="@color/danger500"
