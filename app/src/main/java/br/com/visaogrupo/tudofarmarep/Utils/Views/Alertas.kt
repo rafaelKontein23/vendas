@@ -2,6 +2,8 @@ package br.com.visaogrupo.tudofarmarep.Utils.Views
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.text.Editable
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import java.util.Calendar
@@ -59,7 +61,7 @@ class Alertas {
                 activeDialog = null
             }
         }
-         fun showDatePickerDialog(textView: TextView, context: Context) {
+         fun showDatePickerDialog(textView: EditText, context: Context) {
              val calendar = Calendar.getInstance()
              val year = calendar.get(Calendar.YEAR)
              val month = calendar.get(Calendar.MONTH)
@@ -69,7 +71,7 @@ class Alertas {
                  context,
                  { _, selectedYear, selectedMonth, selectedDay ->
                      val formattedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
-                     textView.text = formattedDate
+                     textView.text  = Editable.Factory.getInstance().newEditable(formattedDate)
                      textView.validaError(false, context)
                  },
                  year,

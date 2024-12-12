@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -45,6 +46,21 @@ class ActCelular : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.erroSuporteWhats), Toast.LENGTH_LONG).show()
             } else {
                 IntentUtils.mandaParaWhatsApp(this, numeroTelefoneSuporte)
+            }
+        }
+        binding.inputCelular.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                val celularCap = binding.inputCelular.text.toString()
+                val codicaoCelular = celularCap.length < 14
+                if (!codicaoCelular){
+                    viewModelActCelular.salvarCelular(celularCap)
+                    startActivity(Intent(this, ActToken::class.java))
+                }else{
+                    binding.inputCelular.validaError(codicaoCelular, this@ActCelular)
+                }
+                true
+            } else {
+                false
             }
         }
         binding.inputCelular.addTextChangedListener(object : TextWatcher {

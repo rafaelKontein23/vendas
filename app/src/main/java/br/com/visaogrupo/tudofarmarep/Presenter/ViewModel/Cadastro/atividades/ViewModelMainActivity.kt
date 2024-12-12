@@ -51,8 +51,8 @@ class ViewModelMainActivity(
     private val _ambiente = MutableLiveData<Int>()
     val ambiente: LiveData<Int> = _ambiente
 
-    private  val _fezCadastro = MutableLiveData<Boolean>()
-    val  fezCadastro: LiveData<Boolean> = _fezCadastro
+    private  val _fezCadastro = MutableLiveData<Pair<Boolean, Boolean>>()
+    val  fezCadastro: LiveData<Pair<Boolean, Boolean>> = _fezCadastro
 
     private  val _nomeusaurio = MutableLiveData<String>()
     val nomeusaurio: LiveData<String> = _nomeusaurio
@@ -61,7 +61,7 @@ class ViewModelMainActivity(
 
 
 
-    fun verificaCadastro( cnpj: String){
+    fun verificaCadastro( cnpj: String, inicial : Boolean = false){
         val cnpjFormat = FormataTextos.removeMascaraCNPJ(cnpj)
         var cadastro = salvaTextos.recuperarBool(ProjetoStrings.casdastro)
         val cnpjSalvo = salvaTextos.recuperarTexto(ProjetoStrings.cnpjLogin)
@@ -70,7 +70,7 @@ class ViewModelMainActivity(
             salvaTextos.salvarBool(cadastro, ProjetoStrings.casdastro)
         }
 
-        _fezCadastro.value = cadastro
+        _fezCadastro.value = Pair(cadastro, inicial)
     }
 
     fun abrirModalContator(){

@@ -79,6 +79,7 @@ class DadosPessoaisFragment : Fragment() {
         FormataTextos.colocaMascaraInput(binding.inputCpf, ProjetoStrings.mascaraCPF)
         FormataTextos.colocaMascaraInput(binding.inputTelefoneComercial, ProjetoStrings.mascaraCelular)
         FormataTextos.colocaMascaraInput(binding.inputCelular, ProjetoStrings.mascaraCelular)
+        FormataTextos.colocaMascaraData(binding.inputDataNacimento)
         viewModelFragmentDadosPessoal.recuperaNumeroCelular()
 
         viewModelFragmentDadosPessoal.dadosPessoais.observe(viewLifecycleOwner){
@@ -148,7 +149,7 @@ class DadosPessoaisFragment : Fragment() {
             viewModelActCabecalho.mudaInfoVisivel(this)
         }
 
-        binding.inputDataNacimento.setOnClickListener {
+        binding.calendario.setOnClickListener {
             Alertas.showDatePickerDialog(binding.inputDataNacimento, requireContext())
         }
 

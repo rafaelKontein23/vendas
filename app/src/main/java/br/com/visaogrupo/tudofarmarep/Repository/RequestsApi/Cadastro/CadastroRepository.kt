@@ -89,8 +89,6 @@ class CadastroRepository(context: Context) {
             val reponse = retrofit.enviaFotoDocumento(requestBody).execute()
             if(reponse.isSuccessful){
                 Log.d("Sucesso", "sucesso, no Envio da Foto")
-                FormularioCadastro.limpaCadastro()
-
                 return true
             }else{
                 return false

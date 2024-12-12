@@ -10,6 +10,11 @@ class FormataTextos {
             val formatter = MaskedFormatter(formato)
             editText .addTextChangedListener(MaskedWatcher(formatter,  editText))
         }
+        fun colocaMascaraData(editText: MaskedEditText){
+            val formatter = MaskedFormatter("##/##/####")
+            editText .addTextChangedListener(MaskedWatcher(formatter,  editText))
+
+        }
         fun removeMascaraCelular(celular: String):String {
             val celularSemFormatacao = celular.replace("(", "").replace(")", "").replace(" ", "").replace("-", "")
             return celularSemFormatacao
@@ -35,6 +40,7 @@ class FormataTextos {
                 append(this@aplicarMascaraTelefone.substring(7))
             }
         }
+
         fun String.formatarParaBrasileiro(): String {
             if (this.isEmpty() || !this.contains("T")) return this
 

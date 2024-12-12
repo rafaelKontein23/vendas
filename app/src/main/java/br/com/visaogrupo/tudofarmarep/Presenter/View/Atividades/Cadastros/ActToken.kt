@@ -64,9 +64,8 @@ class ActToken : AppCompatActivity() {
             }else{
                 cronometro = Cronometro(respostaToken.TempoTokenSegundos)
                 cronometro.iniciar()
-                Alertas.alertaAviso(this,getString(R.string.tokenSolicitadoComSucesso)){
+                Toast.makeText(this, getString(R.string.tokenSolicitadoComSucesso), Toast.LENGTH_LONG).show()
 
-                }
                 lifecycleScope.launch {
                     cronometro.tempo.collect { tempoAtualizado ->
                         if (tempoAtualizado == "00:00"){

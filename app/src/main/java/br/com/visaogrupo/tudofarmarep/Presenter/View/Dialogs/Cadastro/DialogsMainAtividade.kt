@@ -14,6 +14,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.ActCelular
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.ActToken
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.MainActivity
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelMainActivity
@@ -168,6 +169,7 @@ class DialogsMainAtividade (private val activity: AppCompatActivity,
                }
           }
           binding.btnAcessarOutraConta.setOnClickListener {
+               context.startActivity(Intent(context, ActCelular::class.java))
                dialogBiometria.dismiss()
           }
           binding.fecharModal.setOnClickListener {

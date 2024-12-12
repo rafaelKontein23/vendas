@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -67,17 +68,42 @@ class MainActivity : AppCompatActivity() {
         viewModelMainActivity.recuperaAmbiente()
 
         viewModelMainActivity.fezCadastro.observe(this){
-            if(it){
+            if(it.first){
                 val dialogsMainAtividade = DialogsMainAtividade(this,viewModelMainActivity)
                 dialogsMainAtividade.dialogBiometria(viewModelMainActivity, this)
+            }else{
+                if (!it.second){
+                    val cnpjCap = binding.inputCnpj.text.toString()
+                    if(ValidarTextos.isCNPJ(cnpjCap)) {
+                        viewModelMainActivity.salvaCnpj(cnpjCap)
+                        FormularioCadastro.limpaCadastro()
+                        val intent = Intent(this, ActCelular::class.java)
+                        startActivity(intent)
+                    }
+                }
+
             }
         }
 
         binding.inputCnpj.setText( viewModelMainActivity.recuperaCnpj())
-        viewModelMainActivity.verificaCadastro(binding.inputCnpj.text.toString())
+        viewModelMainActivity.verificaCadastro(binding.inputCnpj.text.toString(), true)
 
         val pushFirebase = PushFirebase()
         pushFirebase.recuperaDeviceToken()
+        binding.inputCnpj  .setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                val cnpjCap = binding.inputCnpj.text.toString()
+                if(ValidarTextos.isCNPJ(cnpjCap)) {
+                    viewModelMainActivity.salvaCnpj(cnpjCap)
+                    FormularioCadastro.limpaCadastro()
+                    val intent = Intent(this, ActCelular::class.java)
+                    startActivity(intent)
+                }
+                true
+            } else {
+                false
+            }
+        }
         viewModelMainActivity.biometria.observe(this){
             binding.constrainCarregando.isVisible = true
         }
@@ -133,14 +159,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnContinuar.setOnClickListener {
-
            val cnpjCap = binding.inputCnpj.text.toString()
-            if(ValidarTextos.isCNPJ(cnpjCap)) {
-                viewModelMainActivity.salvaCnpj(cnpjCap)
-                FormularioCadastro.limpaCadastro()
-                val intent = Intent(this, ActCelular::class.java)
-                startActivity(intent)
-            }
+            viewModelMainActivity.verificaCadastro(cnpjCap)
+
         }
 
         viewModelMainActivity.numeroTelefoneSuporte.observe(this) { numeroTelefoneSuporte ->
@@ -188,10 +209,16 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
     }
+    override fun onBackPressed() {
+        //super.onBackPressed()
+
+    }
+
 }
