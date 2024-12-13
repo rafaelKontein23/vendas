@@ -30,6 +30,7 @@
     <string name="erroFoto">Adicione uma foto do documento</string>
     <string name="erroCadastro">Algo deu errado no envio de cadastro, tente novamente em instantes</string>
     <string name="erroAtualiza">Algo deu errado na atualização do cadastro, tente novamente em instantes</string>
+    <string name="erroBuscaPDv"> Nenhum PDV encontrado com o termo</string>
 
     <string name="erroiometria"> parece que voce não possui biometria </string>
     <string name="erroPadrao">Algo deu errado, tente novamente</string>
@@ -74,7 +75,6 @@
     <string name="GestaoDeComisso">Gestão de comissões</string>
     <string name="ExtratoDeComissões">Extrato de comissões</string>
     <string name="Merchandising">Merchandising</string>
-
 
 
     <string name="loiuInforma">Loiu informa</string>

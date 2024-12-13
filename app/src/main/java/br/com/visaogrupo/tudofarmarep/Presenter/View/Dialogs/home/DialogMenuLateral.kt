@@ -60,8 +60,6 @@ class DialogMenuLateral {
         binding.titulomarchann.isVisible = FormularioCadastro.featureFlagMerchan
         binding.tituloTime.isVisible = FormularioCadastro.featureFlagMeuTime
 
-
-
         binding.linearMerchan.setOnClickListener {
             viewModelActHome.atualizaWebView(context.getString(R.string.Merchandising), ProjetoStrings.dashMinhasAcoes)
             dialogMenuLateral.dismiss()

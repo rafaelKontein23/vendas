@@ -16,6 +16,7 @@ class FormularioCadastro {
         var fotoPerfil: Uri = Uri.EMPTY
         var fotoPerfilUrl = ""
         var savedBitmap: Bitmap? = null
+        var hash = ""
 
         private var _featureFlagMeuTime: Boolean = false
         private var _featureFlagMerchan: Boolean = false

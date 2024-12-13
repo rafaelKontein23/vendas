@@ -15,6 +15,7 @@ class URLs {
         var URL_Webviewmob: String = "https://stage.loiu.com.br/Autenticacao/LoginMobile?login="
         var URL_convite: String = "https://www.loiu.com.br/"
         var urlFotoPErfil = "https://www.loiu.com.br/usuarios/"
+        var urlpedido = "https://vendaremota.loiu.com.br/pedido/"
 
         // Função para trocar o ambiente apenas se não tiver sido configurado
         fun trocaAmbiente(ambiente: String) {
@@ -23,11 +24,14 @@ class URLs {
                 urlWs = "https://www.visaogrupo.com.br/"
                 urlVendaRometa = "https://vendaremota.loiu.com.br/meu-hash/"
                 urlFotoPErfil = "https://www.loiu.com.br/usuarios/"
+                urlpedido = "https://vendaremota.loiu.com.br/pedido/"
 
             } else {
                 urlWsBase = "https://${ambiente}.visaogrupo.com.br/ws/"
                 urlWs = "https://${ambiente}.visaogrupo.com.br/"
                 urlFotoPErfil = "https://${ambiente}.loiu.com.br/usuarios/"
+                urlpedido = "https://www.vendaremotae.loiu.com.br/pedido/"
+
 
             }
             if (ambiente == "wwwe" || ambiente == "wwwi"){

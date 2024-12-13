@@ -89,6 +89,8 @@ class DialogCnpjs {
         val textoImportar = dialogSelecioneCnpj.findViewById<TextView>(R.id.improtaText)
         val infoIcones = dialogSelecioneCnpj.findViewById<ImageView>(R.id.infoIcones)
         val progressBarCnpj = dialogSelecioneCnpj.findViewById<android.widget.ProgressBar>(R.id.progressBarCnpj)
+        val constrainBuscaErro = dialogSelecioneCnpj.findViewById<ConstraintLayout>(R.id.constrainBuscaErro)
+        val textoBusca = dialogSelecioneCnpj.findViewById<TextView>(R.id.textoBusca)
 
         linearLayout2.isVisible = !isVensaRemota
         descriacao.isVisible = isVensaRemota
@@ -108,12 +110,27 @@ class DialogCnpjs {
                         if (pesquisaText.isEmpty()){
                             adapterItensCnpjs!!.listaCnpj = listaCnpjsAux
                             adapterItensCnpjs!!.notifyDataSetChanged()
+                            if(adapterItensCnpjs!!.listaCnpj.isEmpty()){
+                                constrainBuscaErro.isVisible = true
+                                textoBusca.text = "Nenhum CNPJ encontrado"
+                            }else{
+                                constrainBuscaErro.isVisible = false
+
+                            }
                         }else{
                             val listaFiltrada =listaCnpjsAux.filter {it -> it.RazaoSocial.contains(pesquisaText, ignoreCase = true)
                                     || it.CNPJ.contains(pesquisaText, ignoreCase = true) || it.Cidade.contains(pesquisaText, ignoreCase = true) || it.UF.contains(pesquisaText, ignoreCase = true)
                                     || it.Endereco.contains(pesquisaText, ignoreCase = true)}
                             adapterItensCnpjs!!.listaCnpj = listaFiltrada as ArrayList<Cnpj>
                             adapterItensCnpjs!!.notifyDataSetChanged()
+
+                            if(adapterItensCnpjs!!.listaCnpj.isEmpty()){
+                                constrainBuscaErro.isVisible = true
+                                textoBusca.text =  "Nenhum PDV encontrado com o termo\"" + pesquisaText + "\""
+                            }else{
+                                constrainBuscaErro.isVisible = false
+
+                            }
                         }
                     }else if(pesquisaText.isEmpty() && adapterItensCnpjs!!.isProximos){
                         adapterItensCnpjs!!.listaCnpj = listaCnpjsAux
@@ -132,12 +149,13 @@ class DialogCnpjs {
         })
         inputBuscaCliente.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                val inputText = inputBuscaCliente.text.toString()
                 if(adapterItensCnpjs != null){
                     if (adapterItensCnpjs!!.isProximos){
-                        val inputText = inputBuscaCliente.text.toString()
 
                         if (inputText.isEmpty()){
                             buscaProximos(context, reprsentanteID, totalCnpjs, inputBuscaCliente, adapterItensCnpjs!!, recyclerCnpjs, progressBarCnpj)
+
 
                         }else{
                             CoroutineScope(Dispatchers.IO).launch {
@@ -162,16 +180,24 @@ class DialogCnpjs {
                                     adapterItensCnpjs?.notifyDataSetChanged()
                                     recyclerCnpjs.isVisible = true
                                     progressBarCnpj.isVisible = false
+                                    val inputText = inputBuscaCliente.text.toString()
+                                    if(adapterItensCnpjs!!.listaCnpj.isEmpty()){
+                                        constrainBuscaErro.isVisible = true
+                                        "Nenhum PDV encontrado com o termo\"" + inputText + "\""
+                                    }else{
+                                        constrainBuscaErro.isVisible = false
+
+                                    }
 
                                 }
                             }
                         }
 
                     }
+
                 }else{
                     Toast.makeText(context, "Nenhum CNPJ encontrado", Toast.LENGTH_SHORT).show()
                 }
-
                 true
             } else {
                 false
@@ -191,6 +217,7 @@ class DialogCnpjs {
 
         minhaCarteira.setOnClickListener {
             trocaSelecao(minhaCarteira, proximos, context)
+            val inputBuscaClienteCap = inputBuscaCliente.text.toString()
 
             if (!isMinhaCarteira){
                 CoroutineScope(Dispatchers.IO).launch {
@@ -199,6 +226,7 @@ class DialogCnpjs {
                         progressBarCnpj.isVisible = true
 
                     }
+
                     val taskCnpjs = TaskCnpjs()
                     val capturaLongeLat = CapturaLongeLat()
 
@@ -211,9 +239,26 @@ class DialogCnpjs {
                     MainScope().launch {
                         totalCnpjs.text = "${listaCnpjs.size} CNPJs salvos na carteira"
                         inputBuscaCliente.hint = "Buscar por CNPJ, Razão Social ou Cidade"
+
                         adapterItensCnpjs?.listaCnpj = listaCnpjs
                         adapterItensCnpjs?.isProximos = false
+                        if(inputBuscaClienteCap.isNotEmpty()){
+                            val listaFiltrada =listaCnpjsAux.filter {it -> it.RazaoSocial.contains(inputBuscaClienteCap, ignoreCase = true)
+                                    || it.CNPJ.contains(inputBuscaClienteCap, ignoreCase = true) || it.Cidade.contains(inputBuscaClienteCap, ignoreCase = true) || it.UF.contains(inputBuscaClienteCap, ignoreCase = true)
+                                    || it.Endereco.contains(inputBuscaClienteCap, ignoreCase = true)}
+                            adapterItensCnpjs!!.listaCnpj = listaFiltrada as ArrayList<Cnpj>
+
+                        }
                         adapterItensCnpjs?.notifyDataSetChanged()
+                        if(adapterItensCnpjs!!.listaCnpj.isEmpty()){
+                            constrainBuscaErro.isVisible = true
+                            "Nenhum PDV encontrado com o termo\"" + inputBuscaClienteCap + "\""
+                        }else{
+                            constrainBuscaErro.isVisible = false
+
+                        }
+
+
                         constraintImporta.isVisible = true
                         animaConstrain(
                             constraintLayout = constraintImporta,
@@ -229,14 +274,59 @@ class DialogCnpjs {
                 }
                 isMinhaCarteira = true
                 isProximos = false
+
             }
+
+
 
         }
         proximos.setOnClickListener {
             if(adapterItensCnpjs != null){
                 trocaSelecao(proximos, minhaCarteira, context)
-                buscaProximos(context, reprsentanteID, totalCnpjs, inputBuscaCliente, adapterItensCnpjs!!, recyclerCnpjs, progressBarCnpj)
+                val inputText = inputBuscaCliente.text.toString()
+
+                if (inputText.isEmpty()){
+                    buscaProximos(context, reprsentanteID, totalCnpjs, inputBuscaCliente, adapterItensCnpjs!!, recyclerCnpjs, progressBarCnpj)
+
+                }else{
+                    CoroutineScope(Dispatchers.IO).launch {
+                        MainScope().launch {
+                            recyclerCnpjs.isVisible = false
+                            progressBarCnpj.isVisible = true
+                        }
+
+                        val taskCnpjs = TaskCnpjs()
+                        val capturaLongeLat = CapturaLongeLat()
+                        val (lat,  long) = capturaLongeLat.capturaLogeLat(context)
+
+
+                        val (listaCnpjs, listaAtributo) =  taskCnpjs.buscaCnpjs(reprsentanteID, isBuscaLocal =  true, buscastr = inputBuscaCliente.text.toString(), lat = lat, long = long)
+                        listaAtributos.clear()
+                        listaAtributos.addAll(listaAtributo)
+                        MainScope().launch{
+                            totalCnpjs.text = "${listaCnpjs.size} CNPJs na Base Geral"
+
+                            adapterItensCnpjs?.listaCnpj = listaCnpjs
+                            adapterItensCnpjs?.isProximos = true
+                            adapterItensCnpjs?.notifyDataSetChanged()
+                            recyclerCnpjs.isVisible = true
+                            progressBarCnpj.isVisible = false
+                            isMinhaCarteira = false
+
+                        }
+                    }
+                }
                 constraintImporta.isVisible = false
+                if(adapterItensCnpjs != null){
+                    if(adapterItensCnpjs!!.listaCnpj.isEmpty()){
+                        constrainBuscaErro.isVisible = true
+                        textoBusca.text = "Nenhum PDV encontrado com o termo\"" + inputText + "\""
+                    }else{
+                        constrainBuscaErro.isVisible = false
+
+                    }
+                }
+
             }
 
         }
@@ -281,7 +371,7 @@ class DialogCnpjs {
         textDeselecionado.setTextColor(ContextCompat.getColor(context, R.color.gray400))
     }
 
-    fun buscaProximos(context: Context, reprsentanteID:Int, totalCnpjs:TextView, inputBuscaCliente:EditText, adapterItensCnpjs : AdapterItenCnpj,recyclerCnpjs:RecyclerView, progressBarCnpj: ProgressBar){
+    fun buscaProximos(context: Context, reprsentanteID:Int, totalCnpjs:TextView, inputBuscaCliente:EditText, adapterItensCnpjs : AdapterItenCnpj,recyclerCnpjs:RecyclerView, progressBarCnpj: ProgressBar, ){
         if (!isProximos){
             CoroutineScope(Dispatchers.IO).launch {
                 MainScope().launch {
@@ -307,6 +397,7 @@ class DialogCnpjs {
                     adapterItensCnpjs?.notifyDataSetChanged()
                     recyclerCnpjs.isVisible = true
                     progressBarCnpj.isVisible = false
+
 
                 }
             }

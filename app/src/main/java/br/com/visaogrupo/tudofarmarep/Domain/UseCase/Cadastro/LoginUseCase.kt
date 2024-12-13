@@ -1,5 +1,6 @@
 package br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro
 
+import FormularioCadastro
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.FlagsRequest
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.LoginRequest
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaLogin
@@ -34,6 +35,7 @@ class LoginUseCase (
                         val flags = RespostaFlags(FeatureFlag_ID = 1, Status_Cod = 1, FeatureFlag_Nome = "")
                         FormularioCadastro.atualizarFlags(flags)
                         FormularioCadastro.fotoPerfilUrl =respostaLogin.FotoPerfil ?: ""
+                        FormularioCadastro.hash = respostaLogin.Hash ?: ""
                     }
                 }
                 preferenciasUtils.salvarTexto(ProjetoStrings.cnpjLogin, respostaLogin.CNPJ)
