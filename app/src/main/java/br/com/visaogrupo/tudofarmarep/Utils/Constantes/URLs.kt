@@ -30,7 +30,7 @@ class URLs {
                 urlWsBase = "https://${ambiente}.visaogrupo.com.br/ws/"
                 urlWs = "https://${ambiente}.visaogrupo.com.br/"
                 urlFotoPErfil = "https://${ambiente}.loiu.com.br/usuarios/"
-                urlpedido = "https://www.vendaremotae.loiu.com.br/pedido/"
+                urlpedido = "https://vendaremotae.loiu.com.br/pedido/"
 
 
             }

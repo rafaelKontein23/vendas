@@ -32,6 +32,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro.DadosAre
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro.DadosPessoaisFragment
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.DadosBancariosFragment
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.FragmentHome
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.FragmentWebViewVendaRemota
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.FragmentsWebView
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Atividades.Factory.ViewModelActHomeFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Atividades.ViewModelActHome
@@ -109,31 +110,25 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
         binding.vendaLinear.setOnClickListener {
             val fragmentWebView = FragmentsWebView()
             binding.tituloTopo.text= getString(R.string.vendas)
-            val bundle = Bundle()
-            bundle.putString(ProjetoStrings.urlweb, ProjetoStrings.dashVendas)
             desMarcaSelecionado(binding.textHome, binding.selecionadoHome, binding.iconeHome)
             marcaSelecionado(binding.textVendas, binding.selecionadovendas, binding.iconeVenda)
             desMarcaSelecionado(binding.textFinanceiro, binding.selecionadoFinanceiro, binding.iconefinanceiro)
             desMarcaSelecionado(binding.textRemoto, binding.selecionadoRemoto, binding.iconeRemoto)
-            fragmentWebView.arguments = bundle
             supportFragmentManager.beginTransaction()
-                .replace(R.id.containerfragments, fragmentWebView).addToBackStack(null)
+                .replace(R.id.containerfragments, FragmentWebViewVendaRemota()).addToBackStack(null)
                 .commit()
         }
 
         binding.financeiroLinear.setOnClickListener {
             binding.tituloTopo.text= getString(R.string.financeiro)
-            val fragmentWebView = FragmentsWebView()
-            val bundle = Bundle()
-            bundle.putString(ProjetoStrings.urlweb, ProjetoStrings.dashComissao)
+
             desMarcaSelecionado(binding.textHome, binding.selecionadoHome, binding.iconeHome)
             desMarcaSelecionado(binding.textVendas, binding.selecionadovendas, binding.iconeVenda)
             marcaSelecionado(binding.textFinanceiro, binding.selecionadoFinanceiro, binding.iconefinanceiro)
             desMarcaSelecionado(binding.textRemoto, binding.selecionadoRemoto, binding.iconeRemoto)
-            fragmentWebView.arguments = bundle
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.containerfragments, fragmentWebView).addToBackStack(null)
-                .commit()
+            Alertas.alertaErro(this, "Em breve", getString(R.string.loiuInforma)){
+
+            }
         }
 
         viewModelActHome.informacaoCnpjNome.observe(this){
@@ -233,6 +228,7 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
 
             }
         }
+
 
         binding.remotoLinear.setOnClickListener {
             binding.constrainCarregando.isVisible = true
@@ -353,4 +349,6 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
         textoSelecionado.setTextColor(getColor(R.color.gray600))
         imagem.imageTintList = ContextCompat.getColorStateList(this, R.color.gray600)
     }
+
+
 }

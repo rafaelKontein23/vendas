@@ -312,18 +312,19 @@ class DialogCnpjs {
                             recyclerCnpjs.isVisible = true
                             progressBarCnpj.isVisible = false
                             isMinhaCarteira = false
+                            val inputText = inputBuscaCliente.text.toString()
 
+                            constraintImporta.isVisible = false
+                            if(adapterItensCnpjs != null){
+                                if(adapterItensCnpjs!!.listaCnpj.isEmpty()){
+                                    constrainBuscaErro.isVisible = true
+                                    textoBusca.text = "Nenhum PDV encontrado com o termo\"" + inputText + "\""
+                                }else{
+                                    constrainBuscaErro.isVisible = false
+
+                                }
+                            }
                         }
-                    }
-                }
-                constraintImporta.isVisible = false
-                if(adapterItensCnpjs != null){
-                    if(adapterItensCnpjs!!.listaCnpj.isEmpty()){
-                        constrainBuscaErro.isVisible = true
-                        textoBusca.text = "Nenhum PDV encontrado com o termo\"" + inputText + "\""
-                    }else{
-                        constrainBuscaErro.isVisible = false
-
                     }
                 }
 

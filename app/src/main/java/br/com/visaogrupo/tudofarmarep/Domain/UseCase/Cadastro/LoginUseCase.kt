@@ -35,9 +35,9 @@ class LoginUseCase (
                         val flags = RespostaFlags(FeatureFlag_ID = 1, Status_Cod = 1, FeatureFlag_Nome = "")
                         FormularioCadastro.atualizarFlags(flags)
                         FormularioCadastro.fotoPerfilUrl =respostaLogin.FotoPerfil ?: ""
-                        FormularioCadastro.hash = respostaLogin.Hash ?: ""
                     }
                 }
+                FormularioCadastro.hash = respostaLogin.Hash ?: ""
                 preferenciasUtils.salvarTexto(ProjetoStrings.cnpjLogin, respostaLogin.CNPJ)
                 preferenciasUtils.salvarTexto(ProjetoStrings.celular, respostaLogin.Celular)
             }

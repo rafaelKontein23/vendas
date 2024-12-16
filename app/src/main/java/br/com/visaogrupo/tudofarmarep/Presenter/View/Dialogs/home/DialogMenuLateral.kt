@@ -25,6 +25,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Atividades.ViewMo
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Enuns.EnumMenu
+import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.databinding.DialogMenuLateralBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -134,7 +135,9 @@ class DialogMenuLateral {
             dialogMenuLateral.dismiss()
         }
         binding.linearRelatorios.setOnClickListener {
-            viewModelActHome.atualizaWebView(context.getString(R.string.relatorios), ProjetoStrings.dashComissao)
+            Alertas.alertaErro(context, "Em breve", "Loiu informa"){
+
+            }
             dialogMenuLateral.dismiss()
         }
 

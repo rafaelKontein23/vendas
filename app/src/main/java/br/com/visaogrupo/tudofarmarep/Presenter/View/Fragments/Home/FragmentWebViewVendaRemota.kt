@@ -41,7 +41,7 @@ class FragmentWebViewVendaRemota : Fragment() {
 
             }
         }
-        val urlweb = "${URLs.urlpedido} +${FormularioCadastro.hash}"  // continuar daquiii
+        val urlweb = "${URLs.urlpedido}${FormularioCadastro.hash}"
 
         webview.settings.javaScriptEnabled = true
         webview.loadUrl(urlweb)
