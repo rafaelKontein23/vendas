@@ -7,6 +7,7 @@ import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,8 @@ import br.com.visaogrupo.tudofarmarep.Objetos.CarrinhoItemCotacao
 import br.com.visaogrupo.tudofarmarep.Objetos.Cnpj
 import br.com.visaogrupo.tudofarmarep.Objetos.PedidosPendentes
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
+import com.bumptech.glide.Glide
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -38,9 +41,11 @@ class AdapterPedidoPendentes(listaPedidoPendentes:ArrayList<CarrinhoAbertos>, va
          holder.nomeText.text = pedidosPendentesItem.nomeMarca
          holder.cnpjText.text = FormatarTexto().formatCNPJ(pedidosPendentesItem.cnpj)
          holder.valorTotal.text = FormatarTexto().formatarParaMoeda(pedidosPendentesItem.totalCarrinho)
-
          holder.nomeLoja.text = pedidosPendentesItem.nomeLoja
-         if(pedidosPendentesItem.razoSocial.length > 20){
+
+        Glide.with(atividade).load(URLs.urlImagensLoja+"/"+pedidosPendentesItem.logoTipo).into(holder.imgMarca)
+
+        if(pedidosPendentesItem.razoSocial.length > 20){
              holder.razaoSocial.text = pedidosPendentesItem.razoSocial.substring(0, 20) + "..."
 
          }else{
@@ -102,6 +107,7 @@ class AdapterPedidoPendentes(listaPedidoPendentes:ArrayList<CarrinhoAbertos>, va
         val cnpjText = itemView.findViewById<TextView>(R.id.cnpjText)
         val valorTotal = itemView.findViewById<TextView>(R.id.valorTotal)
         val razaoSocial = itemView.findViewById<TextView>(R.id.razaoSocial)
+        val imgMarca = itemView.findViewById<ImageView>(R.id.imgItem)
         val constrainsCarrinhoAberta = itemView.findViewById<ConstraintLayout>(R.id.constrainsCarrinhoAberta)
     }
 

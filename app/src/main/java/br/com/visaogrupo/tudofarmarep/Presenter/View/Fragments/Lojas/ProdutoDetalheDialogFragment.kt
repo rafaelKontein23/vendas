@@ -196,8 +196,11 @@ class ProdutoDetalheDialogFragment (val  produto: Produtos,val atualizaValores: 
         continuar!!.setOnClickListener {
             dialog?.dismiss()
             CoroutineScope(Dispatchers.IO).launch {
-
                 if (isAdded) {
+                    if (produto.valorProdutoTotal == 0.0 && produto.progressiva != null ){
+                        produto.valorProdutoTotal = produto.progressiva!!.valorUnitarioDesconto * produto.quantidadeAdicionada
+
+                    }
                     inserirNoCarrinho(requireContext(), produto, loja, razaoSocial)
                 }
                 MainScope().launch {
