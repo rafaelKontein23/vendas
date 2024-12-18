@@ -41,11 +41,9 @@ class AdapterPedidoPendentes(listaPedidoPendentes:ArrayList<CarrinhoAbertos>, va
          holder.nomeText.text = pedidosPendentesItem.nomeMarca
          holder.cnpjText.text = FormatarTexto().formatCNPJ(pedidosPendentesItem.cnpj)
          holder.valorTotal.text = FormatarTexto().formatarParaMoeda(pedidosPendentesItem.totalCarrinho)
+        Glide.with(atividade).load(URLs.urlImagensLoja+"/"+pedidosPendentesItem.logoTipo).into(holder.logoTipo)
          holder.nomeLoja.text = pedidosPendentesItem.nomeLoja
-
-        Glide.with(atividade).load(URLs.urlImagensLoja+"/"+pedidosPendentesItem.logoTipo).into(holder.imgMarca)
-
-        if(pedidosPendentesItem.razoSocial.length > 20){
+         if(pedidosPendentesItem.razoSocial.length > 20){
              holder.razaoSocial.text = pedidosPendentesItem.razoSocial.substring(0, 20) + "..."
 
          }else{
@@ -107,7 +105,7 @@ class AdapterPedidoPendentes(listaPedidoPendentes:ArrayList<CarrinhoAbertos>, va
         val cnpjText = itemView.findViewById<TextView>(R.id.cnpjText)
         val valorTotal = itemView.findViewById<TextView>(R.id.valorTotal)
         val razaoSocial = itemView.findViewById<TextView>(R.id.razaoSocial)
-        val imgMarca = itemView.findViewById<ImageView>(R.id.imgItem)
+        val logoTipo = itemView.findViewById<ImageView>(R.id.imgItem)
         val constrainsCarrinhoAberta = itemView.findViewById<ConstraintLayout>(R.id.constrainsCarrinhoAberta)
     }
 
