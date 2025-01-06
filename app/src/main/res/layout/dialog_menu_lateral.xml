@@ -271,19 +271,6 @@
                         app:layout_constraintStart_toEndOf="@+id/iconeHome"
                         app:layout_constraintTop_toTopOf="@+id/iconeHome" />
                 </LinearLayout>
-
-
-                <TextView
-                    style="@style/texto_gray600_12sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="24dp"
-                    android:text="@string/DadosAreaAtuacao"
-                    android:textFontWeight="500">
-
-                </TextView>
-
                 <LinearLayout
                     android:id="@+id/linearAreaAruacao"
                     android:layout_width="match_parent"
@@ -311,6 +298,134 @@
                         app:layout_constraintStart_toEndOf="@+id/iconeHome"
                         app:layout_constraintTop_toTopOf="@+id/iconeHome" />
                 </LinearLayout>
+
+                <TextView
+                    style="@style/texto_gray600_12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/vendas"
+                    android:textFontWeight="500">
+
+                </TextView>
+
+                <LinearLayout
+                    android:id="@+id/linearIniciarVenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+
+                        app:srcCompat="@drawable/carrinho" />
+
+                    <TextView
+                        style="@style/texto_gray900_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/iniciarVendas"
+
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearMerchan"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="24dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="24dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/tv" />
+
+                    <TextView
+                        style="@style/texto_gray900_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/Merchandising"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearProgramaIncentivo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="24dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+
+                        app:srcCompat="@drawable/presente" />
+
+                    <TextView
+                        style="@style/texto_gray900_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/ProgramaDeincentivos"
+
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearClubedeCompras"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="24dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+
+                        app:srcCompat="@drawable/moeda" />
+
+                    <TextView
+                        style="@style/texto_gray900_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/clubeDeCompras"
+
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+
+
+
 
 
                 <TextView
@@ -379,32 +494,7 @@
                         app:layout_constraintTop_toTopOf="@+id/iconeHome" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/linearCadastroDeProposto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="22dp"
-                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="24dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/arquivo" />
-
-                    <TextView
-                        style="@style/texto_gray900_14sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="@string/CadastroPreposto"
-                        android:textFontWeight="500"
-                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
-                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
-                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
-                </LinearLayout>
 
                 <TextView
                     style="@style/texto_gray600_12sp"
@@ -473,12 +563,233 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tituloVendaRemotra"
+                    style="@style/texto_gray600_12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/VendaRemota"
+                    android:textFontWeight="500">
+
+                </TextView>
+
+                <LinearLayout
+                    android:id="@+id/linearTeleVendas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="24dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/fone" />
+
+                    <TextView
+                        style="@style/texto_gray900_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/TeleVendas"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLinkExclusivo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="24dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/link" />
+
+                    <TextView
+                        style="@style/texto_gray900_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/linkExclusivo"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearPedidoSugestao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="24dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/lampada" />
+
+                    <TextView
+                        style="@style/texto_gray900_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/PedidoSugestaao"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tituloAgenda"
+                    style="@style/texto_gray600_12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/agenda"
+                    android:textFontWeight="500">
+
+                </TextView>
+
+                <LinearLayout
+                    android:id="@+id/linearRoteiro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="24dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/roteiro" />
+
+                    <TextView
+                        style="@style/texto_gray900_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/Roteiro"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearCalendario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="24dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/calendario" />
+
+                    <TextView
+                        style="@style/texto_gray900_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/calendario"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearVisitas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="24dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/calendario_relogio" />
+
+                    <TextView
+                        style="@style/texto_gray900_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/visitas"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tituloTreinanemnetos"
                     style="@style/texto_gray600_12sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:text="Privicidade"
+                    android:textFontWeight="500">
+
+                </TextView>
+
+                <LinearLayout
+                    android:id="@+id/linearTreinamentos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="24dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/tv" />
+
+                    <TextView
+                        style="@style/texto_gray900_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/treinamento"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/texto_gray600_12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="Segurança e Privicidade"
                     android:textFontWeight="500">
 
                 </TextView>
@@ -539,22 +850,48 @@
 
 
                 <TextView
-                    android:id="@+id/titulomarchann"
                     style="@style/texto_gray600_12sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
-                    android:text="@string/Merchandising"
+                    android:text="Redes Sociais"
                     android:textFontWeight="500">
 
                 </TextView>
 
                 <LinearLayout
-                    android:id="@+id/linearMerchan"
+                    android:id="@+id/linearInstagram"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="24dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="24dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/instagram" />
+
+                    <TextView
+                        style="@style/texto_gray900_14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/instagram"
+                        android:textFontWeight="500"
+                        app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
+                        app:layout_constraintStart_toEndOf="@+id/iconeHome"
+                        app:layout_constraintTop_toTopOf="@+id/iconeHome" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLinkeDin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
                     android:orientation="horizontal">
 
 
@@ -564,19 +901,20 @@
                         android:layout_marginStart="24dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/tv" />
+                        app:srcCompat="@drawable/linkedin" />
 
                     <TextView
                         style="@style/texto_gray900_14sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:text="@string/Merchandising"
+                        android:text="@string/linkDin"
                         android:textFontWeight="500"
                         app:layout_constraintBottom_toBottomOf="@+id/iconeHome"
                         app:layout_constraintStart_toEndOf="@+id/iconeHome"
                         app:layout_constraintTop_toTopOf="@+id/iconeHome" />
                 </LinearLayout>
+
 
 
             </LinearLayout>

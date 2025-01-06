@@ -30,6 +30,8 @@ class ProjetoStrings {
 
         //bludles
         const  val urlweb = "urlweb"
+        const val urlInstagram = "https://www.instagram.com/loiurep"
+        const val urlLinkDin = "https://www.linkedin.com/company/loiu/"
 
 
         //links web view
@@ -39,7 +41,9 @@ class ProjetoStrings {
         val equipeGerenciar = "/Equipe/Gerenciar"
         val dashExtrato = "/Dashboard/Extrato"
         val dashFinanceiro = "/Dashboard/Financeiro"
-
+        val roteiro = "/Agenda/Cadastra/Roteiro"
+        var calendario = "/agenda/calendario"
+        var visitas = "/agenda/visitas"
 
     }
 }

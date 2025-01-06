@@ -96,7 +96,6 @@ class DialogFiltros:AtualizaTotalProdutos {
                  progressBarFiltroLoja.isVisible = false
                  recyPrincipalFiltro.layoutManager = linearLayoutManager
                  recyPrincipalFiltro.adapter = adapterFiltroTitulo
-
              }
          }
     }

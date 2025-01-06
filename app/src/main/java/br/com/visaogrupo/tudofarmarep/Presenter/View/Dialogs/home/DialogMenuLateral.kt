@@ -25,6 +25,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Atividades.ViewMo
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Enuns.EnumMenu
+import br.com.visaogrupo.tudofarmarep.Utils.IntentUtils
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.databinding.DialogMenuLateralBinding
 import com.bumptech.glide.Glide
@@ -54,22 +55,45 @@ class DialogMenuLateral {
             }
             show()
         }
-        binding.linearCadastroDeProposto.isVisible = FormularioCadastro.featureFlagMeuTime
         binding.linearGestaoComiisao.isVisible = FormularioCadastro.featureFlagMeuTime
         binding.linearExtratoComissao.isVisible = FormularioCadastro.featureFlagMeuTime
         binding.linearMerchan.isVisible = FormularioCadastro.featureFlagMerchan
-        binding.titulomarchann.isVisible = FormularioCadastro.featureFlagMerchan
         binding.tituloTime.isVisible = FormularioCadastro.featureFlagMeuTime
+        binding.tituloAgenda.isVisible = FormularioCadastro.featureFlagAgenda
+        binding.linearRoteiro.isVisible = FormularioCadastro.featureFlagAgenda
+        binding.linearCalendario.isVisible = FormularioCadastro.featureFlagAgenda
+        binding.linearVisitas.isVisible = FormularioCadastro.featureFlagAgenda
+        binding.linearProgramaIncentivo.isVisible = FormularioCadastro.featureFlagProgramaIncentivo
+        binding.linearTreinamentos.isVisible = FormularioCadastro.featureFlagTreinamentos
+
+        binding.linearClubedeCompras.isVisible = FormularioCadastro.featureFlagClubeCompras
+        binding.tituloVendaRemotra.isVisible = FormularioCadastro.featureFlagVendaRemota
+        binding.linearTeleVendas.isVisible = FormularioCadastro.featureFlagVendaRemota
+        binding.linearLinkExclusivo.isVisible = FormularioCadastro.featureFlagVendaRemota
+        binding.linearPedidoSugestao.isVisible = FormularioCadastro.featureFlagVendaRemota
 
         binding.linearMerchan.setOnClickListener {
             viewModelActHome.atualizaWebView(context.getString(R.string.Merchandising), ProjetoStrings.dashMinhasAcoes)
             dialogMenuLateral.dismiss()
         }
-        binding.linearCadastroDeProposto.setOnClickListener {
-            viewModelActHome.atualizaWebView(context.getString(R.string.CadastroPreposto), ProjetoStrings.equipeGerenciar)
-            dialogMenuLateral.dismiss()
-
+        binding.linearProgramaIncentivo.setOnClickListener {
+            Alertas.alertaErro(context, "Fique atento aos nossos canais de comunicação. Novos programas de incentivo serão disponibilizados em breve.", "Loiu informa"){}
         }
+
+        binding.linearTreinamentos.setOnClickListener {
+            Alertas.alertaErro(context, "Em breve", "Loiu informa")
+            {}
+        }
+        binding.linearTeleVendas.setOnClickListener {
+            Alertas.alertaErro(context, "Funcionalidade disponível apenas para Usuário PRO", "Loiu informa") {}
+        }
+        binding.linearPedidoSugestao.setOnClickListener {
+            Alertas.alertaErro(context, "Em breve", "Loiu informa") {}
+        }
+        binding.linearClubedeCompras.setOnClickListener {
+            Alertas.alertaErro(context, "Funcionalidade disponível apenas para Usuário PRO", "Loiu informa") {}
+        }
+
         binding.linearGestaoComiisao.setOnClickListener {
             viewModelActHome.atualizaWebView(context.getString(R.string.GestaoDeComisso), ProjetoStrings.dashComissao)
             dialogMenuLateral.dismiss()
@@ -126,9 +150,33 @@ class DialogMenuLateral {
                 viewModelActHome.atualizaFragmentHome("", EnumMenu.CARGAS)
                 dialogMenuLateral.dismiss()
             }
-
-
         }
+        binding.linearRoteiro.setOnClickListener {
+            viewModelActHome.atualizaWebView(context.getString(R.string.Roteiro), ProjetoStrings.roteiro)
+            dialogMenuLateral.dismiss()
+        }
+        binding.linearCalendario.setOnClickListener {
+            viewModelActHome.atualizaWebView(context.getString(R.string.calendario), ProjetoStrings.calendario)
+            dialogMenuLateral.dismiss()
+        }
+        binding.linearVisitas.setOnClickListener {
+            viewModelActHome.atualizaWebView(context.getString(R.string.visitas), ProjetoStrings.visitas)
+            dialogMenuLateral.dismiss()
+        }
+
+        binding.linearIniciarVenda.setOnClickListener {
+            viewModelActHome.atualizaFragmentHome(context.getString(R.string.home), EnumMenu.INICIARVENDAS)
+            dialogMenuLateral.dismiss()
+        }
+        binding.linearInstagram.setOnClickListener {
+            IntentUtils.mandaParaInstagram(context, ProjetoStrings.urlInstagram)
+        }
+
+        binding.linearLinkeDin.setOnClickListener {
+            IntentUtils.mandaParaLinkeDin(context, ProjetoStrings.urlLinkDin)
+        }
+
+
 
         binding.linearVendas.setOnClickListener {
             viewModelActHome.atualizaWebView(context.getString(R.string.vendas), ProjetoStrings.dashVendas)

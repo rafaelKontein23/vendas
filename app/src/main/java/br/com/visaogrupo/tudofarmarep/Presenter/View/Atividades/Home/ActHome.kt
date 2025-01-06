@@ -168,6 +168,11 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
                         .addToBackStack(null)
                         .commit()
                 }
+                EnumMenu.INICIARVENDAS ->{
+                    inciaLoja = 12
+                    val dialogcnpj = DialogCnpjs()
+                    dialogcnpj.dialogCnpjs(this,iniciaLoja = inciaLoja, atividade = this)
+                }
 
                 EnumMenu.CARGAS -> {
                     atualizaStatusCarga(1)

@@ -32,7 +32,6 @@ class LoginUseCase (
                 val listaFlags = buscaFlags(respostaLogin.Representante_ID)
                 if (listaFlags.isNotEmpty()){
                     for (flags in listaFlags){
-                        val flags = RespostaFlags(FeatureFlag_ID = 1, Status_Cod = 1, FeatureFlag_Nome = "")
                         FormularioCadastro.atualizarFlags(flags)
                         FormularioCadastro.fotoPerfilUrl =respostaLogin.FotoPerfil ?: ""
                     }

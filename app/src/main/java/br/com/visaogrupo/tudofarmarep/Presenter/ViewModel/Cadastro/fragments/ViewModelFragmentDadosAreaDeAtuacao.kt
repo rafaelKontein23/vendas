@@ -40,7 +40,7 @@ class ViewModelFragmentDadosAreaDeAtuacao(
     val listaMessoRegiaoBusca: LiveData<ArrayList<RespostaMessoRegiao>?> = _listaMessoRegiaoBusca
 
 
-    val _editaDados = MutableLiveData<Boolean>();
+    val _editaDados = MutableLiveData<Boolean>() ;
     val editaDadosObs: LiveData<Boolean> = _editaDados
 
 

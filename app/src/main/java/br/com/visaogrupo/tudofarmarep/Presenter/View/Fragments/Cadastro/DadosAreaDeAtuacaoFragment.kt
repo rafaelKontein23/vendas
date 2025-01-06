@@ -98,13 +98,16 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
         }
         viewModelFragmentDadosAreaDeAtuacao.editaDadosObs.observe(viewLifecycleOwner){
             binding.constrainCarregando.isVisible = false
-            if(it){
-                Alertas.alertaErro(requireContext(), mensagem =   getString(R.string.DadosAtuazlizadoComSucesso), titulo =  getString(R.string.loiuInforma)){
+            if(!isCadastro){
+                if(it){
+                    Alertas.alertaErro(requireContext(), mensagem =   getString(R.string.DadosAtuazlizadoComSucesso), titulo =  getString(R.string.loiuInforma)){
 
+                    }
+                }else{
+                    Alertas.alertaErro(requireContext(), mensagem =   getString(R.string.erroAtualiza), titulo =  getString(R.string.tituloErro)){}
                 }
-            }else{
-                Alertas.alertaErro(requireContext(), mensagem =   getString(R.string.erroAtualiza), titulo =  getString(R.string.tituloErro)){}
             }
+
         }
 
         viewModelFragmentDadosAreaDeAtuacao.mesorregiaoSelecionada.observe(viewLifecycleOwner){ mesorregiaoSelecionadas ->

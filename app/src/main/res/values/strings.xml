@@ -5,7 +5,7 @@
     <string name="informeCelular">Informe seu celular</string>
     <string name="TokenAcesso">Token de acesso</string>
     <string name="DadosCnpj">Dados do CNPJ</string>
-    <string name="DadosPessoal">Dados Pessoal</string>
+    <string name="DadosPessoal">Dados Pessoais</string>
     <string name="DadosDocumento">Foto de Documento</string>
     <string name="DadosAreaAtuacao">Área de Atuação</string>
     <string name="CodigoIndicacao">Código de Indicação</string>
@@ -67,6 +67,22 @@
     <string name="finalizar">Finalizar</string>
     <string name="entrar">Entrar</string>
     <string name="vendas">Vendas</string>
+    <string name="iniciarVendas">Iniciar Venda</string>
+    <string name="merchandise">Merchandising</string>
+    <string name="ProgramaDeincentivos">Programa de incentivo</string>
+    <string name="clubeDeCompras">Clube de compras</string>
+    <string name="VendaRemota">Venda remota</string>
+    <string name="TeleVendas">Televendas</string>
+    <string name="linkExclusivo">Link Exclusivo</string>
+    <string name="PedidoSugestaao">Pedido Sugestão</string>
+    <string name="agenda">Agenda</string>
+    <string name="Roteiro">Roteiro</string>
+    <string name="calendario">Calendário</string>
+    <string name="visitas">Visitas</string>
+    <string name="treinamento">Treinamentos</string>
+    <string name="redesSociais">Redes Sociais</string>
+    <string name="instagram">Instagram</string>
+    <string name="linkDin">Linkedin</string>
     <string name="relatorios">
         Relatórios
     </string>

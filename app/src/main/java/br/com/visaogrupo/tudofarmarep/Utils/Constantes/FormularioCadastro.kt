@@ -20,6 +20,11 @@ class FormularioCadastro {
 
         private var _featureFlagMeuTime: Boolean = false
         private var _featureFlagMerchan: Boolean = false
+        private var _featureFlagAgenda :Boolean = false
+        private var _featureFlagProgramaIncentivo :Boolean = false
+        private var _featureFlagTreinamentos :Boolean = false
+        private var _featureFlagVendaRemota :Boolean = false
+        private var _featureFlagClubeCompras:Boolean = false
 
         // Getters públicos para as flags
         val featureFlagMeuTime: Boolean
@@ -28,9 +33,21 @@ class FormularioCadastro {
         val featureFlagMerchan: Boolean
             get() = _featureFlagMerchan
 
+        val featureFlagAgenda :Boolean  get() = _featureFlagAgenda
+        val featureFlagProgramaIncentivo :Boolean  get() = _featureFlagProgramaIncentivo
+        val featureFlagTreinamentos :Boolean  get() = _featureFlagTreinamentos
+        val featureFlagVendaRemota :Boolean  get() = _featureFlagVendaRemota
+        val featureFlagClubeCompras :Boolean  get() = _featureFlagClubeCompras
+
+
         fun atualizarFlags(flags: RespostaFlags) {
             _featureFlagMeuTime = flags.FeatureFlag_ID == 1 && flags.Status_Cod == 1
             _featureFlagMerchan = flags.FeatureFlag_ID == 2 && flags.Status_Cod == 1
+            _featureFlagAgenda = flags.FeatureFlag_ID == 3 && flags.Status_Cod == 1
+            _featureFlagProgramaIncentivo = flags.FeatureFlag_ID == 4 && flags.Status_Cod == 1
+            _featureFlagTreinamentos = flags.FeatureFlag_ID == 5 && flags.Status_Cod == 1
+            _featureFlagVendaRemota = flags.FeatureFlag_ID == 6 && flags.Status_Cod == 1
+            _featureFlagClubeCompras = flags.FeatureFlag_ID == 7 && flags.Status_Cod == 1
         }
 
         fun limpaCadastro() {
@@ -48,6 +65,11 @@ class FormularioCadastro {
         private fun resetarFlags() {
             _featureFlagMeuTime = false
             _featureFlagMerchan = false
+            _featureFlagAgenda = false
+            _featureFlagProgramaIncentivo = false
+            _featureFlagTreinamentos = false
+            _featureFlagVendaRemota = false
+            _featureFlagClubeCompras = false
         }
     }
 }

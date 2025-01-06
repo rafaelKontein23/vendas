@@ -70,7 +70,9 @@ class Alertas {
              val datePickerDialog = DatePickerDialog(
                  context,
                  { _, selectedYear, selectedMonth, selectedDay ->
-                     val formattedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                     val dia = if (selectedDay <10) "0$selectedDay" else selectedDay.toString()
+                     val mes = if (selectedMonth <10) "0${selectedMonth + 1}" else (selectedMonth + 1).toString()
+                     val formattedDate = "$dia/${mes}/$selectedYear"
                      textView.text  = Editable.Factory.getInstance().newEditable(formattedDate)
                      textView.validaError(false, context)
                  },
