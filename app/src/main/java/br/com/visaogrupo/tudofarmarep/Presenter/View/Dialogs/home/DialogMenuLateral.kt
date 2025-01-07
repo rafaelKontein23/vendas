@@ -76,6 +76,10 @@ class DialogMenuLateral {
             viewModelActHome.atualizaWebView(context.getString(R.string.Merchandising), ProjetoStrings.dashMinhasAcoes)
             dialogMenuLateral.dismiss()
         }
+        binding.linearLinkExclusivo.setOnClickListener {
+            viewModelActHome.atualizaFragmentHome(context.getString(R.string.home), EnumMenu.REMOTO)
+            dialogMenuLateral.dismiss()
+        }
         binding.linearProgramaIncentivo.setOnClickListener {
             Alertas.alertaErro(context, "Fique atento aos nossos canais de comunicação. Novos programas de incentivo serão disponibilizados em breve.", "Loiu informa"){}
         }

@@ -35,6 +35,7 @@ class ActCelular : AppCompatActivity() {
         setContentView(binding.root)
         val factory = ViewModelActCelularFactory(applicationContext)
         viewModelActCelular = ViewModelProvider(this, factory)[ViewModelActCelular::class.java]
+        viewModelActCelular.exluiCadastro()
 
         FormataTextos.colocaMascaraInput(binding.inputCelular, ProjetoStrings.mascaraCelular)
 

@@ -150,8 +150,9 @@ class MainActivity : AppCompatActivity() {
         })
 
         binding.suporteLoiuConstrain.setOnClickListener {
-            binding.constrainCarregando.visibility = View.VISIBLE
-            viewModelMainActivity.buscarNumeroTelefoneSuporte()
+            val intent = Intent(this, ActFaq::class.java)
+            startActivity(intent)
+
         }
 
         binding.loiuLogo.setOnClickListener {

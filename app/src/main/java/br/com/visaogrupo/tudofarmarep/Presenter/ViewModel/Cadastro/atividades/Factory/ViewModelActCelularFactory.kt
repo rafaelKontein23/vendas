@@ -15,7 +15,7 @@ class ViewModelActCelularFactory ( private val context: Context
         if (modelClass.isAssignableFrom(ViewModelActCelular::class.java)) {
             val repository = SuporteTelefoneReposytory(context)
             val salavarTexto = PreferenciasUtils(context)
-            return ViewModelActCelular(repository, salavarTexto) as T
+            return ViewModelActCelular(repository, salavarTexto, context) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

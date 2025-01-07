@@ -29,7 +29,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Loiu"
         tools:targetApi="31">
-
+        <activity
+            android:name=".Presenter.View.Atividades.Cadastros.ActFaq"
+            android:exported="false" />
         <activity
             android:name=".Presenter.View.Atividades.Cadastros.ActSucessoCadastro"
             android:exported="false"

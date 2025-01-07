@@ -1,11 +1,14 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.fragments
 
+import FormularioCadastro
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.AreaDeAtuacaoUseCase
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.CadastroUseCase
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequestAreaAtuacal
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.Mesorregiao
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaAreaAtuacaoCadastrais
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaCidades
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaMessoRegiao
@@ -61,6 +64,23 @@ class ViewModelFragmentDadosAreaDeAtuacao(
         _listaEstados.value = ListaUtils.EstadosUtils.obterListaEstados().toMutableList()
     }
 
+    fun buscaAreaAtuacaoCadastroExistente(uf: String){
+        viewModelScope.launch(Dispatchers.IO) {
+            val (listaRespostaMessoRegiao, listaRespostaCidades, listaGeralMessoRegiaoList) = areaDeAtuacaoUseCase.recuperaDadosMesorregiao(uf)
+            if (listaGeralMessoRegiaoList != null) {
+                listaGeralMessoRegiao.clear()
+                listaGeralMessoRegiao.addAll(listaGeralMessoRegiaoList)
+            }
+            _listaMesorregiao.postValue(listaRespostaMessoRegiao)
+            _listaCidades.postValue(listaRespostaCidades)
+            val listaRespostasMessoRegiao = mapearMesorregioesParaRespostas(FormularioCadastro.cadastroRequestAreaAtuacal.Mesorregioes)
+            val listaRespostasCidade = mapearCidadesParaRespostas(FormularioCadastro.cadastroRequestAreaAtuacal.Mesorregioes)
+
+            _mesorregiaoSelecionada.postValue(listaRespostasMessoRegiao)
+            _cidadeSelecionada.postValue(listaRespostasCidade)
+        }
+    }
+
     fun buscaDadosAreaDeAtuacaoMesorregiao(uf: String, adicionaInicial: Boolean, isEditavel: Boolean = true, listaAreaAtuacaoCadastrais:ArrayList<RespostaAreaAtuacaoCadastrais> = arrayListOf()) {
         viewModelScope.launch(Dispatchers.IO) {
             val (listaRespostaMessoRegiao, listaRespostaCidades, listaGeralMessoRegiaoList) = areaDeAtuacaoUseCase.recuperaDadosMesorregiao(uf)
@@ -70,6 +90,7 @@ class ViewModelFragmentDadosAreaDeAtuacao(
             }
             _listaMesorregiao.postValue(listaRespostaMessoRegiao)
             _listaCidades.postValue(listaRespostaCidades)
+
             if(!isEditavel){
                 if (listaAreaAtuacaoCadastrais.isNotEmpty()) {
                     val mesorregioesIdsSelecionadas = listaAreaAtuacaoCadastrais.map { it.Mesorregiao_id }.toSet()
@@ -94,9 +115,6 @@ class ViewModelFragmentDadosAreaDeAtuacao(
                     _cidadeSelecionada.postValue(listaRespostaCidades)
                 }
             }
-
-
-
         }
     }
 
@@ -275,5 +293,40 @@ class ViewModelFragmentDadosAreaDeAtuacao(
         }
 
     }
+    fun mapearMesorregioesParaRespostas(mesorregioes: List<Mesorregiao>): ArrayList<RespostaMessoRegiao> {
+        val respostas = ArrayList<RespostaMessoRegiao>()
+        val idsAdicionados = mutableSetOf<Int>()
+        for (mesorregiao in mesorregioes) {
+            if (mesorregiao.Mesorregiao_id !in idsAdicionados) {
+                respostas.add(
+                    RespostaMessoRegiao(
+                        Mesorregiao_id = mesorregiao.Mesorregiao_id,
+                        Mesorregiao_Nome = mesorregiao.Mesorregiao,
+                        Municipio = ""
+                    )
+                )
+                idsAdicionados.add(mesorregiao.Mesorregiao_id)
+            }
+        }
+
+        return respostas
+    }
+    fun mapearCidadesParaRespostas(mesorregioes: List<Mesorregiao>): ArrayList<RespostaCidades> {
+        val respostas = ArrayList<RespostaCidades>()
+
+        for (mesorregiao in mesorregioes) {
+            for (cidade in mesorregiao.Cidades) {
+                respostas.add(
+                    RespostaCidades(
+                        ID = mesorregiao.Mesorregiao_id,
+                        Cidade = cidade.Cidade
+                    )
+                )
+            }
+        }
+
+        return respostas
+    }
+
 
 }

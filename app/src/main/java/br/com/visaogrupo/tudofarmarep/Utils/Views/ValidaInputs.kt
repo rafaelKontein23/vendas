@@ -9,6 +9,11 @@ import androidx.core.content.ContextCompat
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.ValidarTextos
 import com.vicmikhailau.maskededittext.MaskedEditText
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+
 // Inputs com Mascaras
 fun MaskedEditText.validaError(isError: Boolean, context: Context) {
     if (isError) {
@@ -165,6 +170,30 @@ fun EditText.isFocusEditTextBasico(context: Context ) {
         }
     }
 }
+
+
+fun String.isIdadeValida(): Boolean {
+    val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+
+
+    val nascimento: Date
+    try {
+        nascimento = dateFormat.parse(this) ?: return false
+    } catch (e: Exception) {
+        // Caso a conversão falhe, retorna falso
+        return false
+    }
+
+
+    val hoje = Calendar.getInstance()
+
+
+    val idade = hoje.get(Calendar.YEAR) - nascimento.year - 1900
+
+    return idade in 18..79
+}
+
+
 fun EditText.isFocusEditTextBasicoSemErro(context: Context) {
 
     this.setOnFocusChangeListener { _, hasFocus ->

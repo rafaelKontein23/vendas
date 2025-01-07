@@ -183,6 +183,11 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
                     val request = Requests()
                     request.corrotinasMarcas(this@ActHome, this@ActHome)
                 }
+                EnumMenu.REMOTO ->{
+                    binding.constrainCarregando.isVisible = true
+
+                    viewModelActHome.buscaLinkVendaremotas()
+                }
             }
         }
 

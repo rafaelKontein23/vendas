@@ -60,10 +60,19 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
 
         if(isCadastro){
             viewModelActCabecalho.mudaProgressoCadastro(4, 1f)
-            val ufSelecionada = if(FormularioCadastro.cadastroRequestAreaAtuacal.UF != "") FormularioCadastro.cadastroRequestAreaAtuacal.UF else FormularioCadastro.cadastro.UF
-            viewModelFragmentDadosAreaDeAtuacao.selecionaUF(ufSelecionada)
-            binding.inputEstadoAreaDeAtuacao.text = ufSelecionada.obterNomeCompletoUF(ufSelecionada)
-            viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao(ufSelecionada, true)
+            if(FormularioCadastro.cadastroRequestAreaAtuacal.UF != ""){
+                val ufSelecionada =  FormularioCadastro.cadastroRequestAreaAtuacal.UF
+                viewModelFragmentDadosAreaDeAtuacao.selecionaUF(FormularioCadastro.cadastroRequestAreaAtuacal.UF)
+                binding.inputEstadoAreaDeAtuacao.text = ufSelecionada.obterNomeCompletoUF(ufSelecionada)
+                viewModelFragmentDadosAreaDeAtuacao.buscaAreaAtuacaoCadastroExistente(ufSelecionada)
+
+
+            } else{
+                val ufSelecionada = FormularioCadastro.cadastro.UF
+                viewModelFragmentDadosAreaDeAtuacao.selecionaUF(ufSelecionada)
+                binding.inputEstadoAreaDeAtuacao.text = ufSelecionada.obterNomeCompletoUF(ufSelecionada)
+                viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao(ufSelecionada, true)
+            }
 
         }else{
             viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoEdicao()
@@ -206,5 +215,31 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
         viewModelActCabecalho.mostraCarregando(isvisivel)
         binding.btnContinuar.isEnabled = !isvisivel
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(isCadastro){
+            viewModelActCabecalho.mudaProgressoCadastro(4, 1f)
+            if(FormularioCadastro.cadastroRequestAreaAtuacal.UF != ""){
+                val ufSelecionada =  FormularioCadastro.cadastroRequestAreaAtuacal.UF
+                viewModelFragmentDadosAreaDeAtuacao.selecionaUF(FormularioCadastro.cadastroRequestAreaAtuacal.UF)
+                binding.inputEstadoAreaDeAtuacao.text = ufSelecionada.obterNomeCompletoUF(ufSelecionada)
+                viewModelFragmentDadosAreaDeAtuacao.buscaAreaAtuacaoCadastroExistente(ufSelecionada)
+
+
+            } else{
+                val ufSelecionada = FormularioCadastro.cadastro.UF
+                viewModelFragmentDadosAreaDeAtuacao.selecionaUF(ufSelecionada)
+                binding.inputEstadoAreaDeAtuacao.text = ufSelecionada.obterNomeCompletoUF(ufSelecionada)
+                viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoMesorregiao(ufSelecionada, true)
+            }
+
+
+        }else{
+            viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoEdicao()
+            binding.btnContinuar.text = getString(R.string.AtualizarDados)
+            binding.constrainCarregando.isVisible = true
+        }
     }
 }

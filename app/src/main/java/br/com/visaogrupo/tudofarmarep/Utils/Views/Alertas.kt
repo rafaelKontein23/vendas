@@ -63,22 +63,28 @@ class Alertas {
         }
          fun showDatePickerDialog(textView: EditText, context: Context) {
              val calendar = Calendar.getInstance()
-             val year = calendar.get(Calendar.YEAR)
-             val month = calendar.get(Calendar.MONTH)
-             val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+             val currentYear = calendar.get(Calendar.YEAR)
+             val currentMonth = calendar.get(Calendar.MONTH)
+             val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+
+             calendar.set(Calendar.YEAR, currentYear - 18)
+             val initialYear = calendar.get(Calendar.YEAR)
+             val initialMonth = calendar.get(Calendar.MONTH)
+             val initialDay = calendar.get(Calendar.DAY_OF_MONTH)
 
              val datePickerDialog = DatePickerDialog(
                  context,
                  { _, selectedYear, selectedMonth, selectedDay ->
-                     val dia = if (selectedDay <10) "0$selectedDay" else selectedDay.toString()
-                     val mes = if (selectedMonth <10) "0${selectedMonth + 1}" else (selectedMonth + 1).toString()
-                     val formattedDate = "$dia/${mes}/$selectedYear"
-                     textView.text  = Editable.Factory.getInstance().newEditable(formattedDate)
+                     val dia = if (selectedDay < 10) "0$selectedDay" else selectedDay.toString()
+                     val mes = if (selectedMonth < 10) "0${selectedMonth + 1}" else (selectedMonth + 1).toString()
+                     val formattedDate = "$dia/$mes/$selectedYear"
+                     textView.text = Editable.Factory.getInstance().newEditable(formattedDate)
                      textView.validaError(false, context)
                  },
-                 year,
-                 month,
-                 day
+                 initialYear,
+                 initialMonth,
+                 initialDay
              )
 
              datePickerDialog.datePicker.maxDate = calendar.timeInMillis

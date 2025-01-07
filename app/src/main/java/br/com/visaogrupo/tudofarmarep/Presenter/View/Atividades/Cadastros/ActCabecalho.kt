@@ -1,5 +1,7 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros
 
+import FormularioCadastro
+import android.net.Uri
 import android.os.Bundle
 import android.view.MotionEvent
 import androidx.activity.enableEdgeToEdge
@@ -8,12 +10,16 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import br.com.visaogrupo.tudofarmarep.DAO.DAOHelper
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro.DadosCnpjFragment
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro.DadosPessoaisFragment
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActCabecalho
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequest
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequestAreaAtuacal
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Animacoes.Progress.Companion.animateProgressBarHorizontal
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Animacoes.rotateYView
+import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.DAO.DAOCadastro
 import br.com.visaogrupo.tudofarmarep.databinding.ActivityActCabecalhoBinding
 
 
@@ -96,22 +102,46 @@ class ActCabecalho : AppCompatActivity() {
 
            }
            3 ->{
+               binding.progressPessoal.animateProgressBarHorizontal(progress, 0)
                binding.progressDocumento.animateProgressBarHorizontal(progress, 1000)
+               binding.progressVerticalPessoal.isVisible = true
+
                binding.progressVerticalDocumento.isVisible = true
                binding.tituloCadastro.text = getString(R.string.DadosDocumento)
            }
            4 ->{
+               binding.progressPessoal.animateProgressBarHorizontal(progress, 0)
+               binding.progressDocumento.animateProgressBarHorizontal(progress, 0)
                binding.progressAreaAtuacao.animateProgressBarHorizontal(progress, 1000)
+               binding.progressVerticalPessoal.isVisible = true
+
+               binding.progressVerticalDocumento.isVisible = true
                binding.progressVerticalAtuacao.isVisible = true
                binding.tituloCadastro.text = getString(R.string.DadosAreaAtuacao)
            }
            5 ->{
+               binding.progressPessoal.animateProgressBarHorizontal(progress, 0)
+               binding.progressDocumento.animateProgressBarHorizontal(progress, 0)
+               binding.progressAreaAtuacao.animateProgressBarHorizontal(progress, 0)
                binding.progressCodigoIndicacao.animateProgressBarHorizontal(progress, 1000)
+               binding.progressVerticalPessoal.isVisible = true
+
+               binding.progressVerticalDocumento.isVisible = true
+               binding.progressVerticalAtuacao.isVisible = true
                binding.progressVerticalIndicacao.isVisible = true
                binding.tituloCadastro.text = getString(R.string.CodigoIndicacao)
            }
            6 ->{
+               binding.progressPessoal.animateProgressBarHorizontal(progress, 0)
+               binding.progressDocumento.animateProgressBarHorizontal(progress, 0)
+               binding.progressAreaAtuacao.animateProgressBarHorizontal(progress, 0)
+               binding.progressCodigoIndicacao.animateProgressBarHorizontal(progress, 0)
                binding.progressContratoAceite.animateProgressBarHorizontal(progress, 1000)
+
+               binding.progressVerticalPessoal.isVisible = true
+               binding.progressVerticalDocumento.isVisible = true
+               binding.progressVerticalAtuacao.isVisible = true
+               binding.progressVerticalIndicacao.isVisible = true
                binding.progressVerticalContratoAceite.isVisible = true
                binding.tituloCadastro.text = getString(R.string.ContratoAceite)
            }
@@ -145,6 +175,41 @@ class ActCabecalho : AppCompatActivity() {
         return super.dispatchTouchEvent(ev)
     }
 
+    override fun onPause() {
+        super.onPause()
+        val dbHelper = DAOHelper(this).writableDatabase
+        val daoCadastro = DAOCadastro()
+        dbHelper.beginTransaction()
+        val areaAtuacao = FormularioCadastro.cadastroRequestAreaAtuacal
+        try {
+            val fotoDocmento = FormularioCadastro.fotoDocumeto
+            daoCadastro.inserirCadastro(dbHelper, FormularioCadastro.cadastro,fotoDocmento)
+            if (areaAtuacao.UF != ""){
+                daoCadastro.inserirCadastroAreaAtuacao(dbHelper, FormularioCadastro.cadastroRequestAreaAtuacal)
+            }
+            dbHelper.setTransactionSuccessful()
+        } catch (e: Exception) {
+            e.printStackTrace()
+
+        } finally {
+            dbHelper.endTransaction()
+            dbHelper.close()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val dbHelper = DAOHelper(this).readableDatabase
+        val daoCadastro = DAOCadastro()
+
+        FormularioCadastro.cadastro = daoCadastro.recuperarCadastro(dbHelper) ?: FormularioCadastro.cadastro
+
+        FormularioCadastro.fotoDocumeto = daoCadastro.recuperarFotos(dbHelper) ?: FormularioCadastro.fotoDocumeto
+        FormularioCadastro.cadastroRequestAreaAtuacal = daoCadastro.recuperarCadastroAreaAtuacao(dbHelper) ?:FormularioCadastro.cadastroRequestAreaAtuacal
+
+        dbHelper.close()
+    }
+
     fun voltaTela(){
         if (supportFragmentManager.backStackEntryCount > 1) {
             supportFragmentManager.popBackStack()
@@ -154,4 +219,5 @@ class ActCabecalho : AppCompatActivity() {
             finish()
         }
     }
+
 }

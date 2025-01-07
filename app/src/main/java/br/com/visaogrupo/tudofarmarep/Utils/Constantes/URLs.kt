@@ -13,6 +13,7 @@ class URLs {
         var urlVendaRometa: String = "https://vendaremota.loiu.com.br/meu-hash/"
         var Url_pdf: String = "https://www.loiu.com.br/Docs/Extract/Usuarios/"
         var URL_Webviewmob: String = "https://stage.loiu.com.br/Autenticacao/LoginMobile?login="
+        var url_suporte:String = "https://stage.loiu.com.br/faq"
         var URL_convite: String = "https://www.loiu.com.br/"
         var urlFotoPErfil = "https://www.loiu.com.br/usuarios/"
         var urlpedido = "https://vendaremota.loiu.com.br/pedido/"
@@ -25,6 +26,7 @@ class URLs {
                 urlVendaRometa = "https://vendaremota.loiu.com.br/meu-hash/"
                 urlFotoPErfil = "https://www.loiu.com.br/usuarios/"
                 urlpedido = "https://vendaremota.loiu.com.br/pedido/"
+                urlpedido =  "https://stage.loiu.com.br/faq"
 
             } else {
                 urlWsBase = "https://${ambiente}.visaogrupo.com.br/ws/"
@@ -41,6 +43,7 @@ class URLs {
             urlImagensLoja = "https://${ambiente}.loiu.com.br/Cargas/images/lojas/icones"
             urlImagensCnpjs = "https://${ambiente}.loiu.com.br/Cargas/images/icones/"
             urlImagensOpls = "https://${ambiente}.loiu.com.br/img/logos/distribuidoras/"
+            url_suporte = "https://${ambiente}.loiu.com.br/faq"
             urlMarcas = "https://${ambiente}.loiu.com.br/"
             Url_pdf = "https://${ambiente}.loiu.com.br/Docs/Extract/Usuarios/"
             URL_Webviewmob = "https://${ambiente}.loiu.com.br/Autenticacao/LoginMobile?login="

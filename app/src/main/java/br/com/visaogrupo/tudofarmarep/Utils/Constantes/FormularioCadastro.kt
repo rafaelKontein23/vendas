@@ -41,35 +41,27 @@ class FormularioCadastro {
 
 
         fun atualizarFlags(flags: RespostaFlags) {
-            _featureFlagMeuTime = flags.FeatureFlag_ID == 1 && flags.Status_Cod == 1
-            _featureFlagMerchan = flags.FeatureFlag_ID == 2 && flags.Status_Cod == 1
-            _featureFlagAgenda = flags.FeatureFlag_ID == 3 && flags.Status_Cod == 1
-            _featureFlagProgramaIncentivo = flags.FeatureFlag_ID == 4 && flags.Status_Cod == 1
-            _featureFlagTreinamentos = flags.FeatureFlag_ID == 5 && flags.Status_Cod == 1
-            _featureFlagVendaRemota = flags.FeatureFlag_ID == 6 && flags.Status_Cod == 1
-            _featureFlagClubeCompras = flags.FeatureFlag_ID == 7 && flags.Status_Cod == 1
+            when(flags.FeatureFlag_ID){
+                 1 -> _featureFlagMeuTime = flags.Status_Cod == 1
+                2 -> _featureFlagMerchan = flags.Status_Cod == 1
+                3 -> _featureFlagAgenda = flags.Status_Cod == 1
+                4 -> _featureFlagProgramaIncentivo = flags.Status_Cod == 1
+                5 -> _featureFlagTreinamentos = flags.Status_Cod == 1
+                6 -> _featureFlagVendaRemota = flags.Status_Cod == 1
+                7 -> _featureFlagClubeCompras = flags.Status_Cod == 1
+            }
         }
 
         fun limpaCadastro() {
             cadastro = CadastroRequest()
             dadosBancarios = DadosBancariosRequests()
-
             cadastroRequestAreaAtuacal = CadastroRequestAreaAtuacal()
-
             fotoDocumeto = Uri.EMPTY
             base64Galeria = ""
             base64Assinatura = ""
             savedBitmap = null
         }
 
-        private fun resetarFlags() {
-            _featureFlagMeuTime = false
-            _featureFlagMerchan = false
-            _featureFlagAgenda = false
-            _featureFlagProgramaIncentivo = false
-            _featureFlagTreinamentos = false
-            _featureFlagVendaRemota = false
-            _featureFlagClubeCompras = false
-        }
+
     }
 }

@@ -22,10 +22,13 @@ import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.aplicarMascaraTelefone
 import br.com.visaogrupo.tudofarmarep.Utils.Views.FormataTextos.Companion.formatarParaBrasileiro
+import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocus
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusCPF
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEditTextBasico
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEditTextBasicoSemErro
 import br.com.visaogrupo.tudofarmarep.Utils.Views.isFocusEmail
+import br.com.visaogrupo.tudofarmarep.Utils.Views.isIdadeValida
+import br.com.visaogrupo.tudofarmarep.Utils.Views.mudaCorIconeGray
 
 import br.com.visaogrupo.tudofarmarep.Utils.Views.validaError
 import br.com.visaogrupo.tudofarmarep.databinding.FragmentDadosPessoaisBinding
@@ -81,6 +84,25 @@ class DadosPessoaisFragment : Fragment() {
         FormataTextos.colocaMascaraInput(binding.inputCelular, ProjetoStrings.mascaraCelular)
         FormataTextos.colocaMascaraData(binding.inputDataNacimento)
         viewModelFragmentDadosPessoal.recuperaNumeroCelular()
+        binding.inputDataNacimento.isFocus(requireContext())
+        binding.inputDataNacimento.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val dataCap = s.toString()
+                if(dataCap.length ==10){
+                    binding.inputDataNacimento.setBackgroundResource(R.drawable.bordas_8_stroke_1_gray300)
+                    binding.inputDataNacimento.setTextColor(requireContext().getColor(R.color.black))
+                    mudaCorIconeGray(binding.inputDataNacimento, requireContext())
+                }
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
 
         viewModelFragmentDadosPessoal.dadosPessoais.observe(viewLifecycleOwner){
             binding.constrainCarregando.isVisible = false
@@ -189,6 +211,8 @@ class DadosPessoaisFragment : Fragment() {
                 cpf.isEmpty() ||
                 !ValidarTextos.isCPF(cpf)||
                 dataNacimento.isEmpty() ||
+                dataNacimento.length < 10 ||
+               !dataNacimento.isIdadeValida()||
                 email.isEmpty() ||
                 !email.contains("@") ||
                 !email.contains(".") || (telefoneSemFormato.isNotEmpty() && telefoneSemFormato.length < 10 )){
@@ -206,7 +230,8 @@ class DadosPessoaisFragment : Fragment() {
                 }else{
                     binding.inputTelefoneComercial.validaError( false, requireContext())
                 }
-                if(dataNacimento.isEmpty()){
+                if(dataNacimento.isEmpty() || dataNacimento.length < 10 ||
+                        !dataNacimento.isIdadeValida()){
                     binding.scroolPessoais.smoothScrollTo(0,  binding.inputDataNacimento.top)
                     binding.inputDataNacimento.validaError( true , requireContext())
                 }else{

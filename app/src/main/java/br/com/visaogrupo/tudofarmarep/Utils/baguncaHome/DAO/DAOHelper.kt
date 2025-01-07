@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DAOHelper(context:Context):SQLiteOpenHelper (context, "loiu.db", null, 107){
+class DAOHelper(context:Context):SQLiteOpenHelper (context, "loiu.db", null, 111){
     override fun onCreate(db: SQLiteDatabase?) {
         createbanco(db);
     }
@@ -18,7 +18,11 @@ class DAOHelper(context:Context):SQLiteOpenHelper (context, "loiu.db", null, 107
         db?.execSQL("DROP TABLE IF EXISTS TB_CARRINHO")
         db?.execSQL("DROP TABLE IF EXISTS TB_FORMA_PAGAMENTO")
         db?.execSQL("DROP TABLE IF EXISTS TB_CotacoesCarrinho")
-
+        db?.execSQL("DROP TABLE IF EXISTS Cadastro")
+        db?.execSQL("DROP TABLE IF EXISTS CadastroAreaAtuacal")
+        db?.execSQL("DROP TABLE IF EXISTS Mesorregiao")
+        db?.execSQL("DROP TABLE IF EXISTS Cidade")
+        db?.execSQL("DROP TABLE IF EXISTS ImagemCadastro")
 
         createbanco(db);
     }
@@ -26,12 +30,75 @@ class DAOHelper(context:Context):SQLiteOpenHelper (context, "loiu.db", null, 107
 
     fun createbanco(db: SQLiteDatabase?){
 
+        db?.execSQL("""
+            CREATE TABLE Cadastro (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                possuiCoreText TEXT,
+                possuiCore INTEGER,
+                CNPJ TEXT,
+                RazaoSocial TEXT,
+                Fantasia TEXT,
+                CEP TEXT,
+                Endereco TEXT,
+                Bairro TEXT,
+                Cidade TEXT,
+                UF TEXT,
+                nome TEXT,
+                sobrenome TEXT,
+                cpf TEXT,
+                dataNascimento TEXT,
+                celular TEXT,
+                telefoneComercial TEXT,
+                email TEXT,
+                hashIndicacao TEXT,
+                isPoliticaPrivacidade INTEGER,
+                isTermoPolitica INTEGER,
+                isAssinaContrato INTEGER,
+                DeviceToken TEXT,
+                FotoPerfil TEXT,
+                UDID TEXT,
+                VersaoaAPP TEXT,
+                Dispositivo TEXT,
+                SistemaOperacional TEXT,
+                Plataforma TEXT,
+                FotoDocumento TEXT,
+                ImagemAssinatura TEXT
+            );
+        """)
+        db?.execSQL("""
+            CREATE TABLE ImagemCadastro (
+                 uriImagemDocumento TEXT NOT NULL
+            )
+            """);
+        db?.execSQL("""
+            CREATE TABLE CadastroAreaAtuacal (
+                UF TEXT
+            );
+        """)
+        db?.execSQL("""
+            CREATE TABLE Mesorregiao (
+                mesorregiao TEXT,
+                mesorregiao_id INTEGER,
+                cadastro_area_atuacal_id INTEGER,
+                FOREIGN KEY(cadastro_area_atuacal_id) REFERENCES CadastroAreaAtuacal(id)
+            );
+        """)
+        db?.execSQL("""
+            CREATE TABLE Cidade (
+                cidade TEXT,
+                mesorregiao_id INTEGER,
+                FOREIGN KEY(mesorregiao_id) REFERENCES Mesorregiao(id)
+            );
+        """)
+
         val  sqlProduto = "CREATE TABLE IF NOT EXISTS TB_PRODUTOS(" +
                 "barra VARCHAR(20) PRIMARY KEY," +
                 "marca_ID INTEGER," +
                 "nome VARCHAR(500)," +
                 "imagem Varchar(100)" +
                 ")"
+
+
 
         val  sqlMarca = "CREATE TABLE IF NOT EXISTS TB_MARCAS(" +
                 "marca_ID INTEGER PRIMARY KEY," +

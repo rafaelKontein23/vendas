@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro.DadosCnpjFragment
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro.DadosPessoaisFragment
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequest
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.CadastroRequestAreaAtuacal
 
 class ViewModelActCabecalho :ViewModel(){
     private val _mostraCareegando = MutableLiveData<Boolean>()
@@ -18,6 +20,12 @@ class ViewModelActCabecalho :ViewModel(){
     val infoVisvelFragement : LiveData<DadosPessoaisFragment> get() = _infoVisvelFragement
     private val _infoVisvelFragementCnpj = MutableLiveData<DadosCnpjFragment>()
     val infoVisvelFragementCnpj : LiveData<DadosCnpjFragment> get() = _infoVisvelFragementCnpj
+
+    var cadastro: CadastroRequest = CadastroRequest()
+    var cadastroRequestAreaAtuacal: CadastroRequestAreaAtuacal = CadastroRequestAreaAtuacal()
+
+
+
     fun mostraCarregando(mostra: Boolean){
         _mostraCareegando.postValue(mostra)
     }
