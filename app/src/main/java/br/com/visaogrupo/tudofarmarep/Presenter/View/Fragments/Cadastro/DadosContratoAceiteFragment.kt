@@ -354,6 +354,8 @@ class DadosContratoAceiteFragment : Fragment() {
     private fun exibirErro(@StringRes mensagemErro: Int) {
         Alertas.alertaErro(
             context = requireContext(),
+
+
             mensagem = getString(mensagemErro),
             titulo = getString(R.string.tituloErro)
         ) {}
