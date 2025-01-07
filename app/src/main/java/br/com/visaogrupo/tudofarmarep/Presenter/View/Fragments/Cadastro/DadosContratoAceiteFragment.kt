@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.support.annotation.StringRes
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -119,9 +120,7 @@ class DadosContratoAceiteFragment : Fragment() {
                   viewModelContratoAceite.enviaCadastroFinal()
 
             }else{
-                Alertas.alertaErro(requireContext(), getString(R.string.erroAceites), getString(R.string.tituloErro)){
-
-                }
+                validarAceites()
             }
         }
 
@@ -305,6 +304,59 @@ class DadosContratoAceiteFragment : Fragment() {
             constraintLayout.tag = "1"
             constraintLayout.setBackgroundResource(R.drawable.bordas_radius_4_solid_blue600)
         }
+    }
+    private fun validarAceites() {
+        val cadastro = FormularioCadastro.cadastro
+
+        when {
+            // Nenhum aceite foi selecionado
+            !cadastro.isPoliticaPrivacidade && !cadastro.isTermoPolitica && !cadastro.isAssinaContrato -> {
+                exibirErro(R.string.erroAceites)
+            }
+
+            // Política de privacidade e contrato aceitos, mas termo não
+            cadastro.isPoliticaPrivacidade && cadastro.isAssinaContrato && !cadastro.isTermoPolitica -> {
+                exibirErro(R.string.erroTermo)
+            }
+
+            // Termo e política de privacidade aceitos, mas contrato não
+            cadastro.isTermoPolitica && cadastro.isPoliticaPrivacidade && !cadastro.isAssinaContrato -> {
+                exibirErro(R.string.erroContrato)
+            }
+
+            // Apenas contrato aceito
+            cadastro.isAssinaContrato && !cadastro.isTermoPolitica && !cadastro.isPoliticaPrivacidade -> {
+                exibirErro(R.string.erroTermosEPolitica)
+            }
+
+            // Contrato e política aceitos, mas termo não
+            cadastro.isAssinaContrato && !cadastro.isTermoPolitica && cadastro.isPoliticaPrivacidade -> {
+                exibirErro(R.string.erroTermosEContrato)
+            }
+
+            // Contrato e termo aceitos, mas política não
+            cadastro.isAssinaContrato && cadastro.isTermoPolitica && !cadastro.isPoliticaPrivacidade -> {
+                exibirErro(R.string.erroContratoETermos)
+            }
+
+            // Termo aceito, mas política e contrato não
+            !cadastro.isAssinaContrato && cadastro.isTermoPolitica && !cadastro.isPoliticaPrivacidade -> {
+                exibirErro(R.string.erroContratoEPolitica)
+            }
+
+            // Política aceita, mas termo e contrato não
+            !cadastro.isAssinaContrato && !cadastro.isTermoPolitica && cadastro.isPoliticaPrivacidade -> {
+                exibirErro(R.string.erroTermosEContrato)
+            }
+        }
+    }
+
+    private fun exibirErro(@StringRes mensagemErro: Int) {
+        Alertas.alertaErro(
+            context = requireContext(),
+            mensagem = getString(mensagemErro),
+            titulo = getString(R.string.tituloErro)
+        ) {}
     }
 
 }

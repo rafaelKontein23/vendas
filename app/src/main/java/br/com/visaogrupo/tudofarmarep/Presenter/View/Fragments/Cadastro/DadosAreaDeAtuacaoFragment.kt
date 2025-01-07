@@ -100,9 +100,7 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
             binding.constrainCarregando.isVisible = false
             if(!isCadastro){
                 if(it){
-                    Alertas.alertaErro(requireContext(), mensagem =   getString(R.string.DadosAtuazlizadoComSucesso), titulo =  getString(R.string.loiuInforma)){
-
-                    }
+                    Alertas.alertaErro(requireContext(), mensagem =   getString(R.string.DadosAtuazlizadoComSucesso), titulo =  getString(R.string.loiuInforma)){}
                 }else{
                     Alertas.alertaErro(requireContext(), mensagem =   getString(R.string.erroAtualiza), titulo =  getString(R.string.tituloErro)){}
                 }

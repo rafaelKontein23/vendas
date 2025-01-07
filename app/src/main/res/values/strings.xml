@@ -49,7 +49,15 @@
     <string name="estados">Estados</string>
     <string name="mesorregioes">Mesorregiões</string>
 
-    <string name="erroAceites">Erro no checks dos aceites no cadastro, politica, termos e contrato</string>
+    <string name="erroAceites">Você precisa aceitar os Termos de Uso, Políticas de Privacidade e o Contrato para continuar.</string>
+    <string name="erroTermo">Para prosseguir, aceite os Termos de Uso.</string>
+    <string name="erroContrato">Por favor, aceite o Contrato para avança.</string>
+    <string name="erroTermosEPolitica">Você precisa aceitar os Termos de Uso e as Políticas de Privacidade para prosseguir.</string>
+    <string name="erroContratoEPolitica">Aceite as Políticas de Privacidade e o Contrato para continuar.</string>
+    <string name="erroContratoETermos">Você precisa aceitar as Políticas de Privacidade para prosseguir.</string>
+    <string name="erroTermosEContrato">Para avançar, aceite os Termos de Uso e o Contrato.</string>
+
+
     //palavras
     <string name="cnpj">CNPJ</string>
     <string name="celular">Celular</string>
