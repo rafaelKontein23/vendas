@@ -26,7 +26,7 @@ class URLs {
                 urlVendaRometa = "https://vendaremota.loiu.com.br/meu-hash/"
                 urlFotoPErfil = "https://www.loiu.com.br/usuarios/"
                 urlpedido = "https://vendaremota.loiu.com.br/pedido/"
-                urlpedido =  "https://stage.loiu.com.br/faq"
+                url_suporte =  "https://stage.loiu.com.br/faq"
 
             } else {
                 urlWsBase = "https://${ambiente}.visaogrupo.com.br/ws/"
