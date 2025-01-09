@@ -1,5 +1,6 @@
 package br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Cadastro
 
+import FormularioCadastro
 import android.content.Context
 import android.util.Base64
 import android.util.Log
@@ -46,6 +47,7 @@ class CadastroRepository(context: Context) {
                 put("JsonAreaAtuacao", jsonAreaAtucao)
                 put("JsonDadosBancarios",jsonDadosBancarios)
                 put("Representante_ID", reprsentanteID)
+                put("StepId", FormularioCadastro.stepid)
             }
 
 
@@ -115,6 +117,7 @@ class CadastroRepository(context: Context) {
                 put("JsonAreaAtuacao", JSONObject(jsonAreaAtucao))
                 put("JsonDadosBancarios", JSONObject(Gson().toJson(FormularioCadastro.dadosBancarios)))
                 put("Representante_ID", 0)
+                put("StepId", 6)
             }
 
 

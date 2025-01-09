@@ -53,6 +53,7 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentDadosAreaDeAtuacaoBinding.inflate(inflater, container, false)
+        FormularioCadastro.stepid = 4
         val factory = ViewModelFragmentDadosAreaDeAtuacaoFactory(requireContext())
         viewModelFragmentDadosAreaDeAtuacao = ViewModelProvider(this, factory)[ViewModelFragmentDadosAreaDeAtuacao::class.java]
         viewModelActCabecalho = ViewModelProvider(requireActivity()).get(ViewModelActCabecalho::class.java)

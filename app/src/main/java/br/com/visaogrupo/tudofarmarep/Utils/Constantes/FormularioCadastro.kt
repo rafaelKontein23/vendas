@@ -11,6 +11,7 @@ class FormularioCadastro {
         var cadastroRequestAreaAtuacal: CadastroRequestAreaAtuacal = CadastroRequestAreaAtuacal()
         var dadosBancarios: DadosBancariosRequests = DadosBancariosRequests()
         var fotoDocumeto: Uri = Uri.EMPTY
+        var stepid =0;
         var base64Galeria = ""
         var base64Assinatura = ""
         var fotoPerfil: Uri = Uri.EMPTY

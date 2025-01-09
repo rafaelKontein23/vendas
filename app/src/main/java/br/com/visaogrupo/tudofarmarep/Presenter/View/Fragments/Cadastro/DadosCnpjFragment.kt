@@ -1,5 +1,6 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Cadastro
 
+import FormularioCadastro
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -46,6 +47,7 @@ class DadosCnpjFragment : Fragment() {
     ): View? {
         _binding = FragmentDadosCnpjBinding.inflate(inflater, container, false)
         val factory = ViewModelFragmentDadosCnpjFactory(requireContext())
+        FormularioCadastro.stepid = 0
 
         viewModelActCabecalho = ViewModelProvider(requireActivity()).get(ViewModelActCabecalho::class.java)
         viewModelFragmentDadosCnpj = ViewModelProvider(this, factory)[ViewModelFragmentDadosCnpj::class.java]

@@ -75,6 +75,7 @@ class DadosPessoaisFragment : Fragment() {
         _binding = FragmentDadosPessoaisBinding.inflate(inflater, container, false)
         val factory = ViewModelFragmentDadosPessoalFactory(requireContext())
         viewModelFragmentDadosPessoal = ViewModelProvider(this, factory)[ViewModelFragmentDadosPessoais::class.java]
+        FormularioCadastro.stepid = 1
 
         viewModelActCabecalho = ViewModelProvider(requireActivity()).get(ViewModelActCabecalho::class.java)
         viewModelActCabecalho.mudaProgressoCadastro(2, 1f)

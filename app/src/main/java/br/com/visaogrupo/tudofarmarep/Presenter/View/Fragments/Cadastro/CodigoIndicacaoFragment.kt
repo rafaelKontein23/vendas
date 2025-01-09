@@ -41,6 +41,8 @@ class CodigoIndicacaoFragment : Fragment() {
         viewModelFragmentCodigoIndicacao = ViewModelProvider(this, factory)[ViewModelFragmentCodigoIndicacao::class.java]
         viewModelActCabecalho = ViewModelProvider(requireActivity()).get(ViewModelActCabecalho::class.java)
         viewModelActCabecalho.mudaProgressoCadastro(5, 1f)
+        FormularioCadastro.stepid = 5
+
 
         binding.inputCodigoIndicacao.isFocusEditTextBasico(requireContext())
         if (FormularioCadastro.cadastro.hashIndicacao.isNotEmpty()){
