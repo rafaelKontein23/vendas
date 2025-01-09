@@ -175,20 +175,26 @@ fun EditText.isFocusEditTextBasico(context: Context ) {
 fun String.isIdadeValida(): Boolean {
     val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
 
-
     val nascimento: Date
     try {
         nascimento = dateFormat.parse(this) ?: return false
     } catch (e: Exception) {
-        // Caso a conversão falhe, retorna falso
         return false
     }
 
-
     val hoje = Calendar.getInstance()
 
+    val nascimentoCal = Calendar.getInstance().apply {
+        time = nascimento
+    }
 
-    val idade = hoje.get(Calendar.YEAR) - nascimento.year - 1900
+    var idade = hoje.get(Calendar.YEAR) - nascimentoCal.get(Calendar.YEAR)
+
+    if (hoje.get(Calendar.MONTH) < nascimentoCal.get(Calendar.MONTH) ||
+        (hoje.get(Calendar.MONTH) == nascimentoCal.get(Calendar.MONTH) &&
+                hoje.get(Calendar.DAY_OF_MONTH) < nascimentoCal.get(Calendar.DAY_OF_MONTH))) {
+        idade--
+    }
 
     return idade in 18..79
 }

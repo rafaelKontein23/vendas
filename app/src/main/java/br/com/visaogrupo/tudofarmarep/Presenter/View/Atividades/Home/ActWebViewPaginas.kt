@@ -40,4 +40,11 @@ class ActWebViewPaginas : AppCompatActivity() {
             insets
         }
     }
+    override fun onBackPressed() {
+        if (webview.canGoBack()) {
+            webview.goBack()
+        } else {
+            super.onBackPressed()
+        }
+    }
 }

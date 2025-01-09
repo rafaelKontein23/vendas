@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DAOHelper(context:Context):SQLiteOpenHelper (context, "loiu.db", null, 111){
+class DAOHelper(context:Context):SQLiteOpenHelper (context, "loiu.db", null, 114){
     override fun onCreate(db: SQLiteDatabase?) {
         createbanco(db);
     }
@@ -72,11 +72,13 @@ class DAOHelper(context:Context):SQLiteOpenHelper (context, "loiu.db", null, 111
             """);
         db?.execSQL("""
             CREATE TABLE CadastroAreaAtuacal (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 UF TEXT
             );
         """)
         db?.execSQL("""
             CREATE TABLE Mesorregiao (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 mesorregiao TEXT,
                 mesorregiao_id INTEGER,
                 cadastro_area_atuacal_id INTEGER,
@@ -85,6 +87,7 @@ class DAOHelper(context:Context):SQLiteOpenHelper (context, "loiu.db", null, 111
         """)
         db?.execSQL("""
             CREATE TABLE Cidade (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 cidade TEXT,
                 mesorregiao_id INTEGER,
                 FOREIGN KEY(mesorregiao_id) REFERENCES Mesorregiao(id)

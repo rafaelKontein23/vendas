@@ -3,7 +3,7 @@ package br.com.visaogrupo.tudofarmarep.Utils.Constantes
 class ProjetoStrings {
 
     companion object{
-        val versapApp = "2.0.0"
+        val versapApp = "2.0.1"
         //chaves preferencias
         const val ambiente = "ambiente"
         const val cnpjCadastro = "cnpj"
@@ -32,7 +32,6 @@ class ProjetoStrings {
         const  val urlweb = "urlweb"
         const val urlInstagram = "https://www.instagram.com/loiurep"
         const val urlLinkDin = "https://www.linkedin.com/company/loiu/"
-
 
         //links web view
         val dashComissao = "/Dashboard/Comissao"

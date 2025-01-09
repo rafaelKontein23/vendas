@@ -71,10 +71,24 @@ class ViewModelFragmentDadosAreaDeAtuacao(
                 listaGeralMessoRegiao.clear()
                 listaGeralMessoRegiao.addAll(listaGeralMessoRegiaoList)
             }
-            _listaMesorregiao.postValue(listaRespostaMessoRegiao)
-            _listaCidades.postValue(listaRespostaCidades)
+
             val listaRespostasMessoRegiao = mapearMesorregioesParaRespostas(FormularioCadastro.cadastroRequestAreaAtuacal.Mesorregioes)
             val listaRespostasCidade = mapearCidadesParaRespostas(FormularioCadastro.cadastroRequestAreaAtuacal.Mesorregioes)
+            val listaCidadesFiltradas = ArrayList<RespostaCidades>()
+            if(listaRespostaCidades != null){
+                for (meso : RespostaMessoRegiao in listaRespostasMessoRegiao){
+                    for (cidade in listaRespostaCidades!!){
+                        if(meso.Mesorregiao_id == cidade.ID){
+                            listaCidadesFiltradas.add(cidade)
+                        }
+                    }
+                }
+            }
+
+
+
+            _listaMesorregiao.postValue(listaRespostaMessoRegiao)
+            _listaCidades.postValue(listaCidadesFiltradas)
 
             _mesorregiaoSelecionada.postValue(listaRespostasMessoRegiao)
             _cidadeSelecionada.postValue(listaRespostasCidade)

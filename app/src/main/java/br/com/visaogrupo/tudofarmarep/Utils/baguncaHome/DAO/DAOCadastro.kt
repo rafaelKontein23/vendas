@@ -161,7 +161,7 @@ class DAOCadastro {
         // Consulta para obter a UF
         val cursorArea = db.query(
             "CadastroAreaAtuacal",
-            arrayOf("UF"),
+            arrayOf("id", "UF"),
             null,
             null,
             null,
