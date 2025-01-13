@@ -53,13 +53,14 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentDadosAreaDeAtuacaoBinding.inflate(inflater, container, false)
-        FormularioCadastro.stepid = 4
+
         val factory = ViewModelFragmentDadosAreaDeAtuacaoFactory(requireContext())
         viewModelFragmentDadosAreaDeAtuacao = ViewModelProvider(this, factory)[ViewModelFragmentDadosAreaDeAtuacao::class.java]
         viewModelActCabecalho = ViewModelProvider(requireActivity()).get(ViewModelActCabecalho::class.java)
         bloqueiaCampo(true)
 
         if(isCadastro){
+            FormularioCadastro.stepid = 4
             viewModelActCabecalho.mudaProgressoCadastro(4, 1f)
             if(FormularioCadastro.cadastroRequestAreaAtuacal.UF != ""){
                 val ufSelecionada =  FormularioCadastro.cadastroRequestAreaAtuacal.UF
@@ -76,6 +77,7 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
             }
 
         }else{
+            FormularioCadastro.stepid = 99
             viewModelFragmentDadosAreaDeAtuacao.buscaDadosAreaDeAtuacaoEdicao()
             binding.btnContinuar.text = getString(R.string.AtualizarDados)
             binding.constrainCarregando.isVisible = true

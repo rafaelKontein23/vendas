@@ -53,6 +53,8 @@ class DadosBancariosFragment : Fragment() {
         viewModelDadosBancarios.recuperaCNPJ.observe(viewLifecycleOwner){
             binding.textoDados.setText(it.aplicarMascaraCnpj())
         }
+        FormularioCadastro.stepid = 99
+
 
         binding.inputAgencia.isFocusEditTextBasicoAgencia(requireContext())
         binding.inputConta.isFocusEditTextBasico(requireContext())

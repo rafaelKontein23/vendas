@@ -75,7 +75,6 @@ class DadosPessoaisFragment : Fragment() {
         _binding = FragmentDadosPessoaisBinding.inflate(inflater, container, false)
         val factory = ViewModelFragmentDadosPessoalFactory(requireContext())
         viewModelFragmentDadosPessoal = ViewModelProvider(this, factory)[ViewModelFragmentDadosPessoais::class.java]
-        FormularioCadastro.stepid = 1
 
         viewModelActCabecalho = ViewModelProvider(requireActivity()).get(ViewModelActCabecalho::class.java)
         viewModelActCabecalho.mudaProgressoCadastro(2, 1f)
@@ -118,11 +117,15 @@ class DadosPessoaisFragment : Fragment() {
         }
 
         if(!isCadastro){
+            FormularioCadastro.stepid = 99
+
             binding.constrainCarregando.isVisible = true
             viewModelFragmentDadosPessoal.buscaDadosPessoaisCadastrais()
             binding.btnContinuar.text = getString(R.string.AtualizarDados)
 
         }else{
+            FormularioCadastro.stepid = 1
+
             if(FormularioCadastro.cadastro.nome.isNotEmpty()){
                 binding.inputNome.setText(FormularioCadastro.cadastro.nome)
                 binding.inputSobrenome.setText(FormularioCadastro.cadastro.sobrenome)
