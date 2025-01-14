@@ -108,7 +108,6 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
         }
 
         binding.vendaLinear.setOnClickListener {
-            val fragmentWebView = FragmentsWebView()
             binding.tituloTopo.text= getString(R.string.vendas)
             desMarcaSelecionado(binding.textHome, binding.selecionadoHome, binding.iconeHome)
             marcaSelecionado(binding.textVendas, binding.selecionadovendas, binding.iconeVenda)
@@ -158,6 +157,16 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.containerfragments, dadosBancariosFragment)
                         .addToBackStack(null)
+                        .commit()
+                }
+                EnumMenu.VENDAS ->{
+                    binding.tituloTopo.text= getString(R.string.vendas)
+                    desMarcaSelecionado(binding.textHome, binding.selecionadoHome, binding.iconeHome)
+                    marcaSelecionado(binding.textVendas, binding.selecionadovendas, binding.iconeVenda)
+                    desMarcaSelecionado(binding.textFinanceiro, binding.selecionadoFinanceiro, binding.iconefinanceiro)
+                    desMarcaSelecionado(binding.textRemoto, binding.selecionadoRemoto, binding.iconeRemoto)
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.containerfragments, FragmentWebViewVendaRemota()).addToBackStack(null)
                         .commit()
                 }
 

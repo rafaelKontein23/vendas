@@ -181,11 +181,6 @@ class DialogMenuLateral {
         }
 
 
-
-        binding.linearVendas.setOnClickListener {
-            viewModelActHome.atualizaWebView(context.getString(R.string.vendas), ProjetoStrings.dashVendas)
-            dialogMenuLateral.dismiss()
-        }
         binding.linearRelatorios.setOnClickListener {
             Alertas.alertaErro(context, "Em breve", "Loiu informa"){
 
@@ -208,8 +203,8 @@ class DialogMenuLateral {
             )
             dialogAssinarContratoBinding.dialogContratoPolitica(context.getString(R.string.termosDeUso), "${context.getString(R.string.temoDeuso)}  ${context.getString(R.string.segundaParteTermos)}")
         }
-        binding.linearDadosBancarios.setOnClickListener {
-            viewModelActHome.atualizaFragmentHome(context.getString(R.string.dadosBancarios), EnumMenu.DADOSBANCARIOS)
+        binding.linearVendas.setOnClickListener {
+            viewModelActHome.atualizaFragmentHome(context.getString(R.string.dadosBancarios), EnumMenu.VENDAS)
             dialogMenuLateral.dismiss()
         }
         binding.linearAreaAruacao.setOnClickListener {

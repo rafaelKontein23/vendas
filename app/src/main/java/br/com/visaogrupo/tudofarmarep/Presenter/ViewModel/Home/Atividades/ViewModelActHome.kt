@@ -44,6 +44,8 @@ class ViewModelActHome (
     private val _urlNome = MutableLiveData<Pair<String, String>>()
     val urlNome: LiveData<Pair<String, String>> get() = _urlNome
 
+
+
     private val _mostraMenssagem = MutableLiveData<Pair<Boolean, String>>()
     val mostraMenssagem: LiveData<Pair<Boolean, String>> get() = _mostraMenssagem
 
