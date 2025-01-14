@@ -24,7 +24,7 @@ android {
         applicationId = "br.com.visaogrupo.tudofarmarep"
         minSdk = 26
         targetSdk = 34
-        versionCode = 61
+        versionCode = 66
         versionName = "2.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.maskededittext)
+    implementation(libs.dexter)
 
     //jetPack
     implementation(libs.lifecycle.livedata.ktx)

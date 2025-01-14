@@ -169,6 +169,8 @@ class DialogsMainAtividade (private val activity: AppCompatActivity,
                }
           }
           binding.btnAcessarOutraConta.setOnClickListener {
+               var intent = Intent(context, ActCelular::class.java)
+               context.startActivity(intent)
                dialogBiometria.dismiss()
           }
           binding.fecharModal.setOnClickListener {

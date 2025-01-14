@@ -78,7 +78,7 @@ class DadosPessoaisFragment : Fragment() {
 
         viewModelActCabecalho = ViewModelProvider(requireActivity()).get(ViewModelActCabecalho::class.java)
         viewModelActCabecalho.mudaProgressoCadastro(2, 1f)
-
+        FormularioCadastro.stepid = 1
         FormataTextos.colocaMascaraInput(binding.inputCpf, ProjetoStrings.mascaraCPF)
         FormataTextos.colocaMascaraInput(binding.inputTelefoneComercial, ProjetoStrings.mascaraCelular)
         FormataTextos.colocaMascaraInput(binding.inputCelular, ProjetoStrings.mascaraCelular)
@@ -124,7 +124,7 @@ class DadosPessoaisFragment : Fragment() {
             binding.btnContinuar.text = getString(R.string.AtualizarDados)
 
         }else{
-            FormularioCadastro.stepid = 1
+
 
             if(FormularioCadastro.cadastro.nome.isNotEmpty()){
                 binding.inputNome.setText(FormularioCadastro.cadastro.nome)

@@ -21,6 +21,7 @@ poi = "5.2.3"
 groupie = "2.10.0"
 photoview = "2.3.0"
 blurry = "4.0.1"
+dexter = "6.2.3"
 
 playServicesLocation = "21.3.0"
 
@@ -60,7 +61,7 @@ play-services-location = { group = "com.google.android.gms", name = "play-servic
 picasso = { module = "com.squareup.picasso:picasso", version = "2.71828" }
 photoview = { module = "com.github.chrisbanes:PhotoView", version.ref = "photoview" }
 blurry = { module = "jp.wasabeef:blurry", version.ref = "blurry" }
-
+dexter = { module = "com.karumi:dexter", version.ref = "dexter" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

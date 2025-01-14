@@ -744,17 +744,7 @@
                         app:layout_constraintTop_toTopOf="@+id/iconeHome" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tituloTreinanemnetos"
-                    style="@style/texto_gray600_12sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="24dp"
-                    android:text="Privacidade"
-                    android:textFontWeight="500">
 
-                </TextView>
 
                 <LinearLayout
                     android:id="@+id/linearTreinamentos"

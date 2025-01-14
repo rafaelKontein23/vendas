@@ -26,6 +26,7 @@ class LoginUseCase (
 
         val respostaLogin  =  loginRepository.logaUsuario(loginRequest)
 
+
         if(respostaLogin != null){
             preferenciasUtils.salvarBool(respostaLogin.Teste, ProjetoStrings.isUsuarioTeste)
             if (respostaLogin.Representante_ID != 0){
@@ -36,9 +37,9 @@ class LoginUseCase (
                         FormularioCadastro.fotoPerfilUrl =respostaLogin.FotoPerfil ?: ""
                     }
                 }
-                FormularioCadastro.hash = respostaLogin.Hash ?: ""
-                preferenciasUtils.salvarTexto(ProjetoStrings.cnpjLogin, respostaLogin.CNPJ)
-                preferenciasUtils.salvarTexto(ProjetoStrings.celular, respostaLogin.Celular)
+                preferenciasUtils.salvarTexto(respostaLogin.Hash ?: "",ProjetoStrings.hashLogin)
+                preferenciasUtils.salvarTexto(respostaLogin.CNPJ, ProjetoStrings.cnpjLogin)
+                preferenciasUtils.salvarTexto(respostaLogin.Celular,ProjetoStrings.celular)
             }
         }
 

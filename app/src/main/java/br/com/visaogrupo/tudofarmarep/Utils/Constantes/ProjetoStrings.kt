@@ -10,6 +10,7 @@ class ProjetoStrings {
         const val isUsuarioTeste = "UsuarioTeste"
         const val cnpjLogin = "cnpjLogin"
         const val celular = "celular"
+        const val hashLogin = "hashLogin"
         const val nomeCompleto = "nomeCompleto"
         const val casdastro = "cadastroRealizado"
         const val reprenteID = "reprsentante_id"
@@ -36,7 +37,7 @@ class ProjetoStrings {
         //links web view
         val dashComissao = "/Dashboard/Comissao"
         val dashVendas = "/Dashboard/Vendas"
-        val dashMinhasAcoes = "/Dashboard/MinhasAcoes"
+        val dashMinhasAcoes = "/pontos-de-venda/proximos"
         val equipeGerenciar = "/Equipe/Gerenciar"
         val dashExtrato = "/Dashboard/Extrato"
         val dashFinanceiro = "/Dashboard/Financeiro"

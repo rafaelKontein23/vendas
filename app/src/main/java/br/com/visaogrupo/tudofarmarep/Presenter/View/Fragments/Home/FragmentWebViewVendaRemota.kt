@@ -11,7 +11,9 @@ import android.webkit.WebViewClient
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
+import br.com.visaogrupo.tudofarmarep.Utils.PreferenciasUtils
 
 
 class FragmentWebViewVendaRemota : Fragment() {
@@ -41,7 +43,9 @@ class FragmentWebViewVendaRemota : Fragment() {
 
             }
         }
-        val urlweb = "${URLs.urlpedido}${FormularioCadastro.hash}"
+        val preferenciasUtils = PreferenciasUtils(requireContext())
+        val hash = preferenciasUtils.recuperarTexto(ProjetoStrings.hashLogin)
+        val urlweb = "${URLs.urlpedido}${hash}"
 
         webview.settings.javaScriptEnabled = true
         webview.loadUrl(urlweb)

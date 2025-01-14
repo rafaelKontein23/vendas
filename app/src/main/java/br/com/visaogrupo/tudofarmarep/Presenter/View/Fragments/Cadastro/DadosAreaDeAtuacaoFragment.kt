@@ -53,6 +53,7 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentDadosAreaDeAtuacaoBinding.inflate(inflater, container, false)
+        FormularioCadastro.stepid = 4
 
         val factory = ViewModelFragmentDadosAreaDeAtuacaoFactory(requireContext())
         viewModelFragmentDadosAreaDeAtuacao = ViewModelProvider(this, factory)[ViewModelFragmentDadosAreaDeAtuacao::class.java]
@@ -60,7 +61,6 @@ class DadosAreaDeAtuacaoFragment : Fragment() {
         bloqueiaCampo(true)
 
         if(isCadastro){
-            FormularioCadastro.stepid = 4
             viewModelActCabecalho.mudaProgressoCadastro(4, 1f)
             if(FormularioCadastro.cadastroRequestAreaAtuacal.UF != ""){
                 val ufSelecionada =  FormularioCadastro.cadastroRequestAreaAtuacal.UF
