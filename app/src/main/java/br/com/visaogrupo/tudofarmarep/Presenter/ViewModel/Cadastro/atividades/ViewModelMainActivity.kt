@@ -8,8 +8,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.viewModelScope
 import br.com.visaogrupo.tudofarmarep.Domain.UseCase.Cadastro.LoginUseCase
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.ActCelular
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.MainActivity
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.ISuporteTelefone
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaLogin
@@ -71,6 +73,23 @@ class ViewModelMainActivity(
         }
 
         _fezCadastro.value = Pair(cadastro, inicial)
+    }
+    fun verificaCadastroCelular( cnpj: String, celular:String){
+        val cnpjFormat = FormataTextos.removeMascaraCNPJ(cnpj)
+        val celularFormat = FormataTextos.removeMascaraCelular(celular)
+        var cadastro = salvaTextos.recuperarBool(ProjetoStrings.casdastro)
+        val cnpjSalvo = salvaTextos.recuperarTexto(ProjetoStrings.cnpjLogin)
+        val celularSalvo = salvaTextos.recuperarTexto(ProjetoStrings.celular)
+        if(celularSalvo != celularFormat){
+            cadastro = false
+            salvaTextos.salvarBool(cadastro, ProjetoStrings.casdastro)
+        }
+        if(cnpjSalvo != cnpjFormat){
+            cadastro = false
+            salvaTextos.salvarBool(cadastro, ProjetoStrings.casdastro)
+        }
+
+        _fezCadastro.value = Pair(cadastro, false)
     }
 
     fun abrirModalContator(){
@@ -208,7 +227,7 @@ class ViewModelMainActivity(
 
     }
 
-    fun showBiometricPrompt(context: MainActivity) {
+    fun showBiometricPrompt(context: FragmentActivity) {
         val executor = ContextCompat.getMainExecutor(context)
 
         val biometricPrompt = BiometricPrompt(context, executor,
@@ -240,7 +259,7 @@ class ViewModelMainActivity(
         biometricPrompt.authenticate(promptInfo)
     }
 
-    fun checkBiometricSupport(context: MainActivity): Boolean {
+    fun checkBiometricSupport(context: Activity): Boolean {
         val biometricManager = BiometricManager.from(context)
         return when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)) {
             BiometricManager.BIOMETRIC_SUCCESS -> true

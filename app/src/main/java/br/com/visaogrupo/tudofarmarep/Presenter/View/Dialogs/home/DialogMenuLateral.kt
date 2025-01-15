@@ -146,6 +146,10 @@ class DialogMenuLateral {
             (context as Activity).startActivityForResult(intent, 1)
             dialogMenuLateral.dismiss()
         }
+        binding.linearDadosBancarios.setOnClickListener {
+            viewModelActHome.atualizaFragmentHome(context.getString(R.string.dadosBancarios), EnumMenu.DADOSBANCARIOS)
+            dialogMenuLateral.dismiss()
+        }
         binding.linearCargas.setOnClickListener {
             val status = viewModelActHome.recuperaStatusCarga()
             if (status){

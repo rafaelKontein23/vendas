@@ -1,6 +1,8 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro
 
+import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -14,6 +16,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.ActCelular
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.ActToken
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.MainActivity
@@ -142,7 +145,7 @@ class DialogsMainAtividade (private val activity: AppCompatActivity,
      }
 
 
-     fun dialogBiometria(viewModel: ViewModelMainActivity, context: MainActivity){
+     fun dialogBiometria(viewModel: ViewModelMainActivity, context: FragmentActivity){
           val dialogBiometria = Dialog(activity)
           val binding = DialogBiometriaBinding.inflate(LayoutInflater.from(activity))
           dialogBiometria.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -169,8 +172,6 @@ class DialogsMainAtividade (private val activity: AppCompatActivity,
                }
           }
           binding.btnAcessarOutraConta.setOnClickListener {
-               var intent = Intent(context, ActCelular::class.java)
-               context.startActivity(intent)
                dialogBiometria.dismiss()
           }
           binding.fecharModal.setOnClickListener {

@@ -1,5 +1,6 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -28,6 +29,7 @@ class FragmentsWebView : Fragment() {
     private  lateinit var webview : WebView
     private lateinit var  constrainCarregadno : ConstraintLayout
     private var fusedLocationProviderClient: FusedLocationProviderClient? = null
+    private var filePathCallbackTeste: ValueCallback<Array<Uri>>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +51,7 @@ class FragmentsWebView : Fragment() {
         cel = cel.replace("(", "").replace(")", "").replace(" ", "")
         val urlmob = URLs.URL_Webviewmob
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext());
-
+        WebView.setWebContentsDebuggingEnabled(true)
         val bundle = arguments?.getString(ProjetoStrings.urlweb)
         val urlweb = "$urlmob$cnpj&celular=$cel&origemMobile=true&ReturnUrl=$bundle"
 
@@ -79,6 +81,7 @@ class FragmentsWebView : Fragment() {
                 filePathCallback: ValueCallback<Array<Uri>>?,
                 fileChooserParams: FileChooserParams?
             ): Boolean {
+                filePathCallbackTeste = filePathCallback
                 val intent = Intent(Intent.ACTION_PICK)
                 intent.type = "image/*"
                 startActivityForResult(intent, 1)
@@ -93,7 +96,6 @@ class FragmentsWebView : Fragment() {
                 callback.invoke(origin, true, false)
             }
 
-            // Método para permissões de mídia (como câmera e microfone)
             override fun onPermissionRequest(request: PermissionRequest?) {
                 if (request != null) {
                     val requestedResources = request.resources
@@ -115,6 +117,17 @@ class FragmentsWebView : Fragment() {
     }
 
 
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
+            val uri = data.data
+            uri?.let {
+                filePathCallbackTeste?.onReceiveValue(arrayOf(it))
+            }
+        } else {
+            filePathCallbackTeste?.onReceiveValue(null)
+        }
+        filePathCallbackTeste = null
+    }
 
 }

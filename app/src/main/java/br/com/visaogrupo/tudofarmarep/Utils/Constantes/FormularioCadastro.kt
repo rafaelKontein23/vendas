@@ -18,6 +18,7 @@ class FormularioCadastro {
         var fotoPerfilUrl = ""
         var savedBitmap: Bitmap? = null
         var hash = ""
+        var cnpjCampo = ""
 
         private var _featureFlagMeuTime: Boolean = false
         private var _featureFlagMerchan: Boolean = false

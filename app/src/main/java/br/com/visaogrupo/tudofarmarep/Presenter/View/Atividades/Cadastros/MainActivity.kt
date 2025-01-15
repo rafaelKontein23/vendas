@@ -1,5 +1,6 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros
 
+import FormularioCadastro
 import android.Manifest
 import android.content.Context
 import android.content.Intent
@@ -67,23 +68,7 @@ class MainActivity : AppCompatActivity() {
         viewModelMainActivity = ViewModelProvider(this, factory)[ViewModelMainActivity::class.java]
         viewModelMainActivity.recuperaAmbiente()
 
-        viewModelMainActivity.fezCadastro.observe(this){
-            if(it.first){
-                val dialogsMainAtividade = DialogsMainAtividade(this,viewModelMainActivity)
-                dialogsMainAtividade.dialogBiometria(viewModelMainActivity, this)
-            }else{
-                if (!it.second){
-                    val cnpjCap = binding.inputCnpj.text.toString()
-                    if(ValidarTextos.isCNPJ(cnpjCap)) {
-                        viewModelMainActivity.salvaCnpj(cnpjCap)
-                        FormularioCadastro.limpaCadastro()
-                        val intent = Intent(this, ActCelular::class.java)
-                        startActivity(intent)
-                    }
-                }
 
-            }
-        }
 
         binding.inputCnpj.setText( viewModelMainActivity.recuperaCnpj())
         viewModelMainActivity.verificaCadastro(binding.inputCnpj.text.toString(), true)
@@ -93,9 +78,11 @@ class MainActivity : AppCompatActivity() {
         binding.inputCnpj  .setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val cnpjCap = binding.inputCnpj.text.toString()
+                val cnpjFormat = FormataTextos.removeMascaraCNPJ(cnpjCap)
                 if(ValidarTextos.isCNPJ(cnpjCap)) {
                     viewModelMainActivity.salvaCnpj(cnpjCap)
                     FormularioCadastro.limpaCadastro()
+                    FormularioCadastro.cnpjCampo = cnpjFormat
                     val intent = Intent(this, ActCelular::class.java)
                     startActivity(intent)
                 }
@@ -134,7 +121,12 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-
+        viewModelMainActivity.fezCadastro.observe(this){
+            if(it.first){
+                val dialogsMainAtividade = DialogsMainAtividade(this,viewModelMainActivity)
+                dialogsMainAtividade.dialogBiometria(viewModelMainActivity, this)
+            }
+        }
         binding.inputCnpj.isFocus(this)
 
         binding.inputCnpj.addTextChangedListener(object :TextWatcher{
@@ -160,9 +152,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnContinuar.setOnClickListener {
-           val cnpjCap = binding.inputCnpj.text.toString()
-            viewModelMainActivity.verificaCadastro(cnpjCap)
-
+            val cnpjCap = binding.inputCnpj.text.toString()
+            val cnpjFormat = FormataTextos.removeMascaraCNPJ(cnpjCap)
+            if(ValidarTextos.isCNPJ(cnpjCap)) {
+                FormularioCadastro.limpaCadastro()
+                FormularioCadastro.cnpjCampo = cnpjFormat
+                val intent = Intent(this, ActCelular::class.java)
+                startActivity(intent)
+            }
         }
 
         viewModelMainActivity.numeroTelefoneSuporte.observe(this) { numeroTelefoneSuporte ->
