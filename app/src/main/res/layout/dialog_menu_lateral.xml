@@ -745,7 +745,17 @@
                 </LinearLayout>
 
 
+                <TextView
+                    android:id="@+id/tituloTreinanemnetos"
+                    style="@style/texto_gray600_12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="Treinamentos"
+                    android:textFontWeight="500">
 
+                </TextView>
                 <LinearLayout
                     android:id="@+id/linearTreinamentos"
                     android:layout_width="match_parent"

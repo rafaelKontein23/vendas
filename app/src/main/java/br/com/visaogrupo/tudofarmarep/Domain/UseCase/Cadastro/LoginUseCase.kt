@@ -40,6 +40,7 @@ class LoginUseCase (
                 preferenciasUtils.salvarTexto(respostaLogin.Hash ?: "",ProjetoStrings.hashLogin)
                 preferenciasUtils.salvarTexto(respostaLogin.CNPJ, ProjetoStrings.cnpjLogin)
                 preferenciasUtils.salvarTexto(respostaLogin.Celular,ProjetoStrings.celular)
+                preferenciasUtils.salvarTexto(respostaLogin.Nome, ProjetoStrings.nomeCompleto)
                 preferenciasUtils.salvarBool(true, ProjetoStrings.casdastro)
 
             }

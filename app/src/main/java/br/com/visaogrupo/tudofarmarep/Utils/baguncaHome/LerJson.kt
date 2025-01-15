@@ -23,24 +23,29 @@ class LerJson {
 
     fun readAllJsonFilesFromZip(zipFilePath: String): MutableList<JSONObject> {
         try {
-            val zipFile = ZipFile(zipFilePath)
-            val jsonContents = mutableListOf<JSONObject>()
+            if (!zipFilePath.isEmpty()){
+                val zipFile = ZipFile(zipFilePath)
+                val jsonContents = mutableListOf<JSONObject>()
 
-            zipFile.use { zip ->
-                val entries = zip.entries()
-                while (entries.hasMoreElements()) {
-                    val entry = entries.nextElement()
-                    if (!entry.isDirectory && entry.name.endsWith(".json")) {
-                        val inputStream = zip.getInputStream(entry)
-                        val content = inputStream.bufferedReader().use { it.readText() }
-                        inputStream.close()
-                        val jSONObject = JSONObject(content)
-                        jsonContents.add(jSONObject)
+                zipFile.use { zip ->
+                    val entries = zip.entries()
+                    while (entries.hasMoreElements()) {
+                        val entry = entries.nextElement()
+                        if (!entry.isDirectory && entry.name.endsWith(".json")) {
+                            val inputStream = zip.getInputStream(entry)
+                            val content = inputStream.bufferedReader().use { it.readText() }
+                            inputStream.close()
+                            val jSONObject = JSONObject(content)
+                            jsonContents.add(jSONObject)
+                        }
                     }
                 }
+
+                return jsonContents
+            }else{
+                return mutableListOf()
             }
 
-            return jsonContents
         }catch (e:Exception){
             e.printStackTrace()
             return mutableListOf()

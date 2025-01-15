@@ -39,6 +39,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Atividades.ViewMo
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.URLs
+import br.com.visaogrupo.tudofarmarep.Utils.DataUltis
 import br.com.visaogrupo.tudofarmarep.Utils.Enuns.EnumMenu
 import br.com.visaogrupo.tudofarmarep.Utils.IntentUtils
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
@@ -125,9 +126,16 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
             desMarcaSelecionado(binding.textVendas, binding.selecionadovendas, binding.iconeVenda)
             marcaSelecionado(binding.textFinanceiro, binding.selecionadoFinanceiro, binding.iconefinanceiro)
             desMarcaSelecionado(binding.textRemoto, binding.selecionadoRemoto, binding.iconeRemoto)
-            Alertas.alertaErro(this, "Em breve", getString(R.string.loiuInforma)){
-
-            }
+            binding.tituloTopo.text = this.getString(R.string.relatorios)
+            val fragmentWebView = FragmentsWebView()
+            val bundle = Bundle()
+            val data = DataUltis.obtemDataAtual()
+            bundle.putString(ProjetoStrings.urlweb, "${ProjetoStrings.relotorio}/${data}")
+            fragmentWebView.arguments = bundle
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.containerfragments, fragmentWebView)
+                .addToBackStack(null)
+                .commit()
         }
 
         viewModelActHome.informacaoCnpjNome.observe(this){

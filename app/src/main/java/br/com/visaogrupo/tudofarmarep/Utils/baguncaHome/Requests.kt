@@ -176,53 +176,56 @@ class Requests {
                 }
                 val tarefaGravaProgresiva = launch {
                     val lerJson = LerJson()
-                    val progressivasJson = lerJson.readAllJsonFilesFromZip(pathProgressiva)
-                    if (progressivasJson.isEmpty()){
-                        error = true
-                        atualizaCargaProgresso.atualizaCargaProgresso(3)
-                        return@launch
-                    }
-                    Log.d("listafIM", listaMarcas.toString())
+                    if (!pathProgressiva.isEmpty()){
+                        val progressivasJson = lerJson.readAllJsonFilesFromZip(pathProgressiva)
+                        if (progressivasJson.isEmpty()){
+                            error = true
+                            atualizaCargaProgresso.atualizaCargaProgresso(3)
+                            return@launch
+                        }
+                        Log.d("listafIM", listaMarcas.toString())
 
-                    for ( itens in progressivasJson){
-                        var jsonArraysProgressiva = JSONArray(itens.getString("Progressiva"))
-                        for (i in 0 until jsonArraysProgressiva.length()) {
-                            var jsonItesnProgressiva = jsonArraysProgressiva.getJSONObject(i)
-                            var OoeradorLogisticoGrupoID = jsonItesnProgressiva.getInt("OperadorLogistico_Grupo_ID")
-                            var Imagem = jsonItesnProgressiva.getString("Imagem")
-                            var Nome = jsonItesnProgressiva.getString("Nome")
-                            var jsonArrayProgressiva  = JSONArray(jsonItesnProgressiva.getString("Progressiva"))
-                            for (j in 0 until jsonArrayProgressiva.length()){
-                                var jsonItemProgressiva = jsonArrayProgressiva.getJSONObject(j)
-                                val progressiva = Progressiva(
-                                    lojaID = jsonItemProgressiva.getInt("Loja_ID"),
-                                    barra = jsonItemProgressiva.getString("Barra"),
-                                    quantidadePedido = jsonItemProgressiva.getInt("QuantidadePedido"),
-                                    valorUnitario = jsonItemProgressiva.getDouble("ValorUnitario"),
-                                    desconto = jsonItemProgressiva.getDouble("Desconto"),
-                                    valorUnitarioDesconto = jsonItemProgressiva.getDouble("ValorUnitarioDesconto"),
-                                    valorTotalDesconto = jsonItemProgressiva.getDouble("ValorTotalDesconto"),
-                                    marcaID = jsonItemProgressiva.getInt("Marca_id"),
-                                    lojaIDPortal = jsonItemProgressiva.getInt("Loja_id_Portal"),
-                                    quantidadeMaxima = jsonItemProgressiva.getInt("QuantidadeMaxima"),
-                                    uf = jsonItemProgressiva.getString("UF"),
-                                    origem = jsonItemProgressiva.getString("Origem"),
-                                    arquivoPreco = jsonItemProgressiva.getString("ArquivoPreco"),
-                                    imagem = Imagem,
-                                    nome = Nome,
-                                    operadorLogisticoGrupoID = OoeradorLogisticoGrupoID,
-                                    comissao = jsonItemProgressiva.getDouble("Comissao"),
-                                    comissaoTotal = 0.0,
-                                    stUnitario =  if(jsonItemProgressiva.has("STUnitario") ) jsonItemProgressiva.getDouble("STUnitario") else 0.0 )
-                                if (progressiva.barra == "6910021007206"){
-                                    Log.d("daad", "faasf")
+                        for ( itens in progressivasJson){
+                            var jsonArraysProgressiva = JSONArray(itens.getString("Progressiva"))
+                            for (i in 0 until jsonArraysProgressiva.length()) {
+                                var jsonItesnProgressiva = jsonArraysProgressiva.getJSONObject(i)
+                                var OoeradorLogisticoGrupoID = jsonItesnProgressiva.getInt("OperadorLogistico_Grupo_ID")
+                                var Imagem = jsonItesnProgressiva.getString("Imagem")
+                                var Nome = jsonItesnProgressiva.getString("Nome")
+                                var jsonArrayProgressiva  = JSONArray(jsonItesnProgressiva.getString("Progressiva"))
+                                for (j in 0 until jsonArrayProgressiva.length()){
+                                    var jsonItemProgressiva = jsonArrayProgressiva.getJSONObject(j)
+                                    val progressiva = Progressiva(
+                                        lojaID = jsonItemProgressiva.getInt("Loja_ID"),
+                                        barra = jsonItemProgressiva.getString("Barra"),
+                                        quantidadePedido = jsonItemProgressiva.getInt("QuantidadePedido"),
+                                        valorUnitario = jsonItemProgressiva.getDouble("ValorUnitario"),
+                                        desconto = jsonItemProgressiva.getDouble("Desconto"),
+                                        valorUnitarioDesconto = jsonItemProgressiva.getDouble("ValorUnitarioDesconto"),
+                                        valorTotalDesconto = jsonItemProgressiva.getDouble("ValorTotalDesconto"),
+                                        marcaID = jsonItemProgressiva.getInt("Marca_id"),
+                                        lojaIDPortal = jsonItemProgressiva.getInt("Loja_id_Portal"),
+                                        quantidadeMaxima = jsonItemProgressiva.getInt("QuantidadeMaxima"),
+                                        uf = jsonItemProgressiva.getString("UF"),
+                                        origem = jsonItemProgressiva.getString("Origem"),
+                                        arquivoPreco = jsonItemProgressiva.getString("ArquivoPreco"),
+                                        imagem = Imagem,
+                                        nome = Nome,
+                                        operadorLogisticoGrupoID = OoeradorLogisticoGrupoID,
+                                        comissao = jsonItemProgressiva.getDouble("Comissao"),
+                                        comissaoTotal = 0.0,
+                                        stUnitario =  if(jsonItemProgressiva.has("STUnitario") ) jsonItemProgressiva.getDouble("STUnitario") else 0.0 )
+                                    if (progressiva.barra == "6910021007206"){
+                                        Log.d("daad", "faasf")
+                                    }
+                                    val daoProgressiva = DAOProgressiva()
+                                    daoProgressiva.inserir(daoHelper,progressiva)
+
                                 }
-                                val daoProgressiva = DAOProgressiva()
-                                daoProgressiva.inserir(daoHelper,progressiva)
-
                             }
                         }
                     }
+
 
                 }
                 tarefaGravaBanco.join()
@@ -247,6 +250,7 @@ class Requests {
 
             }catch (e:Exception){
                 e.printStackTrace()
+
                 atualizaCargaProgresso.atualizaCargaProgresso(3)
             }
 

@@ -20,6 +20,9 @@
     <string name="DadosBancários">Dados Bancários</string>
     <string name="Home">Home</string>
     <string name="financeiro">Financeiro</string>
+    <string name="notificacoes">Notificações</string>
+
+    <string name="naoLidas"></string>
 
     // Erros
     <string name="tituloErro">Ops!</string>

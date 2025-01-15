@@ -19,6 +19,13 @@
         <item name="android:fontFamily">@font/manrope_semibold</item>
         <item name="android:textStyle">normal</item>
     </style>
+    <style name="texto_branco_size_12dp">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="fontFamily">@font/manrope</item>
+        <item name="android:textColor">@color/white</item>
+
+    </style>
     <style name="textoDescricao12">
         <item name="android:textSize">12sp</item>
         <item name="android:letterSpacing">0.02</item>

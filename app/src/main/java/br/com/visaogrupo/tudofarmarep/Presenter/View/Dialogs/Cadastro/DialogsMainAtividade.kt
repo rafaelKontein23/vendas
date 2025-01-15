@@ -182,7 +182,7 @@ class DialogsMainAtividade (private val activity: AppCompatActivity,
           }
           viewModel.nomeusaurio.observe(context){
                if(it.isNotEmpty()){
-                    binding.nomeUsuario.text = it
+                    binding.nomeUsuario.text = "Olá, " + it
                     binding.textoIniciais.text =  it.iniciaisNome()
                }
           }

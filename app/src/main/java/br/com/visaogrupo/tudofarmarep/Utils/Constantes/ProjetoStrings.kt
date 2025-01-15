@@ -44,6 +44,7 @@ class ProjetoStrings {
         val roteiro = "/Agenda/Cadastra/Roteiro"
         var calendario = "/agenda/calendario"
         var visitas = "/agenda/visitas"
+        var relotorio = "/dashboard/relatorio"
 
     }
 }
