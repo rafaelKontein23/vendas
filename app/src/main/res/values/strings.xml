@@ -22,7 +22,9 @@
     <string name="financeiro">Financeiro</string>
     <string name="notificacoes">Notificações</string>
 
-    <string name="naoLidas"></string>
+    <string name="naoLidas">Não lidas</string>
+    <string name="lidas">Lidas</string>
+    <string name="marcaTodasComoLidas">marcar todas como lidas</string>
 
     // Erros
     <string name="tituloErro">Ops!</string>

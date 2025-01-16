@@ -16,7 +16,7 @@ class CadastroUseCase(
       val sistemaUtils: SistemaUtils,
       val dadosPessoaisRepository: DadosPessoaisRepository? = null
 ) {
-     fun enviaCadastro( islimpaCadastroUseCase : Boolean = false): Boolean{
+     fun enviaCadastro( islimpaCadastroUseCase : Boolean = false,  atualizaAreaDeAtuacao: Boolean = false): Boolean{
          val representanteId = preferenciasUtils.recuperarInteiro(ProjetoStrings.reprenteID, 0)
          if (representanteId >0 ){
              val cnpj = preferenciasUtils.recuperarTexto(ProjetoStrings.cnpjLogin, "") ?: ""
@@ -28,7 +28,7 @@ class CadastroUseCase(
              FormularioCadastro.cadastro.celular = celular
 
          }
-         val editaCadastro =  cadastroRepository.enviaCadastro(representanteId,islimpaCadastroUseCase)
+         val editaCadastro =  cadastroRepository.enviaCadastro(representanteId,islimpaCadastroUseCase, atualizaAreaDeAtuacao)
          return editaCadastro
     }
      fun enviaCadastroFinal():Boolean{

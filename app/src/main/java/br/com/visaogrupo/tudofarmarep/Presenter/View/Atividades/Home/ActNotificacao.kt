@@ -5,13 +5,19 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import br.com.visaogrupo.tudofarmarep.Adapter.AdapterFragmentItens
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.databinding.ActivityActNotificacaoBinding
 
 class ActNotificacao : AppCompatActivity() {
+    val binding:ActivityActNotificacaoBinding by lazy {
+        ActivityActNotificacaoBinding.inflate(layoutInflater)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_act_notificacao)
+        setContentView(binding.root)
+        val adapterGraficos = AdapterFragmentItens(supportFragmentManager, this.lifecycle)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)

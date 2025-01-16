@@ -283,7 +283,7 @@ class ViewModelFragmentDadosAreaDeAtuacao(
             )
             FormularioCadastro.cadastroRequestAreaAtuacal = areaDeAtuacao
 
-            val edtitaDados = cadastroUseCase.enviaCadastro(islimpaCadastroUseCase)
+            val edtitaDados = cadastroUseCase.enviaCadastro(islimpaCadastroUseCase, islimpaCadastroUseCase)
             _editaDados.postValue(edtitaDados)
         }
     }

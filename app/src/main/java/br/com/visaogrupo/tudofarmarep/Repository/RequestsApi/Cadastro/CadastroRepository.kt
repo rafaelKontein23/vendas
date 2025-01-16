@@ -26,7 +26,7 @@ class CadastroRepository(context: Context) {
 
     val retrofit = RetrofitWs(context).createService(SincronoCadastro::class.java)
 
-    fun enviaCadastro(reprsentanteID:Int = 0, islimpaCadastroUseCase : Boolean = false): Boolean{
+    fun enviaCadastro(reprsentanteID:Int = 0, islimpaCadastroUseCase : Boolean = false, atualizaAreaDeAtuacao: Boolean = false): Boolean{
         try {
             var jsonAreaAtucao =""
             var jsonCadastro =""
@@ -39,6 +39,9 @@ class CadastroRepository(context: Context) {
             }
             if (FormularioCadastro.dadosBancarios.CNPJ != ""){
                 jsonDadosBancarios = Gson().toJson(FormularioCadastro.dadosBancarios).toString()
+            }
+            if (atualizaAreaDeAtuacao){
+                jsonCadastro = ""
             }
 
 
