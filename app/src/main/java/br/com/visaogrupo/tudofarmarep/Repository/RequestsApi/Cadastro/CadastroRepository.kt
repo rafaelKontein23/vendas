@@ -28,6 +28,7 @@ class CadastroRepository(context: Context) {
 
     fun enviaCadastro(reprsentanteID:Int = 0, islimpaCadastroUseCase : Boolean = false, atualizaAreaDeAtuacao: Boolean = false): Boolean{
         try {
+            var dadosBancarios = false
             var jsonAreaAtucao =""
             var jsonCadastro =""
             var jsonDadosBancarios =""
@@ -38,9 +39,10 @@ class CadastroRepository(context: Context) {
                 jsonAreaAtucao = Gson().toJson(FormularioCadastro.cadastroRequestAreaAtuacal).toString()
             }
             if (FormularioCadastro.dadosBancarios.CNPJ != ""){
+                dadosBancarios = true
                 jsonDadosBancarios = Gson().toJson(FormularioCadastro.dadosBancarios).toString()
             }
-            if (atualizaAreaDeAtuacao){
+            if (atualizaAreaDeAtuacao || dadosBancarios){
                 jsonCadastro = ""
             }
 

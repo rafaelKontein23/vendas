@@ -25,4 +25,7 @@ interface SincronoHome {
 
     @POST("foto/perfil")
     fun enviaFotoPerfil(@Body request: RequestBody) : Call<ResponseBody>
+
+    @POST("notificao")
+    fun P_ListaNotificacoes(@Body request: RequestBody) : Call<ResponseBody>
 }

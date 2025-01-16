@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Presenter.View.Fragments.Home.FragNotificacao">
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:id="@+id/semNotificacao"
+           android:layout_width="match_parent"
+           android:visibility="gone"
+           android:layout_height="272dp"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent">
+
+           <ImageView
+               android:id="@+id/imageView9"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/caixa_aberta"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent">
+
+           </ImageView>
+
+           <TextView
+               android:id="@+id/textView30"
+               style="@style/texto_gray600_12sp"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="16dp"
+               android:gravity="center"
+               android:textFontWeight="600"
+               android:text="Sem Notificações"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/recyNotificacao"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent" />
+
+       <ProgressBar
+           android:id="@+id/ProgresBuscaNotificacao"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:visibility="gone"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent">
+
+       </ProgressBar>
+   </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

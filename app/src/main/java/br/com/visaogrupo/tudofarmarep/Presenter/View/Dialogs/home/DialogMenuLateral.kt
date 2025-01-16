@@ -24,6 +24,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogCont
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Atividades.ViewModelActHome
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Constantes.ProjetoStrings
+import br.com.visaogrupo.tudofarmarep.Utils.DataUltis
 import br.com.visaogrupo.tudofarmarep.Utils.Enuns.EnumMenu
 import br.com.visaogrupo.tudofarmarep.Utils.IntentUtils
 import br.com.visaogrupo.tudofarmarep.Utils.Views.Alertas
@@ -99,7 +100,9 @@ class DialogMenuLateral {
         }
 
         binding.linearGestaoComiisao.setOnClickListener {
-            viewModelActHome.atualizaWebView(context.getString(R.string.GestaoDeComisso), ProjetoStrings.dashComissao)
+            val data = DataUltis.obtemDataAtual()
+
+            viewModelActHome.atualizaWebView(context.getString(R.string.GestaoDeComisso), "${ProjetoStrings.relotorio}/${data}")
             dialogMenuLateral.dismiss()
         }
         binding.linearExtratoComissao.setOnClickListener {

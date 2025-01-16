@@ -84,6 +84,10 @@ class ActHome : AppCompatActivity(), AtualizaCargaProgresso, AtualizaProgress {
         binding.homeLinear.setOnClickListener {
             inciaHome()
         }
+        binding.notificao.setOnClickListener {
+            val intent = Intent(this, ActNotificacao::class.java)
+            startActivity(intent)
+        }
 
         binding.pdv.setOnClickListener {
             val dialogcnpj = DialogCnpjs()

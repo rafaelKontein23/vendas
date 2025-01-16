@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imgNotificacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/moeda" />
+
+    <TextView
+        android:id="@+id/tituloNotificacao"
+        style="@style/texto_gray900_14sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+
+        android:layout_marginEnd="24dp"
+        android:drawableStart="@drawable/bordas_100_blue600"
+        android:drawablePadding="8dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textFontWeight="500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgNotificacao"
+        app:layout_constraintTop_toTopOf="@+id/imgNotificacao" />
+
+    <TextView
+        android:id="@+id/descriacaoNotificacao"
+        style="@style/texto_gray600_12sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text=""
+        android:textColor="@color/gray600"
+        app:layout_constraintEnd_toEndOf="@+id/tituloNotificacao"
+        app:layout_constraintStart_toStartOf="@+id/tituloNotificacao"
+        app:layout_constraintTop_toBottomOf="@+id/tituloNotificacao" />
+
+    <TextView
+        android:id="@+id/horarioNotificacao"
+        style="@style/texto_gray600_12sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text=""
+        android:textColor="@color/gray600"
+        app:layout_constraintEnd_toEndOf="@+id/tituloNotificacao"
+        app:layout_constraintStart_toStartOf="@+id/tituloNotificacao"
+        app:layout_constraintTop_toBottomOf="@+id/descriacaoNotificacao" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+
+        android:background="@color/gray500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horarioNotificacao">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,7 +23,7 @@
             android:id="@+id/notificao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+
             android:layout_marginEnd="16dp"
             android:src="@drawable/notificacao"
             app:layout_constraintBottom_toBottomOf="parent"
