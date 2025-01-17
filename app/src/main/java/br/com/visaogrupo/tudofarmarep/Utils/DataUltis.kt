@@ -13,6 +13,18 @@ class DataUltis {
             val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
             return dateFormat.format(calendar.time)
         }
+        fun formatarDataISO(isoDate: String): String {
+            return try {
+                val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+                val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+
+                // Converte a data
+                val date = inputFormat.parse(isoDate)
+                outputFormat.format(date!!)
+            } catch (e: Exception) {
+                "Formato inválido"
+            }
+        }
     }
 
 }

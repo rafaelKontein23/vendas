@@ -104,8 +104,7 @@ class ViewModelFragmentDadosAreaDeAtuacao(
                 listaGeralMessoRegiao.clear()
                 listaGeralMessoRegiao.addAll(listaGeralMessoRegiaoList)
             }
-            _listaMesorregiao.postValue(listaRespostaMessoRegiao)
-            _listaCidades.postValue(listaRespostaCidades)
+
 
             if(!isEditavel){
                 if (listaAreaAtuacaoCadastrais.isNotEmpty()) {
@@ -121,16 +120,40 @@ class ViewModelFragmentDadosAreaDeAtuacao(
                         ?.distinctBy { it.Cidade }
                         ?.let { ArrayList(it) }
                         ?: ArrayList()
+                    val listaCidadesFiltradas = ArrayList<RespostaCidades>()
+
+                    for (meso : RespostaMessoRegiao in listaSelecionadosMeso){
+                        for (cidade in listaRespostaCidades!!){
+                            if(meso.Mesorregiao_id == cidade.ID){
+                                listaCidadesFiltradas.add(cidade)
+                            }
+                        }
+                    }
+                    val cidade = RespostaCidades(0, "Todas")
+                    listaCidadesFiltradas.add(0,cidade)
+                    _listaCidades.postValue(listaCidadesFiltradas)
+                    _listaMesorregiao.postValue(listaRespostaMessoRegiao)
 
                     _mesorregiaoSelecionada.postValue(listaSelecionadosMeso)
                     _cidadeSelecionada.postValue(listaSelecionadosCidades)
+
+
+                }else{
+
+                    _listaMesorregiao.postValue(listaRespostaMessoRegiao)
+                    _listaCidades.postValue(listaRespostaCidades)
                 }
             }else{
                 if (adicionaInicial){
                     _mesorregiaoSelecionada.postValue(listaRespostaMessoRegiao)
                     _cidadeSelecionada.postValue(listaRespostaCidades)
                 }
+                _listaMesorregiao.postValue(listaRespostaMessoRegiao)
+                _listaCidades.postValue(listaRespostaCidades)
+
             }
+
+
         }
     }
 

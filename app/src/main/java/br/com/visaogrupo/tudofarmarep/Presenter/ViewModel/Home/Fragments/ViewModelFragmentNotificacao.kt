@@ -11,13 +11,24 @@ import kotlinx.coroutines.launch
 class ViewModelFragmentNotificacao (
     private val notificacaoUseCase: NotificacaoUseCase
 ): ViewModel(){
-    val listaNotificacao = MutableLiveData<ArrayList<RespostaNotificacao>>()
-    val _listaNotificacap get() = listaNotificacao
+    val listaNotificacaoLidas = MutableLiveData<ArrayList<RespostaNotificacao>>()
+    val _listaNotificacaoLista get() = listaNotificacaoLidas
+    val listaNotificacaoNaoLidas = MutableLiveData<ArrayList<RespostaNotificacao>>()
+    val _listaNotificacaoNaoLista get() = listaNotificacaoNaoLidas
 
     fun buscanotificacao (){
         CoroutineScope(Dispatchers.IO).launch {
             val listaresultado =notificacaoUseCase.buscaNotificacao()
-            listaNotificacao.postValue(listaresultado)
+            if(listaresultado.isNotEmpty()){
+                val listaLidas = listaresultado.filter { it -> it.Lido }
+                val listaNaoLidas = listaresultado.filter { it -> !it.Lido }
+                _listaNotificacaoNaoLista.postValue(listaNaoLidas as ArrayList<RespostaNotificacao>)
+                _listaNotificacaoLista.postValue(listaLidas as ArrayList<RespostaNotificacao>)
+
+            }else{
+                _listaNotificacaoLista.postValue(arrayListOf())
+                _listaNotificacaoNaoLista.postValue(arrayListOf())
+            }
 
         }
 

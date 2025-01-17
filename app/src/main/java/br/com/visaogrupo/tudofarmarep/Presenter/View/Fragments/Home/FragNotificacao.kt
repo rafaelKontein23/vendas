@@ -8,9 +8,13 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.visaogrupo.tudofarmarep.Carga.interfaces.AtualizaCargaProgresso
+import br.com.visaogrupo.tudofarmarep.Carga.interfaces.AtualizaProgress
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Adapters.Home.AdapterNotificacao
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Fragments.ViewModelFragmentNotificacao
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Home.Fragments.Factory.ViewModelFragmentNotificacaoFactory
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaNotificacao
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Home.Request.NotificacaoRequest
 import br.com.visaogrupo.tudofarmarep.databinding.FragmentFragNotificacaoBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,9 +30,10 @@ private const val ARG_PARAM2 = "param2"
 class FragNotificacao : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
+    private var listaNotificacao: ArrayList<RespostaNotificacao> = ArrayList()
+
     var _binding : FragmentFragNotificacaoBinding? = null
     val binding get() = _binding!!
-    lateinit var viewModelFragmentNotificacao : ViewModelFragmentNotificacao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,21 +48,13 @@ class FragNotificacao : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding  = FragmentFragNotificacaoBinding.inflate(inflater, container, false)
-        binding.ProgresBuscaNotificacao.isVisible = true
-        val  factory = ViewModelFragmentNotificacaoFactory(requireContext())
-        viewModelFragmentNotificacao = ViewModelProvider(this, factory)[ViewModelFragmentNotificacao::class.java]
-
-        viewModelFragmentNotificacao.listaNotificacao.observe(viewLifecycleOwner){
-            binding.ProgresBuscaNotificacao.isVisible = false
-            if(it.isEmpty()){
-                binding.semNotificacao.isVisible = true
-            }else{
-                binding.recyNotificacao.layoutManager = LinearLayoutManager(requireContext())
-                binding.recyNotificacao.adapter = AdapterNotificacao(it)
-            }
+        if (listaNotificacao.isEmpty()){
+            binding.semNotificacao.isVisible = true
+        }else{
+            val adapterNotificacao = AdapterNotificacao(listaNotificacao)
+            binding.recyNotificacao.adapter = adapterNotificacao
+            binding.recyNotificacao.layoutManager = LinearLayoutManager(requireContext())
         }
-
-        viewModelFragmentNotificacao.buscanotificacao()
 
 
         return binding.root
@@ -65,12 +62,11 @@ class FragNotificacao : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragNotificacao().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        fun newInstance(
+            listaNotificacaoItem: ArrayList<RespostaNotificacao> ): FragNotificacao {
+            return FragNotificacao().apply {
+                this.listaNotificacao = listaNotificacaoItem
             }
+        }
     }
 }

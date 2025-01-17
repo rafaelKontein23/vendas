@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaNotificacao
+import br.com.visaogrupo.tudofarmarep.Utils.DataUltis
 import br.com.visaogrupo.tudofarmarep.databinding.ItemNotificacaoBinding
 
 class AdapterNotificacao(val listaNotificacao:ArrayList<RespostaNotificacao>) : RecyclerView.Adapter<AdapterNotificacao.notificacaoViewHolder>() {
@@ -27,9 +28,33 @@ class AdapterNotificacao(val listaNotificacao:ArrayList<RespostaNotificacao>) : 
 
     }
     class notificacaoViewHolder(val binding: ItemNotificacaoBinding) : RecyclerView.ViewHolder(binding.root) {
-       fun bind(listaNotificacao:RespostaNotificacao
+       fun bind(notificacao:RespostaNotificacao
        ) {
-           binding.tituloNotificacao.text = listaNotificacao.titulo
+           binding.tituloNotificacao.text = notificacao.Titulo
+           binding.descriacaoNotificacao.text = notificacao.Mensagem
+           val data  = DataUltis.formatarDataISO(notificacao.DtPush)
+           binding.horarioNotificacao.text = data
+           if (notificacao.Categoria.equals("Comercial")){
+               binding.imgNotificacao.setImageResource(R.drawable.compras_icone)
+
+           }else if(notificacao.Categoria.equals("Adm. de Prepostos")){
+               binding.imgNotificacao.setImageResource(R.drawable.pessoas_icone)
+
+           }else if(notificacao.Categoria.equals("Gestão de Vendas")){
+               binding.imgNotificacao.setImageResource(R.drawable.caixa_icone)
+
+           }else if (notificacao.Categoria.equals("Atualização")){
+               binding.imgNotificacao.setImageResource(R.drawable.jornal_icone)
+
+           }else if (notificacao.Categoria.equals("Pagamentos")){
+               binding.imgNotificacao.setImageResource(R.drawable.pagamento_icone)
+
+           }else if (notificacao.Categoria.equals("APP / Técnico")){
+               binding.imgNotificacao.setImageResource(R.drawable.remoto)
+
+           }
+
+
        }
     }
 }

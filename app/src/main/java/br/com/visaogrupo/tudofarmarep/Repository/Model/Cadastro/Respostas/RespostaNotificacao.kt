@@ -1,5 +1,7 @@
 package br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas
 
+import java.util.Date
+
 
 data class RespostaNotificacaoDados(
     val Dados: ArrayList<RespostaNotificacao>,
@@ -10,7 +12,10 @@ data class RespostaNotificacaoDados(
 )
 data class RespostaNotificacao(
      val Representante_id: Int,
-    val titulo: String,
-     val mensagem: String,
-    val categoria:String
+     val Titulo: String,
+     val Mensagem: String,
+     val Categoria:String,
+     val Push_id:Long,
+     val Lido : Boolean,
+    val DtPush:String
 )
