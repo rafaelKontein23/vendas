@@ -14,10 +14,10 @@ import kotlin.math.log
 class NotificacaoUseCase (val notificacaoRepository: NotificacaoRepository,
    val preferenciasUtils: PreferenciasUtils) {
 
-    fun buscaNotificacao():ArrayList<RespostaNotificacao>{
+    fun buscaNotificacao(pushid:Int = 0, lerTodas:Int = 0):ArrayList<RespostaNotificacao>{
 
             val representanteID = preferenciasUtils.recuperarInteiro(ProjetoStrings.reprenteID, 0)
-            val notificacaoRquest = NotificacaoRequest(representanteID)
+            val notificacaoRquest = NotificacaoRequest(representanteID, pushid, lerTodas)
             val resultadoNotificacao = notificacaoRepository.buscaNotificacoes(notificacaoRquest)
             return resultadoNotificacao
 

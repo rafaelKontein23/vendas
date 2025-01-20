@@ -16,9 +16,9 @@ class ViewModelFragmentNotificacao (
     val listaNotificacaoNaoLidas = MutableLiveData<ArrayList<RespostaNotificacao>>()
     val _listaNotificacaoNaoLista get() = listaNotificacaoNaoLidas
 
-    fun buscanotificacao (){
+    fun buscanotificacao (pushsId:Int = 0, lerTodas:Int = 0){
         CoroutineScope(Dispatchers.IO).launch {
-            val listaresultado =notificacaoUseCase.buscaNotificacao()
+            val listaresultado =notificacaoUseCase.buscaNotificacao(pushsId, lerTodas)
             if(listaresultado.isNotEmpty()){
                 val listaLidas = listaresultado.filter { it -> it.Lido }
                 val listaNaoLidas = listaresultado.filter { it -> !it.Lido }

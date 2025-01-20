@@ -19,6 +19,7 @@
         android:id="@+id/tituloNotificacao"
         style="@style/texto_gray900_14sp"
         android:layout_width="0dp"
+
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
 
@@ -27,7 +28,7 @@
         android:drawablePadding="8dp"
         android:text="TextView"
         android:textColor="@color/black"
-        android:textFontWeight="500"
+        android:textFontWeight="600"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgNotificacao"
         app:layout_constraintTop_toTopOf="@+id/imgNotificacao" />

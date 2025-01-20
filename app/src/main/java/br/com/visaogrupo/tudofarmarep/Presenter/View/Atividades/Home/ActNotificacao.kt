@@ -54,6 +54,10 @@ class ActNotificacao : AppCompatActivity() {
         binding.setaVoltarNotificacao.setOnClickListener {
             finish()
         }
+        binding.marcarTodasLidas.setOnClickListener {
+            binding.ProgresBuscaNotificacao.isVisible = true
+            viewModelFragmentNotificacao.buscanotificacao(0, 1)
+        }
         binding.viewPagerNotificacao.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)

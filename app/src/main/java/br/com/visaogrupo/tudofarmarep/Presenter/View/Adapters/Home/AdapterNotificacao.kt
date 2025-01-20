@@ -1,5 +1,6 @@
 package br.com.visaogrupo.tudofarmarep.Presenter.View.Adapters.Home
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +35,15 @@ class AdapterNotificacao(val listaNotificacao:ArrayList<RespostaNotificacao>) : 
            binding.descriacaoNotificacao.text = notificacao.Mensagem
            val data  = DataUltis.formatarDataISO(notificacao.DtPush)
            binding.horarioNotificacao.text = data
+           if (notificacao.Lido){
+
+               binding.imgNotificacao.setImageDrawable(null)
+               binding.tituloNotificacao.setTextColor(binding.tituloNotificacao.context.getColor(R.color.gray600))
+               binding.descriacaoNotificacao.setTextColor(binding.tituloNotificacao.context.getColor(R.color.gray500))
+               binding.horarioNotificacao.setTextColor(binding.tituloNotificacao.context.getColor(R.color.gray500))
+
+
+           }
            if (notificacao.Categoria.equals("Comercial")){
                binding.imgNotificacao.setImageResource(R.drawable.compras_icone)
 
