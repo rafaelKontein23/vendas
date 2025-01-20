@@ -43,6 +43,7 @@ class FotoDocumentoFragment : Fragment() {
         viewModelActCabecalho = ViewModelProvider(requireActivity()).get(ViewModelActCabecalho::class.java)
         viewModelActCabecalho.mudaProgressoCadastro(3, 1f)
         FormularioCadastro.stepid = 2
+        viewModelActCabecalho.mostraCarregando(false)
 
 
         if(FormularioCadastro.fotoDocumeto != Uri.EMPTY){

@@ -204,7 +204,7 @@ class ActCabecalho : AppCompatActivity() {
 
         FormularioCadastro.cadastro = daoCadastro.recuperarCadastro(dbHelper) ?: FormularioCadastro.cadastro
 
-        FormularioCadastro.fotoDocumeto = daoCadastro.recuperarFotos(dbHelper) ?: FormularioCadastro.fotoDocumeto
+        FormularioCadastro.fotoDocumeto = if(FormularioCadastro.fotoDocumeto != Uri.EMPTY) FormularioCadastro.fotoDocumeto else daoCadastro.recuperarFotos(dbHelper)
         FormularioCadastro.cadastroRequestAreaAtuacal = daoCadastro.recuperarCadastroAreaAtuacao(dbHelper) ?:FormularioCadastro.cadastroRequestAreaAtuacal
 
         dbHelper.close()

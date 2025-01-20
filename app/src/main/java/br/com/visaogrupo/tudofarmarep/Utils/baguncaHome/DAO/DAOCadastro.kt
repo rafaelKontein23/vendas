@@ -114,7 +114,7 @@ class DAOCadastro {
         db.delete("Cidade", null, null)
         db.delete("CadastroAreaAtuacal", null, null)
     }
-    fun recuperarFotos(db: SQLiteDatabase): Uri? {
+    fun recuperarFotos(db: SQLiteDatabase): Uri {
         val query = "SELECT uriImagemDocumento FROM ImagemCadastro"
         val cursor = db.rawQuery(query, null)
 
@@ -124,7 +124,7 @@ class DAOCadastro {
             Uri.parse(fotoDocumentoUri)
         } else {
             cursor.close()
-            null
+            Uri.EMPTY
         }
     }
     fun inserirCadastroAreaAtuacao(

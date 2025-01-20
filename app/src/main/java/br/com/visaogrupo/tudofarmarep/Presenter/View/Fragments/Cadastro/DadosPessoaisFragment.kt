@@ -83,6 +83,8 @@ class DadosPessoaisFragment : Fragment() {
         FormataTextos.colocaMascaraInput(binding.inputTelefoneComercial, ProjetoStrings.mascaraCelular)
         FormataTextos.colocaMascaraInput(binding.inputCelular, ProjetoStrings.mascaraCelular)
         FormataTextos.colocaMascaraData(binding.inputDataNacimento)
+        viewModelActCabecalho.mostraCarregando(false)
+
         viewModelFragmentDadosPessoal.recuperaNumeroCelular()
         binding.inputDataNacimento.isFocus(requireContext())
         binding.inputDataNacimento.addTextChangedListener(object : TextWatcher{
