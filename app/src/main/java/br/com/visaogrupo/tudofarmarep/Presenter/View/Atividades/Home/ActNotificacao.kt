@@ -79,7 +79,7 @@ class ActNotificacao : AppCompatActivity() {
 
 
         viewModelFragmentNotificacao.listaNotificacaoLidas.observe(this){
-            val fragNotificacao = FragNotificacao.newInstance(it)
+            val fragNotificacao = FragNotificacao.newInstance(it, viewModelFragmentNotificacao)
             adapterNotificacao.addFragment(fragNotificacao)
             binding.viewPagerNotificacao.adapter = adapterNotificacao
 
@@ -87,7 +87,9 @@ class ActNotificacao : AppCompatActivity() {
         }
         viewModelFragmentNotificacao.listaNotificacaoNaoLidas.observe(this){
             binding.ProgresBuscaNotificacao.isVisible = false
-            val fragNotificacao = FragNotificacao.newInstance(it)
+            adapterNotificacao.clearFragments()
+
+            val fragNotificacao = FragNotificacao.newInstance(it, viewModelFragmentNotificacao)
             adapterNotificacao.addFragment(fragNotificacao)
         }
 

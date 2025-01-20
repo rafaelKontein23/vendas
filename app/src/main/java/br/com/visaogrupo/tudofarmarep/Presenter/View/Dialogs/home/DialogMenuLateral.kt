@@ -211,7 +211,7 @@ class DialogMenuLateral {
             dialogAssinarContratoBinding.dialogContratoPolitica(context.getString(R.string.termosDeUso), "${context.getString(R.string.temoDeuso)}  ${context.getString(R.string.segundaParteTermos)}")
         }
         binding.linearVendas.setOnClickListener {
-            viewModelActHome.atualizaFragmentHome(context.getString(R.string.dadosBancarios), EnumMenu.VENDAS)
+            viewModelActHome.atualizaFragmentHome(context.getString(R.string.vendas), EnumMenu.VENDAS)
             dialogMenuLateral.dismiss()
         }
         binding.linearAreaAruacao.setOnClickListener {

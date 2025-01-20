@@ -31,6 +31,8 @@ class FragNotificacao : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var listaNotificacao: ArrayList<RespostaNotificacao> = ArrayList()
+    private lateinit var viewModel: ViewModelFragmentNotificacao
+
 
     var _binding : FragmentFragNotificacaoBinding? = null
     val binding get() = _binding!!
@@ -51,7 +53,7 @@ class FragNotificacao : Fragment() {
         if (listaNotificacao.isEmpty()){
             binding.semNotificacao.isVisible = true
         }else{
-            val adapterNotificacao = AdapterNotificacao(listaNotificacao)
+            val adapterNotificacao = AdapterNotificacao(listaNotificacao, viewModel)
             binding.recyNotificacao.adapter = adapterNotificacao
             binding.recyNotificacao.layoutManager = LinearLayoutManager(requireContext())
         }
@@ -63,9 +65,10 @@ class FragNotificacao : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance(
-            listaNotificacaoItem: ArrayList<RespostaNotificacao> ): FragNotificacao {
+            listaNotificacaoItem: ArrayList<RespostaNotificacao>, viewModel: ViewModelFragmentNotificacao ): FragNotificacao {
             return FragNotificacao().apply {
                 this.listaNotificacao = listaNotificacaoItem
+                this.viewModel = viewModel
             }
         }
     }

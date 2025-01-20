@@ -19,6 +19,10 @@ class AdapterFragmentItens(
     override fun createFragment(position: Int): Fragment {
         return fragmentList[position]
     }
+    fun clearFragments() {
+        fragmentList.clear()
+        notifyDataSetChanged() // Notifica que os dados foram alterados
+    }
 
     fun addFragment(fragment: Fragment) {
         fragmentList.add(fragment)
