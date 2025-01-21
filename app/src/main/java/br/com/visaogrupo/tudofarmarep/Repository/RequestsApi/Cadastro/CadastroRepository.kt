@@ -141,9 +141,7 @@ class CadastroRepository(context: Context) {
                 }else{
                     return false
                 }
-                Log.d("","")
 
-                return true
             }else{
                 if(reponse.errorBody() != null){
                     Log.d("error cadastro",    reponse.errorBody()!!.string())
