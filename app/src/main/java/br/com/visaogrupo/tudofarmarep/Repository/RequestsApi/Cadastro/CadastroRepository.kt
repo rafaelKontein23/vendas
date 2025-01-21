@@ -133,6 +133,16 @@ class CadastroRepository(context: Context) {
             val reponse = retrofit.P_Cadastro(requestBody).execute()
             if(reponse.isSuccessful){
                 val responsestr  = reponse.body()!!.string().descritar()
+                val gson = Gson()
+                val resposta = gson.fromJson(responsestr, RespostaCadastroDados::class.java)
+                var dados = resposta.Dados[0]
+                if (dados.Sucesso == 1){
+                    return true
+                }else{
+                    return false
+                }
+                Log.d("","")
+
                 return true
             }else{
                 if(reponse.errorBody() != null){
