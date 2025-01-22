@@ -15,6 +15,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Home.ActHome
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogWhats
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Factory.ViewModelActTokenFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActToken
 import br.com.visaogrupo.tudofarmarep.R
@@ -48,7 +49,7 @@ class ActToken : AppCompatActivity() {
             binding.numeroCelular.text = numeroCelular.aplicarMascaraTelefone()
             this.numeroCelular = numeroCelular
             binding.constrainCarregando.isVisible = true
-            viewModelActToken.solicitaToken(numeroCelular)
+            viewModelActToken.solicitaToken(numeroCelular, 1)
         }
         binding.campoToken1.isFocusEditTextBasicoSemErro(applicationContext)
         binding.campoToken2.isFocusEditTextBasicoSemErro(applicationContext)
@@ -62,10 +63,15 @@ class ActToken : AppCompatActivity() {
                     finish()
                 }
             }else{
+
+
                 cronometro = Cronometro(respostaToken.TempoTokenSegundos)
                 cronometro.iniciar()
                 Toast.makeText(this, getString(R.string.tokenSolicitadoComSucesso), Toast.LENGTH_LONG).show()
-
+                if(respostaToken.whats  == 1){
+                    val dialog = DialogWhats()
+                    dialog.dialogWhats(this, viewModelActToken, this)
+                }
                 lifecycleScope.launch {
                     cronometro.tempo.collect { tempoAtualizado ->
                         if (tempoAtualizado == "00:00"){

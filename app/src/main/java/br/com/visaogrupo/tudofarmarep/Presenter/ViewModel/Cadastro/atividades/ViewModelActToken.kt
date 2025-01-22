@@ -39,9 +39,9 @@ class ViewModelActToken(
     private val _login = MutableLiveData<RespostaLogin?>()
     val login: LiveData<RespostaLogin?> get() = _login
 
-    fun solicitaToken(telefone: String) {
+    fun solicitaToken(telefone: String, solicitaToken:Int = 0) {
         viewModelScope.launch(Dispatchers.IO) {
-            val respostaSolicitaToken = tokenUseCase.solicitaToken(telefone)
+            val respostaSolicitaToken = tokenUseCase.solicitaToken(telefone, solicitaToken)
             _repostaSolicita.postValue(respostaSolicitaToken)
         }
     }
