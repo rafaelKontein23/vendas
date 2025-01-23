@@ -127,7 +127,7 @@
     <string name="descrincaoInstituicao">Selecione abaixo a instituição financeira da sua conta</string>
     <string name="slecioneAmbiente">Informe o ambiente que deseja acessar</string>
     <string name="informeCelularDescricao">Informe seu celular para receber seu\n token de acesso</string>
-    <string name="informeToken">Informe abaixo o token enviado para o número</string>
+    <string name="informeToken">Informe abaixo o token enviado por WhatsApp para o número</string>
     <string name="naoRecebiToken">não recebi o token</string>
     <string name="inormacaoCelular">Número informado no \nacesso para recebimento \nde token</string>
     <string name="inormacaoCore">CORE é a sigla para \n Conselho Regional \n dos Representantes Comerciais</string>
@@ -147,6 +147,7 @@
     <string name="limparTexto">Limpar assinatura</string>
     <string name="acessarOutraConta">Acessar outra conta</string>
     <string name="tokenSolicitadoComSucesso">Token solicitado com sucesso</string>
+    <string name="seuTokenseraEnviadoPorSms"> Seu token será enviado por SMS!</string>
     <string name="entrarComToken">Entrar com token</string>
     <string name="fraseWhatsVendaRemota">Olá, o link para sua venda remota está disponivel! </string>
 
