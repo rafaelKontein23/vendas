@@ -39,6 +39,7 @@ import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.MainAc
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.home.DialogSeledorData
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Utils.Views.RecyclerUtils
+import br.com.visaogrupo.tudofarmarep.Utils.Views.RecyclerUtilsCotacao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -273,6 +274,11 @@ class FragmentHome : Fragment(), AtualizaMesResumo{
                         val adapterCotacao = AdapterCotacao(listaHome.listaCotacao, representanteId =  reprsentanteID, atualizaProgres!!,requireActivity(), inciaLoja)
                         recyCotacao.adapter = adapterCotacao
                         recyCotacao.layoutManager = LinearLayoutManager(contextHome!!)
+
+                        val recyclerUtilsCotacao = RecyclerUtilsCotacao(adapterCotacao)
+                        val itemm = recyclerUtilsCotacao.item()
+                        val itemTouchHelper = ItemTouchHelper(itemm)
+                        itemTouchHelper.attachToRecyclerView(recyCotacao)
 
                     }
                     if (isAdded && !isDetached && view != null && activity != null) {

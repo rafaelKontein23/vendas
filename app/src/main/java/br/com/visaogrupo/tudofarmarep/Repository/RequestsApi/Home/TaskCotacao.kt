@@ -3,12 +3,18 @@ package br.com.visaogrupo.tudofarmarep.Carga.Tasks.TasksHome
 import br.com.visaogrupo.tudofarmarep.Carga.interfaces.Isync
 import br.com.visaogrupo.tudofarmarep.Objetos.CarrinhoItemCotacao
 import br.com.visaogrupo.tudofarmarep.Objetos.Cotacao
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.ExcluiCotacaoRequest
+import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Home.SincronoHome
+import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.descritar
+import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.incriptar
 import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.Criptho
 import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.RetrofitWS
 import br.com.visaogrupo.tudofarmarep.Utils.baguncaHome.Support
+import com.google.gson.Gson
 
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import okio.IOException
 import org.json.JSONObject
 
@@ -127,5 +133,19 @@ class TaskCotacao {
             i.printStackTrace()
             return ArrayList()
         }
+    }
+
+    fun excluiCotacao(cotacaoID: ExcluiCotacaoRequest){
+        val isync = RetrofitWS().createService(SincronoHome::class.java)
+        val jsonObject = Gson().toJson(cotacaoID).incriptar()
+        val mediaType =  "application/json".toMediaTypeOrNull()
+        val requestBody = jsonObject.toRequestBody(mediaType)
+        val request = isync.P_ApagaCotacao(requestBody).execute()
+        if (request.isSuccessful) {
+            val responseBody = request.body()!!.string().descritar()
+            val jsonResponse = JSONObject(Support.CRIPTHO.decode(responseBody, Criptho.BASE64_MODE))
+            val json = jsonResponse.getJSONArray("Dados")
+        }
+
     }
 }
