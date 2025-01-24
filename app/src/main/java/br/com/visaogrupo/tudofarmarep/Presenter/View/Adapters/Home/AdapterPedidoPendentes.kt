@@ -99,6 +99,7 @@ class AdapterPedidoPendentes(listaPedidoPendentes:ArrayList<CarrinhoAbertos>, va
       return listaPedidoPendentes.size
     }
 
+
     class pedidosPendentesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val nomeText = itemView.findViewById<TextView>(R.id.nomeText)
         val nomeLoja = itemView.findViewById<TextView>(R.id.nomeLoja)

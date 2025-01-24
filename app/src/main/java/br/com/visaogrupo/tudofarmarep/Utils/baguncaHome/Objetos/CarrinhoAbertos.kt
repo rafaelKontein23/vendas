@@ -6,5 +6,6 @@ data class CarrinhoAbertos(
     val nomeLoja:String,
     val totalCarrinho:Double,
     val razoSocial:String,
-    val logoTipo:String
+    val logoTipo:String,
+    val lojaId:Int
 )

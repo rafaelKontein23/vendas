@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -37,6 +38,7 @@ import br.com.visaogrupo.tudofarmarep.Objetos.CarrinhoAbertos
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Cadastros.MainActivity
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.home.DialogSeledorData
 import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Utils.Views.RecyclerUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -271,6 +273,7 @@ class FragmentHome : Fragment(), AtualizaMesResumo{
                         val adapterCotacao = AdapterCotacao(listaHome.listaCotacao, representanteId =  reprsentanteID, atualizaProgres!!,requireActivity(), inciaLoja)
                         recyCotacao.adapter = adapterCotacao
                         recyCotacao.layoutManager = LinearLayoutManager(contextHome!!)
+
                     }
                     if (isAdded && !isDetached && view != null && activity != null) {
                         val adapterFragmentItens = AdapterFragmentItens(childFragmentManager, viewLifecycleOwner.lifecycle)
@@ -304,6 +307,7 @@ class FragmentHome : Fragment(), AtualizaMesResumo{
                             val linearLayoutManager = LinearLayoutManager(contextHome!!)
                             recyclerViewPedidosPendentes.layoutManager = linearLayoutManager
                             recyclerViewPedidosPendentes.adapter = adapterPedidoPendentes
+
                         }else{
                             verMaisPedidoPendentes.isVisible = false
                             adapterPedidoPendentes = AdapterPedidoPendentes(listaHome.pedidosPendentes, requireActivity(), inciaLoja)
@@ -311,6 +315,10 @@ class FragmentHome : Fragment(), AtualizaMesResumo{
                             recyclerViewPedidosPendentes.layoutManager = linearLayoutManager
                             recyclerViewPedidosPendentes.adapter = adapterPedidoPendentes
                         }
+                        val recyclerUtils = RecyclerUtils(adapterPedidoPendentes)
+                        val itemm = recyclerUtils.item()
+                        val itemTouchHelper = ItemTouchHelper(itemm)
+                        itemTouchHelper.attachToRecyclerView(recyclerViewPedidosPendentes)
 
                         verMaisPedidoPendentes.setOnClickListener {
                             if (!isVerMaisPedidoPendentes){
