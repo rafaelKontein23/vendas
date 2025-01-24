@@ -15,6 +15,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import br.com.visaogrupo.tudofarmarep.Presenter.View.Atividades.Home.ActHome
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Dialogs.Cadastro.DialogWhats
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.Factory.ViewModelActTokenFactory
 import br.com.visaogrupo.tudofarmarep.Presenter.ViewModel.Cadastro.atividades.ViewModelActToken
 import br.com.visaogrupo.tudofarmarep.R
@@ -48,13 +49,13 @@ class ActToken : AppCompatActivity() {
             binding.numeroCelular.text = numeroCelular.aplicarMascaraTelefone()
             this.numeroCelular = numeroCelular
             binding.constrainCarregando.isVisible = true
-            viewModelActToken.solicitaToken(numeroCelular)
+            viewModelActToken.solicitaToken(numeroCelular, 1)
         }
         binding.campoToken1.isFocusEditTextBasicoSemErro(applicationContext)
         binding.campoToken2.isFocusEditTextBasicoSemErro(applicationContext)
         binding.campoToken3.isFocusEditTextBasicoSemErro(applicationContext)
         binding.campoToken4.isFocusEditTextBasicoSemErro(applicationContext)
-
+        binding.decricaoToken.text = getString(R.string.informeToken)
         viewModelActToken.repostaSolicita.observe(this){ respostaToken ->
             binding.constrainCarregando.isVisible = false
             if(respostaToken == null){
@@ -62,29 +63,39 @@ class ActToken : AppCompatActivity() {
                     finish()
                 }
             }else{
+
+
                 cronometro = Cronometro(respostaToken.TempoTokenSegundos)
                 cronometro.iniciar()
                 Toast.makeText(this, getString(R.string.tokenSolicitadoComSucesso), Toast.LENGTH_LONG).show()
+                if(respostaToken.whats  == 1){
 
-                lifecycleScope.launch {
-                    cronometro.tempo.collect { tempoAtualizado ->
-                        if (tempoAtualizado == "00:00"){
-                            binding.naoRecebiTokenCronometro.text = getString(R.string.naoRecebiToken)
-                            binding.naoRecebiTokenCronometro.isEnabled = true
-                        }else{
-                            binding.naoRecebiTokenCronometro.setText( "${ProjetoStrings.reenviarToken} $tempoAtualizado")
-                            binding.naoRecebiTokenCronometro.isEnabled = false
+                    binding.naoRecebiTokenCronometro.setText( "${getString(R.string.naoTenhoAcessoaoWhatsapp)}")
 
+                }else{
+                    binding.decricaoToken.text = "Informe abaixo o token enviado por SMS para o número"
+                    lifecycleScope.launch {
+                        cronometro.tempo.collect { tempoAtualizado ->
+                            if (tempoAtualizado == "00:00"){
+                                binding.naoRecebiTokenCronometro.text = getString(R.string.naoRecebiToken)
+                                binding.naoRecebiTokenCronometro.isEnabled = true
+                            }else{
+                                binding.naoRecebiTokenCronometro.setText( "${ProjetoStrings.reenviarToken} $tempoAtualizado")
+                                binding.naoRecebiTokenCronometro.isEnabled = false
+
+                            }
                         }
                     }
                 }
-
             }
 
         }
 
         binding.naoRecebiTokenCronometro.setOnClickListener {
             binding.constrainCarregando.isVisible = true
+            Alertas.alertaErro(binding.textView.context, binding.textView.context.getString(R.string.seuTokenseraEnviadoPorSms),binding.textView.context.getString(R.string.loiuInforma)){
+
+            }
             viewModelActToken.solicitaToken(numeroCelular)
         }
 

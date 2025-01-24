@@ -16,10 +16,10 @@ class TokenUseCase(
     private val sistemaUtils: SistemaUtils,
 ) {
 
-    suspend fun solicitaToken(telefone: String): RespostaSolicitaToken? {
+    suspend fun solicitaToken(telefone: String, solicitaToken:Int = 0): RespostaSolicitaToken? {
         val udid = sistemaUtils.recuperaUdid()
         val cnpj = preferenciasUtils.recuperarTexto(ProjetoStrings.cnpjCadastro) ?: ""
-        val solicitaTokenRequest = SolicitaTokenRquest( telefone , UDID = udid, CNPJ =  cnpj,DeviceToken= SistemaUtils.deviceToken )
+        val solicitaTokenRequest = SolicitaTokenRquest( telefone , UDID = udid, CNPJ =  cnpj,DeviceToken= SistemaUtils.deviceToken,  WhatsApp = solicitaToken )
         return tokenRepository.solicitaTokenReposiory(solicitaTokenRequest)
     }
 

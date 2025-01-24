@@ -23,8 +23,9 @@ class DAOCarrinho {
         }
 
     }
+
     fun buscaCarrinhoAbertos(db: SQLiteDatabase):ArrayList<CarrinhoAbertos>{
-        val queryItens = "SELECT Carrinho.CNPJ, Marcas.nome, Lojas.Nome as Loja, SUM(Carrinho.valorTotal) AS TotalCarrinho, Carrinho.razaoSocial, Marcas.logoTipo\n" +
+        val queryItens = "SELECT Carrinho.CNPJ, Marcas.nome, Lojas.Nome as Loja, SUM(Carrinho.valorTotal) AS TotalCarrinho, Carrinho.razaoSocial, Marcas.logoTipo, Lojas.Loja_ID\n" +
                 "FROM TB_CARRINHO Carrinho\n" +
                 "INNER JOIN TB_MARCAS Marcas on Marcas.marca_ID = Carrinho.marca_ID\n" +
                 "INNER JOIN TB_LOJAS Lojas on Lojas.Loja_ID = Carrinho.Loja_ID\n" +
@@ -38,7 +39,8 @@ class DAOCarrinho {
             val valorTotal = cursor.getDouble(3)
             val razaoSocial = cursor.getString(4)
             val logoTipo = cursor.getString(5)
-            val carrinhoAbertosr = CarrinhoAbertos(cnpj, marca, loja, valorTotal, razaoSocial, logoTipo)
+            val lojaId = cursor.getInt(6)
+            val carrinhoAbertosr = CarrinhoAbertos(cnpj, marca, loja, valorTotal, razaoSocial, logoTipo, lojaId)
             listaCarrinho.add(carrinhoAbertosr)
         }
         return listaCarrinho

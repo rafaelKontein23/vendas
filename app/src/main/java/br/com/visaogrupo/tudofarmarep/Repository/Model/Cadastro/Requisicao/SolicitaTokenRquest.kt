@@ -6,4 +6,5 @@ data class SolicitaTokenRquest(
     val UDID:String,
     val CNPJ :String,
     val DeviceToken :String,
+    val WhatsApp:Int
 )

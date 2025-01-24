@@ -30,6 +30,7 @@ class TokenRepository(context: Context) {
                 val respostaApi = gson.fromJson(responseBody, RespostaApiDadosToken::class.java)
                 val dados : List<RespostaSolicitaToken> = respostaApi.Dados
                 val repostaSolicitaToken = dados.first()
+                repostaSolicitaToken.whats = solicitaTokenRquest.WhatsApp
                 return repostaSolicitaToken
             }else{
                 return  null

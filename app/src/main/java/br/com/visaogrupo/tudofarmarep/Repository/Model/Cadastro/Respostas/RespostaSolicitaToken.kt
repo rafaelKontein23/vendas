@@ -9,5 +9,6 @@ data class RespostaApiDadosToken (
 )
 data class RespostaSolicitaToken(
     val mensagem: String,
-    val  TempoTokenSegundos : Int
+    val  TempoTokenSegundos : Int,
+    var whats:Int = 0
 )
