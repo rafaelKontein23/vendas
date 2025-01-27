@@ -55,7 +55,7 @@ class RecyclerUtils(val adpter: AdapterPedidoPendentes) {
                 val limitedDx = if (dX < -maxSwipeDistance) -maxSwipeDistance else dX
 
                 if (dX > 0) {
-                    c.drawColor(Color.TRANSPARENT) // Limpa a tela para a área normal
+                    c.drawColor(Color.WHITE) // Limpa a tela para a área normal
                 }
 
                 if (dX < 0) { // Apenas desenha se a célula estiver sendo arrastada para a esquerda
@@ -125,7 +125,9 @@ class RecyclerUtils(val adpter: AdapterPedidoPendentes) {
         val itemRecy = adpter.listaPedidoPendentes[position]
         adpter.listaPedidoPendentes.removeAt(position)
         adpter.notifyItemRemoved(position)
-
+        recyclerView.post {
+            adpter.notifyItemChanged(position)
+        }
 
         val snackbar = Snackbar.make(
             recyclerView,
@@ -134,8 +136,12 @@ class RecyclerUtils(val adpter: AdapterPedidoPendentes) {
         ).setBackgroundTint(Color.WHITE)
             .setTextColor(Color.BLACK)
             .setAction("Desfazer") {
-                adpter.listaPedidoPendentes.add(position,itemRecy)
+                adpter.listaPedidoPendentes.add(position, itemRecy)
                 adpter.notifyItemInserted(position)
+                recyclerView.post {
+                    adpter.notifyItemChanged(position)
+                }
+
             }
             .addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
                 override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
