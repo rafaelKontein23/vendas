@@ -4,6 +4,8 @@ import br.com.visaogrupo.tudofarmarep.Carga.interfaces.Isync
 import br.com.visaogrupo.tudofarmarep.Objetos.CarrinhoItemCotacao
 import br.com.visaogrupo.tudofarmarep.Objetos.Cotacao
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.ExcluiCotacaoRequest
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaDadosExcluirCotacao
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Respostas.RespostaExcluirCotacao
 import br.com.visaogrupo.tudofarmarep.Repository.RequestsApi.Home.SincronoHome
 import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.descritar
 import br.com.visaogrupo.tudofarmarep.Utils.ConfiguracoesApi.incriptar
@@ -135,17 +137,29 @@ class TaskCotacao {
         }
     }
 
-    fun excluiCotacao(cotacaoID: ExcluiCotacaoRequest){
-        val isync = RetrofitWS().createService(SincronoHome::class.java)
-        val jsonObject = Gson().toJson(cotacaoID).incriptar()
-        val mediaType =  "application/json".toMediaTypeOrNull()
-        val requestBody = jsonObject.toRequestBody(mediaType)
-        val request = isync.P_ApagaCotacao(requestBody).execute()
-        if (request.isSuccessful) {
-            val responseBody = request.body()!!.string().descritar()
-            val jsonResponse = JSONObject(Support.CRIPTHO.decode(responseBody, Criptho.BASE64_MODE))
-            val json = jsonResponse.getJSONArray("Dados")
-        }
+  suspend  fun excluiCotacao(cotacaoID: ExcluiCotacaoRequest): RespostaDadosExcluirCotacao?{
+        try {
+            val isync = RetrofitWS().createService(SincronoHome::class.java)
+            val jsonObject = Gson().toJson(cotacaoID).incriptar()
+            val mediaType =  "application/json".toMediaTypeOrNull()
+            val requestBody = jsonObject.toRequestBody(mediaType)
+            val request = isync.P_ApagaCotacao(requestBody).execute()
+            if (request.isSuccessful) {
+                val responseBody = request.body()!!.string().descritar()
+                val gson = Gson()
+                val respostaApi = gson.fromJson(responseBody, RespostaExcluirCotacao::class.java)
+                val dadosCotacao = respostaApi.Dados.first()
+                return  dadosCotacao
+            }else{
+                return RespostaDadosExcluirCotacao("Algo deu errado ao excluir a cotação",false)
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
+            return RespostaDadosExcluirCotacao("Algo deu errado ao excluir a cotação",false)
 
+        }catch (e:IOException){
+            e.printStackTrace()
+            return RespostaDadosExcluirCotacao("Algo deu errado com sua conexão",false)
+        }
     }
 }

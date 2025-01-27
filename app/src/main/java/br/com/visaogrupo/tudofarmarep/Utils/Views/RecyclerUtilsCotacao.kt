@@ -11,12 +11,14 @@ import br.com.visaogrupo.tudofarmarep.Adapter.AdapterCotacao
 import br.com.visaogrupo.tudofarmarep.Carga.Tasks.TasksHome.TaskCotacao
 import br.com.visaogrupo.tudofarmarep.DAO.DAOCarrinho
 import br.com.visaogrupo.tudofarmarep.DAO.DAOHelper
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.contextHome
 import br.com.visaogrupo.tudofarmarep.R
 import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.ExcluiCotacaoRequest
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 class RecyclerUtilsCotacao(val adpter: AdapterCotacao) {
@@ -142,7 +144,14 @@ class RecyclerUtilsCotacao(val adpter: AdapterCotacao) {
                         CoroutineScope(Dispatchers.IO).launch{
                             val apagaCotacao = TaskCotacao()
                             val excluiCotacaoRequest = ExcluiCotacaoRequest(itemRecy.CarrinhoId)
-                            apagaCotacao.excluiCotacao(excluiCotacaoRequest)
+                            val resultado = apagaCotacao.excluiCotacao(excluiCotacaoRequest)
+                            MainScope().launch {
+                                Alertas.alertaErro(recyclerView.context, resultado?.Mensagem.toString(), "Loiu informa", "", "ok"){
+
+                                }
+
+                            }
+
 
                         }
 
