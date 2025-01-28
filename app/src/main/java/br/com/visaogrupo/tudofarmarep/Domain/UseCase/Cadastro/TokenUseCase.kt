@@ -27,8 +27,11 @@ class TokenUseCase(
         val cnpj = preferenciasUtils.recuperarTexto(ProjetoStrings.cnpjCadastro) ?: ""
         val celular = preferenciasUtils.recuperarTexto(ProjetoStrings.celular) ?: ""
         val udid = sistemaUtils.recuperaUdid()
+        val dipositivo = sistemaUtils.recuperaNomeDispositivo()
+        val sistemaOperacional = sistemaUtils.recuperaSO()
 
-        val confirmaTokenRequest = ConfirmaTokenRequest( celular, token,cnpj, SistemaUtils.deviceToken )
+
+        val confirmaTokenRequest = ConfirmaTokenRequest( celular, token,cnpj, SistemaUtils.deviceToken, "Android", udid,ProjetoStrings.versapApp,dipositivo, sistemaOperacional)
         return tokenRepository.confirmaTokenRepository(confirmaTokenRequest)
     }
 }
