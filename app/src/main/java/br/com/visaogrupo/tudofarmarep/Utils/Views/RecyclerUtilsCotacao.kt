@@ -3,25 +3,25 @@ package br.com.visaogrupo.tudofarmarep.Utils.Views
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.util.Log
 import android.view.MotionEvent
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import br.com.visaogrupo.tudofarmarep.Adapter.AdapterPedidoPendentes
-import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.adapterPedidoPendentes
-import br.com.visaogrupo.tudofarmarep.R
-import com.google.android.material.snackbar.BaseTransientBottomBar
-import com.google.android.material.snackbar.Snackbar
+import br.com.visaogrupo.tudofarmarep.Adapter.AdapterCotacao
+import br.com.visaogrupo.tudofarmarep.Carga.Tasks.TasksHome.TaskCotacao
 import br.com.visaogrupo.tudofarmarep.DAO.DAOCarrinho
 import br.com.visaogrupo.tudofarmarep.DAO.DAOHelper
+import br.com.visaogrupo.tudofarmarep.Presenter.View.Fragments.Home.contextHome
+import br.com.visaogrupo.tudofarmarep.R
+import br.com.visaogrupo.tudofarmarep.Repository.Model.Cadastro.Requisicao.ExcluiCotacaoRequest
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
-
-class RecyclerUtils(val adpter: AdapterPedidoPendentes) {
+class RecyclerUtilsCotacao(val adpter: AdapterCotacao) {
 
     fun item(): ItemTouchHelper.SimpleCallback {
         return object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
@@ -55,7 +55,7 @@ class RecyclerUtils(val adpter: AdapterPedidoPendentes) {
                 val limitedDx = if (dX < -maxSwipeDistance) -maxSwipeDistance else dX
 
                 if (dX > 0) {
-                    c.drawColor(Color.WHITE) // Limpa a tela para a área normal
+                    c.drawColor(Color.TRANSPARENT) // Limpa a tela para a área normal
                 }
 
                 if (dX < 0) { // Apenas desenha se a célula estiver sendo arrastada para a esquerda
@@ -122,12 +122,10 @@ class RecyclerUtils(val adpter: AdapterPedidoPendentes) {
     }
     private fun onRedAreaClicked(position: Int, recyclerView: RecyclerView) {
 
-        val itemRecy = adpter.listaPedidoPendentes[position]
-        adpter.listaPedidoPendentes.removeAt(position)
+        val itemRecy = adpter.listaCotacao[position]
+        adpter.listaCotacao.removeAt(position)
         adpter.notifyItemRemoved(position)
-        recyclerView.post {
-            adpter.notifyItemChanged(position)
-        }
+
 
         val snackbar = Snackbar.make(
             recyclerView,
@@ -136,22 +134,27 @@ class RecyclerUtils(val adpter: AdapterPedidoPendentes) {
         ).setBackgroundTint(Color.WHITE)
             .setTextColor(Color.BLACK)
             .setAction("Desfazer") {
-                adpter.listaPedidoPendentes.add(position, itemRecy)
+                adpter.listaCotacao.add(position,itemRecy)
                 adpter.notifyItemInserted(position)
-                recyclerView.post {
-                    adpter.notifyItemChanged(position)
-                }
-
             }
             .addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
                 override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                     super.onDismissed(transientBottomBar, event)
                     if (event != DISMISS_EVENT_ACTION) {
                         CoroutineScope(Dispatchers.IO).launch{
-                            val DAOCarrinho = DAOCarrinho()
-                            val db = DAOHelper(recyclerView.context).writableDatabase
-                            DAOCarrinho.deletaCarrinhoEspecifico(db, itemRecy.lojaId, itemRecy.cnpj)
+                            val apagaCotacao = TaskCotacao()
+                            val excluiCotacaoRequest = ExcluiCotacaoRequest(itemRecy.CarrinhoId)
+                            val resultado = apagaCotacao.excluiCotacao(excluiCotacaoRequest)
+                            MainScope().launch {
+                                Alertas.alertaErro(recyclerView.context, resultado?.Mensagem.toString(), "Loiu informa", "", "ok"){
+
+                                }
+
+                            }
+
+
                         }
+
                     }
                 }
             })

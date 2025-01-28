@@ -28,4 +28,7 @@ interface SincronoHome {
 
     @POST("notificao")
     fun P_ListaNotificacoes(@Body request: RequestBody) : Call<ResponseBody>
+
+    @POST("ws/exclui/cotacoes")
+    fun P_ApagaCotacao(@Body request: RequestBody) : Call<ResponseBody>
 }

@@ -173,7 +173,7 @@ left join TB_PROGRESSIVA Progressiva on Progressiva.marca_ID  = Produtos.marca_I
                                     and Progressiva.loja_ID = ${loja.Loja_ID} 
                                     and operadorlogisticogrupoid = ${operadorLogisticoGrupoID}                             
 where Produtos.marca_id =  ${loja.marcaID}
-order by Produtos.nome ASC
+order by Carrinho.quantidade_adicionada DESC, Produtos.nome ASC
     
     """
 

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    android:background="@drawable/bordas_8dp_blue600"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout24"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@drawable/bordas_8dp_top"
+        android:padding="8dp"
+        android:backgroundTint="@color/blue900"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tituloKit"
+            style="@style/texto_branco_size_12dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="remedio descricao remedio tiulo"
+            android:textFontWeight="600"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/valorDe"
+            style="@style/texto12sp_gray400_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="R$ 00,00"
+            app:layout_constraintStart_toStartOf="@+id/tituloKit"
+            app:layout_constraintTop_toBottomOf="@+id/tituloKit">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/valorPor"
+            style="@style/texto_branco_size_12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="2dp"
+            android:text="R$ 00,90"
+            app:layout_constraintBottom_toBottomOf="@+id/valorDe"
+            app:layout_constraintStart_toEndOf="@+id/valorDe"
+            app:layout_constraintTop_toBottomOf="@+id/tituloKit">
+
+        </TextView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray400"
+            app:layout_constraintBottom_toBottomOf="@+id/valorDe"
+            app:layout_constraintEnd_toEndOf="@+id/valorDe"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/valorDe"
+            app:layout_constraintTop_toTopOf="@+id/valorDe"
+            app:layout_constraintVertical_bias="0.6">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyProdutosKit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout24" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="2dp"
+        android:background="@drawable/bordas_bottom_8dp"
+        android:backgroundTint="@color/gray200"
+
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/recyProdutosKit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyProdutosKit">
+
+        <TextView
+            android:id="@+id/valorTotalKit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="R$ 00,00"
+            style="@style/textoblue90012sp"
+            android:textFontWeight="600"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            style="@style/textoblue90012sp"
+            android:textSize="13sp"
+            android:textFontWeight="500"
+            android:text="+ impostos"
+            app:layout_constraintBottom_toBottomOf="@+id/valorTotalKit"
+            app:layout_constraintStart_toEndOf="@+id/valorTotalKit"
+            app:layout_constraintTop_toTopOf="@+id/valorTotalKit" />
+
+        <TextView
+            android:id="@+id/botaoMenos"
+            android:layout_width="36dp"
+            android:layout_height="32dp"
+            android:background="@drawable/bordas_botao_esquerdo_menos"
+
+            android:clickable="true"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/inputQuantidade"
+            app:layout_constraintTop_toTopOf="@+id/inputQuantidade" />
+
+        <TextView
+            android:id="@+id/botaoMais"
+            android:layout_width="36dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="16dp"
+
+            android:background="@drawable/bordas_botao_direito_mais"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/inputQuantidade" />
+
+        <EditText
+            android:id="@+id/inputQuantidade"
+            android:layout_width="60dp"
+            android:layout_height="32dp"
+            android:background="@drawable/bordas_input_produto"
+            android:gravity="center"
+            android:hint="0"
+            android:inputType="number"
+            android:maxLength="5"
+            android:textColor="@color/gray500"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/botaoMais"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </EditText>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

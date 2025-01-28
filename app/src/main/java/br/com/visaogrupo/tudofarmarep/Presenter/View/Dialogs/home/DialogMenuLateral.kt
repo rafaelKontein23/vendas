@@ -73,6 +73,8 @@ class DialogMenuLateral {
         binding.linearLinkExclusivo.isVisible = FormularioCadastro.featureFlagVendaRemota
         binding.linearPedidoSugestao.isVisible = FormularioCadastro.featureFlagVendaRemota
 
+        binding.versaoApp.text = "Versão: "+ ProjetoStrings.versapApp
+
         binding.linearMerchan.setOnClickListener {
             viewModelActHome.atualizaWebView(context.getString(R.string.Merchandising), ProjetoStrings.dashMinhasAcoes)
             dialogMenuLateral.dismiss()
