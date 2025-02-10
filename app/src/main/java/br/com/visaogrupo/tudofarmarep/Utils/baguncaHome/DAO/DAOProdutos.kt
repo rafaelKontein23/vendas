@@ -47,7 +47,8 @@ class DAOProdutos (){
                 "LEFT JOIN TB_CARRINHO carrinho ON carrinho.barra = Progressiva.barra AND carrinho.Loja_ID = Progressiva.loja_ID " +
                 "AND carrinho.quantidade_adicionada > 0 AND carrinho.cnpj = '${cnpj}' " +
                 "WHERE Progressiva.loja_ID = ${lojaID} AND CASE WHEN IFNULL(carrinho.valorTotal, 0) > 0 THEN 1 ELSE 0 END = 1 " +
-                "AND Progressiva.marca_ID = ${marcaID}"
+                "AND Progressiva.marca_ID = ${marcaID} " +
+                "ORDER BY carrinho.quantidade_adicionada DESC"
 
         Log.d("SQL_QUERY", query)
 

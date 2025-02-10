@@ -56,8 +56,11 @@ class AdapterInstituicaoBancaria(
                 binding.textoSelecionarInstituicao.setTextColor(context.getColor(R.color.gray600))
             }
             binding.root.setOnClickListener {
-                viewModel.alterarTextoInstituicao(instituicao!!.Descricao)
-                dialoag.dismiss()
+                if (instituicao != null) {
+                    viewModel.alterarTextoInstituicao(instituicao)
+                    dialoag.dismiss()
+
+                }
             }
         }
     }

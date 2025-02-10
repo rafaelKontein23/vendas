@@ -33,8 +33,8 @@ class ViewModelDadosBancarios(
     val _recuperaCNPJ = MutableLiveData<String>()
     val recuperaCNPJ :LiveData<String> = _recuperaCNPJ
 
-    val _textoInstituicao = MutableLiveData<String>()
-    val textoInstituicao :LiveData<String> = _textoInstituicao
+    val _textoInstituicao = MutableLiveData<RespostaInstituicaoBancaria>()
+    val textoInstituicao :LiveData<RespostaInstituicaoBancaria> = _textoInstituicao
 
     val _atualizaDadosBancarios = MutableLiveData<Boolean>()
     val atualizaDadosBancarios :LiveData<Boolean> = _atualizaDadosBancarios
@@ -57,7 +57,7 @@ class ViewModelDadosBancarios(
         val cnpj = preferenciasUtils.recuperarTexto(ProjetoStrings.cnpjLogin, "") ?: ""
         _recuperaCNPJ.postValue(cnpj)
     }
-    fun alterarTextoInstituicao(texto:String){
+    fun alterarTextoInstituicao(texto:RespostaInstituicaoBancaria){
         _textoInstituicao.postValue(texto)
     }
     fun mandaDadosBancarios(

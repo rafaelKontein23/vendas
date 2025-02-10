@@ -30,6 +30,8 @@ class DadosBancariosFragment : Fragment() {
     private var _binding: FragmentDadosBancariosBinding? = null
     private val binding get() = _binding!!
     private  lateinit var  viewModelDadosBancarios: ViewModelDadosBancarios
+    private var codigoBanco= 0;
+    private var atualizaSalvar = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +66,7 @@ class DadosBancariosFragment : Fragment() {
             if (it != null){
                 if (it.Status_cod == 0 ){
                     bloquiacampos(true)
+                    atualizaSalvar = 1
                 }else{
                     bloquiacampos(false)
                     binding.inputInstituicao.setText(it.Banco)
@@ -88,7 +91,8 @@ class DadosBancariosFragment : Fragment() {
             }
         }
         viewModelDadosBancarios.textoInstituicao.observe(viewLifecycleOwner){
-            binding.inputInstituicao.setText(it)
+            binding.inputInstituicao.setText(it.Descricao)
+            codigoBanco = it.Codigo;
         }
         viewModelDadosBancarios.listabanco.observe(viewLifecycleOwner){
             binding.constrainCarregando.isVisible = false
@@ -106,7 +110,6 @@ class DadosBancariosFragment : Fragment() {
         }
 
         binding.btnSalvar.setOnClickListener {
-            binding.constrainCarregando.isVisible = true
             val instituicaoTexto = binding.inputInstituicao.text.toString()
             val agenciaTexto = binding.inputAgencia.text.toString()
             val contaTexto = binding.inputConta.text.toString()
@@ -114,12 +117,20 @@ class DadosBancariosFragment : Fragment() {
             binding.inputAgencia.validaError(agenciaTexto.isEmpty(), requireContext())
             binding.inputConta.validaError(contaTexto.isEmpty(), requireContext())
 
-            if (instituicaoTexto == getString(R.string.Selecione) || agenciaTexto.isEmpty() || contaTexto.isEmpty()){
+            if(atualizaSalvar == 1){
+                binding.constrainCarregando.isVisible = true
+                if (instituicaoTexto == getString(R.string.Selecione) || agenciaTexto.isEmpty() || contaTexto.isEmpty()){
+                    binding.constrainCarregando.isVisible = false
+                    Toast.makeText(requireContext(), getString(R.string.preencha_todos_os_campos), Toast.LENGTH_SHORT).show()
+                }else{
+                    viewModelDadosBancarios.mandaDadosBancarios(contaTexto, agenciaTexto, instituicaoTexto,  codigoBanco = codigoBanco.toString())
+                }
+            }else {
                 binding.constrainCarregando.isVisible = false
-                Toast.makeText(requireContext(), getString(R.string.preencha_todos_os_campos), Toast.LENGTH_SHORT).show()
-            }else{
-                viewModelDadosBancarios.mandaDadosBancarios(contaTexto, agenciaTexto, instituicaoTexto, "000" )
+                Toast.makeText(requireContext(),"Entre em contato com o suporte para alterar os dados", Toast.LENGTH_SHORT).show()
             }
+
+
         }
 
 

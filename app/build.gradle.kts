@@ -24,7 +24,7 @@ android {
         applicationId = "br.com.visaogrupo.tudofarmarep"
         minSdk = 26
         targetSdk = 34
-        versionCode = 76
+        versionCode = 78
         versionName = "2.2.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
